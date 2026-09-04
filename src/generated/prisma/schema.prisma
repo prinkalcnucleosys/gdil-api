@@ -1,0 +1,381 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | ADMIN USER
+ * |--------------------------------------------------------------------------
+ */
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | CONTACT INQUIRY
+ * |--------------------------------------------------------------------------
+ */
+model ContactInquiry {
+  id          Int     @id @default(autoincrement())
+  companyName String? @db.VarChar(255)
+  name        String  @db.VarChar(255)
+  email       String  @db.VarChar(255)
+  phone       String? @db.VarChar(50)
+  subject     String? @db.VarChar(255)
+  message     String  @db.Text
+
+  status String @default("new") @db.VarChar(30)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("contact_inquiries")
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | NEWSLETTER
+ * |--------------------------------------------------------------------------
+ */
+model NewsletterSubscriber {
+  id    Int    @id @default(autoincrement())
+  email String @unique @db.VarChar(255)
+
+  subscribedAt DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("newsletter_subscribers")
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | BLOG / NEWS & UPDATES
+ * |--------------------------------------------------------------------------
+ */
+
+enum BlogType {
+  INAUGURATION
+  PRESS_RELEASE
+  NEWSLETTER_ARCHIVE
+  POLITICAL_LEADERSHIP
+  DEFENCE_MILITARY_LEADERSHIP
+  INDUSTRY_PARTICIPATION
+}
+
+model BlogPost {
+  id Int @id @default(autoincrement())
+
+  // Common fields
+  title String
+  slug  String   @unique
+  type  BlogType
+
+  excerpt String? @db.Text
+  content String? @db.Text
+
+  // Media
+  image       String?
+  documentUrl String?
+
+  // Date / event information
+  date     DateTime
+  location String?
+
+  // Additional information
+  tags Json?
+
+  // Leadership / guest information
+  personName String?
+  personRole String?
+
+  // Event information
+  eventName String?
+
+  // External / internal link
+  link String?
+
+  // Publishing
+  isPublished Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([type])
+  @@index([date])
+  @@index([isPublished])
+  @@index([type, isPublished])
+  @@map("blog_posts")
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR CATEGORY
+ * |--------------------------------------------------------------------------
+ */
+model InvestorCategory {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  sortOrder Int     @default(0)
+  isActive  Boolean @default(true)
+
+  subCategories  InvestorSubCategory[]
+  financialYears InvestorFinancialYear[]
+  documents      InvestorDocument[]
+
+  tableFormatAssignments InvestorTableFormatAssignment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([sortOrder])
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR SUB CATEGORY
+ * |--------------------------------------------------------------------------
+ */
+model InvestorSubCategory {
+  id         Int     @id @default(autoincrement())
+  categoryId Int
+  name       String
+  sortOrder  Int     @default(0)
+  isActive   Boolean @default(true)
+
+  category InvestorCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  financialYears InvestorFinancialYear[]
+  documents      InvestorDocument[]
+
+  tableFormatAssignments InvestorTableFormatAssignment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([categoryId, name])
+  @@index([categoryId])
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR FINANCIAL YEAR
+ * |--------------------------------------------------------------------------
+ */
+model InvestorFinancialYear {
+  id            Int     @id @default(autoincrement())
+  categoryId    Int?
+  subCategoryId Int?
+  year          String
+  sortOrder     Int     @default(0)
+  isActive      Boolean @default(true)
+
+  category    InvestorCategory?    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  subCategory InvestorSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: Cascade)
+
+  quarters  InvestorQuarter[]
+  documents InvestorDocument[]
+
+  tableFormatAssignments InvestorTableFormatAssignment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([subCategoryId])
+  @@index([year])
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR QUARTER
+ * |--------------------------------------------------------------------------
+ */
+model InvestorQuarter {
+  id              Int @id @default(autoincrement())
+  financialYearId Int
+
+  name String
+  code String
+
+  releaseDate DateTime? @db.Date
+
+  sortOrder Int     @default(0)
+  isActive  Boolean @default(true)
+
+  financialYear InvestorFinancialYear @relation(fields: [financialYearId], references: [id], onDelete: Cascade)
+
+  documents InvestorDocument[]
+
+  tableFormatAssignments InvestorTableFormatAssignment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([financialYearId, code])
+  @@index([financialYearId])
+  @@index([releaseDate])
+  @@index([isActive])
+  @@index([sortOrder])
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR TABLE FIELD TYPE
+ * |--------------------------------------------------------------------------
+ */
+enum InvestorTableFieldType {
+  TEXT
+  DATE
+  DATETIME
+  NUMBER
+  LINK
+  DOCUMENT
+  FINANCIAL_YEAR
+  QUARTER
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR TABLE FORMAT
+ * |--------------------------------------------------------------------------
+ */
+model InvestorTableFormat {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+
+  financialYearMode String @default("NONE") @db.VarChar(30)
+
+  isActive  Boolean @default(true)
+  sortOrder Int     @default(0)
+
+  columns     InvestorTableColumn[]
+  assignments InvestorTableFormatAssignment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([sortOrder])
+  @@map("investor_table_formats")
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR TABLE COLUMN
+ * |--------------------------------------------------------------------------
+ */
+model InvestorTableColumn {
+  id Int @id @default(autoincrement())
+
+  tableFormatId Int
+  tableFormat   InvestorTableFormat @relation(fields: [tableFormatId], references: [id], onDelete: Cascade)
+
+  key       String                 @db.VarChar(100)
+  label     String                 @db.VarChar(255)
+  fieldType InvestorTableFieldType @default(TEXT)
+
+  sortOrder Int     @default(0)
+  isVisible Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([tableFormatId, key])
+  @@index([tableFormatId])
+  @@index([tableFormatId, sortOrder])
+  @@map("investor_table_columns")
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR TABLE FORMAT ASSIGNMENT
+ * |--------------------------------------------------------------------------
+ */
+model InvestorTableFormatAssignment {
+  id Int @id @default(autoincrement())
+
+  tableFormatId Int
+  tableFormat   InvestorTableFormat @relation(fields: [tableFormatId], references: [id], onDelete: Cascade)
+
+  categoryId Int?
+  category   InvestorCategory? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  subCategoryId Int?
+  subCategory   InvestorSubCategory? @relation(fields: [subCategoryId], references: [id], onDelete: Cascade)
+
+  financialYearId Int?
+  financialYear   InvestorFinancialYear? @relation(fields: [financialYearId], references: [id], onDelete: Cascade)
+
+  quarterId Int?
+  quarter   InvestorQuarter? @relation(fields: [quarterId], references: [id], onDelete: Cascade)
+
+  displayMode String @default("TABLE") @db.VarChar(30)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([subCategoryId])
+  @@index([financialYearId])
+  @@index([quarterId])
+  @@index([tableFormatId])
+  @@map("investor_table_format_assignments")
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | INVESTOR DOCUMENT
+ * |--------------------------------------------------------------------------
+ */
+model InvestorDocument {
+  id              Int       @id @default(autoincrement())
+  categoryId      Int
+  subCategoryId   Int?
+  financialYearId Int?
+  quarterId       Int?
+  title           String
+  description     String?   @db.Text
+  documentType    String?
+  purpose         String?   @db.Text
+  documentDate    DateTime?
+  disclosureDate  DateTime?
+  dueDate         DateTime?
+  storageType     String    @default("google_drive")
+  externalUrl     String
+  isPublished     Boolean   @default(true)
+  sortOrder       Int       @default(0)
+
+  metadata Json?
+
+  category      InvestorCategory       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  subCategory   InvestorSubCategory?   @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
+  financialYear InvestorFinancialYear? @relation(fields: [financialYearId], references: [id], onDelete: SetNull)
+  quarter       InvestorQuarter?       @relation(fields: [quarterId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([subCategoryId])
+  @@index([financialYearId])
+  @@index([quarterId])
+  @@index([isPublished])
+  @@index([sortOrder])
+}

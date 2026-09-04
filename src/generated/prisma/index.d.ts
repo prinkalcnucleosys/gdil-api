@@ -1,0 +1,21964 @@
+
+/**
+ * Client
+**/
+
+import * as runtime from './runtime/client.js';
+import $Types = runtime.Types // general types
+import $Public = runtime.Types.Public
+import $Utils = runtime.Types.Utils
+import $Extensions = runtime.Types.Extensions
+import $Result = runtime.Types.Result
+
+export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+
+/**
+ * Model AdminUser
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | ADMIN USER
+ *  * |--------------------------------------------------------------------------
+ */
+export type AdminUser = $Result.DefaultSelection<Prisma.$AdminUserPayload>
+/**
+ * Model ContactInquiry
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | CONTACT INQUIRY
+ *  * |--------------------------------------------------------------------------
+ */
+export type ContactInquiry = $Result.DefaultSelection<Prisma.$ContactInquiryPayload>
+/**
+ * Model NewsletterSubscriber
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | NEWSLETTER
+ *  * |--------------------------------------------------------------------------
+ */
+export type NewsletterSubscriber = $Result.DefaultSelection<Prisma.$NewsletterSubscriberPayload>
+/**
+ * Model BlogPost
+ * 
+ */
+export type BlogPost = $Result.DefaultSelection<Prisma.$BlogPostPayload>
+/**
+ * Model InvestorCategory
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR CATEGORY
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorCategory = $Result.DefaultSelection<Prisma.$InvestorCategoryPayload>
+/**
+ * Model InvestorSubCategory
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR SUB CATEGORY
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorSubCategory = $Result.DefaultSelection<Prisma.$InvestorSubCategoryPayload>
+/**
+ * Model InvestorFinancialYear
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR FINANCIAL YEAR
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorFinancialYear = $Result.DefaultSelection<Prisma.$InvestorFinancialYearPayload>
+/**
+ * Model InvestorQuarter
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR QUARTER
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorQuarter = $Result.DefaultSelection<Prisma.$InvestorQuarterPayload>
+/**
+ * Model InvestorTableFormat
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR TABLE FORMAT
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorTableFormat = $Result.DefaultSelection<Prisma.$InvestorTableFormatPayload>
+/**
+ * Model InvestorTableColumn
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR TABLE COLUMN
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorTableColumn = $Result.DefaultSelection<Prisma.$InvestorTableColumnPayload>
+/**
+ * Model InvestorTableFormatAssignment
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR TABLE FORMAT ASSIGNMENT
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorTableFormatAssignment = $Result.DefaultSelection<Prisma.$InvestorTableFormatAssignmentPayload>
+/**
+ * Model InvestorDocument
+ * *
+ *  * |--------------------------------------------------------------------------
+ *  * | INVESTOR DOCUMENT
+ *  * |--------------------------------------------------------------------------
+ */
+export type InvestorDocument = $Result.DefaultSelection<Prisma.$InvestorDocumentPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const BlogType: {
+  INAUGURATION: 'INAUGURATION',
+  PRESS_RELEASE: 'PRESS_RELEASE',
+  NEWSLETTER_ARCHIVE: 'NEWSLETTER_ARCHIVE',
+  POLITICAL_LEADERSHIP: 'POLITICAL_LEADERSHIP',
+  DEFENCE_MILITARY_LEADERSHIP: 'DEFENCE_MILITARY_LEADERSHIP',
+  INDUSTRY_PARTICIPATION: 'INDUSTRY_PARTICIPATION'
+};
+
+export type BlogType = (typeof BlogType)[keyof typeof BlogType]
+
+
+export const InvestorTableFieldType: {
+  TEXT: 'TEXT',
+  DATE: 'DATE',
+  DATETIME: 'DATETIME',
+  NUMBER: 'NUMBER',
+  LINK: 'LINK',
+  DOCUMENT: 'DOCUMENT',
+  FINANCIAL_YEAR: 'FINANCIAL_YEAR',
+  QUARTER: 'QUARTER'
+};
+
+export type InvestorTableFieldType = (typeof InvestorTableFieldType)[keyof typeof InvestorTableFieldType]
+
+}
+
+export type BlogType = $Enums.BlogType
+
+export const BlogType: typeof $Enums.BlogType
+
+export type InvestorTableFieldType = $Enums.InvestorTableFieldType
+
+export const InvestorTableFieldType: typeof $Enums.InvestorTableFieldType
+
+/**
+ * ##  Prisma Client ʲˢ
+ *
+ * Type-safe database client for TypeScript & Node.js
+ * @example
+ * ```
+ * const prisma = new PrismaClient({
+ *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+ * })
+ * // Fetch zero or more AdminUsers
+ * const adminUsers = await prisma.adminUser.findMany()
+ * ```
+ *
+ *
+ * Read more in our [docs](https://pris.ly/d/client).
+ */
+export class PrismaClient<
+  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
+
+    /**
+   * ##  Prisma Client ʲˢ
+   *
+   * Type-safe database client for TypeScript & Node.js
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+   * })
+   * // Fetch zero or more AdminUsers
+   * const adminUsers = await prisma.adminUser.findMany()
+   * ```
+   *
+   *
+   * Read more in our [docs](https://pris.ly/d/client).
+   */
+
+  constructor(optionsArg ?: Prisma.PrismaClientConstructorArgs<ClientOptions>);
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+
+  /**
+   * Connect with the database
+   */
+  $connect(): $Utils.JsPromise<void>;
+
+  /**
+   * Disconnect from the database
+   */
+  $disconnect(): $Utils.JsPromise<void>;
+
+/**
+   * Executes a prepared raw query and returns the number of affected rows.
+   * @example
+   * ```
+   * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
+   */
+  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Executes a raw query and returns the number of affected rows.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
+   */
+  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Performs a prepared raw query and returns the `SELECT` data.
+   * @example
+   * ```
+   * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
+   */
+  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+
+  /**
+   * Performs a raw query and returns the `SELECT` data.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://pris.ly/d/raw-queries).
+   */
+  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
+
+
+  /**
+   * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
+   * @example
+   * ```
+   * const [george, bob, alice] = await prisma.$transaction([
+   *   prisma.user.create({ data: { name: 'George' } }),
+   *   prisma.user.create({ data: { name: 'Bob' } }),
+   *   prisma.user.create({ data: { name: 'Alice' } }),
+   * ])
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/orm/prisma-client/queries/transactions).
+   */
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+
+  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+    extArgs: ExtArgs
+  }>>
+
+      /**
+   * `prisma.adminUser`: Exposes CRUD operations for the **AdminUser** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AdminUsers
+    * const adminUsers = await prisma.adminUser.findMany()
+    * ```
+    */
+  get adminUser(): Prisma.AdminUserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contactInquiry`: Exposes CRUD operations for the **ContactInquiry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContactInquiries
+    * const contactInquiries = await prisma.contactInquiry.findMany()
+    * ```
+    */
+  get contactInquiry(): Prisma.ContactInquiryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.newsletterSubscriber`: Exposes CRUD operations for the **NewsletterSubscriber** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NewsletterSubscribers
+    * const newsletterSubscribers = await prisma.newsletterSubscriber.findMany()
+    * ```
+    */
+  get newsletterSubscriber(): Prisma.NewsletterSubscriberDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.blogPost`: Exposes CRUD operations for the **BlogPost** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BlogPosts
+    * const blogPosts = await prisma.blogPost.findMany()
+    * ```
+    */
+  get blogPost(): Prisma.BlogPostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorCategory`: Exposes CRUD operations for the **InvestorCategory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorCategories
+    * const investorCategories = await prisma.investorCategory.findMany()
+    * ```
+    */
+  get investorCategory(): Prisma.InvestorCategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorSubCategory`: Exposes CRUD operations for the **InvestorSubCategory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorSubCategories
+    * const investorSubCategories = await prisma.investorSubCategory.findMany()
+    * ```
+    */
+  get investorSubCategory(): Prisma.InvestorSubCategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorFinancialYear`: Exposes CRUD operations for the **InvestorFinancialYear** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorFinancialYears
+    * const investorFinancialYears = await prisma.investorFinancialYear.findMany()
+    * ```
+    */
+  get investorFinancialYear(): Prisma.InvestorFinancialYearDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorQuarter`: Exposes CRUD operations for the **InvestorQuarter** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorQuarters
+    * const investorQuarters = await prisma.investorQuarter.findMany()
+    * ```
+    */
+  get investorQuarter(): Prisma.InvestorQuarterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorTableFormat`: Exposes CRUD operations for the **InvestorTableFormat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorTableFormats
+    * const investorTableFormats = await prisma.investorTableFormat.findMany()
+    * ```
+    */
+  get investorTableFormat(): Prisma.InvestorTableFormatDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorTableColumn`: Exposes CRUD operations for the **InvestorTableColumn** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorTableColumns
+    * const investorTableColumns = await prisma.investorTableColumn.findMany()
+    * ```
+    */
+  get investorTableColumn(): Prisma.InvestorTableColumnDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorTableFormatAssignment`: Exposes CRUD operations for the **InvestorTableFormatAssignment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorTableFormatAssignments
+    * const investorTableFormatAssignments = await prisma.investorTableFormatAssignment.findMany()
+    * ```
+    */
+  get investorTableFormatAssignment(): Prisma.InvestorTableFormatAssignmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.investorDocument`: Exposes CRUD operations for the **InvestorDocument** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more InvestorDocuments
+    * const investorDocuments = await prisma.investorDocument.findMany()
+    * ```
+    */
+  get investorDocument(): Prisma.InvestorDocumentDelegate<ExtArgs, ClientOptions>;
+}
+
+export namespace Prisma {
+  export import DMMF = runtime.DMMF
+
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+  /**
+   * Validator
+   */
+  export import validator = runtime.Public.validator
+
+  /**
+   * Prisma Errors
+   */
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError
+
+  /**
+   * Re-export of sql-template-tag
+   */
+  export import sql = runtime.sqltag
+  export import empty = runtime.empty
+  export import join = runtime.join
+  export import raw = runtime.raw
+  export import Sql = runtime.Sql
+
+
+
+  /**
+   * Decimal.js
+   */
+  export import Decimal = runtime.Decimal
+
+  export type DecimalJsLike = runtime.DecimalJsLike
+
+  /**
+  * Extensions
+  */
+  export import Extension = $Extensions.UserArgs
+  export import getExtensionContext = runtime.Extensions.getExtensionContext
+  export import Args = $Public.Args
+  export import Payload = $Public.Payload
+  export import Result = $Public.Result
+  export import Exact = $Public.Exact
+
+  /**
+   * Prisma Client JS version: 7.10.0
+   * Query Engine version: 0edf323efd1d98336f3f0a68684b56f689b900d3
+   */
+  export type PrismaVersion = {
+    client: string
+    engine: string
+  }
+
+  export const prismaVersion: PrismaVersion
+
+  /**
+   * Utility Types
+   */
+
+
+  export import Bytes = runtime.Bytes
+  export import JsonObject = runtime.JsonObject
+  export import JsonArray = runtime.JsonArray
+  export import JsonValue = runtime.JsonValue
+  export import InputJsonObject = runtime.InputJsonObject
+  export import InputJsonArray = runtime.InputJsonArray
+  export import InputJsonValue = runtime.InputJsonValue
+
+  /**
+   * Types of the values used to represent different kinds of `null` values when working with JSON fields.
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  namespace NullTypes {
+    /**
+    * Type of `Prisma.DbNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class DbNull {
+      private DbNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.JsonNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class JsonNull {
+      private JsonNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.AnyNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class AnyNull {
+      private AnyNull: never
+      private constructor()
+    }
+  }
+
+  /**
+   * Helper for filtering JSON entries that have `null` on the database (empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const DbNull: NullTypes.DbNull
+
+  /**
+   * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const JsonNull: NullTypes.JsonNull
+
+  /**
+   * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const AnyNull: NullTypes.AnyNull
+
+  type SelectAndInclude = {
+    select: any
+    include: any
+  }
+
+  type SelectAndOmit = {
+    select: any
+    omit: any
+  }
+
+  /**
+   * Get the type of the value, that the Promise holds.
+   */
+  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+
+  /**
+   * Get the return type of a function which returns a Promise.
+   */
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+
+  /**
+   * From T, pick a set of properties whose keys are in the union K
+   */
+  type Prisma__Pick<T, K extends keyof T> = {
+      [P in K]: T[P];
+  };
+
+
+  export type Enumerable<T> = T | Array<T>;
+
+  export type RequiredKeys<T> = {
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
+  }[keyof T]
+
+  export type TruthyKeys<T> = keyof {
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
+  }
+
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
+
+  /**
+   * Subset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
+   */
+  export type Subset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  };
+
+  /**
+   * Resolved type of the argument passed to the `PrismaClient` constructor.
+   *
+   * When called without a narrower options type (the common case), this resolves
+   * to `PrismaClientOptions` directly, which produces a clear TypeScript error
+   * message (`not assignable to parameter of type 'PrismaClientOptions'`) when
+   * the argument is missing or incomplete. When the user supplies a narrower
+   * options type (e.g. via a literal), it falls back to `Subset` to keep
+   * filtering out unknown properties.
+   */
+  export type PrismaClientConstructorArgs<Options extends PrismaClientOptions> =
+    [PrismaClientOptions] extends [Options] ? PrismaClientOptions : Subset<Options, PrismaClientOptions>;
+
+  /**
+   * SelectSubset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
+   * Additionally, it validates, if both select and include are present. If the case, it errors.
+   */
+  export type SelectSubset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    (T extends SelectAndInclude
+      ? 'Please either choose `select` or `include`.'
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
+
+  /**
+   * Subset + Intersection
+   * @desc From `T` pick properties that exist in `U` and intersect `K`
+   */
+  export type SubsetIntersection<T, U, K> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    K
+
+  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+
+  /**
+   * XOR is needed to have a real mutually exclusive union type
+   * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
+   */
+  type XOR<T, U> =
+    T extends object ?
+    U extends object ?
+      ((Without<T, U> & U) | (Without<U, T> & T)) & object
+    : U : T
+
+
+  /**
+   * Is T a Record?
+   */
+  type IsObject<T extends any> = T extends Array<any>
+  ? False
+  : T extends Date
+  ? False
+  : T extends Uint8Array
+  ? False
+  : T extends BigInt
+  ? False
+  : T extends object
+  ? True
+  : False
+
+
+  /**
+   * If it's T[], return T
+   */
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+
+  /**
+   * From ts-toolbelt
+   */
+
+  type __Either<O extends object, K extends Key> = Omit<O, K> &
+    {
+      // Merge all but K
+      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
+    }[K]
+
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
+
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
+
+  type _Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean
+  > = {
+    1: EitherStrict<O, K>
+    0: EitherLoose<O, K>
+  }[strict]
+
+  type Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean = 1
+  > = O extends unknown ? _Either<O, K, strict> : never
+
+  export type Union = any
+
+  type PatchUndefined<O extends object, O1 extends object> = {
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
+  } & {}
+
+  /** Helper Types for "Merge" **/
+  export type IntersectOf<U extends Union> = (
+    U extends unknown ? (k: U) => void : never
+  ) extends (k: infer I) => void
+    ? I
+    : never
+
+  export type Overwrite<O extends object, O1 extends object> = {
+      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+  } & {};
+
+  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
+      [K in keyof U]-?: At<U, K>;
+  }>>;
+
+  type Key = string | number | symbol;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
+  type AtStrict<O extends object, K extends Key> = O[K & keyof O];
+  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+      1: AtStrict<O, K>;
+      0: AtLoose<O, K>;
+  }[strict];
+
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
+    [K in keyof A]: A[K];
+  } & {};
+
+  export type OptionalFlat<O> = {
+    [K in keyof O]?: O[K];
+  } & {};
+
+  type _Record<K extends keyof any, T> = {
+    [P in K]: T;
+  };
+
+  // cause typescript not to expand types and preserve names
+  type NoExpand<T> = T extends unknown ? T : never;
+
+  // this type assumes the passed object is entirely optional
+  type AtLeast<O extends object, K extends string> = NoExpand<
+    O extends unknown
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
+    : never>;
+
+  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
+
+  export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
+  /** End Helper Types for "Merge" **/
+
+  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
+
+  /**
+  A [[Boolean]]
+  */
+  export type Boolean = True | False
+
+  // /**
+  // 1
+  // */
+  export type True = 1
+
+  /**
+  0
+  */
+  export type False = 0
+
+  export type Not<B extends Boolean> = {
+    0: 1
+    1: 0
+  }[B]
+
+  export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
+    ? 0 // anything `never` is false
+    : A1 extends A2
+    ? 1
+    : 0
+
+  export type Has<U extends Union, U1 extends Union> = Not<
+    Extends<Exclude<U1, U>, U1>
+  >
+
+  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+    0: {
+      0: 0
+      1: 1
+    }
+    1: {
+      0: 1
+      1: 1
+    }
+  }[B1][B2]
+
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never
+
+  type Cast<A, B> = A extends B ? A : B;
+
+  export const type: unique symbol;
+
+
+
+  /**
+   * Used by group by
+   */
+
+  export type GetScalarType<T, O> = O extends object ? {
+    [P in keyof T]: P extends keyof O
+      ? O[P]
+      : never
+  } : never
+
+  type FieldPaths<
+    T,
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
+  > = IsObject<T> extends True ? U : T
+
+  type GetHavingFields<T> = {
+    [K in keyof T]: Or<
+      Or<Extends<'OR', K>, Extends<'AND', K>>,
+      Extends<'NOT', K>
+    > extends True
+      ? // infer is only needed to not hit TS limit
+        // based on the brilliant idea of Pierre-Antoine Mills
+        // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
+        T[K] extends infer TK
+        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
+        : never
+      : {} extends FieldPaths<T[K]>
+      ? never
+      : K
+  }[keyof T]
+
+  /**
+   * Convert tuple to union
+   */
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
+
+  /**
+   * Like `Pick`, but additionally can also accept an array of keys
+   */
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+
+  /**
+   * Exclude all keys with underscores
+   */
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+
+
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
+
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
+
+
+  export const ModelName: {
+    AdminUser: 'AdminUser',
+    ContactInquiry: 'ContactInquiry',
+    NewsletterSubscriber: 'NewsletterSubscriber',
+    BlogPost: 'BlogPost',
+    InvestorCategory: 'InvestorCategory',
+    InvestorSubCategory: 'InvestorSubCategory',
+    InvestorFinancialYear: 'InvestorFinancialYear',
+    InvestorQuarter: 'InvestorQuarter',
+    InvestorTableFormat: 'InvestorTableFormat',
+    InvestorTableColumn: 'InvestorTableColumn',
+    InvestorTableFormatAssignment: 'InvestorTableFormatAssignment',
+    InvestorDocument: 'InvestorDocument'
+  };
+
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+
+
+
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  }
+
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+    globalOmitOptions: {
+      omit: GlobalOmitOptions
+    }
+    meta: {
+      modelProps: "adminUser" | "contactInquiry" | "newsletterSubscriber" | "blogPost" | "investorCategory" | "investorSubCategory" | "investorFinancialYear" | "investorQuarter" | "investorTableFormat" | "investorTableColumn" | "investorTableFormatAssignment" | "investorDocument"
+      txIsolationLevel: Prisma.TransactionIsolationLevel
+    }
+    model: {
+      AdminUser: {
+        payload: Prisma.$AdminUserPayload<ExtArgs>
+        fields: Prisma.AdminUserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminUserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminUserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminUserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminUserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
+          }
+          findMany: {
+            args: Prisma.AdminUserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>[]
+          }
+          create: {
+            args: Prisma.AdminUserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
+          }
+          createMany: {
+            args: Prisma.AdminUserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AdminUserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
+          }
+          update: {
+            args: Prisma.AdminUserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminUserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminUserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AdminUserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminUserPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminUserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdminUser>
+          }
+          groupBy: {
+            args: Prisma.AdminUserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdminUserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminUserCountArgs<ExtArgs>
+            result: $Utils.Optional<AdminUserCountAggregateOutputType> | number
+          }
+        }
+      }
+      ContactInquiry: {
+        payload: Prisma.$ContactInquiryPayload<ExtArgs>
+        fields: Prisma.ContactInquiryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContactInquiryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContactInquiryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload>
+          }
+          findFirst: {
+            args: Prisma.ContactInquiryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContactInquiryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload>
+          }
+          findMany: {
+            args: Prisma.ContactInquiryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload>[]
+          }
+          create: {
+            args: Prisma.ContactInquiryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload>
+          }
+          createMany: {
+            args: Prisma.ContactInquiryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ContactInquiryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload>
+          }
+          update: {
+            args: Prisma.ContactInquiryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContactInquiryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContactInquiryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ContactInquiryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContactInquiryPayload>
+          }
+          aggregate: {
+            args: Prisma.ContactInquiryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContactInquiry>
+          }
+          groupBy: {
+            args: Prisma.ContactInquiryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContactInquiryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContactInquiryCountArgs<ExtArgs>
+            result: $Utils.Optional<ContactInquiryCountAggregateOutputType> | number
+          }
+        }
+      }
+      NewsletterSubscriber: {
+        payload: Prisma.$NewsletterSubscriberPayload<ExtArgs>
+        fields: Prisma.NewsletterSubscriberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NewsletterSubscriberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NewsletterSubscriberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload>
+          }
+          findFirst: {
+            args: Prisma.NewsletterSubscriberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NewsletterSubscriberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload>
+          }
+          findMany: {
+            args: Prisma.NewsletterSubscriberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload>[]
+          }
+          create: {
+            args: Prisma.NewsletterSubscriberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload>
+          }
+          createMany: {
+            args: Prisma.NewsletterSubscriberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.NewsletterSubscriberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload>
+          }
+          update: {
+            args: Prisma.NewsletterSubscriberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload>
+          }
+          deleteMany: {
+            args: Prisma.NewsletterSubscriberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NewsletterSubscriberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.NewsletterSubscriberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NewsletterSubscriberPayload>
+          }
+          aggregate: {
+            args: Prisma.NewsletterSubscriberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNewsletterSubscriber>
+          }
+          groupBy: {
+            args: Prisma.NewsletterSubscriberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterSubscriberGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NewsletterSubscriberCountArgs<ExtArgs>
+            result: $Utils.Optional<NewsletterSubscriberCountAggregateOutputType> | number
+          }
+        }
+      }
+      BlogPost: {
+        payload: Prisma.$BlogPostPayload<ExtArgs>
+        fields: Prisma.BlogPostFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BlogPostFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BlogPostFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          findFirst: {
+            args: Prisma.BlogPostFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BlogPostFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          findMany: {
+            args: Prisma.BlogPostFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>[]
+          }
+          create: {
+            args: Prisma.BlogPostCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          createMany: {
+            args: Prisma.BlogPostCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.BlogPostDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          update: {
+            args: Prisma.BlogPostUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          deleteMany: {
+            args: Prisma.BlogPostDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BlogPostUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.BlogPostUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPostPayload>
+          }
+          aggregate: {
+            args: Prisma.BlogPostAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBlogPost>
+          }
+          groupBy: {
+            args: Prisma.BlogPostGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BlogPostGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BlogPostCountArgs<ExtArgs>
+            result: $Utils.Optional<BlogPostCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorCategory: {
+        payload: Prisma.$InvestorCategoryPayload<ExtArgs>
+        fields: Prisma.InvestorCategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorCategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorCategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorCategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorCategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorCategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorCategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorCategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorCategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload>
+          }
+          update: {
+            args: Prisma.InvestorCategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorCategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorCategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorCategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorCategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorCategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorCategory>
+          }
+          groupBy: {
+            args: Prisma.InvestorCategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorCategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorCategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorCategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorSubCategory: {
+        payload: Prisma.$InvestorSubCategoryPayload<ExtArgs>
+        fields: Prisma.InvestorSubCategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorSubCategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorSubCategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorSubCategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorSubCategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorSubCategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorSubCategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorSubCategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorSubCategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload>
+          }
+          update: {
+            args: Prisma.InvestorSubCategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorSubCategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorSubCategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorSubCategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorSubCategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorSubCategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorSubCategory>
+          }
+          groupBy: {
+            args: Prisma.InvestorSubCategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorSubCategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorSubCategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorSubCategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorFinancialYear: {
+        payload: Prisma.$InvestorFinancialYearPayload<ExtArgs>
+        fields: Prisma.InvestorFinancialYearFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorFinancialYearFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorFinancialYearFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorFinancialYearFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorFinancialYearFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorFinancialYearFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorFinancialYearCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorFinancialYearCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorFinancialYearDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload>
+          }
+          update: {
+            args: Prisma.InvestorFinancialYearUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorFinancialYearDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorFinancialYearUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorFinancialYearUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorFinancialYearPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorFinancialYearAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorFinancialYear>
+          }
+          groupBy: {
+            args: Prisma.InvestorFinancialYearGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorFinancialYearGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorFinancialYearCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorFinancialYearCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorQuarter: {
+        payload: Prisma.$InvestorQuarterPayload<ExtArgs>
+        fields: Prisma.InvestorQuarterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorQuarterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorQuarterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorQuarterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorQuarterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorQuarterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorQuarterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorQuarterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorQuarterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload>
+          }
+          update: {
+            args: Prisma.InvestorQuarterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorQuarterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorQuarterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorQuarterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorQuarterPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorQuarterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorQuarter>
+          }
+          groupBy: {
+            args: Prisma.InvestorQuarterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorQuarterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorQuarterCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorQuarterCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorTableFormat: {
+        payload: Prisma.$InvestorTableFormatPayload<ExtArgs>
+        fields: Prisma.InvestorTableFormatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorTableFormatFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorTableFormatFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorTableFormatFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorTableFormatFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorTableFormatFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorTableFormatCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorTableFormatCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorTableFormatDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload>
+          }
+          update: {
+            args: Prisma.InvestorTableFormatUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorTableFormatDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorTableFormatUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorTableFormatUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorTableFormatAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorTableFormat>
+          }
+          groupBy: {
+            args: Prisma.InvestorTableFormatGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorTableFormatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorTableFormatCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorTableFormatCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorTableColumn: {
+        payload: Prisma.$InvestorTableColumnPayload<ExtArgs>
+        fields: Prisma.InvestorTableColumnFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorTableColumnFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorTableColumnFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorTableColumnFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorTableColumnFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorTableColumnFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorTableColumnCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorTableColumnCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorTableColumnDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload>
+          }
+          update: {
+            args: Prisma.InvestorTableColumnUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorTableColumnDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorTableColumnUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorTableColumnUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableColumnPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorTableColumnAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorTableColumn>
+          }
+          groupBy: {
+            args: Prisma.InvestorTableColumnGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorTableColumnGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorTableColumnCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorTableColumnCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorTableFormatAssignment: {
+        payload: Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>
+        fields: Prisma.InvestorTableFormatAssignmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorTableFormatAssignmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorTableFormatAssignmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorTableFormatAssignmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorTableFormatAssignmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorTableFormatAssignmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorTableFormatAssignmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorTableFormatAssignmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorTableFormatAssignmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload>
+          }
+          update: {
+            args: Prisma.InvestorTableFormatAssignmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorTableFormatAssignmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorTableFormatAssignmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorTableFormatAssignmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorTableFormatAssignmentPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorTableFormatAssignmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorTableFormatAssignment>
+          }
+          groupBy: {
+            args: Prisma.InvestorTableFormatAssignmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorTableFormatAssignmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorTableFormatAssignmentCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorTableFormatAssignmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      InvestorDocument: {
+        payload: Prisma.$InvestorDocumentPayload<ExtArgs>
+        fields: Prisma.InvestorDocumentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InvestorDocumentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InvestorDocumentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload>
+          }
+          findFirst: {
+            args: Prisma.InvestorDocumentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InvestorDocumentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload>
+          }
+          findMany: {
+            args: Prisma.InvestorDocumentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload>[]
+          }
+          create: {
+            args: Prisma.InvestorDocumentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload>
+          }
+          createMany: {
+            args: Prisma.InvestorDocumentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.InvestorDocumentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload>
+          }
+          update: {
+            args: Prisma.InvestorDocumentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload>
+          }
+          deleteMany: {
+            args: Prisma.InvestorDocumentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InvestorDocumentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.InvestorDocumentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InvestorDocumentPayload>
+          }
+          aggregate: {
+            args: Prisma.InvestorDocumentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInvestorDocument>
+          }
+          groupBy: {
+            args: Prisma.InvestorDocumentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InvestorDocumentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InvestorDocumentCountArgs<ExtArgs>
+            result: $Utils.Optional<InvestorDocumentCountAggregateOutputType> | number
+          }
+        }
+      }
+    }
+  } & {
+    other: {
+      payload: any
+      operations: {
+        $executeRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $executeRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+        $queryRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $queryRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+      }
+    }
+  }
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export type DefaultPrismaClient = PrismaClient
+  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+  export interface PrismaClientOptions {
+    /**
+     * @default "colorless"
+     */
+    errorFormat?: ErrorFormat
+    /**
+     * @example
+     * ```
+     * // Shorthand for `emit: 'stdout'`
+     * log: ['query', 'info', 'warn', 'error']
+     * 
+     * // Emit as events only
+     * log: [
+     *   { emit: 'event', level: 'query' },
+     *   { emit: 'event', level: 'info' },
+     *   { emit: 'event', level: 'warn' }
+     *   { emit: 'event', level: 'error' }
+     * ]
+     * 
+     * / Emit as events and log to stdout
+     * og: [
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
+     * 
+     * ```
+     * Read more in our [docs](https://pris.ly/d/logging).
+     */
+    log?: (LogLevel | LogDefinition)[]
+    /**
+     * The default values for transactionOptions
+     * maxWait ?= 2000
+     * timeout ?= 5000
+     */
+    transactionOptions?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
+    /**
+     * A driver adapter that PrismaClient uses to connect to your database, such as the ones provided by `@prisma/adapter-pg`, `@prisma/adapter-libsql`, `@prisma/adapter-planetscale`, etc.
+     * 
+     * A driver adapter is **required** unless you connect to your database through Prisma Accelerate (in which case use `accelerateUrl` instead).
+     * 
+     * Learn more: https://pris.ly/d/driver-adapters
+     * 
+     * @example
+     * ```ts
+     * import { PrismaPg } from '@prisma/adapter-pg'
+     * import { PrismaClient } from './generated/prisma/client'
+     * 
+     * const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+     * const prisma = new PrismaClient({ adapter })
+     * ```
+     */
+    adapter?: runtime.SqlDriverAdapterFactory
+    /**
+     * The Prisma Accelerate connection URL. Use this option to connect to your database through Prisma Accelerate instead of using a driver adapter to connect directly.
+     * 
+     * Learn more: https://pris.ly/d/accelerate
+     */
+    accelerateUrl?: string
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
+    /**
+     * SQL commenter plugins that add metadata to SQL queries as comments.
+     * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   adapter,
+     *   comments: [
+     *     traceContext(),
+     *     queryInsights(),
+     *   ],
+     * })
+     * ```
+     */
+    comments?: runtime.SqlCommenterPlugin[]
+  }
+  export type GlobalOmitConfig = {
+    adminUser?: AdminUserOmit
+    contactInquiry?: ContactInquiryOmit
+    newsletterSubscriber?: NewsletterSubscriberOmit
+    blogPost?: BlogPostOmit
+    investorCategory?: InvestorCategoryOmit
+    investorSubCategory?: InvestorSubCategoryOmit
+    investorFinancialYear?: InvestorFinancialYearOmit
+    investorQuarter?: InvestorQuarterOmit
+    investorTableFormat?: InvestorTableFormatOmit
+    investorTableColumn?: InvestorTableColumnOmit
+    investorTableFormatAssignment?: InvestorTableFormatAssignmentOmit
+    investorDocument?: InvestorDocumentOmit
+  }
+
+  /* Types for Logging */
+  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+  export type LogDefinition = {
+    level: LogLevel
+    emit: 'stdout' | 'event'
+  }
+
+  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+  export type GetLogType<T> = CheckIsLogLevel<
+    T extends LogDefinition ? T['level'] : T
+  >;
+
+  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+    ? GetLogType<T[number]>
+    : never;
+
+  export type QueryEvent = {
+    timestamp: Date
+    query: string
+    params: string
+    duration: number
+    target: string
+  }
+
+  export type LogEvent = {
+    timestamp: Date
+    message: string
+    target: string
+  }
+  /* End Types for Logging */
+
+
+  export type PrismaAction =
+    | 'findUnique'
+    | 'findUniqueOrThrow'
+    | 'findMany'
+    | 'findFirst'
+    | 'findFirstOrThrow'
+    | 'create'
+    | 'createMany'
+    | 'createManyAndReturn'
+    | 'update'
+    | 'updateMany'
+    | 'updateManyAndReturn'
+    | 'upsert'
+    | 'delete'
+    | 'deleteMany'
+    | 'executeRaw'
+    | 'queryRaw'
+    | 'aggregate'
+    | 'count'
+    | 'runCommandRaw'
+    | 'findRaw'
+    | 'groupBy'
+
+  // tested in getLogLevel.test.ts
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
+
+  /**
+   * `PrismaClient` proxy available in interactive transactions.
+   */
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+
+  export type Datasource = {
+    url?: string
+  }
+
+  /**
+   * Count Types
+   */
+
+
+  /**
+   * Count Type InvestorCategoryCountOutputType
+   */
+
+  export type InvestorCategoryCountOutputType = {
+    subCategories: number
+    financialYears: number
+    documents: number
+    tableFormatAssignments: number
+  }
+
+  export type InvestorCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subCategories?: boolean | InvestorCategoryCountOutputTypeCountSubCategoriesArgs
+    financialYears?: boolean | InvestorCategoryCountOutputTypeCountFinancialYearsArgs
+    documents?: boolean | InvestorCategoryCountOutputTypeCountDocumentsArgs
+    tableFormatAssignments?: boolean | InvestorCategoryCountOutputTypeCountTableFormatAssignmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InvestorCategoryCountOutputType without action
+   */
+  export type InvestorCategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategoryCountOutputType
+     */
+    select?: InvestorCategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InvestorCategoryCountOutputType without action
+   */
+  export type InvestorCategoryCountOutputTypeCountSubCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorSubCategoryWhereInput
+  }
+
+  /**
+   * InvestorCategoryCountOutputType without action
+   */
+  export type InvestorCategoryCountOutputTypeCountFinancialYearsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorFinancialYearWhereInput
+  }
+
+  /**
+   * InvestorCategoryCountOutputType without action
+   */
+  export type InvestorCategoryCountOutputTypeCountDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorDocumentWhereInput
+  }
+
+  /**
+   * InvestorCategoryCountOutputType without action
+   */
+  export type InvestorCategoryCountOutputTypeCountTableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableFormatAssignmentWhereInput
+  }
+
+
+  /**
+   * Count Type InvestorSubCategoryCountOutputType
+   */
+
+  export type InvestorSubCategoryCountOutputType = {
+    financialYears: number
+    documents: number
+    tableFormatAssignments: number
+  }
+
+  export type InvestorSubCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYears?: boolean | InvestorSubCategoryCountOutputTypeCountFinancialYearsArgs
+    documents?: boolean | InvestorSubCategoryCountOutputTypeCountDocumentsArgs
+    tableFormatAssignments?: boolean | InvestorSubCategoryCountOutputTypeCountTableFormatAssignmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InvestorSubCategoryCountOutputType without action
+   */
+  export type InvestorSubCategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategoryCountOutputType
+     */
+    select?: InvestorSubCategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InvestorSubCategoryCountOutputType without action
+   */
+  export type InvestorSubCategoryCountOutputTypeCountFinancialYearsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorFinancialYearWhereInput
+  }
+
+  /**
+   * InvestorSubCategoryCountOutputType without action
+   */
+  export type InvestorSubCategoryCountOutputTypeCountDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorDocumentWhereInput
+  }
+
+  /**
+   * InvestorSubCategoryCountOutputType without action
+   */
+  export type InvestorSubCategoryCountOutputTypeCountTableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableFormatAssignmentWhereInput
+  }
+
+
+  /**
+   * Count Type InvestorFinancialYearCountOutputType
+   */
+
+  export type InvestorFinancialYearCountOutputType = {
+    quarters: number
+    documents: number
+    tableFormatAssignments: number
+  }
+
+  export type InvestorFinancialYearCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    quarters?: boolean | InvestorFinancialYearCountOutputTypeCountQuartersArgs
+    documents?: boolean | InvestorFinancialYearCountOutputTypeCountDocumentsArgs
+    tableFormatAssignments?: boolean | InvestorFinancialYearCountOutputTypeCountTableFormatAssignmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InvestorFinancialYearCountOutputType without action
+   */
+  export type InvestorFinancialYearCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYearCountOutputType
+     */
+    select?: InvestorFinancialYearCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InvestorFinancialYearCountOutputType without action
+   */
+  export type InvestorFinancialYearCountOutputTypeCountQuartersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorQuarterWhereInput
+  }
+
+  /**
+   * InvestorFinancialYearCountOutputType without action
+   */
+  export type InvestorFinancialYearCountOutputTypeCountDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorDocumentWhereInput
+  }
+
+  /**
+   * InvestorFinancialYearCountOutputType without action
+   */
+  export type InvestorFinancialYearCountOutputTypeCountTableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableFormatAssignmentWhereInput
+  }
+
+
+  /**
+   * Count Type InvestorQuarterCountOutputType
+   */
+
+  export type InvestorQuarterCountOutputType = {
+    documents: number
+    tableFormatAssignments: number
+  }
+
+  export type InvestorQuarterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    documents?: boolean | InvestorQuarterCountOutputTypeCountDocumentsArgs
+    tableFormatAssignments?: boolean | InvestorQuarterCountOutputTypeCountTableFormatAssignmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InvestorQuarterCountOutputType without action
+   */
+  export type InvestorQuarterCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarterCountOutputType
+     */
+    select?: InvestorQuarterCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InvestorQuarterCountOutputType without action
+   */
+  export type InvestorQuarterCountOutputTypeCountDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorDocumentWhereInput
+  }
+
+  /**
+   * InvestorQuarterCountOutputType without action
+   */
+  export type InvestorQuarterCountOutputTypeCountTableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableFormatAssignmentWhereInput
+  }
+
+
+  /**
+   * Count Type InvestorTableFormatCountOutputType
+   */
+
+  export type InvestorTableFormatCountOutputType = {
+    columns: number
+    assignments: number
+  }
+
+  export type InvestorTableFormatCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    columns?: boolean | InvestorTableFormatCountOutputTypeCountColumnsArgs
+    assignments?: boolean | InvestorTableFormatCountOutputTypeCountAssignmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InvestorTableFormatCountOutputType without action
+   */
+  export type InvestorTableFormatCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatCountOutputType
+     */
+    select?: InvestorTableFormatCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InvestorTableFormatCountOutputType without action
+   */
+  export type InvestorTableFormatCountOutputTypeCountColumnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableColumnWhereInput
+  }
+
+  /**
+   * InvestorTableFormatCountOutputType without action
+   */
+  export type InvestorTableFormatCountOutputTypeCountAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableFormatAssignmentWhereInput
+  }
+
+
+  /**
+   * Models
+   */
+
+  /**
+   * Model AdminUser
+   */
+
+  export type AggregateAdminUser = {
+    _count: AdminUserCountAggregateOutputType | null
+    _avg: AdminUserAvgAggregateOutputType | null
+    _sum: AdminUserSumAggregateOutputType | null
+    _min: AdminUserMinAggregateOutputType | null
+    _max: AdminUserMaxAggregateOutputType | null
+  }
+
+  export type AdminUserAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AdminUserSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type AdminUserMinAggregateOutputType = {
+    id: number | null
+    email: string | null
+    passwordHash: string | null
+    name: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AdminUserMaxAggregateOutputType = {
+    id: number | null
+    email: string | null
+    passwordHash: string | null
+    name: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AdminUserCountAggregateOutputType = {
+    id: number
+    email: number
+    passwordHash: number
+    name: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AdminUserAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type AdminUserSumAggregateInputType = {
+    id?: true
+  }
+
+  export type AdminUserMinAggregateInputType = {
+    id?: true
+    email?: true
+    passwordHash?: true
+    name?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AdminUserMaxAggregateInputType = {
+    id?: true
+    email?: true
+    passwordHash?: true
+    name?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AdminUserCountAggregateInputType = {
+    id?: true
+    email?: true
+    passwordHash?: true
+    name?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AdminUserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminUser to aggregate.
+     */
+    where?: AdminUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminUsers to fetch.
+     */
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AdminUsers
+    **/
+    _count?: true | AdminUserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AdminUserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AdminUserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminUserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminUserMaxAggregateInputType
+  }
+
+  export type GetAdminUserAggregateType<T extends AdminUserAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdminUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdminUser[P]>
+      : GetScalarType<T[P], AggregateAdminUser[P]>
+  }
+
+
+
+
+  export type AdminUserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminUserWhereInput
+    orderBy?: AdminUserOrderByWithAggregationInput | AdminUserOrderByWithAggregationInput[]
+    by: AdminUserScalarFieldEnum[] | AdminUserScalarFieldEnum
+    having?: AdminUserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminUserCountAggregateInputType | true
+    _avg?: AdminUserAvgAggregateInputType
+    _sum?: AdminUserSumAggregateInputType
+    _min?: AdminUserMinAggregateInputType
+    _max?: AdminUserMaxAggregateInputType
+  }
+
+  export type AdminUserGroupByOutputType = {
+    id: number
+    email: string
+    passwordHash: string
+    name: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AdminUserCountAggregateOutputType | null
+    _avg: AdminUserAvgAggregateOutputType | null
+    _sum: AdminUserSumAggregateOutputType | null
+    _min: AdminUserMinAggregateOutputType | null
+    _max: AdminUserMaxAggregateOutputType | null
+  }
+
+  type GetAdminUserGroupByPayload<T extends AdminUserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminUserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminUserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminUserGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminUserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminUserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    passwordHash?: boolean
+    name?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["adminUser"]>
+
+
+
+  export type AdminUserSelectScalar = {
+    id?: boolean
+    email?: boolean
+    passwordHash?: boolean
+    name?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AdminUserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "passwordHash" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["adminUser"]>
+
+  export type $AdminUserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdminUser"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      email: string
+      passwordHash: string
+      name: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["adminUser"]>
+    composites: {}
+  }
+
+  type AdminUserGetPayload<S extends boolean | null | undefined | AdminUserDefaultArgs> = $Result.GetResult<Prisma.$AdminUserPayload, S>
+
+  type AdminUserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdminUserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdminUserCountAggregateInputType | true
+    }
+
+  export interface AdminUserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdminUser'], meta: { name: 'AdminUser' } }
+    /**
+     * Find zero or one AdminUser that matches the filter.
+     * @param {AdminUserFindUniqueArgs} args - Arguments to find a AdminUser
+     * @example
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AdminUserFindUniqueArgs>(args: SelectSubset<T, AdminUserFindUniqueArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AdminUser that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AdminUserFindUniqueOrThrowArgs} args - Arguments to find a AdminUser
+     * @example
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AdminUserFindUniqueOrThrowArgs>(args: SelectSubset<T, AdminUserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdminUser that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUserFindFirstArgs} args - Arguments to find a AdminUser
+     * @example
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AdminUserFindFirstArgs>(args?: SelectSubset<T, AdminUserFindFirstArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdminUser that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUserFindFirstOrThrowArgs} args - Arguments to find a AdminUser
+     * @example
+     * // Get one AdminUser
+     * const adminUser = await prisma.adminUser.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AdminUserFindFirstOrThrowArgs>(args?: SelectSubset<T, AdminUserFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AdminUsers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AdminUsers
+     * const adminUsers = await prisma.adminUser.findMany()
+     * 
+     * // Get first 10 AdminUsers
+     * const adminUsers = await prisma.adminUser.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const adminUserWithIdOnly = await prisma.adminUser.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AdminUserFindManyArgs>(args?: SelectSubset<T, AdminUserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AdminUser.
+     * @param {AdminUserCreateArgs} args - Arguments to create a AdminUser.
+     * @example
+     * // Create one AdminUser
+     * const AdminUser = await prisma.adminUser.create({
+     *   data: {
+     *     // ... data to create a AdminUser
+     *   }
+     * })
+     * 
+     */
+    create<T extends AdminUserCreateArgs>(args: SelectSubset<T, AdminUserCreateArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AdminUsers.
+     * @param {AdminUserCreateManyArgs} args - Arguments to create many AdminUsers.
+     * @example
+     * // Create many AdminUsers
+     * const adminUser = await prisma.adminUser.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AdminUserCreateManyArgs>(args?: SelectSubset<T, AdminUserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AdminUser.
+     * @param {AdminUserDeleteArgs} args - Arguments to delete one AdminUser.
+     * @example
+     * // Delete one AdminUser
+     * const AdminUser = await prisma.adminUser.delete({
+     *   where: {
+     *     // ... filter to delete one AdminUser
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AdminUserDeleteArgs>(args: SelectSubset<T, AdminUserDeleteArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AdminUser.
+     * @param {AdminUserUpdateArgs} args - Arguments to update one AdminUser.
+     * @example
+     * // Update one AdminUser
+     * const adminUser = await prisma.adminUser.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AdminUserUpdateArgs>(args: SelectSubset<T, AdminUserUpdateArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AdminUsers.
+     * @param {AdminUserDeleteManyArgs} args - Arguments to filter AdminUsers to delete.
+     * @example
+     * // Delete a few AdminUsers
+     * const { count } = await prisma.adminUser.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AdminUserDeleteManyArgs>(args?: SelectSubset<T, AdminUserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdminUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AdminUsers
+     * const adminUser = await prisma.adminUser.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AdminUserUpdateManyArgs>(args: SelectSubset<T, AdminUserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AdminUser.
+     * @param {AdminUserUpsertArgs} args - Arguments to update or create a AdminUser.
+     * @example
+     * // Update or create a AdminUser
+     * const adminUser = await prisma.adminUser.upsert({
+     *   create: {
+     *     // ... data to create a AdminUser
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AdminUser we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AdminUserUpsertArgs>(args: SelectSubset<T, AdminUserUpsertArgs<ExtArgs>>): Prisma__AdminUserClient<$Result.GetResult<Prisma.$AdminUserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AdminUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUserCountArgs} args - Arguments to filter AdminUsers to count.
+     * @example
+     * // Count the number of AdminUsers
+     * const count = await prisma.adminUser.count({
+     *   where: {
+     *     // ... the filter for the AdminUsers we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminUserCountArgs>(
+      args?: Subset<T, AdminUserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminUserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AdminUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminUserAggregateArgs>(args: Subset<T, AdminUserAggregateArgs>): Prisma.PrismaPromise<GetAdminUserAggregateType<T>>
+
+    /**
+     * Group by AdminUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminUserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminUserGroupByArgs['orderBy'] }
+        : { orderBy?: AdminUserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminUserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AdminUser model
+   */
+  readonly fields: AdminUserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AdminUser.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminUserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AdminUser model
+   */
+  interface AdminUserFieldRefs {
+    readonly id: FieldRef<"AdminUser", 'Int'>
+    readonly email: FieldRef<"AdminUser", 'String'>
+    readonly passwordHash: FieldRef<"AdminUser", 'String'>
+    readonly name: FieldRef<"AdminUser", 'String'>
+    readonly isActive: FieldRef<"AdminUser", 'Boolean'>
+    readonly createdAt: FieldRef<"AdminUser", 'DateTime'>
+    readonly updatedAt: FieldRef<"AdminUser", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AdminUser findUnique
+   */
+  export type AdminUserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * Filter, which AdminUser to fetch.
+     */
+    where: AdminUserWhereUniqueInput
+  }
+
+  /**
+   * AdminUser findUniqueOrThrow
+   */
+  export type AdminUserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * Filter, which AdminUser to fetch.
+     */
+    where: AdminUserWhereUniqueInput
+  }
+
+  /**
+   * AdminUser findFirst
+   */
+  export type AdminUserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * Filter, which AdminUser to fetch.
+     */
+    where?: AdminUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminUsers to fetch.
+     */
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminUsers.
+     */
+    cursor?: AdminUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminUsers.
+     */
+    distinct?: AdminUserScalarFieldEnum | AdminUserScalarFieldEnum[]
+  }
+
+  /**
+   * AdminUser findFirstOrThrow
+   */
+  export type AdminUserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * Filter, which AdminUser to fetch.
+     */
+    where?: AdminUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminUsers to fetch.
+     */
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminUsers.
+     */
+    cursor?: AdminUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminUsers.
+     */
+    distinct?: AdminUserScalarFieldEnum | AdminUserScalarFieldEnum[]
+  }
+
+  /**
+   * AdminUser findMany
+   */
+  export type AdminUserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * Filter, which AdminUsers to fetch.
+     */
+    where?: AdminUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminUsers to fetch.
+     */
+    orderBy?: AdminUserOrderByWithRelationInput | AdminUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AdminUsers.
+     */
+    cursor?: AdminUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminUsers.
+     */
+    distinct?: AdminUserScalarFieldEnum | AdminUserScalarFieldEnum[]
+  }
+
+  /**
+   * AdminUser create
+   */
+  export type AdminUserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AdminUser.
+     */
+    data: XOR<AdminUserCreateInput, AdminUserUncheckedCreateInput>
+  }
+
+  /**
+   * AdminUser createMany
+   */
+  export type AdminUserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AdminUsers.
+     */
+    data: AdminUserCreateManyInput | AdminUserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AdminUser update
+   */
+  export type AdminUserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AdminUser.
+     */
+    data: XOR<AdminUserUpdateInput, AdminUserUncheckedUpdateInput>
+    /**
+     * Choose, which AdminUser to update.
+     */
+    where: AdminUserWhereUniqueInput
+  }
+
+  /**
+   * AdminUser updateMany
+   */
+  export type AdminUserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AdminUsers.
+     */
+    data: XOR<AdminUserUpdateManyMutationInput, AdminUserUncheckedUpdateManyInput>
+    /**
+     * Filter which AdminUsers to update
+     */
+    where?: AdminUserWhereInput
+    /**
+     * Limit how many AdminUsers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdminUser upsert
+   */
+  export type AdminUserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AdminUser to update in case it exists.
+     */
+    where: AdminUserWhereUniqueInput
+    /**
+     * In case the AdminUser found by the `where` argument doesn't exist, create a new AdminUser with this data.
+     */
+    create: XOR<AdminUserCreateInput, AdminUserUncheckedCreateInput>
+    /**
+     * In case the AdminUser was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminUserUpdateInput, AdminUserUncheckedUpdateInput>
+  }
+
+  /**
+   * AdminUser delete
+   */
+  export type AdminUserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+    /**
+     * Filter which AdminUser to delete.
+     */
+    where: AdminUserWhereUniqueInput
+  }
+
+  /**
+   * AdminUser deleteMany
+   */
+  export type AdminUserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminUsers to delete
+     */
+    where?: AdminUserWhereInput
+    /**
+     * Limit how many AdminUsers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdminUser without action
+   */
+  export type AdminUserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminUser
+     */
+    select?: AdminUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminUser
+     */
+    omit?: AdminUserOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ContactInquiry
+   */
+
+  export type AggregateContactInquiry = {
+    _count: ContactInquiryCountAggregateOutputType | null
+    _avg: ContactInquiryAvgAggregateOutputType | null
+    _sum: ContactInquirySumAggregateOutputType | null
+    _min: ContactInquiryMinAggregateOutputType | null
+    _max: ContactInquiryMaxAggregateOutputType | null
+  }
+
+  export type ContactInquiryAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ContactInquirySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ContactInquiryMinAggregateOutputType = {
+    id: number | null
+    companyName: string | null
+    name: string | null
+    email: string | null
+    phone: string | null
+    subject: string | null
+    message: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactInquiryMaxAggregateOutputType = {
+    id: number | null
+    companyName: string | null
+    name: string | null
+    email: string | null
+    phone: string | null
+    subject: string | null
+    message: string | null
+    status: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContactInquiryCountAggregateOutputType = {
+    id: number
+    companyName: number
+    name: number
+    email: number
+    phone: number
+    subject: number
+    message: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContactInquiryAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type ContactInquirySumAggregateInputType = {
+    id?: true
+  }
+
+  export type ContactInquiryMinAggregateInputType = {
+    id?: true
+    companyName?: true
+    name?: true
+    email?: true
+    phone?: true
+    subject?: true
+    message?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactInquiryMaxAggregateInputType = {
+    id?: true
+    companyName?: true
+    name?: true
+    email?: true
+    phone?: true
+    subject?: true
+    message?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContactInquiryCountAggregateInputType = {
+    id?: true
+    companyName?: true
+    name?: true
+    email?: true
+    phone?: true
+    subject?: true
+    message?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContactInquiryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactInquiry to aggregate.
+     */
+    where?: ContactInquiryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInquiries to fetch.
+     */
+    orderBy?: ContactInquiryOrderByWithRelationInput | ContactInquiryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContactInquiryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInquiries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContactInquiries
+    **/
+    _count?: true | ContactInquiryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContactInquiryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContactInquirySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContactInquiryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContactInquiryMaxAggregateInputType
+  }
+
+  export type GetContactInquiryAggregateType<T extends ContactInquiryAggregateArgs> = {
+        [P in keyof T & keyof AggregateContactInquiry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContactInquiry[P]>
+      : GetScalarType<T[P], AggregateContactInquiry[P]>
+  }
+
+
+
+
+  export type ContactInquiryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactInquiryWhereInput
+    orderBy?: ContactInquiryOrderByWithAggregationInput | ContactInquiryOrderByWithAggregationInput[]
+    by: ContactInquiryScalarFieldEnum[] | ContactInquiryScalarFieldEnum
+    having?: ContactInquiryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContactInquiryCountAggregateInputType | true
+    _avg?: ContactInquiryAvgAggregateInputType
+    _sum?: ContactInquirySumAggregateInputType
+    _min?: ContactInquiryMinAggregateInputType
+    _max?: ContactInquiryMaxAggregateInputType
+  }
+
+  export type ContactInquiryGroupByOutputType = {
+    id: number
+    companyName: string | null
+    name: string
+    email: string
+    phone: string | null
+    subject: string | null
+    message: string
+    status: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ContactInquiryCountAggregateOutputType | null
+    _avg: ContactInquiryAvgAggregateOutputType | null
+    _sum: ContactInquirySumAggregateOutputType | null
+    _min: ContactInquiryMinAggregateOutputType | null
+    _max: ContactInquiryMaxAggregateOutputType | null
+  }
+
+  type GetContactInquiryGroupByPayload<T extends ContactInquiryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContactInquiryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContactInquiryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContactInquiryGroupByOutputType[P]>
+            : GetScalarType<T[P], ContactInquiryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContactInquirySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyName?: boolean
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    subject?: boolean
+    message?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contactInquiry"]>
+
+
+
+  export type ContactInquirySelectScalar = {
+    id?: boolean
+    companyName?: boolean
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    subject?: boolean
+    message?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContactInquiryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "name" | "email" | "phone" | "subject" | "message" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["contactInquiry"]>
+
+  export type $ContactInquiryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContactInquiry"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      companyName: string | null
+      name: string
+      email: string
+      phone: string | null
+      subject: string | null
+      message: string
+      status: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contactInquiry"]>
+    composites: {}
+  }
+
+  type ContactInquiryGetPayload<S extends boolean | null | undefined | ContactInquiryDefaultArgs> = $Result.GetResult<Prisma.$ContactInquiryPayload, S>
+
+  type ContactInquiryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContactInquiryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContactInquiryCountAggregateInputType | true
+    }
+
+  export interface ContactInquiryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContactInquiry'], meta: { name: 'ContactInquiry' } }
+    /**
+     * Find zero or one ContactInquiry that matches the filter.
+     * @param {ContactInquiryFindUniqueArgs} args - Arguments to find a ContactInquiry
+     * @example
+     * // Get one ContactInquiry
+     * const contactInquiry = await prisma.contactInquiry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContactInquiryFindUniqueArgs>(args: SelectSubset<T, ContactInquiryFindUniqueArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContactInquiry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContactInquiryFindUniqueOrThrowArgs} args - Arguments to find a ContactInquiry
+     * @example
+     * // Get one ContactInquiry
+     * const contactInquiry = await prisma.contactInquiry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContactInquiryFindUniqueOrThrowArgs>(args: SelectSubset<T, ContactInquiryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactInquiry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInquiryFindFirstArgs} args - Arguments to find a ContactInquiry
+     * @example
+     * // Get one ContactInquiry
+     * const contactInquiry = await prisma.contactInquiry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContactInquiryFindFirstArgs>(args?: SelectSubset<T, ContactInquiryFindFirstArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContactInquiry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInquiryFindFirstOrThrowArgs} args - Arguments to find a ContactInquiry
+     * @example
+     * // Get one ContactInquiry
+     * const contactInquiry = await prisma.contactInquiry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContactInquiryFindFirstOrThrowArgs>(args?: SelectSubset<T, ContactInquiryFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContactInquiries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInquiryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContactInquiries
+     * const contactInquiries = await prisma.contactInquiry.findMany()
+     * 
+     * // Get first 10 ContactInquiries
+     * const contactInquiries = await prisma.contactInquiry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contactInquiryWithIdOnly = await prisma.contactInquiry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContactInquiryFindManyArgs>(args?: SelectSubset<T, ContactInquiryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContactInquiry.
+     * @param {ContactInquiryCreateArgs} args - Arguments to create a ContactInquiry.
+     * @example
+     * // Create one ContactInquiry
+     * const ContactInquiry = await prisma.contactInquiry.create({
+     *   data: {
+     *     // ... data to create a ContactInquiry
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContactInquiryCreateArgs>(args: SelectSubset<T, ContactInquiryCreateArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContactInquiries.
+     * @param {ContactInquiryCreateManyArgs} args - Arguments to create many ContactInquiries.
+     * @example
+     * // Create many ContactInquiries
+     * const contactInquiry = await prisma.contactInquiry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContactInquiryCreateManyArgs>(args?: SelectSubset<T, ContactInquiryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ContactInquiry.
+     * @param {ContactInquiryDeleteArgs} args - Arguments to delete one ContactInquiry.
+     * @example
+     * // Delete one ContactInquiry
+     * const ContactInquiry = await prisma.contactInquiry.delete({
+     *   where: {
+     *     // ... filter to delete one ContactInquiry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContactInquiryDeleteArgs>(args: SelectSubset<T, ContactInquiryDeleteArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContactInquiry.
+     * @param {ContactInquiryUpdateArgs} args - Arguments to update one ContactInquiry.
+     * @example
+     * // Update one ContactInquiry
+     * const contactInquiry = await prisma.contactInquiry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContactInquiryUpdateArgs>(args: SelectSubset<T, ContactInquiryUpdateArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContactInquiries.
+     * @param {ContactInquiryDeleteManyArgs} args - Arguments to filter ContactInquiries to delete.
+     * @example
+     * // Delete a few ContactInquiries
+     * const { count } = await prisma.contactInquiry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContactInquiryDeleteManyArgs>(args?: SelectSubset<T, ContactInquiryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContactInquiries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInquiryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContactInquiries
+     * const contactInquiry = await prisma.contactInquiry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContactInquiryUpdateManyArgs>(args: SelectSubset<T, ContactInquiryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ContactInquiry.
+     * @param {ContactInquiryUpsertArgs} args - Arguments to update or create a ContactInquiry.
+     * @example
+     * // Update or create a ContactInquiry
+     * const contactInquiry = await prisma.contactInquiry.upsert({
+     *   create: {
+     *     // ... data to create a ContactInquiry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContactInquiry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContactInquiryUpsertArgs>(args: SelectSubset<T, ContactInquiryUpsertArgs<ExtArgs>>): Prisma__ContactInquiryClient<$Result.GetResult<Prisma.$ContactInquiryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContactInquiries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInquiryCountArgs} args - Arguments to filter ContactInquiries to count.
+     * @example
+     * // Count the number of ContactInquiries
+     * const count = await prisma.contactInquiry.count({
+     *   where: {
+     *     // ... the filter for the ContactInquiries we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContactInquiryCountArgs>(
+      args?: Subset<T, ContactInquiryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContactInquiryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContactInquiry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInquiryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContactInquiryAggregateArgs>(args: Subset<T, ContactInquiryAggregateArgs>): Prisma.PrismaPromise<GetContactInquiryAggregateType<T>>
+
+    /**
+     * Group by ContactInquiry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContactInquiryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContactInquiryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContactInquiryGroupByArgs['orderBy'] }
+        : { orderBy?: ContactInquiryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContactInquiryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContactInquiryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContactInquiry model
+   */
+  readonly fields: ContactInquiryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContactInquiry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContactInquiryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContactInquiry model
+   */
+  interface ContactInquiryFieldRefs {
+    readonly id: FieldRef<"ContactInquiry", 'Int'>
+    readonly companyName: FieldRef<"ContactInquiry", 'String'>
+    readonly name: FieldRef<"ContactInquiry", 'String'>
+    readonly email: FieldRef<"ContactInquiry", 'String'>
+    readonly phone: FieldRef<"ContactInquiry", 'String'>
+    readonly subject: FieldRef<"ContactInquiry", 'String'>
+    readonly message: FieldRef<"ContactInquiry", 'String'>
+    readonly status: FieldRef<"ContactInquiry", 'String'>
+    readonly createdAt: FieldRef<"ContactInquiry", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContactInquiry", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContactInquiry findUnique
+   */
+  export type ContactInquiryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInquiry to fetch.
+     */
+    where: ContactInquiryWhereUniqueInput
+  }
+
+  /**
+   * ContactInquiry findUniqueOrThrow
+   */
+  export type ContactInquiryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInquiry to fetch.
+     */
+    where: ContactInquiryWhereUniqueInput
+  }
+
+  /**
+   * ContactInquiry findFirst
+   */
+  export type ContactInquiryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInquiry to fetch.
+     */
+    where?: ContactInquiryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInquiries to fetch.
+     */
+    orderBy?: ContactInquiryOrderByWithRelationInput | ContactInquiryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactInquiries.
+     */
+    cursor?: ContactInquiryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInquiries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactInquiries.
+     */
+    distinct?: ContactInquiryScalarFieldEnum | ContactInquiryScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInquiry findFirstOrThrow
+   */
+  export type ContactInquiryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInquiry to fetch.
+     */
+    where?: ContactInquiryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInquiries to fetch.
+     */
+    orderBy?: ContactInquiryOrderByWithRelationInput | ContactInquiryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContactInquiries.
+     */
+    cursor?: ContactInquiryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInquiries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactInquiries.
+     */
+    distinct?: ContactInquiryScalarFieldEnum | ContactInquiryScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInquiry findMany
+   */
+  export type ContactInquiryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * Filter, which ContactInquiries to fetch.
+     */
+    where?: ContactInquiryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContactInquiries to fetch.
+     */
+    orderBy?: ContactInquiryOrderByWithRelationInput | ContactInquiryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContactInquiries.
+     */
+    cursor?: ContactInquiryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContactInquiries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContactInquiries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContactInquiries.
+     */
+    distinct?: ContactInquiryScalarFieldEnum | ContactInquiryScalarFieldEnum[]
+  }
+
+  /**
+   * ContactInquiry create
+   */
+  export type ContactInquiryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ContactInquiry.
+     */
+    data: XOR<ContactInquiryCreateInput, ContactInquiryUncheckedCreateInput>
+  }
+
+  /**
+   * ContactInquiry createMany
+   */
+  export type ContactInquiryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContactInquiries.
+     */
+    data: ContactInquiryCreateManyInput | ContactInquiryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContactInquiry update
+   */
+  export type ContactInquiryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ContactInquiry.
+     */
+    data: XOR<ContactInquiryUpdateInput, ContactInquiryUncheckedUpdateInput>
+    /**
+     * Choose, which ContactInquiry to update.
+     */
+    where: ContactInquiryWhereUniqueInput
+  }
+
+  /**
+   * ContactInquiry updateMany
+   */
+  export type ContactInquiryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContactInquiries.
+     */
+    data: XOR<ContactInquiryUpdateManyMutationInput, ContactInquiryUncheckedUpdateManyInput>
+    /**
+     * Filter which ContactInquiries to update
+     */
+    where?: ContactInquiryWhereInput
+    /**
+     * Limit how many ContactInquiries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactInquiry upsert
+   */
+  export type ContactInquiryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ContactInquiry to update in case it exists.
+     */
+    where: ContactInquiryWhereUniqueInput
+    /**
+     * In case the ContactInquiry found by the `where` argument doesn't exist, create a new ContactInquiry with this data.
+     */
+    create: XOR<ContactInquiryCreateInput, ContactInquiryUncheckedCreateInput>
+    /**
+     * In case the ContactInquiry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContactInquiryUpdateInput, ContactInquiryUncheckedUpdateInput>
+  }
+
+  /**
+   * ContactInquiry delete
+   */
+  export type ContactInquiryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+    /**
+     * Filter which ContactInquiry to delete.
+     */
+    where: ContactInquiryWhereUniqueInput
+  }
+
+  /**
+   * ContactInquiry deleteMany
+   */
+  export type ContactInquiryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContactInquiries to delete
+     */
+    where?: ContactInquiryWhereInput
+    /**
+     * Limit how many ContactInquiries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContactInquiry without action
+   */
+  export type ContactInquiryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContactInquiry
+     */
+    select?: ContactInquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContactInquiry
+     */
+    omit?: ContactInquiryOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NewsletterSubscriber
+   */
+
+  export type AggregateNewsletterSubscriber = {
+    _count: NewsletterSubscriberCountAggregateOutputType | null
+    _avg: NewsletterSubscriberAvgAggregateOutputType | null
+    _sum: NewsletterSubscriberSumAggregateOutputType | null
+    _min: NewsletterSubscriberMinAggregateOutputType | null
+    _max: NewsletterSubscriberMaxAggregateOutputType | null
+  }
+
+  export type NewsletterSubscriberAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type NewsletterSubscriberSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type NewsletterSubscriberMinAggregateOutputType = {
+    id: number | null
+    email: string | null
+    subscribedAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsletterSubscriberMaxAggregateOutputType = {
+    id: number | null
+    email: string | null
+    subscribedAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NewsletterSubscriberCountAggregateOutputType = {
+    id: number
+    email: number
+    subscribedAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NewsletterSubscriberAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type NewsletterSubscriberSumAggregateInputType = {
+    id?: true
+  }
+
+  export type NewsletterSubscriberMinAggregateInputType = {
+    id?: true
+    email?: true
+    subscribedAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsletterSubscriberMaxAggregateInputType = {
+    id?: true
+    email?: true
+    subscribedAt?: true
+    updatedAt?: true
+  }
+
+  export type NewsletterSubscriberCountAggregateInputType = {
+    id?: true
+    email?: true
+    subscribedAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NewsletterSubscriberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterSubscriber to aggregate.
+     */
+    where?: NewsletterSubscriberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterSubscribers to fetch.
+     */
+    orderBy?: NewsletterSubscriberOrderByWithRelationInput | NewsletterSubscriberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NewsletterSubscriberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterSubscribers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterSubscribers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NewsletterSubscribers
+    **/
+    _count?: true | NewsletterSubscriberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NewsletterSubscriberAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NewsletterSubscriberSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NewsletterSubscriberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NewsletterSubscriberMaxAggregateInputType
+  }
+
+  export type GetNewsletterSubscriberAggregateType<T extends NewsletterSubscriberAggregateArgs> = {
+        [P in keyof T & keyof AggregateNewsletterSubscriber]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNewsletterSubscriber[P]>
+      : GetScalarType<T[P], AggregateNewsletterSubscriber[P]>
+  }
+
+
+
+
+  export type NewsletterSubscriberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NewsletterSubscriberWhereInput
+    orderBy?: NewsletterSubscriberOrderByWithAggregationInput | NewsletterSubscriberOrderByWithAggregationInput[]
+    by: NewsletterSubscriberScalarFieldEnum[] | NewsletterSubscriberScalarFieldEnum
+    having?: NewsletterSubscriberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NewsletterSubscriberCountAggregateInputType | true
+    _avg?: NewsletterSubscriberAvgAggregateInputType
+    _sum?: NewsletterSubscriberSumAggregateInputType
+    _min?: NewsletterSubscriberMinAggregateInputType
+    _max?: NewsletterSubscriberMaxAggregateInputType
+  }
+
+  export type NewsletterSubscriberGroupByOutputType = {
+    id: number
+    email: string
+    subscribedAt: Date
+    updatedAt: Date
+    _count: NewsletterSubscriberCountAggregateOutputType | null
+    _avg: NewsletterSubscriberAvgAggregateOutputType | null
+    _sum: NewsletterSubscriberSumAggregateOutputType | null
+    _min: NewsletterSubscriberMinAggregateOutputType | null
+    _max: NewsletterSubscriberMaxAggregateOutputType | null
+  }
+
+  type GetNewsletterSubscriberGroupByPayload<T extends NewsletterSubscriberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NewsletterSubscriberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NewsletterSubscriberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NewsletterSubscriberGroupByOutputType[P]>
+            : GetScalarType<T[P], NewsletterSubscriberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NewsletterSubscriberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    subscribedAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["newsletterSubscriber"]>
+
+
+
+  export type NewsletterSubscriberSelectScalar = {
+    id?: boolean
+    email?: boolean
+    subscribedAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NewsletterSubscriberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "subscribedAt" | "updatedAt", ExtArgs["result"]["newsletterSubscriber"]>
+
+  export type $NewsletterSubscriberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NewsletterSubscriber"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      email: string
+      subscribedAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["newsletterSubscriber"]>
+    composites: {}
+  }
+
+  type NewsletterSubscriberGetPayload<S extends boolean | null | undefined | NewsletterSubscriberDefaultArgs> = $Result.GetResult<Prisma.$NewsletterSubscriberPayload, S>
+
+  type NewsletterSubscriberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NewsletterSubscriberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NewsletterSubscriberCountAggregateInputType | true
+    }
+
+  export interface NewsletterSubscriberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NewsletterSubscriber'], meta: { name: 'NewsletterSubscriber' } }
+    /**
+     * Find zero or one NewsletterSubscriber that matches the filter.
+     * @param {NewsletterSubscriberFindUniqueArgs} args - Arguments to find a NewsletterSubscriber
+     * @example
+     * // Get one NewsletterSubscriber
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NewsletterSubscriberFindUniqueArgs>(args: SelectSubset<T, NewsletterSubscriberFindUniqueArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one NewsletterSubscriber that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NewsletterSubscriberFindUniqueOrThrowArgs} args - Arguments to find a NewsletterSubscriber
+     * @example
+     * // Get one NewsletterSubscriber
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NewsletterSubscriberFindUniqueOrThrowArgs>(args: SelectSubset<T, NewsletterSubscriberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterSubscriber that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterSubscriberFindFirstArgs} args - Arguments to find a NewsletterSubscriber
+     * @example
+     * // Get one NewsletterSubscriber
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NewsletterSubscriberFindFirstArgs>(args?: SelectSubset<T, NewsletterSubscriberFindFirstArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first NewsletterSubscriber that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterSubscriberFindFirstOrThrowArgs} args - Arguments to find a NewsletterSubscriber
+     * @example
+     * // Get one NewsletterSubscriber
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NewsletterSubscriberFindFirstOrThrowArgs>(args?: SelectSubset<T, NewsletterSubscriberFindFirstOrThrowArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more NewsletterSubscribers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterSubscriberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NewsletterSubscribers
+     * const newsletterSubscribers = await prisma.newsletterSubscriber.findMany()
+     * 
+     * // Get first 10 NewsletterSubscribers
+     * const newsletterSubscribers = await prisma.newsletterSubscriber.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const newsletterSubscriberWithIdOnly = await prisma.newsletterSubscriber.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NewsletterSubscriberFindManyArgs>(args?: SelectSubset<T, NewsletterSubscriberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a NewsletterSubscriber.
+     * @param {NewsletterSubscriberCreateArgs} args - Arguments to create a NewsletterSubscriber.
+     * @example
+     * // Create one NewsletterSubscriber
+     * const NewsletterSubscriber = await prisma.newsletterSubscriber.create({
+     *   data: {
+     *     // ... data to create a NewsletterSubscriber
+     *   }
+     * })
+     * 
+     */
+    create<T extends NewsletterSubscriberCreateArgs>(args: SelectSubset<T, NewsletterSubscriberCreateArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many NewsletterSubscribers.
+     * @param {NewsletterSubscriberCreateManyArgs} args - Arguments to create many NewsletterSubscribers.
+     * @example
+     * // Create many NewsletterSubscribers
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NewsletterSubscriberCreateManyArgs>(args?: SelectSubset<T, NewsletterSubscriberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a NewsletterSubscriber.
+     * @param {NewsletterSubscriberDeleteArgs} args - Arguments to delete one NewsletterSubscriber.
+     * @example
+     * // Delete one NewsletterSubscriber
+     * const NewsletterSubscriber = await prisma.newsletterSubscriber.delete({
+     *   where: {
+     *     // ... filter to delete one NewsletterSubscriber
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NewsletterSubscriberDeleteArgs>(args: SelectSubset<T, NewsletterSubscriberDeleteArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one NewsletterSubscriber.
+     * @param {NewsletterSubscriberUpdateArgs} args - Arguments to update one NewsletterSubscriber.
+     * @example
+     * // Update one NewsletterSubscriber
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NewsletterSubscriberUpdateArgs>(args: SelectSubset<T, NewsletterSubscriberUpdateArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more NewsletterSubscribers.
+     * @param {NewsletterSubscriberDeleteManyArgs} args - Arguments to filter NewsletterSubscribers to delete.
+     * @example
+     * // Delete a few NewsletterSubscribers
+     * const { count } = await prisma.newsletterSubscriber.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NewsletterSubscriberDeleteManyArgs>(args?: SelectSubset<T, NewsletterSubscriberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NewsletterSubscribers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterSubscriberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NewsletterSubscribers
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NewsletterSubscriberUpdateManyArgs>(args: SelectSubset<T, NewsletterSubscriberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one NewsletterSubscriber.
+     * @param {NewsletterSubscriberUpsertArgs} args - Arguments to update or create a NewsletterSubscriber.
+     * @example
+     * // Update or create a NewsletterSubscriber
+     * const newsletterSubscriber = await prisma.newsletterSubscriber.upsert({
+     *   create: {
+     *     // ... data to create a NewsletterSubscriber
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NewsletterSubscriber we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NewsletterSubscriberUpsertArgs>(args: SelectSubset<T, NewsletterSubscriberUpsertArgs<ExtArgs>>): Prisma__NewsletterSubscriberClient<$Result.GetResult<Prisma.$NewsletterSubscriberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of NewsletterSubscribers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterSubscriberCountArgs} args - Arguments to filter NewsletterSubscribers to count.
+     * @example
+     * // Count the number of NewsletterSubscribers
+     * const count = await prisma.newsletterSubscriber.count({
+     *   where: {
+     *     // ... the filter for the NewsletterSubscribers we want to count
+     *   }
+     * })
+    **/
+    count<T extends NewsletterSubscriberCountArgs>(
+      args?: Subset<T, NewsletterSubscriberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NewsletterSubscriberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NewsletterSubscriber.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterSubscriberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NewsletterSubscriberAggregateArgs>(args: Subset<T, NewsletterSubscriberAggregateArgs>): Prisma.PrismaPromise<GetNewsletterSubscriberAggregateType<T>>
+
+    /**
+     * Group by NewsletterSubscriber.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NewsletterSubscriberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NewsletterSubscriberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NewsletterSubscriberGroupByArgs['orderBy'] }
+        : { orderBy?: NewsletterSubscriberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NewsletterSubscriberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNewsletterSubscriberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NewsletterSubscriber model
+   */
+  readonly fields: NewsletterSubscriberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NewsletterSubscriber.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NewsletterSubscriberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NewsletterSubscriber model
+   */
+  interface NewsletterSubscriberFieldRefs {
+    readonly id: FieldRef<"NewsletterSubscriber", 'Int'>
+    readonly email: FieldRef<"NewsletterSubscriber", 'String'>
+    readonly subscribedAt: FieldRef<"NewsletterSubscriber", 'DateTime'>
+    readonly updatedAt: FieldRef<"NewsletterSubscriber", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NewsletterSubscriber findUnique
+   */
+  export type NewsletterSubscriberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Filter, which NewsletterSubscriber to fetch.
+     */
+    where: NewsletterSubscriberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterSubscriber findUniqueOrThrow
+   */
+  export type NewsletterSubscriberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Filter, which NewsletterSubscriber to fetch.
+     */
+    where: NewsletterSubscriberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterSubscriber findFirst
+   */
+  export type NewsletterSubscriberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Filter, which NewsletterSubscriber to fetch.
+     */
+    where?: NewsletterSubscriberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterSubscribers to fetch.
+     */
+    orderBy?: NewsletterSubscriberOrderByWithRelationInput | NewsletterSubscriberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterSubscribers.
+     */
+    cursor?: NewsletterSubscriberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterSubscribers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterSubscribers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterSubscribers.
+     */
+    distinct?: NewsletterSubscriberScalarFieldEnum | NewsletterSubscriberScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterSubscriber findFirstOrThrow
+   */
+  export type NewsletterSubscriberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Filter, which NewsletterSubscriber to fetch.
+     */
+    where?: NewsletterSubscriberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterSubscribers to fetch.
+     */
+    orderBy?: NewsletterSubscriberOrderByWithRelationInput | NewsletterSubscriberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NewsletterSubscribers.
+     */
+    cursor?: NewsletterSubscriberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterSubscribers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterSubscribers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterSubscribers.
+     */
+    distinct?: NewsletterSubscriberScalarFieldEnum | NewsletterSubscriberScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterSubscriber findMany
+   */
+  export type NewsletterSubscriberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Filter, which NewsletterSubscribers to fetch.
+     */
+    where?: NewsletterSubscriberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NewsletterSubscribers to fetch.
+     */
+    orderBy?: NewsletterSubscriberOrderByWithRelationInput | NewsletterSubscriberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NewsletterSubscribers.
+     */
+    cursor?: NewsletterSubscriberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NewsletterSubscribers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NewsletterSubscribers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NewsletterSubscribers.
+     */
+    distinct?: NewsletterSubscriberScalarFieldEnum | NewsletterSubscriberScalarFieldEnum[]
+  }
+
+  /**
+   * NewsletterSubscriber create
+   */
+  export type NewsletterSubscriberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * The data needed to create a NewsletterSubscriber.
+     */
+    data: XOR<NewsletterSubscriberCreateInput, NewsletterSubscriberUncheckedCreateInput>
+  }
+
+  /**
+   * NewsletterSubscriber createMany
+   */
+  export type NewsletterSubscriberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NewsletterSubscribers.
+     */
+    data: NewsletterSubscriberCreateManyInput | NewsletterSubscriberCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NewsletterSubscriber update
+   */
+  export type NewsletterSubscriberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * The data needed to update a NewsletterSubscriber.
+     */
+    data: XOR<NewsletterSubscriberUpdateInput, NewsletterSubscriberUncheckedUpdateInput>
+    /**
+     * Choose, which NewsletterSubscriber to update.
+     */
+    where: NewsletterSubscriberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterSubscriber updateMany
+   */
+  export type NewsletterSubscriberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NewsletterSubscribers.
+     */
+    data: XOR<NewsletterSubscriberUpdateManyMutationInput, NewsletterSubscriberUncheckedUpdateManyInput>
+    /**
+     * Filter which NewsletterSubscribers to update
+     */
+    where?: NewsletterSubscriberWhereInput
+    /**
+     * Limit how many NewsletterSubscribers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterSubscriber upsert
+   */
+  export type NewsletterSubscriberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * The filter to search for the NewsletterSubscriber to update in case it exists.
+     */
+    where: NewsletterSubscriberWhereUniqueInput
+    /**
+     * In case the NewsletterSubscriber found by the `where` argument doesn't exist, create a new NewsletterSubscriber with this data.
+     */
+    create: XOR<NewsletterSubscriberCreateInput, NewsletterSubscriberUncheckedCreateInput>
+    /**
+     * In case the NewsletterSubscriber was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NewsletterSubscriberUpdateInput, NewsletterSubscriberUncheckedUpdateInput>
+  }
+
+  /**
+   * NewsletterSubscriber delete
+   */
+  export type NewsletterSubscriberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+    /**
+     * Filter which NewsletterSubscriber to delete.
+     */
+    where: NewsletterSubscriberWhereUniqueInput
+  }
+
+  /**
+   * NewsletterSubscriber deleteMany
+   */
+  export type NewsletterSubscriberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NewsletterSubscribers to delete
+     */
+    where?: NewsletterSubscriberWhereInput
+    /**
+     * Limit how many NewsletterSubscribers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * NewsletterSubscriber without action
+   */
+  export type NewsletterSubscriberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NewsletterSubscriber
+     */
+    select?: NewsletterSubscriberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NewsletterSubscriber
+     */
+    omit?: NewsletterSubscriberOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BlogPost
+   */
+
+  export type AggregateBlogPost = {
+    _count: BlogPostCountAggregateOutputType | null
+    _avg: BlogPostAvgAggregateOutputType | null
+    _sum: BlogPostSumAggregateOutputType | null
+    _min: BlogPostMinAggregateOutputType | null
+    _max: BlogPostMaxAggregateOutputType | null
+  }
+
+  export type BlogPostAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BlogPostSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type BlogPostMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    slug: string | null
+    type: $Enums.BlogType | null
+    excerpt: string | null
+    content: string | null
+    image: string | null
+    documentUrl: string | null
+    date: Date | null
+    location: string | null
+    personName: string | null
+    personRole: string | null
+    eventName: string | null
+    link: string | null
+    isPublished: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BlogPostMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    slug: string | null
+    type: $Enums.BlogType | null
+    excerpt: string | null
+    content: string | null
+    image: string | null
+    documentUrl: string | null
+    date: Date | null
+    location: string | null
+    personName: string | null
+    personRole: string | null
+    eventName: string | null
+    link: string | null
+    isPublished: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BlogPostCountAggregateOutputType = {
+    id: number
+    title: number
+    slug: number
+    type: number
+    excerpt: number
+    content: number
+    image: number
+    documentUrl: number
+    date: number
+    location: number
+    tags: number
+    personName: number
+    personRole: number
+    eventName: number
+    link: number
+    isPublished: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BlogPostAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type BlogPostSumAggregateInputType = {
+    id?: true
+  }
+
+  export type BlogPostMinAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    type?: true
+    excerpt?: true
+    content?: true
+    image?: true
+    documentUrl?: true
+    date?: true
+    location?: true
+    personName?: true
+    personRole?: true
+    eventName?: true
+    link?: true
+    isPublished?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BlogPostMaxAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    type?: true
+    excerpt?: true
+    content?: true
+    image?: true
+    documentUrl?: true
+    date?: true
+    location?: true
+    personName?: true
+    personRole?: true
+    eventName?: true
+    link?: true
+    isPublished?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BlogPostCountAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    type?: true
+    excerpt?: true
+    content?: true
+    image?: true
+    documentUrl?: true
+    date?: true
+    location?: true
+    tags?: true
+    personName?: true
+    personRole?: true
+    eventName?: true
+    link?: true
+    isPublished?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BlogPostAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlogPost to aggregate.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BlogPosts
+    **/
+    _count?: true | BlogPostCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BlogPostAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BlogPostSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BlogPostMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BlogPostMaxAggregateInputType
+  }
+
+  export type GetBlogPostAggregateType<T extends BlogPostAggregateArgs> = {
+        [P in keyof T & keyof AggregateBlogPost]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBlogPost[P]>
+      : GetScalarType<T[P], AggregateBlogPost[P]>
+  }
+
+
+
+
+  export type BlogPostGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogPostWhereInput
+    orderBy?: BlogPostOrderByWithAggregationInput | BlogPostOrderByWithAggregationInput[]
+    by: BlogPostScalarFieldEnum[] | BlogPostScalarFieldEnum
+    having?: BlogPostScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BlogPostCountAggregateInputType | true
+    _avg?: BlogPostAvgAggregateInputType
+    _sum?: BlogPostSumAggregateInputType
+    _min?: BlogPostMinAggregateInputType
+    _max?: BlogPostMaxAggregateInputType
+  }
+
+  export type BlogPostGroupByOutputType = {
+    id: number
+    title: string
+    slug: string
+    type: $Enums.BlogType
+    excerpt: string | null
+    content: string | null
+    image: string | null
+    documentUrl: string | null
+    date: Date
+    location: string | null
+    tags: JsonValue | null
+    personName: string | null
+    personRole: string | null
+    eventName: string | null
+    link: string | null
+    isPublished: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: BlogPostCountAggregateOutputType | null
+    _avg: BlogPostAvgAggregateOutputType | null
+    _sum: BlogPostSumAggregateOutputType | null
+    _min: BlogPostMinAggregateOutputType | null
+    _max: BlogPostMaxAggregateOutputType | null
+  }
+
+  type GetBlogPostGroupByPayload<T extends BlogPostGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BlogPostGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BlogPostGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BlogPostGroupByOutputType[P]>
+            : GetScalarType<T[P], BlogPostGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BlogPostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    type?: boolean
+    excerpt?: boolean
+    content?: boolean
+    image?: boolean
+    documentUrl?: boolean
+    date?: boolean
+    location?: boolean
+    tags?: boolean
+    personName?: boolean
+    personRole?: boolean
+    eventName?: boolean
+    link?: boolean
+    isPublished?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["blogPost"]>
+
+
+
+  export type BlogPostSelectScalar = {
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    type?: boolean
+    excerpt?: boolean
+    content?: boolean
+    image?: boolean
+    documentUrl?: boolean
+    date?: boolean
+    location?: boolean
+    tags?: boolean
+    personName?: boolean
+    personRole?: boolean
+    eventName?: boolean
+    link?: boolean
+    isPublished?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BlogPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "type" | "excerpt" | "content" | "image" | "documentUrl" | "date" | "location" | "tags" | "personName" | "personRole" | "eventName" | "link" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["blogPost"]>
+
+  export type $BlogPostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BlogPost"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      slug: string
+      type: $Enums.BlogType
+      excerpt: string | null
+      content: string | null
+      image: string | null
+      documentUrl: string | null
+      date: Date
+      location: string | null
+      tags: Prisma.JsonValue | null
+      personName: string | null
+      personRole: string | null
+      eventName: string | null
+      link: string | null
+      isPublished: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["blogPost"]>
+    composites: {}
+  }
+
+  type BlogPostGetPayload<S extends boolean | null | undefined | BlogPostDefaultArgs> = $Result.GetResult<Prisma.$BlogPostPayload, S>
+
+  type BlogPostCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BlogPostFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BlogPostCountAggregateInputType | true
+    }
+
+  export interface BlogPostDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BlogPost'], meta: { name: 'BlogPost' } }
+    /**
+     * Find zero or one BlogPost that matches the filter.
+     * @param {BlogPostFindUniqueArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BlogPostFindUniqueArgs>(args: SelectSubset<T, BlogPostFindUniqueArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BlogPost that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BlogPostFindUniqueOrThrowArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BlogPostFindUniqueOrThrowArgs>(args: SelectSubset<T, BlogPostFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlogPost that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostFindFirstArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BlogPostFindFirstArgs>(args?: SelectSubset<T, BlogPostFindFirstArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlogPost that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostFindFirstOrThrowArgs} args - Arguments to find a BlogPost
+     * @example
+     * // Get one BlogPost
+     * const blogPost = await prisma.blogPost.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BlogPostFindFirstOrThrowArgs>(args?: SelectSubset<T, BlogPostFindFirstOrThrowArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BlogPosts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BlogPosts
+     * const blogPosts = await prisma.blogPost.findMany()
+     * 
+     * // Get first 10 BlogPosts
+     * const blogPosts = await prisma.blogPost.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const blogPostWithIdOnly = await prisma.blogPost.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BlogPostFindManyArgs>(args?: SelectSubset<T, BlogPostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BlogPost.
+     * @param {BlogPostCreateArgs} args - Arguments to create a BlogPost.
+     * @example
+     * // Create one BlogPost
+     * const BlogPost = await prisma.blogPost.create({
+     *   data: {
+     *     // ... data to create a BlogPost
+     *   }
+     * })
+     * 
+     */
+    create<T extends BlogPostCreateArgs>(args: SelectSubset<T, BlogPostCreateArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BlogPosts.
+     * @param {BlogPostCreateManyArgs} args - Arguments to create many BlogPosts.
+     * @example
+     * // Create many BlogPosts
+     * const blogPost = await prisma.blogPost.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BlogPostCreateManyArgs>(args?: SelectSubset<T, BlogPostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a BlogPost.
+     * @param {BlogPostDeleteArgs} args - Arguments to delete one BlogPost.
+     * @example
+     * // Delete one BlogPost
+     * const BlogPost = await prisma.blogPost.delete({
+     *   where: {
+     *     // ... filter to delete one BlogPost
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BlogPostDeleteArgs>(args: SelectSubset<T, BlogPostDeleteArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BlogPost.
+     * @param {BlogPostUpdateArgs} args - Arguments to update one BlogPost.
+     * @example
+     * // Update one BlogPost
+     * const blogPost = await prisma.blogPost.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BlogPostUpdateArgs>(args: SelectSubset<T, BlogPostUpdateArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BlogPosts.
+     * @param {BlogPostDeleteManyArgs} args - Arguments to filter BlogPosts to delete.
+     * @example
+     * // Delete a few BlogPosts
+     * const { count } = await prisma.blogPost.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BlogPostDeleteManyArgs>(args?: SelectSubset<T, BlogPostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BlogPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BlogPosts
+     * const blogPost = await prisma.blogPost.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BlogPostUpdateManyArgs>(args: SelectSubset<T, BlogPostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one BlogPost.
+     * @param {BlogPostUpsertArgs} args - Arguments to update or create a BlogPost.
+     * @example
+     * // Update or create a BlogPost
+     * const blogPost = await prisma.blogPost.upsert({
+     *   create: {
+     *     // ... data to create a BlogPost
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BlogPost we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BlogPostUpsertArgs>(args: SelectSubset<T, BlogPostUpsertArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BlogPosts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostCountArgs} args - Arguments to filter BlogPosts to count.
+     * @example
+     * // Count the number of BlogPosts
+     * const count = await prisma.blogPost.count({
+     *   where: {
+     *     // ... the filter for the BlogPosts we want to count
+     *   }
+     * })
+    **/
+    count<T extends BlogPostCountArgs>(
+      args?: Subset<T, BlogPostCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BlogPostCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BlogPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BlogPostAggregateArgs>(args: Subset<T, BlogPostAggregateArgs>): Prisma.PrismaPromise<GetBlogPostAggregateType<T>>
+
+    /**
+     * Group by BlogPost.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogPostGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BlogPostGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BlogPostGroupByArgs['orderBy'] }
+        : { orderBy?: BlogPostGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BlogPostGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBlogPostGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BlogPost model
+   */
+  readonly fields: BlogPostFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BlogPost.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BlogPostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BlogPost model
+   */
+  interface BlogPostFieldRefs {
+    readonly id: FieldRef<"BlogPost", 'Int'>
+    readonly title: FieldRef<"BlogPost", 'String'>
+    readonly slug: FieldRef<"BlogPost", 'String'>
+    readonly type: FieldRef<"BlogPost", 'BlogType'>
+    readonly excerpt: FieldRef<"BlogPost", 'String'>
+    readonly content: FieldRef<"BlogPost", 'String'>
+    readonly image: FieldRef<"BlogPost", 'String'>
+    readonly documentUrl: FieldRef<"BlogPost", 'String'>
+    readonly date: FieldRef<"BlogPost", 'DateTime'>
+    readonly location: FieldRef<"BlogPost", 'String'>
+    readonly tags: FieldRef<"BlogPost", 'Json'>
+    readonly personName: FieldRef<"BlogPost", 'String'>
+    readonly personRole: FieldRef<"BlogPost", 'String'>
+    readonly eventName: FieldRef<"BlogPost", 'String'>
+    readonly link: FieldRef<"BlogPost", 'String'>
+    readonly isPublished: FieldRef<"BlogPost", 'Boolean'>
+    readonly createdAt: FieldRef<"BlogPost", 'DateTime'>
+    readonly updatedAt: FieldRef<"BlogPost", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BlogPost findUnique
+   */
+  export type BlogPostFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost findUniqueOrThrow
+   */
+  export type BlogPostFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost findFirst
+   */
+  export type BlogPostFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlogPosts.
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlogPosts.
+     */
+    distinct?: BlogPostScalarFieldEnum | BlogPostScalarFieldEnum[]
+  }
+
+  /**
+   * BlogPost findFirstOrThrow
+   */
+  export type BlogPostFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Filter, which BlogPost to fetch.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlogPosts.
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlogPosts.
+     */
+    distinct?: BlogPostScalarFieldEnum | BlogPostScalarFieldEnum[]
+  }
+
+  /**
+   * BlogPost findMany
+   */
+  export type BlogPostFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Filter, which BlogPosts to fetch.
+     */
+    where?: BlogPostWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlogPosts to fetch.
+     */
+    orderBy?: BlogPostOrderByWithRelationInput | BlogPostOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BlogPosts.
+     */
+    cursor?: BlogPostWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlogPosts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlogPosts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlogPosts.
+     */
+    distinct?: BlogPostScalarFieldEnum | BlogPostScalarFieldEnum[]
+  }
+
+  /**
+   * BlogPost create
+   */
+  export type BlogPostCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * The data needed to create a BlogPost.
+     */
+    data: XOR<BlogPostCreateInput, BlogPostUncheckedCreateInput>
+  }
+
+  /**
+   * BlogPost createMany
+   */
+  export type BlogPostCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BlogPosts.
+     */
+    data: BlogPostCreateManyInput | BlogPostCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BlogPost update
+   */
+  export type BlogPostUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * The data needed to update a BlogPost.
+     */
+    data: XOR<BlogPostUpdateInput, BlogPostUncheckedUpdateInput>
+    /**
+     * Choose, which BlogPost to update.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost updateMany
+   */
+  export type BlogPostUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BlogPosts.
+     */
+    data: XOR<BlogPostUpdateManyMutationInput, BlogPostUncheckedUpdateManyInput>
+    /**
+     * Filter which BlogPosts to update
+     */
+    where?: BlogPostWhereInput
+    /**
+     * Limit how many BlogPosts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlogPost upsert
+   */
+  export type BlogPostUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * The filter to search for the BlogPost to update in case it exists.
+     */
+    where: BlogPostWhereUniqueInput
+    /**
+     * In case the BlogPost found by the `where` argument doesn't exist, create a new BlogPost with this data.
+     */
+    create: XOR<BlogPostCreateInput, BlogPostUncheckedCreateInput>
+    /**
+     * In case the BlogPost was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BlogPostUpdateInput, BlogPostUncheckedUpdateInput>
+  }
+
+  /**
+   * BlogPost delete
+   */
+  export type BlogPostDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Filter which BlogPost to delete.
+     */
+    where: BlogPostWhereUniqueInput
+  }
+
+  /**
+   * BlogPost deleteMany
+   */
+  export type BlogPostDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlogPosts to delete
+     */
+    where?: BlogPostWhereInput
+    /**
+     * Limit how many BlogPosts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlogPost without action
+   */
+  export type BlogPostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPost
+     */
+    select?: BlogPostSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlogPost
+     */
+    omit?: BlogPostOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorCategory
+   */
+
+  export type AggregateInvestorCategory = {
+    _count: InvestorCategoryCountAggregateOutputType | null
+    _avg: InvestorCategoryAvgAggregateOutputType | null
+    _sum: InvestorCategorySumAggregateOutputType | null
+    _min: InvestorCategoryMinAggregateOutputType | null
+    _max: InvestorCategoryMaxAggregateOutputType | null
+  }
+
+  export type InvestorCategoryAvgAggregateOutputType = {
+    id: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorCategorySumAggregateOutputType = {
+    id: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorCategoryMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorCategoryMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorCategoryCountAggregateOutputType = {
+    id: number
+    name: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorCategoryAvgAggregateInputType = {
+    id?: true
+    sortOrder?: true
+  }
+
+  export type InvestorCategorySumAggregateInputType = {
+    id?: true
+    sortOrder?: true
+  }
+
+  export type InvestorCategoryMinAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorCategoryMaxAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorCategoryCountAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorCategory to aggregate.
+     */
+    where?: InvestorCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorCategories to fetch.
+     */
+    orderBy?: InvestorCategoryOrderByWithRelationInput | InvestorCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorCategories
+    **/
+    _count?: true | InvestorCategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorCategoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorCategorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorCategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorCategoryMaxAggregateInputType
+  }
+
+  export type GetInvestorCategoryAggregateType<T extends InvestorCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorCategory[P]>
+      : GetScalarType<T[P], AggregateInvestorCategory[P]>
+  }
+
+
+
+
+  export type InvestorCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorCategoryWhereInput
+    orderBy?: InvestorCategoryOrderByWithAggregationInput | InvestorCategoryOrderByWithAggregationInput[]
+    by: InvestorCategoryScalarFieldEnum[] | InvestorCategoryScalarFieldEnum
+    having?: InvestorCategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorCategoryCountAggregateInputType | true
+    _avg?: InvestorCategoryAvgAggregateInputType
+    _sum?: InvestorCategorySumAggregateInputType
+    _min?: InvestorCategoryMinAggregateInputType
+    _max?: InvestorCategoryMaxAggregateInputType
+  }
+
+  export type InvestorCategoryGroupByOutputType = {
+    id: number
+    name: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorCategoryCountAggregateOutputType | null
+    _avg: InvestorCategoryAvgAggregateOutputType | null
+    _sum: InvestorCategorySumAggregateOutputType | null
+    _min: InvestorCategoryMinAggregateOutputType | null
+    _max: InvestorCategoryMaxAggregateOutputType | null
+  }
+
+  type GetInvestorCategoryGroupByPayload<T extends InvestorCategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorCategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorCategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorCategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    subCategories?: boolean | InvestorCategory$subCategoriesArgs<ExtArgs>
+    financialYears?: boolean | InvestorCategory$financialYearsArgs<ExtArgs>
+    documents?: boolean | InvestorCategory$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorCategory$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["investorCategory"]>
+
+
+
+  export type InvestorCategorySelectScalar = {
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["investorCategory"]>
+  export type InvestorCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    subCategories?: boolean | InvestorCategory$subCategoriesArgs<ExtArgs>
+    financialYears?: boolean | InvestorCategory$financialYearsArgs<ExtArgs>
+    documents?: boolean | InvestorCategory$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorCategory$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $InvestorCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorCategory"
+    objects: {
+      subCategories: Prisma.$InvestorSubCategoryPayload<ExtArgs>[]
+      financialYears: Prisma.$InvestorFinancialYearPayload<ExtArgs>[]
+      documents: Prisma.$InvestorDocumentPayload<ExtArgs>[]
+      tableFormatAssignments: Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorCategory"]>
+    composites: {}
+  }
+
+  type InvestorCategoryGetPayload<S extends boolean | null | undefined | InvestorCategoryDefaultArgs> = $Result.GetResult<Prisma.$InvestorCategoryPayload, S>
+
+  type InvestorCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorCategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorCategoryCountAggregateInputType | true
+    }
+
+  export interface InvestorCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorCategory'], meta: { name: 'InvestorCategory' } }
+    /**
+     * Find zero or one InvestorCategory that matches the filter.
+     * @param {InvestorCategoryFindUniqueArgs} args - Arguments to find a InvestorCategory
+     * @example
+     * // Get one InvestorCategory
+     * const investorCategory = await prisma.investorCategory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorCategoryFindUniqueArgs>(args: SelectSubset<T, InvestorCategoryFindUniqueArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorCategory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorCategoryFindUniqueOrThrowArgs} args - Arguments to find a InvestorCategory
+     * @example
+     * // Get one InvestorCategory
+     * const investorCategory = await prisma.investorCategory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorCategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorCategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorCategory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorCategoryFindFirstArgs} args - Arguments to find a InvestorCategory
+     * @example
+     * // Get one InvestorCategory
+     * const investorCategory = await prisma.investorCategory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorCategoryFindFirstArgs>(args?: SelectSubset<T, InvestorCategoryFindFirstArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorCategory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorCategoryFindFirstOrThrowArgs} args - Arguments to find a InvestorCategory
+     * @example
+     * // Get one InvestorCategory
+     * const investorCategory = await prisma.investorCategory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorCategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorCategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorCategories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorCategories
+     * const investorCategories = await prisma.investorCategory.findMany()
+     * 
+     * // Get first 10 InvestorCategories
+     * const investorCategories = await prisma.investorCategory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorCategoryWithIdOnly = await prisma.investorCategory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorCategoryFindManyArgs>(args?: SelectSubset<T, InvestorCategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorCategory.
+     * @param {InvestorCategoryCreateArgs} args - Arguments to create a InvestorCategory.
+     * @example
+     * // Create one InvestorCategory
+     * const InvestorCategory = await prisma.investorCategory.create({
+     *   data: {
+     *     // ... data to create a InvestorCategory
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorCategoryCreateArgs>(args: SelectSubset<T, InvestorCategoryCreateArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorCategories.
+     * @param {InvestorCategoryCreateManyArgs} args - Arguments to create many InvestorCategories.
+     * @example
+     * // Create many InvestorCategories
+     * const investorCategory = await prisma.investorCategory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorCategoryCreateManyArgs>(args?: SelectSubset<T, InvestorCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorCategory.
+     * @param {InvestorCategoryDeleteArgs} args - Arguments to delete one InvestorCategory.
+     * @example
+     * // Delete one InvestorCategory
+     * const InvestorCategory = await prisma.investorCategory.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorCategory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorCategoryDeleteArgs>(args: SelectSubset<T, InvestorCategoryDeleteArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorCategory.
+     * @param {InvestorCategoryUpdateArgs} args - Arguments to update one InvestorCategory.
+     * @example
+     * // Update one InvestorCategory
+     * const investorCategory = await prisma.investorCategory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorCategoryUpdateArgs>(args: SelectSubset<T, InvestorCategoryUpdateArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorCategories.
+     * @param {InvestorCategoryDeleteManyArgs} args - Arguments to filter InvestorCategories to delete.
+     * @example
+     * // Delete a few InvestorCategories
+     * const { count } = await prisma.investorCategory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorCategoryDeleteManyArgs>(args?: SelectSubset<T, InvestorCategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorCategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorCategories
+     * const investorCategory = await prisma.investorCategory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorCategoryUpdateManyArgs>(args: SelectSubset<T, InvestorCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorCategory.
+     * @param {InvestorCategoryUpsertArgs} args - Arguments to update or create a InvestorCategory.
+     * @example
+     * // Update or create a InvestorCategory
+     * const investorCategory = await prisma.investorCategory.upsert({
+     *   create: {
+     *     // ... data to create a InvestorCategory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorCategory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorCategoryUpsertArgs>(args: SelectSubset<T, InvestorCategoryUpsertArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorCategoryCountArgs} args - Arguments to filter InvestorCategories to count.
+     * @example
+     * // Count the number of InvestorCategories
+     * const count = await prisma.investorCategory.count({
+     *   where: {
+     *     // ... the filter for the InvestorCategories we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorCategoryCountArgs>(
+      args?: Subset<T, InvestorCategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorCategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorCategoryAggregateArgs>(args: Subset<T, InvestorCategoryAggregateArgs>): Prisma.PrismaPromise<GetInvestorCategoryAggregateType<T>>
+
+    /**
+     * Group by InvestorCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorCategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorCategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorCategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorCategory model
+   */
+  readonly fields: InvestorCategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorCategory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    subCategories<T extends InvestorCategory$subCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, InvestorCategory$subCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    financialYears<T extends InvestorCategory$financialYearsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorCategory$financialYearsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    documents<T extends InvestorCategory$documentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorCategory$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tableFormatAssignments<T extends InvestorCategory$tableFormatAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorCategory$tableFormatAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorCategory model
+   */
+  interface InvestorCategoryFieldRefs {
+    readonly id: FieldRef<"InvestorCategory", 'Int'>
+    readonly name: FieldRef<"InvestorCategory", 'String'>
+    readonly sortOrder: FieldRef<"InvestorCategory", 'Int'>
+    readonly isActive: FieldRef<"InvestorCategory", 'Boolean'>
+    readonly createdAt: FieldRef<"InvestorCategory", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorCategory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorCategory findUnique
+   */
+  export type InvestorCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorCategory to fetch.
+     */
+    where: InvestorCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorCategory findUniqueOrThrow
+   */
+  export type InvestorCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorCategory to fetch.
+     */
+    where: InvestorCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorCategory findFirst
+   */
+  export type InvestorCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorCategory to fetch.
+     */
+    where?: InvestorCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorCategories to fetch.
+     */
+    orderBy?: InvestorCategoryOrderByWithRelationInput | InvestorCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorCategories.
+     */
+    cursor?: InvestorCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorCategories.
+     */
+    distinct?: InvestorCategoryScalarFieldEnum | InvestorCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorCategory findFirstOrThrow
+   */
+  export type InvestorCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorCategory to fetch.
+     */
+    where?: InvestorCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorCategories to fetch.
+     */
+    orderBy?: InvestorCategoryOrderByWithRelationInput | InvestorCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorCategories.
+     */
+    cursor?: InvestorCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorCategories.
+     */
+    distinct?: InvestorCategoryScalarFieldEnum | InvestorCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorCategory findMany
+   */
+  export type InvestorCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorCategories to fetch.
+     */
+    where?: InvestorCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorCategories to fetch.
+     */
+    orderBy?: InvestorCategoryOrderByWithRelationInput | InvestorCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorCategories.
+     */
+    cursor?: InvestorCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorCategories.
+     */
+    distinct?: InvestorCategoryScalarFieldEnum | InvestorCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorCategory create
+   */
+  export type InvestorCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorCategory.
+     */
+    data: XOR<InvestorCategoryCreateInput, InvestorCategoryUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorCategory createMany
+   */
+  export type InvestorCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorCategories.
+     */
+    data: InvestorCategoryCreateManyInput | InvestorCategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorCategory update
+   */
+  export type InvestorCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorCategory.
+     */
+    data: XOR<InvestorCategoryUpdateInput, InvestorCategoryUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorCategory to update.
+     */
+    where: InvestorCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorCategory updateMany
+   */
+  export type InvestorCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorCategories.
+     */
+    data: XOR<InvestorCategoryUpdateManyMutationInput, InvestorCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorCategories to update
+     */
+    where?: InvestorCategoryWhereInput
+    /**
+     * Limit how many InvestorCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorCategory upsert
+   */
+  export type InvestorCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorCategory to update in case it exists.
+     */
+    where: InvestorCategoryWhereUniqueInput
+    /**
+     * In case the InvestorCategory found by the `where` argument doesn't exist, create a new InvestorCategory with this data.
+     */
+    create: XOR<InvestorCategoryCreateInput, InvestorCategoryUncheckedCreateInput>
+    /**
+     * In case the InvestorCategory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorCategoryUpdateInput, InvestorCategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorCategory delete
+   */
+  export type InvestorCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorCategory to delete.
+     */
+    where: InvestorCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorCategory deleteMany
+   */
+  export type InvestorCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorCategories to delete
+     */
+    where?: InvestorCategoryWhereInput
+    /**
+     * Limit how many InvestorCategories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorCategory.subCategories
+   */
+  export type InvestorCategory$subCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    where?: InvestorSubCategoryWhereInput
+    orderBy?: InvestorSubCategoryOrderByWithRelationInput | InvestorSubCategoryOrderByWithRelationInput[]
+    cursor?: InvestorSubCategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorSubCategoryScalarFieldEnum | InvestorSubCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorCategory.financialYears
+   */
+  export type InvestorCategory$financialYearsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    where?: InvestorFinancialYearWhereInput
+    orderBy?: InvestorFinancialYearOrderByWithRelationInput | InvestorFinancialYearOrderByWithRelationInput[]
+    cursor?: InvestorFinancialYearWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorFinancialYearScalarFieldEnum | InvestorFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorCategory.documents
+   */
+  export type InvestorCategory$documentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    where?: InvestorDocumentWhereInput
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    cursor?: InvestorDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorDocumentScalarFieldEnum | InvestorDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorCategory.tableFormatAssignments
+   */
+  export type InvestorCategory$tableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    where?: InvestorTableFormatAssignmentWhereInput
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorCategory without action
+   */
+  export type InvestorCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorSubCategory
+   */
+
+  export type AggregateInvestorSubCategory = {
+    _count: InvestorSubCategoryCountAggregateOutputType | null
+    _avg: InvestorSubCategoryAvgAggregateOutputType | null
+    _sum: InvestorSubCategorySumAggregateOutputType | null
+    _min: InvestorSubCategoryMinAggregateOutputType | null
+    _max: InvestorSubCategoryMaxAggregateOutputType | null
+  }
+
+  export type InvestorSubCategoryAvgAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorSubCategorySumAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorSubCategoryMinAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorSubCategoryMaxAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorSubCategoryCountAggregateOutputType = {
+    id: number
+    categoryId: number
+    name: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorSubCategoryAvgAggregateInputType = {
+    id?: true
+    categoryId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorSubCategorySumAggregateInputType = {
+    id?: true
+    categoryId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorSubCategoryMinAggregateInputType = {
+    id?: true
+    categoryId?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorSubCategoryMaxAggregateInputType = {
+    id?: true
+    categoryId?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorSubCategoryCountAggregateInputType = {
+    id?: true
+    categoryId?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorSubCategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorSubCategory to aggregate.
+     */
+    where?: InvestorSubCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorSubCategories to fetch.
+     */
+    orderBy?: InvestorSubCategoryOrderByWithRelationInput | InvestorSubCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorSubCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorSubCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorSubCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorSubCategories
+    **/
+    _count?: true | InvestorSubCategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorSubCategoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorSubCategorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorSubCategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorSubCategoryMaxAggregateInputType
+  }
+
+  export type GetInvestorSubCategoryAggregateType<T extends InvestorSubCategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorSubCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorSubCategory[P]>
+      : GetScalarType<T[P], AggregateInvestorSubCategory[P]>
+  }
+
+
+
+
+  export type InvestorSubCategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorSubCategoryWhereInput
+    orderBy?: InvestorSubCategoryOrderByWithAggregationInput | InvestorSubCategoryOrderByWithAggregationInput[]
+    by: InvestorSubCategoryScalarFieldEnum[] | InvestorSubCategoryScalarFieldEnum
+    having?: InvestorSubCategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorSubCategoryCountAggregateInputType | true
+    _avg?: InvestorSubCategoryAvgAggregateInputType
+    _sum?: InvestorSubCategorySumAggregateInputType
+    _min?: InvestorSubCategoryMinAggregateInputType
+    _max?: InvestorSubCategoryMaxAggregateInputType
+  }
+
+  export type InvestorSubCategoryGroupByOutputType = {
+    id: number
+    categoryId: number
+    name: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorSubCategoryCountAggregateOutputType | null
+    _avg: InvestorSubCategoryAvgAggregateOutputType | null
+    _sum: InvestorSubCategorySumAggregateOutputType | null
+    _min: InvestorSubCategoryMinAggregateOutputType | null
+    _max: InvestorSubCategoryMaxAggregateOutputType | null
+  }
+
+  type GetInvestorSubCategoryGroupByPayload<T extends InvestorSubCategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorSubCategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorSubCategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorSubCategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorSubCategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorSubCategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    categoryId?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | InvestorCategoryDefaultArgs<ExtArgs>
+    financialYears?: boolean | InvestorSubCategory$financialYearsArgs<ExtArgs>
+    documents?: boolean | InvestorSubCategory$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorSubCategory$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorSubCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["investorSubCategory"]>
+
+
+
+  export type InvestorSubCategorySelectScalar = {
+    id?: boolean
+    categoryId?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorSubCategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "name" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["investorSubCategory"]>
+  export type InvestorSubCategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | InvestorCategoryDefaultArgs<ExtArgs>
+    financialYears?: boolean | InvestorSubCategory$financialYearsArgs<ExtArgs>
+    documents?: boolean | InvestorSubCategory$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorSubCategory$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorSubCategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $InvestorSubCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorSubCategory"
+    objects: {
+      category: Prisma.$InvestorCategoryPayload<ExtArgs>
+      financialYears: Prisma.$InvestorFinancialYearPayload<ExtArgs>[]
+      documents: Prisma.$InvestorDocumentPayload<ExtArgs>[]
+      tableFormatAssignments: Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      categoryId: number
+      name: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorSubCategory"]>
+    composites: {}
+  }
+
+  type InvestorSubCategoryGetPayload<S extends boolean | null | undefined | InvestorSubCategoryDefaultArgs> = $Result.GetResult<Prisma.$InvestorSubCategoryPayload, S>
+
+  type InvestorSubCategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorSubCategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorSubCategoryCountAggregateInputType | true
+    }
+
+  export interface InvestorSubCategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorSubCategory'], meta: { name: 'InvestorSubCategory' } }
+    /**
+     * Find zero or one InvestorSubCategory that matches the filter.
+     * @param {InvestorSubCategoryFindUniqueArgs} args - Arguments to find a InvestorSubCategory
+     * @example
+     * // Get one InvestorSubCategory
+     * const investorSubCategory = await prisma.investorSubCategory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorSubCategoryFindUniqueArgs>(args: SelectSubset<T, InvestorSubCategoryFindUniqueArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorSubCategory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorSubCategoryFindUniqueOrThrowArgs} args - Arguments to find a InvestorSubCategory
+     * @example
+     * // Get one InvestorSubCategory
+     * const investorSubCategory = await prisma.investorSubCategory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorSubCategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorSubCategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorSubCategory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorSubCategoryFindFirstArgs} args - Arguments to find a InvestorSubCategory
+     * @example
+     * // Get one InvestorSubCategory
+     * const investorSubCategory = await prisma.investorSubCategory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorSubCategoryFindFirstArgs>(args?: SelectSubset<T, InvestorSubCategoryFindFirstArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorSubCategory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorSubCategoryFindFirstOrThrowArgs} args - Arguments to find a InvestorSubCategory
+     * @example
+     * // Get one InvestorSubCategory
+     * const investorSubCategory = await prisma.investorSubCategory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorSubCategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorSubCategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorSubCategories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorSubCategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorSubCategories
+     * const investorSubCategories = await prisma.investorSubCategory.findMany()
+     * 
+     * // Get first 10 InvestorSubCategories
+     * const investorSubCategories = await prisma.investorSubCategory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorSubCategoryWithIdOnly = await prisma.investorSubCategory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorSubCategoryFindManyArgs>(args?: SelectSubset<T, InvestorSubCategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorSubCategory.
+     * @param {InvestorSubCategoryCreateArgs} args - Arguments to create a InvestorSubCategory.
+     * @example
+     * // Create one InvestorSubCategory
+     * const InvestorSubCategory = await prisma.investorSubCategory.create({
+     *   data: {
+     *     // ... data to create a InvestorSubCategory
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorSubCategoryCreateArgs>(args: SelectSubset<T, InvestorSubCategoryCreateArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorSubCategories.
+     * @param {InvestorSubCategoryCreateManyArgs} args - Arguments to create many InvestorSubCategories.
+     * @example
+     * // Create many InvestorSubCategories
+     * const investorSubCategory = await prisma.investorSubCategory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorSubCategoryCreateManyArgs>(args?: SelectSubset<T, InvestorSubCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorSubCategory.
+     * @param {InvestorSubCategoryDeleteArgs} args - Arguments to delete one InvestorSubCategory.
+     * @example
+     * // Delete one InvestorSubCategory
+     * const InvestorSubCategory = await prisma.investorSubCategory.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorSubCategory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorSubCategoryDeleteArgs>(args: SelectSubset<T, InvestorSubCategoryDeleteArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorSubCategory.
+     * @param {InvestorSubCategoryUpdateArgs} args - Arguments to update one InvestorSubCategory.
+     * @example
+     * // Update one InvestorSubCategory
+     * const investorSubCategory = await prisma.investorSubCategory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorSubCategoryUpdateArgs>(args: SelectSubset<T, InvestorSubCategoryUpdateArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorSubCategories.
+     * @param {InvestorSubCategoryDeleteManyArgs} args - Arguments to filter InvestorSubCategories to delete.
+     * @example
+     * // Delete a few InvestorSubCategories
+     * const { count } = await prisma.investorSubCategory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorSubCategoryDeleteManyArgs>(args?: SelectSubset<T, InvestorSubCategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorSubCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorSubCategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorSubCategories
+     * const investorSubCategory = await prisma.investorSubCategory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorSubCategoryUpdateManyArgs>(args: SelectSubset<T, InvestorSubCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorSubCategory.
+     * @param {InvestorSubCategoryUpsertArgs} args - Arguments to update or create a InvestorSubCategory.
+     * @example
+     * // Update or create a InvestorSubCategory
+     * const investorSubCategory = await prisma.investorSubCategory.upsert({
+     *   create: {
+     *     // ... data to create a InvestorSubCategory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorSubCategory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorSubCategoryUpsertArgs>(args: SelectSubset<T, InvestorSubCategoryUpsertArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorSubCategories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorSubCategoryCountArgs} args - Arguments to filter InvestorSubCategories to count.
+     * @example
+     * // Count the number of InvestorSubCategories
+     * const count = await prisma.investorSubCategory.count({
+     *   where: {
+     *     // ... the filter for the InvestorSubCategories we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorSubCategoryCountArgs>(
+      args?: Subset<T, InvestorSubCategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorSubCategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorSubCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorSubCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorSubCategoryAggregateArgs>(args: Subset<T, InvestorSubCategoryAggregateArgs>): Prisma.PrismaPromise<GetInvestorSubCategoryAggregateType<T>>
+
+    /**
+     * Group by InvestorSubCategory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorSubCategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorSubCategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorSubCategoryGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorSubCategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorSubCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorSubCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorSubCategory model
+   */
+  readonly fields: InvestorSubCategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorSubCategory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorSubCategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends InvestorCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InvestorCategoryDefaultArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    financialYears<T extends InvestorSubCategory$financialYearsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorSubCategory$financialYearsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    documents<T extends InvestorSubCategory$documentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorSubCategory$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tableFormatAssignments<T extends InvestorSubCategory$tableFormatAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorSubCategory$tableFormatAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorSubCategory model
+   */
+  interface InvestorSubCategoryFieldRefs {
+    readonly id: FieldRef<"InvestorSubCategory", 'Int'>
+    readonly categoryId: FieldRef<"InvestorSubCategory", 'Int'>
+    readonly name: FieldRef<"InvestorSubCategory", 'String'>
+    readonly sortOrder: FieldRef<"InvestorSubCategory", 'Int'>
+    readonly isActive: FieldRef<"InvestorSubCategory", 'Boolean'>
+    readonly createdAt: FieldRef<"InvestorSubCategory", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorSubCategory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorSubCategory findUnique
+   */
+  export type InvestorSubCategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorSubCategory to fetch.
+     */
+    where: InvestorSubCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorSubCategory findUniqueOrThrow
+   */
+  export type InvestorSubCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorSubCategory to fetch.
+     */
+    where: InvestorSubCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorSubCategory findFirst
+   */
+  export type InvestorSubCategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorSubCategory to fetch.
+     */
+    where?: InvestorSubCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorSubCategories to fetch.
+     */
+    orderBy?: InvestorSubCategoryOrderByWithRelationInput | InvestorSubCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorSubCategories.
+     */
+    cursor?: InvestorSubCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorSubCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorSubCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorSubCategories.
+     */
+    distinct?: InvestorSubCategoryScalarFieldEnum | InvestorSubCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorSubCategory findFirstOrThrow
+   */
+  export type InvestorSubCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorSubCategory to fetch.
+     */
+    where?: InvestorSubCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorSubCategories to fetch.
+     */
+    orderBy?: InvestorSubCategoryOrderByWithRelationInput | InvestorSubCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorSubCategories.
+     */
+    cursor?: InvestorSubCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorSubCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorSubCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorSubCategories.
+     */
+    distinct?: InvestorSubCategoryScalarFieldEnum | InvestorSubCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorSubCategory findMany
+   */
+  export type InvestorSubCategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorSubCategories to fetch.
+     */
+    where?: InvestorSubCategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorSubCategories to fetch.
+     */
+    orderBy?: InvestorSubCategoryOrderByWithRelationInput | InvestorSubCategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorSubCategories.
+     */
+    cursor?: InvestorSubCategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorSubCategories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorSubCategories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorSubCategories.
+     */
+    distinct?: InvestorSubCategoryScalarFieldEnum | InvestorSubCategoryScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorSubCategory create
+   */
+  export type InvestorSubCategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorSubCategory.
+     */
+    data: XOR<InvestorSubCategoryCreateInput, InvestorSubCategoryUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorSubCategory createMany
+   */
+  export type InvestorSubCategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorSubCategories.
+     */
+    data: InvestorSubCategoryCreateManyInput | InvestorSubCategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorSubCategory update
+   */
+  export type InvestorSubCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorSubCategory.
+     */
+    data: XOR<InvestorSubCategoryUpdateInput, InvestorSubCategoryUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorSubCategory to update.
+     */
+    where: InvestorSubCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorSubCategory updateMany
+   */
+  export type InvestorSubCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorSubCategories.
+     */
+    data: XOR<InvestorSubCategoryUpdateManyMutationInput, InvestorSubCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorSubCategories to update
+     */
+    where?: InvestorSubCategoryWhereInput
+    /**
+     * Limit how many InvestorSubCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorSubCategory upsert
+   */
+  export type InvestorSubCategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorSubCategory to update in case it exists.
+     */
+    where: InvestorSubCategoryWhereUniqueInput
+    /**
+     * In case the InvestorSubCategory found by the `where` argument doesn't exist, create a new InvestorSubCategory with this data.
+     */
+    create: XOR<InvestorSubCategoryCreateInput, InvestorSubCategoryUncheckedCreateInput>
+    /**
+     * In case the InvestorSubCategory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorSubCategoryUpdateInput, InvestorSubCategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorSubCategory delete
+   */
+  export type InvestorSubCategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorSubCategory to delete.
+     */
+    where: InvestorSubCategoryWhereUniqueInput
+  }
+
+  /**
+   * InvestorSubCategory deleteMany
+   */
+  export type InvestorSubCategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorSubCategories to delete
+     */
+    where?: InvestorSubCategoryWhereInput
+    /**
+     * Limit how many InvestorSubCategories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorSubCategory.financialYears
+   */
+  export type InvestorSubCategory$financialYearsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    where?: InvestorFinancialYearWhereInput
+    orderBy?: InvestorFinancialYearOrderByWithRelationInput | InvestorFinancialYearOrderByWithRelationInput[]
+    cursor?: InvestorFinancialYearWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorFinancialYearScalarFieldEnum | InvestorFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorSubCategory.documents
+   */
+  export type InvestorSubCategory$documentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    where?: InvestorDocumentWhereInput
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    cursor?: InvestorDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorDocumentScalarFieldEnum | InvestorDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorSubCategory.tableFormatAssignments
+   */
+  export type InvestorSubCategory$tableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    where?: InvestorTableFormatAssignmentWhereInput
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorSubCategory without action
+   */
+  export type InvestorSubCategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorFinancialYear
+   */
+
+  export type AggregateInvestorFinancialYear = {
+    _count: InvestorFinancialYearCountAggregateOutputType | null
+    _avg: InvestorFinancialYearAvgAggregateOutputType | null
+    _sum: InvestorFinancialYearSumAggregateOutputType | null
+    _min: InvestorFinancialYearMinAggregateOutputType | null
+    _max: InvestorFinancialYearMaxAggregateOutputType | null
+  }
+
+  export type InvestorFinancialYearAvgAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorFinancialYearSumAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorFinancialYearMinAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    year: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorFinancialYearMaxAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    year: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorFinancialYearCountAggregateOutputType = {
+    id: number
+    categoryId: number
+    subCategoryId: number
+    year: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorFinancialYearAvgAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorFinancialYearSumAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorFinancialYearMinAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    year?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorFinancialYearMaxAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    year?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorFinancialYearCountAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    year?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorFinancialYearAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorFinancialYear to aggregate.
+     */
+    where?: InvestorFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorFinancialYears to fetch.
+     */
+    orderBy?: InvestorFinancialYearOrderByWithRelationInput | InvestorFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorFinancialYears
+    **/
+    _count?: true | InvestorFinancialYearCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorFinancialYearAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorFinancialYearSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorFinancialYearMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorFinancialYearMaxAggregateInputType
+  }
+
+  export type GetInvestorFinancialYearAggregateType<T extends InvestorFinancialYearAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorFinancialYear]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorFinancialYear[P]>
+      : GetScalarType<T[P], AggregateInvestorFinancialYear[P]>
+  }
+
+
+
+
+  export type InvestorFinancialYearGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorFinancialYearWhereInput
+    orderBy?: InvestorFinancialYearOrderByWithAggregationInput | InvestorFinancialYearOrderByWithAggregationInput[]
+    by: InvestorFinancialYearScalarFieldEnum[] | InvestorFinancialYearScalarFieldEnum
+    having?: InvestorFinancialYearScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorFinancialYearCountAggregateInputType | true
+    _avg?: InvestorFinancialYearAvgAggregateInputType
+    _sum?: InvestorFinancialYearSumAggregateInputType
+    _min?: InvestorFinancialYearMinAggregateInputType
+    _max?: InvestorFinancialYearMaxAggregateInputType
+  }
+
+  export type InvestorFinancialYearGroupByOutputType = {
+    id: number
+    categoryId: number | null
+    subCategoryId: number | null
+    year: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorFinancialYearCountAggregateOutputType | null
+    _avg: InvestorFinancialYearAvgAggregateOutputType | null
+    _sum: InvestorFinancialYearSumAggregateOutputType | null
+    _min: InvestorFinancialYearMinAggregateOutputType | null
+    _max: InvestorFinancialYearMaxAggregateOutputType | null
+  }
+
+  type GetInvestorFinancialYearGroupByPayload<T extends InvestorFinancialYearGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorFinancialYearGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorFinancialYearGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorFinancialYearGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorFinancialYearGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorFinancialYearSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    categoryId?: boolean
+    subCategoryId?: boolean
+    year?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | InvestorFinancialYear$categoryArgs<ExtArgs>
+    subCategory?: boolean | InvestorFinancialYear$subCategoryArgs<ExtArgs>
+    quarters?: boolean | InvestorFinancialYear$quartersArgs<ExtArgs>
+    documents?: boolean | InvestorFinancialYear$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorFinancialYear$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorFinancialYearCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["investorFinancialYear"]>
+
+
+
+  export type InvestorFinancialYearSelectScalar = {
+    id?: boolean
+    categoryId?: boolean
+    subCategoryId?: boolean
+    year?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorFinancialYearOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subCategoryId" | "year" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["investorFinancialYear"]>
+  export type InvestorFinancialYearInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | InvestorFinancialYear$categoryArgs<ExtArgs>
+    subCategory?: boolean | InvestorFinancialYear$subCategoryArgs<ExtArgs>
+    quarters?: boolean | InvestorFinancialYear$quartersArgs<ExtArgs>
+    documents?: boolean | InvestorFinancialYear$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorFinancialYear$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorFinancialYearCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $InvestorFinancialYearPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorFinancialYear"
+    objects: {
+      category: Prisma.$InvestorCategoryPayload<ExtArgs> | null
+      subCategory: Prisma.$InvestorSubCategoryPayload<ExtArgs> | null
+      quarters: Prisma.$InvestorQuarterPayload<ExtArgs>[]
+      documents: Prisma.$InvestorDocumentPayload<ExtArgs>[]
+      tableFormatAssignments: Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      categoryId: number | null
+      subCategoryId: number | null
+      year: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorFinancialYear"]>
+    composites: {}
+  }
+
+  type InvestorFinancialYearGetPayload<S extends boolean | null | undefined | InvestorFinancialYearDefaultArgs> = $Result.GetResult<Prisma.$InvestorFinancialYearPayload, S>
+
+  type InvestorFinancialYearCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorFinancialYearFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorFinancialYearCountAggregateInputType | true
+    }
+
+  export interface InvestorFinancialYearDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorFinancialYear'], meta: { name: 'InvestorFinancialYear' } }
+    /**
+     * Find zero or one InvestorFinancialYear that matches the filter.
+     * @param {InvestorFinancialYearFindUniqueArgs} args - Arguments to find a InvestorFinancialYear
+     * @example
+     * // Get one InvestorFinancialYear
+     * const investorFinancialYear = await prisma.investorFinancialYear.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorFinancialYearFindUniqueArgs>(args: SelectSubset<T, InvestorFinancialYearFindUniqueArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorFinancialYear that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorFinancialYearFindUniqueOrThrowArgs} args - Arguments to find a InvestorFinancialYear
+     * @example
+     * // Get one InvestorFinancialYear
+     * const investorFinancialYear = await prisma.investorFinancialYear.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorFinancialYearFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorFinancialYearFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorFinancialYear that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorFinancialYearFindFirstArgs} args - Arguments to find a InvestorFinancialYear
+     * @example
+     * // Get one InvestorFinancialYear
+     * const investorFinancialYear = await prisma.investorFinancialYear.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorFinancialYearFindFirstArgs>(args?: SelectSubset<T, InvestorFinancialYearFindFirstArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorFinancialYear that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorFinancialYearFindFirstOrThrowArgs} args - Arguments to find a InvestorFinancialYear
+     * @example
+     * // Get one InvestorFinancialYear
+     * const investorFinancialYear = await prisma.investorFinancialYear.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorFinancialYearFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorFinancialYearFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorFinancialYears that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorFinancialYearFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorFinancialYears
+     * const investorFinancialYears = await prisma.investorFinancialYear.findMany()
+     * 
+     * // Get first 10 InvestorFinancialYears
+     * const investorFinancialYears = await prisma.investorFinancialYear.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorFinancialYearWithIdOnly = await prisma.investorFinancialYear.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorFinancialYearFindManyArgs>(args?: SelectSubset<T, InvestorFinancialYearFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorFinancialYear.
+     * @param {InvestorFinancialYearCreateArgs} args - Arguments to create a InvestorFinancialYear.
+     * @example
+     * // Create one InvestorFinancialYear
+     * const InvestorFinancialYear = await prisma.investorFinancialYear.create({
+     *   data: {
+     *     // ... data to create a InvestorFinancialYear
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorFinancialYearCreateArgs>(args: SelectSubset<T, InvestorFinancialYearCreateArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorFinancialYears.
+     * @param {InvestorFinancialYearCreateManyArgs} args - Arguments to create many InvestorFinancialYears.
+     * @example
+     * // Create many InvestorFinancialYears
+     * const investorFinancialYear = await prisma.investorFinancialYear.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorFinancialYearCreateManyArgs>(args?: SelectSubset<T, InvestorFinancialYearCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorFinancialYear.
+     * @param {InvestorFinancialYearDeleteArgs} args - Arguments to delete one InvestorFinancialYear.
+     * @example
+     * // Delete one InvestorFinancialYear
+     * const InvestorFinancialYear = await prisma.investorFinancialYear.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorFinancialYear
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorFinancialYearDeleteArgs>(args: SelectSubset<T, InvestorFinancialYearDeleteArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorFinancialYear.
+     * @param {InvestorFinancialYearUpdateArgs} args - Arguments to update one InvestorFinancialYear.
+     * @example
+     * // Update one InvestorFinancialYear
+     * const investorFinancialYear = await prisma.investorFinancialYear.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorFinancialYearUpdateArgs>(args: SelectSubset<T, InvestorFinancialYearUpdateArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorFinancialYears.
+     * @param {InvestorFinancialYearDeleteManyArgs} args - Arguments to filter InvestorFinancialYears to delete.
+     * @example
+     * // Delete a few InvestorFinancialYears
+     * const { count } = await prisma.investorFinancialYear.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorFinancialYearDeleteManyArgs>(args?: SelectSubset<T, InvestorFinancialYearDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorFinancialYears.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorFinancialYearUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorFinancialYears
+     * const investorFinancialYear = await prisma.investorFinancialYear.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorFinancialYearUpdateManyArgs>(args: SelectSubset<T, InvestorFinancialYearUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorFinancialYear.
+     * @param {InvestorFinancialYearUpsertArgs} args - Arguments to update or create a InvestorFinancialYear.
+     * @example
+     * // Update or create a InvestorFinancialYear
+     * const investorFinancialYear = await prisma.investorFinancialYear.upsert({
+     *   create: {
+     *     // ... data to create a InvestorFinancialYear
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorFinancialYear we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorFinancialYearUpsertArgs>(args: SelectSubset<T, InvestorFinancialYearUpsertArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorFinancialYears.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorFinancialYearCountArgs} args - Arguments to filter InvestorFinancialYears to count.
+     * @example
+     * // Count the number of InvestorFinancialYears
+     * const count = await prisma.investorFinancialYear.count({
+     *   where: {
+     *     // ... the filter for the InvestorFinancialYears we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorFinancialYearCountArgs>(
+      args?: Subset<T, InvestorFinancialYearCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorFinancialYearCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorFinancialYear.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorFinancialYearAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorFinancialYearAggregateArgs>(args: Subset<T, InvestorFinancialYearAggregateArgs>): Prisma.PrismaPromise<GetInvestorFinancialYearAggregateType<T>>
+
+    /**
+     * Group by InvestorFinancialYear.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorFinancialYearGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorFinancialYearGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorFinancialYearGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorFinancialYearGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorFinancialYearGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorFinancialYearGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorFinancialYear model
+   */
+  readonly fields: InvestorFinancialYearFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorFinancialYear.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorFinancialYearClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends InvestorFinancialYear$categoryArgs<ExtArgs> = {}>(args?: Subset<T, InvestorFinancialYear$categoryArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    subCategory<T extends InvestorFinancialYear$subCategoryArgs<ExtArgs> = {}>(args?: Subset<T, InvestorFinancialYear$subCategoryArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    quarters<T extends InvestorFinancialYear$quartersArgs<ExtArgs> = {}>(args?: Subset<T, InvestorFinancialYear$quartersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    documents<T extends InvestorFinancialYear$documentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorFinancialYear$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tableFormatAssignments<T extends InvestorFinancialYear$tableFormatAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorFinancialYear$tableFormatAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorFinancialYear model
+   */
+  interface InvestorFinancialYearFieldRefs {
+    readonly id: FieldRef<"InvestorFinancialYear", 'Int'>
+    readonly categoryId: FieldRef<"InvestorFinancialYear", 'Int'>
+    readonly subCategoryId: FieldRef<"InvestorFinancialYear", 'Int'>
+    readonly year: FieldRef<"InvestorFinancialYear", 'String'>
+    readonly sortOrder: FieldRef<"InvestorFinancialYear", 'Int'>
+    readonly isActive: FieldRef<"InvestorFinancialYear", 'Boolean'>
+    readonly createdAt: FieldRef<"InvestorFinancialYear", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorFinancialYear", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorFinancialYear findUnique
+   */
+  export type InvestorFinancialYearFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorFinancialYear to fetch.
+     */
+    where: InvestorFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * InvestorFinancialYear findUniqueOrThrow
+   */
+  export type InvestorFinancialYearFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorFinancialYear to fetch.
+     */
+    where: InvestorFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * InvestorFinancialYear findFirst
+   */
+  export type InvestorFinancialYearFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorFinancialYear to fetch.
+     */
+    where?: InvestorFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorFinancialYears to fetch.
+     */
+    orderBy?: InvestorFinancialYearOrderByWithRelationInput | InvestorFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorFinancialYears.
+     */
+    cursor?: InvestorFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorFinancialYears.
+     */
+    distinct?: InvestorFinancialYearScalarFieldEnum | InvestorFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorFinancialYear findFirstOrThrow
+   */
+  export type InvestorFinancialYearFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorFinancialYear to fetch.
+     */
+    where?: InvestorFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorFinancialYears to fetch.
+     */
+    orderBy?: InvestorFinancialYearOrderByWithRelationInput | InvestorFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorFinancialYears.
+     */
+    cursor?: InvestorFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorFinancialYears.
+     */
+    distinct?: InvestorFinancialYearScalarFieldEnum | InvestorFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorFinancialYear findMany
+   */
+  export type InvestorFinancialYearFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorFinancialYears to fetch.
+     */
+    where?: InvestorFinancialYearWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorFinancialYears to fetch.
+     */
+    orderBy?: InvestorFinancialYearOrderByWithRelationInput | InvestorFinancialYearOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorFinancialYears.
+     */
+    cursor?: InvestorFinancialYearWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorFinancialYears from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorFinancialYears.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorFinancialYears.
+     */
+    distinct?: InvestorFinancialYearScalarFieldEnum | InvestorFinancialYearScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorFinancialYear create
+   */
+  export type InvestorFinancialYearCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorFinancialYear.
+     */
+    data: XOR<InvestorFinancialYearCreateInput, InvestorFinancialYearUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorFinancialYear createMany
+   */
+  export type InvestorFinancialYearCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorFinancialYears.
+     */
+    data: InvestorFinancialYearCreateManyInput | InvestorFinancialYearCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorFinancialYear update
+   */
+  export type InvestorFinancialYearUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorFinancialYear.
+     */
+    data: XOR<InvestorFinancialYearUpdateInput, InvestorFinancialYearUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorFinancialYear to update.
+     */
+    where: InvestorFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * InvestorFinancialYear updateMany
+   */
+  export type InvestorFinancialYearUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorFinancialYears.
+     */
+    data: XOR<InvestorFinancialYearUpdateManyMutationInput, InvestorFinancialYearUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorFinancialYears to update
+     */
+    where?: InvestorFinancialYearWhereInput
+    /**
+     * Limit how many InvestorFinancialYears to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorFinancialYear upsert
+   */
+  export type InvestorFinancialYearUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorFinancialYear to update in case it exists.
+     */
+    where: InvestorFinancialYearWhereUniqueInput
+    /**
+     * In case the InvestorFinancialYear found by the `where` argument doesn't exist, create a new InvestorFinancialYear with this data.
+     */
+    create: XOR<InvestorFinancialYearCreateInput, InvestorFinancialYearUncheckedCreateInput>
+    /**
+     * In case the InvestorFinancialYear was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorFinancialYearUpdateInput, InvestorFinancialYearUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorFinancialYear delete
+   */
+  export type InvestorFinancialYearDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorFinancialYear to delete.
+     */
+    where: InvestorFinancialYearWhereUniqueInput
+  }
+
+  /**
+   * InvestorFinancialYear deleteMany
+   */
+  export type InvestorFinancialYearDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorFinancialYears to delete
+     */
+    where?: InvestorFinancialYearWhereInput
+    /**
+     * Limit how many InvestorFinancialYears to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorFinancialYear.category
+   */
+  export type InvestorFinancialYear$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    where?: InvestorCategoryWhereInput
+  }
+
+  /**
+   * InvestorFinancialYear.subCategory
+   */
+  export type InvestorFinancialYear$subCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    where?: InvestorSubCategoryWhereInput
+  }
+
+  /**
+   * InvestorFinancialYear.quarters
+   */
+  export type InvestorFinancialYear$quartersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    where?: InvestorQuarterWhereInput
+    orderBy?: InvestorQuarterOrderByWithRelationInput | InvestorQuarterOrderByWithRelationInput[]
+    cursor?: InvestorQuarterWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorQuarterScalarFieldEnum | InvestorQuarterScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorFinancialYear.documents
+   */
+  export type InvestorFinancialYear$documentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    where?: InvestorDocumentWhereInput
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    cursor?: InvestorDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorDocumentScalarFieldEnum | InvestorDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorFinancialYear.tableFormatAssignments
+   */
+  export type InvestorFinancialYear$tableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    where?: InvestorTableFormatAssignmentWhereInput
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorFinancialYear without action
+   */
+  export type InvestorFinancialYearDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorQuarter
+   */
+
+  export type AggregateInvestorQuarter = {
+    _count: InvestorQuarterCountAggregateOutputType | null
+    _avg: InvestorQuarterAvgAggregateOutputType | null
+    _sum: InvestorQuarterSumAggregateOutputType | null
+    _min: InvestorQuarterMinAggregateOutputType | null
+    _max: InvestorQuarterMaxAggregateOutputType | null
+  }
+
+  export type InvestorQuarterAvgAggregateOutputType = {
+    id: number | null
+    financialYearId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorQuarterSumAggregateOutputType = {
+    id: number | null
+    financialYearId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorQuarterMinAggregateOutputType = {
+    id: number | null
+    financialYearId: number | null
+    name: string | null
+    code: string | null
+    releaseDate: Date | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorQuarterMaxAggregateOutputType = {
+    id: number | null
+    financialYearId: number | null
+    name: string | null
+    code: string | null
+    releaseDate: Date | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorQuarterCountAggregateOutputType = {
+    id: number
+    financialYearId: number
+    name: number
+    code: number
+    releaseDate: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorQuarterAvgAggregateInputType = {
+    id?: true
+    financialYearId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorQuarterSumAggregateInputType = {
+    id?: true
+    financialYearId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorQuarterMinAggregateInputType = {
+    id?: true
+    financialYearId?: true
+    name?: true
+    code?: true
+    releaseDate?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorQuarterMaxAggregateInputType = {
+    id?: true
+    financialYearId?: true
+    name?: true
+    code?: true
+    releaseDate?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorQuarterCountAggregateInputType = {
+    id?: true
+    financialYearId?: true
+    name?: true
+    code?: true
+    releaseDate?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorQuarterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorQuarter to aggregate.
+     */
+    where?: InvestorQuarterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorQuarters to fetch.
+     */
+    orderBy?: InvestorQuarterOrderByWithRelationInput | InvestorQuarterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorQuarterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorQuarters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorQuarters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorQuarters
+    **/
+    _count?: true | InvestorQuarterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorQuarterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorQuarterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorQuarterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorQuarterMaxAggregateInputType
+  }
+
+  export type GetInvestorQuarterAggregateType<T extends InvestorQuarterAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorQuarter]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorQuarter[P]>
+      : GetScalarType<T[P], AggregateInvestorQuarter[P]>
+  }
+
+
+
+
+  export type InvestorQuarterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorQuarterWhereInput
+    orderBy?: InvestorQuarterOrderByWithAggregationInput | InvestorQuarterOrderByWithAggregationInput[]
+    by: InvestorQuarterScalarFieldEnum[] | InvestorQuarterScalarFieldEnum
+    having?: InvestorQuarterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorQuarterCountAggregateInputType | true
+    _avg?: InvestorQuarterAvgAggregateInputType
+    _sum?: InvestorQuarterSumAggregateInputType
+    _min?: InvestorQuarterMinAggregateInputType
+    _max?: InvestorQuarterMaxAggregateInputType
+  }
+
+  export type InvestorQuarterGroupByOutputType = {
+    id: number
+    financialYearId: number
+    name: string
+    code: string
+    releaseDate: Date | null
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorQuarterCountAggregateOutputType | null
+    _avg: InvestorQuarterAvgAggregateOutputType | null
+    _sum: InvestorQuarterSumAggregateOutputType | null
+    _min: InvestorQuarterMinAggregateOutputType | null
+    _max: InvestorQuarterMaxAggregateOutputType | null
+  }
+
+  type GetInvestorQuarterGroupByPayload<T extends InvestorQuarterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorQuarterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorQuarterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorQuarterGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorQuarterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorQuarterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    financialYearId?: boolean
+    name?: boolean
+    code?: boolean
+    releaseDate?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    financialYear?: boolean | InvestorFinancialYearDefaultArgs<ExtArgs>
+    documents?: boolean | InvestorQuarter$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorQuarter$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorQuarterCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["investorQuarter"]>
+
+
+
+  export type InvestorQuarterSelectScalar = {
+    id?: boolean
+    financialYearId?: boolean
+    name?: boolean
+    code?: boolean
+    releaseDate?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorQuarterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "financialYearId" | "name" | "code" | "releaseDate" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["investorQuarter"]>
+  export type InvestorQuarterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    financialYear?: boolean | InvestorFinancialYearDefaultArgs<ExtArgs>
+    documents?: boolean | InvestorQuarter$documentsArgs<ExtArgs>
+    tableFormatAssignments?: boolean | InvestorQuarter$tableFormatAssignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorQuarterCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $InvestorQuarterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorQuarter"
+    objects: {
+      financialYear: Prisma.$InvestorFinancialYearPayload<ExtArgs>
+      documents: Prisma.$InvestorDocumentPayload<ExtArgs>[]
+      tableFormatAssignments: Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      financialYearId: number
+      name: string
+      code: string
+      releaseDate: Date | null
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorQuarter"]>
+    composites: {}
+  }
+
+  type InvestorQuarterGetPayload<S extends boolean | null | undefined | InvestorQuarterDefaultArgs> = $Result.GetResult<Prisma.$InvestorQuarterPayload, S>
+
+  type InvestorQuarterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorQuarterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorQuarterCountAggregateInputType | true
+    }
+
+  export interface InvestorQuarterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorQuarter'], meta: { name: 'InvestorQuarter' } }
+    /**
+     * Find zero or one InvestorQuarter that matches the filter.
+     * @param {InvestorQuarterFindUniqueArgs} args - Arguments to find a InvestorQuarter
+     * @example
+     * // Get one InvestorQuarter
+     * const investorQuarter = await prisma.investorQuarter.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorQuarterFindUniqueArgs>(args: SelectSubset<T, InvestorQuarterFindUniqueArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorQuarter that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorQuarterFindUniqueOrThrowArgs} args - Arguments to find a InvestorQuarter
+     * @example
+     * // Get one InvestorQuarter
+     * const investorQuarter = await prisma.investorQuarter.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorQuarterFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorQuarterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorQuarter that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorQuarterFindFirstArgs} args - Arguments to find a InvestorQuarter
+     * @example
+     * // Get one InvestorQuarter
+     * const investorQuarter = await prisma.investorQuarter.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorQuarterFindFirstArgs>(args?: SelectSubset<T, InvestorQuarterFindFirstArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorQuarter that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorQuarterFindFirstOrThrowArgs} args - Arguments to find a InvestorQuarter
+     * @example
+     * // Get one InvestorQuarter
+     * const investorQuarter = await prisma.investorQuarter.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorQuarterFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorQuarterFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorQuarters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorQuarterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorQuarters
+     * const investorQuarters = await prisma.investorQuarter.findMany()
+     * 
+     * // Get first 10 InvestorQuarters
+     * const investorQuarters = await prisma.investorQuarter.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorQuarterWithIdOnly = await prisma.investorQuarter.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorQuarterFindManyArgs>(args?: SelectSubset<T, InvestorQuarterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorQuarter.
+     * @param {InvestorQuarterCreateArgs} args - Arguments to create a InvestorQuarter.
+     * @example
+     * // Create one InvestorQuarter
+     * const InvestorQuarter = await prisma.investorQuarter.create({
+     *   data: {
+     *     // ... data to create a InvestorQuarter
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorQuarterCreateArgs>(args: SelectSubset<T, InvestorQuarterCreateArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorQuarters.
+     * @param {InvestorQuarterCreateManyArgs} args - Arguments to create many InvestorQuarters.
+     * @example
+     * // Create many InvestorQuarters
+     * const investorQuarter = await prisma.investorQuarter.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorQuarterCreateManyArgs>(args?: SelectSubset<T, InvestorQuarterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorQuarter.
+     * @param {InvestorQuarterDeleteArgs} args - Arguments to delete one InvestorQuarter.
+     * @example
+     * // Delete one InvestorQuarter
+     * const InvestorQuarter = await prisma.investorQuarter.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorQuarter
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorQuarterDeleteArgs>(args: SelectSubset<T, InvestorQuarterDeleteArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorQuarter.
+     * @param {InvestorQuarterUpdateArgs} args - Arguments to update one InvestorQuarter.
+     * @example
+     * // Update one InvestorQuarter
+     * const investorQuarter = await prisma.investorQuarter.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorQuarterUpdateArgs>(args: SelectSubset<T, InvestorQuarterUpdateArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorQuarters.
+     * @param {InvestorQuarterDeleteManyArgs} args - Arguments to filter InvestorQuarters to delete.
+     * @example
+     * // Delete a few InvestorQuarters
+     * const { count } = await prisma.investorQuarter.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorQuarterDeleteManyArgs>(args?: SelectSubset<T, InvestorQuarterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorQuarters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorQuarterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorQuarters
+     * const investorQuarter = await prisma.investorQuarter.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorQuarterUpdateManyArgs>(args: SelectSubset<T, InvestorQuarterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorQuarter.
+     * @param {InvestorQuarterUpsertArgs} args - Arguments to update or create a InvestorQuarter.
+     * @example
+     * // Update or create a InvestorQuarter
+     * const investorQuarter = await prisma.investorQuarter.upsert({
+     *   create: {
+     *     // ... data to create a InvestorQuarter
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorQuarter we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorQuarterUpsertArgs>(args: SelectSubset<T, InvestorQuarterUpsertArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorQuarters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorQuarterCountArgs} args - Arguments to filter InvestorQuarters to count.
+     * @example
+     * // Count the number of InvestorQuarters
+     * const count = await prisma.investorQuarter.count({
+     *   where: {
+     *     // ... the filter for the InvestorQuarters we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorQuarterCountArgs>(
+      args?: Subset<T, InvestorQuarterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorQuarterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorQuarter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorQuarterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorQuarterAggregateArgs>(args: Subset<T, InvestorQuarterAggregateArgs>): Prisma.PrismaPromise<GetInvestorQuarterAggregateType<T>>
+
+    /**
+     * Group by InvestorQuarter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorQuarterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorQuarterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorQuarterGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorQuarterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorQuarterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorQuarterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorQuarter model
+   */
+  readonly fields: InvestorQuarterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorQuarter.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorQuarterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    financialYear<T extends InvestorFinancialYearDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InvestorFinancialYearDefaultArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    documents<T extends InvestorQuarter$documentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorQuarter$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tableFormatAssignments<T extends InvestorQuarter$tableFormatAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorQuarter$tableFormatAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorQuarter model
+   */
+  interface InvestorQuarterFieldRefs {
+    readonly id: FieldRef<"InvestorQuarter", 'Int'>
+    readonly financialYearId: FieldRef<"InvestorQuarter", 'Int'>
+    readonly name: FieldRef<"InvestorQuarter", 'String'>
+    readonly code: FieldRef<"InvestorQuarter", 'String'>
+    readonly releaseDate: FieldRef<"InvestorQuarter", 'DateTime'>
+    readonly sortOrder: FieldRef<"InvestorQuarter", 'Int'>
+    readonly isActive: FieldRef<"InvestorQuarter", 'Boolean'>
+    readonly createdAt: FieldRef<"InvestorQuarter", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorQuarter", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorQuarter findUnique
+   */
+  export type InvestorQuarterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorQuarter to fetch.
+     */
+    where: InvestorQuarterWhereUniqueInput
+  }
+
+  /**
+   * InvestorQuarter findUniqueOrThrow
+   */
+  export type InvestorQuarterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorQuarter to fetch.
+     */
+    where: InvestorQuarterWhereUniqueInput
+  }
+
+  /**
+   * InvestorQuarter findFirst
+   */
+  export type InvestorQuarterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorQuarter to fetch.
+     */
+    where?: InvestorQuarterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorQuarters to fetch.
+     */
+    orderBy?: InvestorQuarterOrderByWithRelationInput | InvestorQuarterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorQuarters.
+     */
+    cursor?: InvestorQuarterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorQuarters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorQuarters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorQuarters.
+     */
+    distinct?: InvestorQuarterScalarFieldEnum | InvestorQuarterScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorQuarter findFirstOrThrow
+   */
+  export type InvestorQuarterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorQuarter to fetch.
+     */
+    where?: InvestorQuarterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorQuarters to fetch.
+     */
+    orderBy?: InvestorQuarterOrderByWithRelationInput | InvestorQuarterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorQuarters.
+     */
+    cursor?: InvestorQuarterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorQuarters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorQuarters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorQuarters.
+     */
+    distinct?: InvestorQuarterScalarFieldEnum | InvestorQuarterScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorQuarter findMany
+   */
+  export type InvestorQuarterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorQuarters to fetch.
+     */
+    where?: InvestorQuarterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorQuarters to fetch.
+     */
+    orderBy?: InvestorQuarterOrderByWithRelationInput | InvestorQuarterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorQuarters.
+     */
+    cursor?: InvestorQuarterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorQuarters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorQuarters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorQuarters.
+     */
+    distinct?: InvestorQuarterScalarFieldEnum | InvestorQuarterScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorQuarter create
+   */
+  export type InvestorQuarterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorQuarter.
+     */
+    data: XOR<InvestorQuarterCreateInput, InvestorQuarterUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorQuarter createMany
+   */
+  export type InvestorQuarterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorQuarters.
+     */
+    data: InvestorQuarterCreateManyInput | InvestorQuarterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorQuarter update
+   */
+  export type InvestorQuarterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorQuarter.
+     */
+    data: XOR<InvestorQuarterUpdateInput, InvestorQuarterUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorQuarter to update.
+     */
+    where: InvestorQuarterWhereUniqueInput
+  }
+
+  /**
+   * InvestorQuarter updateMany
+   */
+  export type InvestorQuarterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorQuarters.
+     */
+    data: XOR<InvestorQuarterUpdateManyMutationInput, InvestorQuarterUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorQuarters to update
+     */
+    where?: InvestorQuarterWhereInput
+    /**
+     * Limit how many InvestorQuarters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorQuarter upsert
+   */
+  export type InvestorQuarterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorQuarter to update in case it exists.
+     */
+    where: InvestorQuarterWhereUniqueInput
+    /**
+     * In case the InvestorQuarter found by the `where` argument doesn't exist, create a new InvestorQuarter with this data.
+     */
+    create: XOR<InvestorQuarterCreateInput, InvestorQuarterUncheckedCreateInput>
+    /**
+     * In case the InvestorQuarter was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorQuarterUpdateInput, InvestorQuarterUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorQuarter delete
+   */
+  export type InvestorQuarterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorQuarter to delete.
+     */
+    where: InvestorQuarterWhereUniqueInput
+  }
+
+  /**
+   * InvestorQuarter deleteMany
+   */
+  export type InvestorQuarterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorQuarters to delete
+     */
+    where?: InvestorQuarterWhereInput
+    /**
+     * Limit how many InvestorQuarters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorQuarter.documents
+   */
+  export type InvestorQuarter$documentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    where?: InvestorDocumentWhereInput
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    cursor?: InvestorDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorDocumentScalarFieldEnum | InvestorDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorQuarter.tableFormatAssignments
+   */
+  export type InvestorQuarter$tableFormatAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    where?: InvestorTableFormatAssignmentWhereInput
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorQuarter without action
+   */
+  export type InvestorQuarterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorTableFormat
+   */
+
+  export type AggregateInvestorTableFormat = {
+    _count: InvestorTableFormatCountAggregateOutputType | null
+    _avg: InvestorTableFormatAvgAggregateOutputType | null
+    _sum: InvestorTableFormatSumAggregateOutputType | null
+    _min: InvestorTableFormatMinAggregateOutputType | null
+    _max: InvestorTableFormatMaxAggregateOutputType | null
+  }
+
+  export type InvestorTableFormatAvgAggregateOutputType = {
+    id: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorTableFormatSumAggregateOutputType = {
+    id: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorTableFormatMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    financialYearMode: string | null
+    isActive: boolean | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorTableFormatMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    description: string | null
+    financialYearMode: string | null
+    isActive: boolean | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorTableFormatCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    financialYearMode: number
+    isActive: number
+    sortOrder: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorTableFormatAvgAggregateInputType = {
+    id?: true
+    sortOrder?: true
+  }
+
+  export type InvestorTableFormatSumAggregateInputType = {
+    id?: true
+    sortOrder?: true
+  }
+
+  export type InvestorTableFormatMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    financialYearMode?: true
+    isActive?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorTableFormatMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    financialYearMode?: true
+    isActive?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorTableFormatCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    financialYearMode?: true
+    isActive?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorTableFormatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorTableFormat to aggregate.
+     */
+    where?: InvestorTableFormatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormats to fetch.
+     */
+    orderBy?: InvestorTableFormatOrderByWithRelationInput | InvestorTableFormatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorTableFormatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorTableFormats
+    **/
+    _count?: true | InvestorTableFormatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorTableFormatAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorTableFormatSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorTableFormatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorTableFormatMaxAggregateInputType
+  }
+
+  export type GetInvestorTableFormatAggregateType<T extends InvestorTableFormatAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorTableFormat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorTableFormat[P]>
+      : GetScalarType<T[P], AggregateInvestorTableFormat[P]>
+  }
+
+
+
+
+  export type InvestorTableFormatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableFormatWhereInput
+    orderBy?: InvestorTableFormatOrderByWithAggregationInput | InvestorTableFormatOrderByWithAggregationInput[]
+    by: InvestorTableFormatScalarFieldEnum[] | InvestorTableFormatScalarFieldEnum
+    having?: InvestorTableFormatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorTableFormatCountAggregateInputType | true
+    _avg?: InvestorTableFormatAvgAggregateInputType
+    _sum?: InvestorTableFormatSumAggregateInputType
+    _min?: InvestorTableFormatMinAggregateInputType
+    _max?: InvestorTableFormatMaxAggregateInputType
+  }
+
+  export type InvestorTableFormatGroupByOutputType = {
+    id: number
+    name: string
+    description: string | null
+    financialYearMode: string
+    isActive: boolean
+    sortOrder: number
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorTableFormatCountAggregateOutputType | null
+    _avg: InvestorTableFormatAvgAggregateOutputType | null
+    _sum: InvestorTableFormatSumAggregateOutputType | null
+    _min: InvestorTableFormatMinAggregateOutputType | null
+    _max: InvestorTableFormatMaxAggregateOutputType | null
+  }
+
+  type GetInvestorTableFormatGroupByPayload<T extends InvestorTableFormatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorTableFormatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorTableFormatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorTableFormatGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorTableFormatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorTableFormatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    financialYearMode?: boolean
+    isActive?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    columns?: boolean | InvestorTableFormat$columnsArgs<ExtArgs>
+    assignments?: boolean | InvestorTableFormat$assignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorTableFormatCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["investorTableFormat"]>
+
+
+
+  export type InvestorTableFormatSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    financialYearMode?: boolean
+    isActive?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorTableFormatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "financialYearMode" | "isActive" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["investorTableFormat"]>
+  export type InvestorTableFormatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    columns?: boolean | InvestorTableFormat$columnsArgs<ExtArgs>
+    assignments?: boolean | InvestorTableFormat$assignmentsArgs<ExtArgs>
+    _count?: boolean | InvestorTableFormatCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $InvestorTableFormatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorTableFormat"
+    objects: {
+      columns: Prisma.$InvestorTableColumnPayload<ExtArgs>[]
+      assignments: Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      description: string | null
+      financialYearMode: string
+      isActive: boolean
+      sortOrder: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorTableFormat"]>
+    composites: {}
+  }
+
+  type InvestorTableFormatGetPayload<S extends boolean | null | undefined | InvestorTableFormatDefaultArgs> = $Result.GetResult<Prisma.$InvestorTableFormatPayload, S>
+
+  type InvestorTableFormatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorTableFormatFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorTableFormatCountAggregateInputType | true
+    }
+
+  export interface InvestorTableFormatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorTableFormat'], meta: { name: 'InvestorTableFormat' } }
+    /**
+     * Find zero or one InvestorTableFormat that matches the filter.
+     * @param {InvestorTableFormatFindUniqueArgs} args - Arguments to find a InvestorTableFormat
+     * @example
+     * // Get one InvestorTableFormat
+     * const investorTableFormat = await prisma.investorTableFormat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorTableFormatFindUniqueArgs>(args: SelectSubset<T, InvestorTableFormatFindUniqueArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorTableFormat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorTableFormatFindUniqueOrThrowArgs} args - Arguments to find a InvestorTableFormat
+     * @example
+     * // Get one InvestorTableFormat
+     * const investorTableFormat = await prisma.investorTableFormat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorTableFormatFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorTableFormatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorTableFormat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatFindFirstArgs} args - Arguments to find a InvestorTableFormat
+     * @example
+     * // Get one InvestorTableFormat
+     * const investorTableFormat = await prisma.investorTableFormat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorTableFormatFindFirstArgs>(args?: SelectSubset<T, InvestorTableFormatFindFirstArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorTableFormat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatFindFirstOrThrowArgs} args - Arguments to find a InvestorTableFormat
+     * @example
+     * // Get one InvestorTableFormat
+     * const investorTableFormat = await prisma.investorTableFormat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorTableFormatFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorTableFormatFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorTableFormats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorTableFormats
+     * const investorTableFormats = await prisma.investorTableFormat.findMany()
+     * 
+     * // Get first 10 InvestorTableFormats
+     * const investorTableFormats = await prisma.investorTableFormat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorTableFormatWithIdOnly = await prisma.investorTableFormat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorTableFormatFindManyArgs>(args?: SelectSubset<T, InvestorTableFormatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorTableFormat.
+     * @param {InvestorTableFormatCreateArgs} args - Arguments to create a InvestorTableFormat.
+     * @example
+     * // Create one InvestorTableFormat
+     * const InvestorTableFormat = await prisma.investorTableFormat.create({
+     *   data: {
+     *     // ... data to create a InvestorTableFormat
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorTableFormatCreateArgs>(args: SelectSubset<T, InvestorTableFormatCreateArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorTableFormats.
+     * @param {InvestorTableFormatCreateManyArgs} args - Arguments to create many InvestorTableFormats.
+     * @example
+     * // Create many InvestorTableFormats
+     * const investorTableFormat = await prisma.investorTableFormat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorTableFormatCreateManyArgs>(args?: SelectSubset<T, InvestorTableFormatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorTableFormat.
+     * @param {InvestorTableFormatDeleteArgs} args - Arguments to delete one InvestorTableFormat.
+     * @example
+     * // Delete one InvestorTableFormat
+     * const InvestorTableFormat = await prisma.investorTableFormat.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorTableFormat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorTableFormatDeleteArgs>(args: SelectSubset<T, InvestorTableFormatDeleteArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorTableFormat.
+     * @param {InvestorTableFormatUpdateArgs} args - Arguments to update one InvestorTableFormat.
+     * @example
+     * // Update one InvestorTableFormat
+     * const investorTableFormat = await prisma.investorTableFormat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorTableFormatUpdateArgs>(args: SelectSubset<T, InvestorTableFormatUpdateArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorTableFormats.
+     * @param {InvestorTableFormatDeleteManyArgs} args - Arguments to filter InvestorTableFormats to delete.
+     * @example
+     * // Delete a few InvestorTableFormats
+     * const { count } = await prisma.investorTableFormat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorTableFormatDeleteManyArgs>(args?: SelectSubset<T, InvestorTableFormatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorTableFormats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorTableFormats
+     * const investorTableFormat = await prisma.investorTableFormat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorTableFormatUpdateManyArgs>(args: SelectSubset<T, InvestorTableFormatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorTableFormat.
+     * @param {InvestorTableFormatUpsertArgs} args - Arguments to update or create a InvestorTableFormat.
+     * @example
+     * // Update or create a InvestorTableFormat
+     * const investorTableFormat = await prisma.investorTableFormat.upsert({
+     *   create: {
+     *     // ... data to create a InvestorTableFormat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorTableFormat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorTableFormatUpsertArgs>(args: SelectSubset<T, InvestorTableFormatUpsertArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorTableFormats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatCountArgs} args - Arguments to filter InvestorTableFormats to count.
+     * @example
+     * // Count the number of InvestorTableFormats
+     * const count = await prisma.investorTableFormat.count({
+     *   where: {
+     *     // ... the filter for the InvestorTableFormats we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorTableFormatCountArgs>(
+      args?: Subset<T, InvestorTableFormatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorTableFormatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorTableFormat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorTableFormatAggregateArgs>(args: Subset<T, InvestorTableFormatAggregateArgs>): Prisma.PrismaPromise<GetInvestorTableFormatAggregateType<T>>
+
+    /**
+     * Group by InvestorTableFormat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorTableFormatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorTableFormatGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorTableFormatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorTableFormatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorTableFormatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorTableFormat model
+   */
+  readonly fields: InvestorTableFormatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorTableFormat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorTableFormatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    columns<T extends InvestorTableFormat$columnsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormat$columnsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    assignments<T extends InvestorTableFormat$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormat$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorTableFormat model
+   */
+  interface InvestorTableFormatFieldRefs {
+    readonly id: FieldRef<"InvestorTableFormat", 'Int'>
+    readonly name: FieldRef<"InvestorTableFormat", 'String'>
+    readonly description: FieldRef<"InvestorTableFormat", 'String'>
+    readonly financialYearMode: FieldRef<"InvestorTableFormat", 'String'>
+    readonly isActive: FieldRef<"InvestorTableFormat", 'Boolean'>
+    readonly sortOrder: FieldRef<"InvestorTableFormat", 'Int'>
+    readonly createdAt: FieldRef<"InvestorTableFormat", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorTableFormat", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorTableFormat findUnique
+   */
+  export type InvestorTableFormatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormat to fetch.
+     */
+    where: InvestorTableFormatWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormat findUniqueOrThrow
+   */
+  export type InvestorTableFormatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormat to fetch.
+     */
+    where: InvestorTableFormatWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormat findFirst
+   */
+  export type InvestorTableFormatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormat to fetch.
+     */
+    where?: InvestorTableFormatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormats to fetch.
+     */
+    orderBy?: InvestorTableFormatOrderByWithRelationInput | InvestorTableFormatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorTableFormats.
+     */
+    cursor?: InvestorTableFormatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableFormats.
+     */
+    distinct?: InvestorTableFormatScalarFieldEnum | InvestorTableFormatScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormat findFirstOrThrow
+   */
+  export type InvestorTableFormatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormat to fetch.
+     */
+    where?: InvestorTableFormatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormats to fetch.
+     */
+    orderBy?: InvestorTableFormatOrderByWithRelationInput | InvestorTableFormatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorTableFormats.
+     */
+    cursor?: InvestorTableFormatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableFormats.
+     */
+    distinct?: InvestorTableFormatScalarFieldEnum | InvestorTableFormatScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormat findMany
+   */
+  export type InvestorTableFormatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormats to fetch.
+     */
+    where?: InvestorTableFormatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormats to fetch.
+     */
+    orderBy?: InvestorTableFormatOrderByWithRelationInput | InvestorTableFormatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorTableFormats.
+     */
+    cursor?: InvestorTableFormatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableFormats.
+     */
+    distinct?: InvestorTableFormatScalarFieldEnum | InvestorTableFormatScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormat create
+   */
+  export type InvestorTableFormatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorTableFormat.
+     */
+    data: XOR<InvestorTableFormatCreateInput, InvestorTableFormatUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorTableFormat createMany
+   */
+  export type InvestorTableFormatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorTableFormats.
+     */
+    data: InvestorTableFormatCreateManyInput | InvestorTableFormatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorTableFormat update
+   */
+  export type InvestorTableFormatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorTableFormat.
+     */
+    data: XOR<InvestorTableFormatUpdateInput, InvestorTableFormatUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorTableFormat to update.
+     */
+    where: InvestorTableFormatWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormat updateMany
+   */
+  export type InvestorTableFormatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorTableFormats.
+     */
+    data: XOR<InvestorTableFormatUpdateManyMutationInput, InvestorTableFormatUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorTableFormats to update
+     */
+    where?: InvestorTableFormatWhereInput
+    /**
+     * Limit how many InvestorTableFormats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorTableFormat upsert
+   */
+  export type InvestorTableFormatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorTableFormat to update in case it exists.
+     */
+    where: InvestorTableFormatWhereUniqueInput
+    /**
+     * In case the InvestorTableFormat found by the `where` argument doesn't exist, create a new InvestorTableFormat with this data.
+     */
+    create: XOR<InvestorTableFormatCreateInput, InvestorTableFormatUncheckedCreateInput>
+    /**
+     * In case the InvestorTableFormat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorTableFormatUpdateInput, InvestorTableFormatUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorTableFormat delete
+   */
+  export type InvestorTableFormatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorTableFormat to delete.
+     */
+    where: InvestorTableFormatWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormat deleteMany
+   */
+  export type InvestorTableFormatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorTableFormats to delete
+     */
+    where?: InvestorTableFormatWhereInput
+    /**
+     * Limit how many InvestorTableFormats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorTableFormat.columns
+   */
+  export type InvestorTableFormat$columnsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    where?: InvestorTableColumnWhereInput
+    orderBy?: InvestorTableColumnOrderByWithRelationInput | InvestorTableColumnOrderByWithRelationInput[]
+    cursor?: InvestorTableColumnWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorTableColumnScalarFieldEnum | InvestorTableColumnScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormat.assignments
+   */
+  export type InvestorTableFormat$assignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    where?: InvestorTableFormatAssignmentWhereInput
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormat without action
+   */
+  export type InvestorTableFormatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormat
+     */
+    select?: InvestorTableFormatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormat
+     */
+    omit?: InvestorTableFormatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorTableColumn
+   */
+
+  export type AggregateInvestorTableColumn = {
+    _count: InvestorTableColumnCountAggregateOutputType | null
+    _avg: InvestorTableColumnAvgAggregateOutputType | null
+    _sum: InvestorTableColumnSumAggregateOutputType | null
+    _min: InvestorTableColumnMinAggregateOutputType | null
+    _max: InvestorTableColumnMaxAggregateOutputType | null
+  }
+
+  export type InvestorTableColumnAvgAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorTableColumnSumAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorTableColumnMinAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    key: string | null
+    label: string | null
+    fieldType: $Enums.InvestorTableFieldType | null
+    sortOrder: number | null
+    isVisible: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorTableColumnMaxAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    key: string | null
+    label: string | null
+    fieldType: $Enums.InvestorTableFieldType | null
+    sortOrder: number | null
+    isVisible: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorTableColumnCountAggregateOutputType = {
+    id: number
+    tableFormatId: number
+    key: number
+    label: number
+    fieldType: number
+    sortOrder: number
+    isVisible: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorTableColumnAvgAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorTableColumnSumAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorTableColumnMinAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    key?: true
+    label?: true
+    fieldType?: true
+    sortOrder?: true
+    isVisible?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorTableColumnMaxAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    key?: true
+    label?: true
+    fieldType?: true
+    sortOrder?: true
+    isVisible?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorTableColumnCountAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    key?: true
+    label?: true
+    fieldType?: true
+    sortOrder?: true
+    isVisible?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorTableColumnAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorTableColumn to aggregate.
+     */
+    where?: InvestorTableColumnWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableColumns to fetch.
+     */
+    orderBy?: InvestorTableColumnOrderByWithRelationInput | InvestorTableColumnOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorTableColumnWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableColumns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableColumns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorTableColumns
+    **/
+    _count?: true | InvestorTableColumnCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorTableColumnAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorTableColumnSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorTableColumnMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorTableColumnMaxAggregateInputType
+  }
+
+  export type GetInvestorTableColumnAggregateType<T extends InvestorTableColumnAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorTableColumn]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorTableColumn[P]>
+      : GetScalarType<T[P], AggregateInvestorTableColumn[P]>
+  }
+
+
+
+
+  export type InvestorTableColumnGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableColumnWhereInput
+    orderBy?: InvestorTableColumnOrderByWithAggregationInput | InvestorTableColumnOrderByWithAggregationInput[]
+    by: InvestorTableColumnScalarFieldEnum[] | InvestorTableColumnScalarFieldEnum
+    having?: InvestorTableColumnScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorTableColumnCountAggregateInputType | true
+    _avg?: InvestorTableColumnAvgAggregateInputType
+    _sum?: InvestorTableColumnSumAggregateInputType
+    _min?: InvestorTableColumnMinAggregateInputType
+    _max?: InvestorTableColumnMaxAggregateInputType
+  }
+
+  export type InvestorTableColumnGroupByOutputType = {
+    id: number
+    tableFormatId: number
+    key: string
+    label: string
+    fieldType: $Enums.InvestorTableFieldType
+    sortOrder: number
+    isVisible: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorTableColumnCountAggregateOutputType | null
+    _avg: InvestorTableColumnAvgAggregateOutputType | null
+    _sum: InvestorTableColumnSumAggregateOutputType | null
+    _min: InvestorTableColumnMinAggregateOutputType | null
+    _max: InvestorTableColumnMaxAggregateOutputType | null
+  }
+
+  type GetInvestorTableColumnGroupByPayload<T extends InvestorTableColumnGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorTableColumnGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorTableColumnGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorTableColumnGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorTableColumnGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorTableColumnSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableFormatId?: boolean
+    key?: boolean
+    label?: boolean
+    fieldType?: boolean
+    sortOrder?: boolean
+    isVisible?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tableFormat?: boolean | InvestorTableFormatDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["investorTableColumn"]>
+
+
+
+  export type InvestorTableColumnSelectScalar = {
+    id?: boolean
+    tableFormatId?: boolean
+    key?: boolean
+    label?: boolean
+    fieldType?: boolean
+    sortOrder?: boolean
+    isVisible?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorTableColumnOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableFormatId" | "key" | "label" | "fieldType" | "sortOrder" | "isVisible" | "createdAt" | "updatedAt", ExtArgs["result"]["investorTableColumn"]>
+  export type InvestorTableColumnInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tableFormat?: boolean | InvestorTableFormatDefaultArgs<ExtArgs>
+  }
+
+  export type $InvestorTableColumnPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorTableColumn"
+    objects: {
+      tableFormat: Prisma.$InvestorTableFormatPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tableFormatId: number
+      key: string
+      label: string
+      fieldType: $Enums.InvestorTableFieldType
+      sortOrder: number
+      isVisible: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorTableColumn"]>
+    composites: {}
+  }
+
+  type InvestorTableColumnGetPayload<S extends boolean | null | undefined | InvestorTableColumnDefaultArgs> = $Result.GetResult<Prisma.$InvestorTableColumnPayload, S>
+
+  type InvestorTableColumnCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorTableColumnFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorTableColumnCountAggregateInputType | true
+    }
+
+  export interface InvestorTableColumnDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorTableColumn'], meta: { name: 'InvestorTableColumn' } }
+    /**
+     * Find zero or one InvestorTableColumn that matches the filter.
+     * @param {InvestorTableColumnFindUniqueArgs} args - Arguments to find a InvestorTableColumn
+     * @example
+     * // Get one InvestorTableColumn
+     * const investorTableColumn = await prisma.investorTableColumn.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorTableColumnFindUniqueArgs>(args: SelectSubset<T, InvestorTableColumnFindUniqueArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorTableColumn that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorTableColumnFindUniqueOrThrowArgs} args - Arguments to find a InvestorTableColumn
+     * @example
+     * // Get one InvestorTableColumn
+     * const investorTableColumn = await prisma.investorTableColumn.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorTableColumnFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorTableColumnFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorTableColumn that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableColumnFindFirstArgs} args - Arguments to find a InvestorTableColumn
+     * @example
+     * // Get one InvestorTableColumn
+     * const investorTableColumn = await prisma.investorTableColumn.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorTableColumnFindFirstArgs>(args?: SelectSubset<T, InvestorTableColumnFindFirstArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorTableColumn that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableColumnFindFirstOrThrowArgs} args - Arguments to find a InvestorTableColumn
+     * @example
+     * // Get one InvestorTableColumn
+     * const investorTableColumn = await prisma.investorTableColumn.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorTableColumnFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorTableColumnFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorTableColumns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableColumnFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorTableColumns
+     * const investorTableColumns = await prisma.investorTableColumn.findMany()
+     * 
+     * // Get first 10 InvestorTableColumns
+     * const investorTableColumns = await prisma.investorTableColumn.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorTableColumnWithIdOnly = await prisma.investorTableColumn.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorTableColumnFindManyArgs>(args?: SelectSubset<T, InvestorTableColumnFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorTableColumn.
+     * @param {InvestorTableColumnCreateArgs} args - Arguments to create a InvestorTableColumn.
+     * @example
+     * // Create one InvestorTableColumn
+     * const InvestorTableColumn = await prisma.investorTableColumn.create({
+     *   data: {
+     *     // ... data to create a InvestorTableColumn
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorTableColumnCreateArgs>(args: SelectSubset<T, InvestorTableColumnCreateArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorTableColumns.
+     * @param {InvestorTableColumnCreateManyArgs} args - Arguments to create many InvestorTableColumns.
+     * @example
+     * // Create many InvestorTableColumns
+     * const investorTableColumn = await prisma.investorTableColumn.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorTableColumnCreateManyArgs>(args?: SelectSubset<T, InvestorTableColumnCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorTableColumn.
+     * @param {InvestorTableColumnDeleteArgs} args - Arguments to delete one InvestorTableColumn.
+     * @example
+     * // Delete one InvestorTableColumn
+     * const InvestorTableColumn = await prisma.investorTableColumn.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorTableColumn
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorTableColumnDeleteArgs>(args: SelectSubset<T, InvestorTableColumnDeleteArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorTableColumn.
+     * @param {InvestorTableColumnUpdateArgs} args - Arguments to update one InvestorTableColumn.
+     * @example
+     * // Update one InvestorTableColumn
+     * const investorTableColumn = await prisma.investorTableColumn.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorTableColumnUpdateArgs>(args: SelectSubset<T, InvestorTableColumnUpdateArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorTableColumns.
+     * @param {InvestorTableColumnDeleteManyArgs} args - Arguments to filter InvestorTableColumns to delete.
+     * @example
+     * // Delete a few InvestorTableColumns
+     * const { count } = await prisma.investorTableColumn.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorTableColumnDeleteManyArgs>(args?: SelectSubset<T, InvestorTableColumnDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorTableColumns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableColumnUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorTableColumns
+     * const investorTableColumn = await prisma.investorTableColumn.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorTableColumnUpdateManyArgs>(args: SelectSubset<T, InvestorTableColumnUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorTableColumn.
+     * @param {InvestorTableColumnUpsertArgs} args - Arguments to update or create a InvestorTableColumn.
+     * @example
+     * // Update or create a InvestorTableColumn
+     * const investorTableColumn = await prisma.investorTableColumn.upsert({
+     *   create: {
+     *     // ... data to create a InvestorTableColumn
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorTableColumn we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorTableColumnUpsertArgs>(args: SelectSubset<T, InvestorTableColumnUpsertArgs<ExtArgs>>): Prisma__InvestorTableColumnClient<$Result.GetResult<Prisma.$InvestorTableColumnPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorTableColumns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableColumnCountArgs} args - Arguments to filter InvestorTableColumns to count.
+     * @example
+     * // Count the number of InvestorTableColumns
+     * const count = await prisma.investorTableColumn.count({
+     *   where: {
+     *     // ... the filter for the InvestorTableColumns we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorTableColumnCountArgs>(
+      args?: Subset<T, InvestorTableColumnCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorTableColumnCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorTableColumn.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableColumnAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorTableColumnAggregateArgs>(args: Subset<T, InvestorTableColumnAggregateArgs>): Prisma.PrismaPromise<GetInvestorTableColumnAggregateType<T>>
+
+    /**
+     * Group by InvestorTableColumn.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableColumnGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorTableColumnGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorTableColumnGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorTableColumnGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorTableColumnGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorTableColumnGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorTableColumn model
+   */
+  readonly fields: InvestorTableColumnFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorTableColumn.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorTableColumnClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tableFormat<T extends InvestorTableFormatDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormatDefaultArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorTableColumn model
+   */
+  interface InvestorTableColumnFieldRefs {
+    readonly id: FieldRef<"InvestorTableColumn", 'Int'>
+    readonly tableFormatId: FieldRef<"InvestorTableColumn", 'Int'>
+    readonly key: FieldRef<"InvestorTableColumn", 'String'>
+    readonly label: FieldRef<"InvestorTableColumn", 'String'>
+    readonly fieldType: FieldRef<"InvestorTableColumn", 'InvestorTableFieldType'>
+    readonly sortOrder: FieldRef<"InvestorTableColumn", 'Int'>
+    readonly isVisible: FieldRef<"InvestorTableColumn", 'Boolean'>
+    readonly createdAt: FieldRef<"InvestorTableColumn", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorTableColumn", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorTableColumn findUnique
+   */
+  export type InvestorTableColumnFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableColumn to fetch.
+     */
+    where: InvestorTableColumnWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableColumn findUniqueOrThrow
+   */
+  export type InvestorTableColumnFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableColumn to fetch.
+     */
+    where: InvestorTableColumnWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableColumn findFirst
+   */
+  export type InvestorTableColumnFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableColumn to fetch.
+     */
+    where?: InvestorTableColumnWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableColumns to fetch.
+     */
+    orderBy?: InvestorTableColumnOrderByWithRelationInput | InvestorTableColumnOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorTableColumns.
+     */
+    cursor?: InvestorTableColumnWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableColumns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableColumns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableColumns.
+     */
+    distinct?: InvestorTableColumnScalarFieldEnum | InvestorTableColumnScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableColumn findFirstOrThrow
+   */
+  export type InvestorTableColumnFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableColumn to fetch.
+     */
+    where?: InvestorTableColumnWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableColumns to fetch.
+     */
+    orderBy?: InvestorTableColumnOrderByWithRelationInput | InvestorTableColumnOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorTableColumns.
+     */
+    cursor?: InvestorTableColumnWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableColumns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableColumns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableColumns.
+     */
+    distinct?: InvestorTableColumnScalarFieldEnum | InvestorTableColumnScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableColumn findMany
+   */
+  export type InvestorTableColumnFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableColumns to fetch.
+     */
+    where?: InvestorTableColumnWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableColumns to fetch.
+     */
+    orderBy?: InvestorTableColumnOrderByWithRelationInput | InvestorTableColumnOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorTableColumns.
+     */
+    cursor?: InvestorTableColumnWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableColumns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableColumns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableColumns.
+     */
+    distinct?: InvestorTableColumnScalarFieldEnum | InvestorTableColumnScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableColumn create
+   */
+  export type InvestorTableColumnCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorTableColumn.
+     */
+    data: XOR<InvestorTableColumnCreateInput, InvestorTableColumnUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorTableColumn createMany
+   */
+  export type InvestorTableColumnCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorTableColumns.
+     */
+    data: InvestorTableColumnCreateManyInput | InvestorTableColumnCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorTableColumn update
+   */
+  export type InvestorTableColumnUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorTableColumn.
+     */
+    data: XOR<InvestorTableColumnUpdateInput, InvestorTableColumnUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorTableColumn to update.
+     */
+    where: InvestorTableColumnWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableColumn updateMany
+   */
+  export type InvestorTableColumnUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorTableColumns.
+     */
+    data: XOR<InvestorTableColumnUpdateManyMutationInput, InvestorTableColumnUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorTableColumns to update
+     */
+    where?: InvestorTableColumnWhereInput
+    /**
+     * Limit how many InvestorTableColumns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorTableColumn upsert
+   */
+  export type InvestorTableColumnUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorTableColumn to update in case it exists.
+     */
+    where: InvestorTableColumnWhereUniqueInput
+    /**
+     * In case the InvestorTableColumn found by the `where` argument doesn't exist, create a new InvestorTableColumn with this data.
+     */
+    create: XOR<InvestorTableColumnCreateInput, InvestorTableColumnUncheckedCreateInput>
+    /**
+     * In case the InvestorTableColumn was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorTableColumnUpdateInput, InvestorTableColumnUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorTableColumn delete
+   */
+  export type InvestorTableColumnDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorTableColumn to delete.
+     */
+    where: InvestorTableColumnWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableColumn deleteMany
+   */
+  export type InvestorTableColumnDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorTableColumns to delete
+     */
+    where?: InvestorTableColumnWhereInput
+    /**
+     * Limit how many InvestorTableColumns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorTableColumn without action
+   */
+  export type InvestorTableColumnDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableColumn
+     */
+    select?: InvestorTableColumnSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableColumn
+     */
+    omit?: InvestorTableColumnOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableColumnInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorTableFormatAssignment
+   */
+
+  export type AggregateInvestorTableFormatAssignment = {
+    _count: InvestorTableFormatAssignmentCountAggregateOutputType | null
+    _avg: InvestorTableFormatAssignmentAvgAggregateOutputType | null
+    _sum: InvestorTableFormatAssignmentSumAggregateOutputType | null
+    _min: InvestorTableFormatAssignmentMinAggregateOutputType | null
+    _max: InvestorTableFormatAssignmentMaxAggregateOutputType | null
+  }
+
+  export type InvestorTableFormatAssignmentAvgAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+  }
+
+  export type InvestorTableFormatAssignmentSumAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+  }
+
+  export type InvestorTableFormatAssignmentMinAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    displayMode: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorTableFormatAssignmentMaxAggregateOutputType = {
+    id: number | null
+    tableFormatId: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    displayMode: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorTableFormatAssignmentCountAggregateOutputType = {
+    id: number
+    tableFormatId: number
+    categoryId: number
+    subCategoryId: number
+    financialYearId: number
+    quarterId: number
+    displayMode: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorTableFormatAssignmentAvgAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+  }
+
+  export type InvestorTableFormatAssignmentSumAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+  }
+
+  export type InvestorTableFormatAssignmentMinAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    displayMode?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorTableFormatAssignmentMaxAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    displayMode?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorTableFormatAssignmentCountAggregateInputType = {
+    id?: true
+    tableFormatId?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    displayMode?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorTableFormatAssignmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorTableFormatAssignment to aggregate.
+     */
+    where?: InvestorTableFormatAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormatAssignments to fetch.
+     */
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormatAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormatAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorTableFormatAssignments
+    **/
+    _count?: true | InvestorTableFormatAssignmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorTableFormatAssignmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorTableFormatAssignmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorTableFormatAssignmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorTableFormatAssignmentMaxAggregateInputType
+  }
+
+  export type GetInvestorTableFormatAssignmentAggregateType<T extends InvestorTableFormatAssignmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorTableFormatAssignment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorTableFormatAssignment[P]>
+      : GetScalarType<T[P], AggregateInvestorTableFormatAssignment[P]>
+  }
+
+
+
+
+  export type InvestorTableFormatAssignmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorTableFormatAssignmentWhereInput
+    orderBy?: InvestorTableFormatAssignmentOrderByWithAggregationInput | InvestorTableFormatAssignmentOrderByWithAggregationInput[]
+    by: InvestorTableFormatAssignmentScalarFieldEnum[] | InvestorTableFormatAssignmentScalarFieldEnum
+    having?: InvestorTableFormatAssignmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorTableFormatAssignmentCountAggregateInputType | true
+    _avg?: InvestorTableFormatAssignmentAvgAggregateInputType
+    _sum?: InvestorTableFormatAssignmentSumAggregateInputType
+    _min?: InvestorTableFormatAssignmentMinAggregateInputType
+    _max?: InvestorTableFormatAssignmentMaxAggregateInputType
+  }
+
+  export type InvestorTableFormatAssignmentGroupByOutputType = {
+    id: number
+    tableFormatId: number
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    displayMode: string
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorTableFormatAssignmentCountAggregateOutputType | null
+    _avg: InvestorTableFormatAssignmentAvgAggregateOutputType | null
+    _sum: InvestorTableFormatAssignmentSumAggregateOutputType | null
+    _min: InvestorTableFormatAssignmentMinAggregateOutputType | null
+    _max: InvestorTableFormatAssignmentMaxAggregateOutputType | null
+  }
+
+  type GetInvestorTableFormatAssignmentGroupByPayload<T extends InvestorTableFormatAssignmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorTableFormatAssignmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorTableFormatAssignmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorTableFormatAssignmentGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorTableFormatAssignmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorTableFormatAssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tableFormatId?: boolean
+    categoryId?: boolean
+    subCategoryId?: boolean
+    financialYearId?: boolean
+    quarterId?: boolean
+    displayMode?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tableFormat?: boolean | InvestorTableFormatDefaultArgs<ExtArgs>
+    category?: boolean | InvestorTableFormatAssignment$categoryArgs<ExtArgs>
+    subCategory?: boolean | InvestorTableFormatAssignment$subCategoryArgs<ExtArgs>
+    financialYear?: boolean | InvestorTableFormatAssignment$financialYearArgs<ExtArgs>
+    quarter?: boolean | InvestorTableFormatAssignment$quarterArgs<ExtArgs>
+  }, ExtArgs["result"]["investorTableFormatAssignment"]>
+
+
+
+  export type InvestorTableFormatAssignmentSelectScalar = {
+    id?: boolean
+    tableFormatId?: boolean
+    categoryId?: boolean
+    subCategoryId?: boolean
+    financialYearId?: boolean
+    quarterId?: boolean
+    displayMode?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorTableFormatAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tableFormatId" | "categoryId" | "subCategoryId" | "financialYearId" | "quarterId" | "displayMode" | "createdAt" | "updatedAt", ExtArgs["result"]["investorTableFormatAssignment"]>
+  export type InvestorTableFormatAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tableFormat?: boolean | InvestorTableFormatDefaultArgs<ExtArgs>
+    category?: boolean | InvestorTableFormatAssignment$categoryArgs<ExtArgs>
+    subCategory?: boolean | InvestorTableFormatAssignment$subCategoryArgs<ExtArgs>
+    financialYear?: boolean | InvestorTableFormatAssignment$financialYearArgs<ExtArgs>
+    quarter?: boolean | InvestorTableFormatAssignment$quarterArgs<ExtArgs>
+  }
+
+  export type $InvestorTableFormatAssignmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorTableFormatAssignment"
+    objects: {
+      tableFormat: Prisma.$InvestorTableFormatPayload<ExtArgs>
+      category: Prisma.$InvestorCategoryPayload<ExtArgs> | null
+      subCategory: Prisma.$InvestorSubCategoryPayload<ExtArgs> | null
+      financialYear: Prisma.$InvestorFinancialYearPayload<ExtArgs> | null
+      quarter: Prisma.$InvestorQuarterPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tableFormatId: number
+      categoryId: number | null
+      subCategoryId: number | null
+      financialYearId: number | null
+      quarterId: number | null
+      displayMode: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorTableFormatAssignment"]>
+    composites: {}
+  }
+
+  type InvestorTableFormatAssignmentGetPayload<S extends boolean | null | undefined | InvestorTableFormatAssignmentDefaultArgs> = $Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload, S>
+
+  type InvestorTableFormatAssignmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorTableFormatAssignmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorTableFormatAssignmentCountAggregateInputType | true
+    }
+
+  export interface InvestorTableFormatAssignmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorTableFormatAssignment'], meta: { name: 'InvestorTableFormatAssignment' } }
+    /**
+     * Find zero or one InvestorTableFormatAssignment that matches the filter.
+     * @param {InvestorTableFormatAssignmentFindUniqueArgs} args - Arguments to find a InvestorTableFormatAssignment
+     * @example
+     * // Get one InvestorTableFormatAssignment
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorTableFormatAssignmentFindUniqueArgs>(args: SelectSubset<T, InvestorTableFormatAssignmentFindUniqueArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorTableFormatAssignment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorTableFormatAssignmentFindUniqueOrThrowArgs} args - Arguments to find a InvestorTableFormatAssignment
+     * @example
+     * // Get one InvestorTableFormatAssignment
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorTableFormatAssignmentFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorTableFormatAssignmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorTableFormatAssignment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAssignmentFindFirstArgs} args - Arguments to find a InvestorTableFormatAssignment
+     * @example
+     * // Get one InvestorTableFormatAssignment
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorTableFormatAssignmentFindFirstArgs>(args?: SelectSubset<T, InvestorTableFormatAssignmentFindFirstArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorTableFormatAssignment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAssignmentFindFirstOrThrowArgs} args - Arguments to find a InvestorTableFormatAssignment
+     * @example
+     * // Get one InvestorTableFormatAssignment
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorTableFormatAssignmentFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorTableFormatAssignmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorTableFormatAssignments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAssignmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorTableFormatAssignments
+     * const investorTableFormatAssignments = await prisma.investorTableFormatAssignment.findMany()
+     * 
+     * // Get first 10 InvestorTableFormatAssignments
+     * const investorTableFormatAssignments = await prisma.investorTableFormatAssignment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorTableFormatAssignmentWithIdOnly = await prisma.investorTableFormatAssignment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorTableFormatAssignmentFindManyArgs>(args?: SelectSubset<T, InvestorTableFormatAssignmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorTableFormatAssignment.
+     * @param {InvestorTableFormatAssignmentCreateArgs} args - Arguments to create a InvestorTableFormatAssignment.
+     * @example
+     * // Create one InvestorTableFormatAssignment
+     * const InvestorTableFormatAssignment = await prisma.investorTableFormatAssignment.create({
+     *   data: {
+     *     // ... data to create a InvestorTableFormatAssignment
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorTableFormatAssignmentCreateArgs>(args: SelectSubset<T, InvestorTableFormatAssignmentCreateArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorTableFormatAssignments.
+     * @param {InvestorTableFormatAssignmentCreateManyArgs} args - Arguments to create many InvestorTableFormatAssignments.
+     * @example
+     * // Create many InvestorTableFormatAssignments
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorTableFormatAssignmentCreateManyArgs>(args?: SelectSubset<T, InvestorTableFormatAssignmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorTableFormatAssignment.
+     * @param {InvestorTableFormatAssignmentDeleteArgs} args - Arguments to delete one InvestorTableFormatAssignment.
+     * @example
+     * // Delete one InvestorTableFormatAssignment
+     * const InvestorTableFormatAssignment = await prisma.investorTableFormatAssignment.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorTableFormatAssignment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorTableFormatAssignmentDeleteArgs>(args: SelectSubset<T, InvestorTableFormatAssignmentDeleteArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorTableFormatAssignment.
+     * @param {InvestorTableFormatAssignmentUpdateArgs} args - Arguments to update one InvestorTableFormatAssignment.
+     * @example
+     * // Update one InvestorTableFormatAssignment
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorTableFormatAssignmentUpdateArgs>(args: SelectSubset<T, InvestorTableFormatAssignmentUpdateArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorTableFormatAssignments.
+     * @param {InvestorTableFormatAssignmentDeleteManyArgs} args - Arguments to filter InvestorTableFormatAssignments to delete.
+     * @example
+     * // Delete a few InvestorTableFormatAssignments
+     * const { count } = await prisma.investorTableFormatAssignment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorTableFormatAssignmentDeleteManyArgs>(args?: SelectSubset<T, InvestorTableFormatAssignmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorTableFormatAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAssignmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorTableFormatAssignments
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorTableFormatAssignmentUpdateManyArgs>(args: SelectSubset<T, InvestorTableFormatAssignmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorTableFormatAssignment.
+     * @param {InvestorTableFormatAssignmentUpsertArgs} args - Arguments to update or create a InvestorTableFormatAssignment.
+     * @example
+     * // Update or create a InvestorTableFormatAssignment
+     * const investorTableFormatAssignment = await prisma.investorTableFormatAssignment.upsert({
+     *   create: {
+     *     // ... data to create a InvestorTableFormatAssignment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorTableFormatAssignment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorTableFormatAssignmentUpsertArgs>(args: SelectSubset<T, InvestorTableFormatAssignmentUpsertArgs<ExtArgs>>): Prisma__InvestorTableFormatAssignmentClient<$Result.GetResult<Prisma.$InvestorTableFormatAssignmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorTableFormatAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAssignmentCountArgs} args - Arguments to filter InvestorTableFormatAssignments to count.
+     * @example
+     * // Count the number of InvestorTableFormatAssignments
+     * const count = await prisma.investorTableFormatAssignment.count({
+     *   where: {
+     *     // ... the filter for the InvestorTableFormatAssignments we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorTableFormatAssignmentCountArgs>(
+      args?: Subset<T, InvestorTableFormatAssignmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorTableFormatAssignmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorTableFormatAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAssignmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorTableFormatAssignmentAggregateArgs>(args: Subset<T, InvestorTableFormatAssignmentAggregateArgs>): Prisma.PrismaPromise<GetInvestorTableFormatAssignmentAggregateType<T>>
+
+    /**
+     * Group by InvestorTableFormatAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorTableFormatAssignmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorTableFormatAssignmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorTableFormatAssignmentGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorTableFormatAssignmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorTableFormatAssignmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorTableFormatAssignmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorTableFormatAssignment model
+   */
+  readonly fields: InvestorTableFormatAssignmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorTableFormatAssignment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorTableFormatAssignmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tableFormat<T extends InvestorTableFormatDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormatDefaultArgs<ExtArgs>>): Prisma__InvestorTableFormatClient<$Result.GetResult<Prisma.$InvestorTableFormatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    category<T extends InvestorTableFormatAssignment$categoryArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormatAssignment$categoryArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    subCategory<T extends InvestorTableFormatAssignment$subCategoryArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormatAssignment$subCategoryArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    financialYear<T extends InvestorTableFormatAssignment$financialYearArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormatAssignment$financialYearArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    quarter<T extends InvestorTableFormatAssignment$quarterArgs<ExtArgs> = {}>(args?: Subset<T, InvestorTableFormatAssignment$quarterArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorTableFormatAssignment model
+   */
+  interface InvestorTableFormatAssignmentFieldRefs {
+    readonly id: FieldRef<"InvestorTableFormatAssignment", 'Int'>
+    readonly tableFormatId: FieldRef<"InvestorTableFormatAssignment", 'Int'>
+    readonly categoryId: FieldRef<"InvestorTableFormatAssignment", 'Int'>
+    readonly subCategoryId: FieldRef<"InvestorTableFormatAssignment", 'Int'>
+    readonly financialYearId: FieldRef<"InvestorTableFormatAssignment", 'Int'>
+    readonly quarterId: FieldRef<"InvestorTableFormatAssignment", 'Int'>
+    readonly displayMode: FieldRef<"InvestorTableFormatAssignment", 'String'>
+    readonly createdAt: FieldRef<"InvestorTableFormatAssignment", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorTableFormatAssignment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorTableFormatAssignment findUnique
+   */
+  export type InvestorTableFormatAssignmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormatAssignment to fetch.
+     */
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment findUniqueOrThrow
+   */
+  export type InvestorTableFormatAssignmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormatAssignment to fetch.
+     */
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment findFirst
+   */
+  export type InvestorTableFormatAssignmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormatAssignment to fetch.
+     */
+    where?: InvestorTableFormatAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormatAssignments to fetch.
+     */
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorTableFormatAssignments.
+     */
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormatAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormatAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableFormatAssignments.
+     */
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormatAssignment findFirstOrThrow
+   */
+  export type InvestorTableFormatAssignmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormatAssignment to fetch.
+     */
+    where?: InvestorTableFormatAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormatAssignments to fetch.
+     */
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorTableFormatAssignments.
+     */
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormatAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormatAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableFormatAssignments.
+     */
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormatAssignment findMany
+   */
+  export type InvestorTableFormatAssignmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorTableFormatAssignments to fetch.
+     */
+    where?: InvestorTableFormatAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorTableFormatAssignments to fetch.
+     */
+    orderBy?: InvestorTableFormatAssignmentOrderByWithRelationInput | InvestorTableFormatAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorTableFormatAssignments.
+     */
+    cursor?: InvestorTableFormatAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorTableFormatAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorTableFormatAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorTableFormatAssignments.
+     */
+    distinct?: InvestorTableFormatAssignmentScalarFieldEnum | InvestorTableFormatAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorTableFormatAssignment create
+   */
+  export type InvestorTableFormatAssignmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorTableFormatAssignment.
+     */
+    data: XOR<InvestorTableFormatAssignmentCreateInput, InvestorTableFormatAssignmentUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorTableFormatAssignment createMany
+   */
+  export type InvestorTableFormatAssignmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorTableFormatAssignments.
+     */
+    data: InvestorTableFormatAssignmentCreateManyInput | InvestorTableFormatAssignmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorTableFormatAssignment update
+   */
+  export type InvestorTableFormatAssignmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorTableFormatAssignment.
+     */
+    data: XOR<InvestorTableFormatAssignmentUpdateInput, InvestorTableFormatAssignmentUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorTableFormatAssignment to update.
+     */
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment updateMany
+   */
+  export type InvestorTableFormatAssignmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorTableFormatAssignments.
+     */
+    data: XOR<InvestorTableFormatAssignmentUpdateManyMutationInput, InvestorTableFormatAssignmentUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorTableFormatAssignments to update
+     */
+    where?: InvestorTableFormatAssignmentWhereInput
+    /**
+     * Limit how many InvestorTableFormatAssignments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorTableFormatAssignment upsert
+   */
+  export type InvestorTableFormatAssignmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorTableFormatAssignment to update in case it exists.
+     */
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    /**
+     * In case the InvestorTableFormatAssignment found by the `where` argument doesn't exist, create a new InvestorTableFormatAssignment with this data.
+     */
+    create: XOR<InvestorTableFormatAssignmentCreateInput, InvestorTableFormatAssignmentUncheckedCreateInput>
+    /**
+     * In case the InvestorTableFormatAssignment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorTableFormatAssignmentUpdateInput, InvestorTableFormatAssignmentUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorTableFormatAssignment delete
+   */
+  export type InvestorTableFormatAssignmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorTableFormatAssignment to delete.
+     */
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment deleteMany
+   */
+  export type InvestorTableFormatAssignmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorTableFormatAssignments to delete
+     */
+    where?: InvestorTableFormatAssignmentWhereInput
+    /**
+     * Limit how many InvestorTableFormatAssignments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorTableFormatAssignment.category
+   */
+  export type InvestorTableFormatAssignment$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorCategory
+     */
+    select?: InvestorCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorCategory
+     */
+    omit?: InvestorCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorCategoryInclude<ExtArgs> | null
+    where?: InvestorCategoryWhereInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment.subCategory
+   */
+  export type InvestorTableFormatAssignment$subCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    where?: InvestorSubCategoryWhereInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment.financialYear
+   */
+  export type InvestorTableFormatAssignment$financialYearArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    where?: InvestorFinancialYearWhereInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment.quarter
+   */
+  export type InvestorTableFormatAssignment$quarterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    where?: InvestorQuarterWhereInput
+  }
+
+  /**
+   * InvestorTableFormatAssignment without action
+   */
+  export type InvestorTableFormatAssignmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorTableFormatAssignment
+     */
+    select?: InvestorTableFormatAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorTableFormatAssignment
+     */
+    omit?: InvestorTableFormatAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorTableFormatAssignmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model InvestorDocument
+   */
+
+  export type AggregateInvestorDocument = {
+    _count: InvestorDocumentCountAggregateOutputType | null
+    _avg: InvestorDocumentAvgAggregateOutputType | null
+    _sum: InvestorDocumentSumAggregateOutputType | null
+    _min: InvestorDocumentMinAggregateOutputType | null
+    _max: InvestorDocumentMaxAggregateOutputType | null
+  }
+
+  export type InvestorDocumentAvgAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorDocumentSumAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    sortOrder: number | null
+  }
+
+  export type InvestorDocumentMinAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    title: string | null
+    description: string | null
+    documentType: string | null
+    purpose: string | null
+    documentDate: Date | null
+    disclosureDate: Date | null
+    dueDate: Date | null
+    storageType: string | null
+    externalUrl: string | null
+    isPublished: boolean | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorDocumentMaxAggregateOutputType = {
+    id: number | null
+    categoryId: number | null
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    title: string | null
+    description: string | null
+    documentType: string | null
+    purpose: string | null
+    documentDate: Date | null
+    disclosureDate: Date | null
+    dueDate: Date | null
+    storageType: string | null
+    externalUrl: string | null
+    isPublished: boolean | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type InvestorDocumentCountAggregateOutputType = {
+    id: number
+    categoryId: number
+    subCategoryId: number
+    financialYearId: number
+    quarterId: number
+    title: number
+    description: number
+    documentType: number
+    purpose: number
+    documentDate: number
+    disclosureDate: number
+    dueDate: number
+    storageType: number
+    externalUrl: number
+    isPublished: number
+    sortOrder: number
+    metadata: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type InvestorDocumentAvgAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorDocumentSumAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    sortOrder?: true
+  }
+
+  export type InvestorDocumentMinAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    title?: true
+    description?: true
+    documentType?: true
+    purpose?: true
+    documentDate?: true
+    disclosureDate?: true
+    dueDate?: true
+    storageType?: true
+    externalUrl?: true
+    isPublished?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorDocumentMaxAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    title?: true
+    description?: true
+    documentType?: true
+    purpose?: true
+    documentDate?: true
+    disclosureDate?: true
+    dueDate?: true
+    storageType?: true
+    externalUrl?: true
+    isPublished?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type InvestorDocumentCountAggregateInputType = {
+    id?: true
+    categoryId?: true
+    subCategoryId?: true
+    financialYearId?: true
+    quarterId?: true
+    title?: true
+    description?: true
+    documentType?: true
+    purpose?: true
+    documentDate?: true
+    disclosureDate?: true
+    dueDate?: true
+    storageType?: true
+    externalUrl?: true
+    isPublished?: true
+    sortOrder?: true
+    metadata?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type InvestorDocumentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorDocument to aggregate.
+     */
+    where?: InvestorDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorDocuments to fetch.
+     */
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InvestorDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned InvestorDocuments
+    **/
+    _count?: true | InvestorDocumentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InvestorDocumentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InvestorDocumentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InvestorDocumentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InvestorDocumentMaxAggregateInputType
+  }
+
+  export type GetInvestorDocumentAggregateType<T extends InvestorDocumentAggregateArgs> = {
+        [P in keyof T & keyof AggregateInvestorDocument]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInvestorDocument[P]>
+      : GetScalarType<T[P], AggregateInvestorDocument[P]>
+  }
+
+
+
+
+  export type InvestorDocumentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InvestorDocumentWhereInput
+    orderBy?: InvestorDocumentOrderByWithAggregationInput | InvestorDocumentOrderByWithAggregationInput[]
+    by: InvestorDocumentScalarFieldEnum[] | InvestorDocumentScalarFieldEnum
+    having?: InvestorDocumentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InvestorDocumentCountAggregateInputType | true
+    _avg?: InvestorDocumentAvgAggregateInputType
+    _sum?: InvestorDocumentSumAggregateInputType
+    _min?: InvestorDocumentMinAggregateInputType
+    _max?: InvestorDocumentMaxAggregateInputType
+  }
+
+  export type InvestorDocumentGroupByOutputType = {
+    id: number
+    categoryId: number
+    subCategoryId: number | null
+    financialYearId: number | null
+    quarterId: number | null
+    title: string
+    description: string | null
+    documentType: string | null
+    purpose: string | null
+    documentDate: Date | null
+    disclosureDate: Date | null
+    dueDate: Date | null
+    storageType: string
+    externalUrl: string
+    isPublished: boolean
+    sortOrder: number
+    metadata: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: InvestorDocumentCountAggregateOutputType | null
+    _avg: InvestorDocumentAvgAggregateOutputType | null
+    _sum: InvestorDocumentSumAggregateOutputType | null
+    _min: InvestorDocumentMinAggregateOutputType | null
+    _max: InvestorDocumentMaxAggregateOutputType | null
+  }
+
+  type GetInvestorDocumentGroupByPayload<T extends InvestorDocumentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InvestorDocumentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InvestorDocumentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InvestorDocumentGroupByOutputType[P]>
+            : GetScalarType<T[P], InvestorDocumentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InvestorDocumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    categoryId?: boolean
+    subCategoryId?: boolean
+    financialYearId?: boolean
+    quarterId?: boolean
+    title?: boolean
+    description?: boolean
+    documentType?: boolean
+    purpose?: boolean
+    documentDate?: boolean
+    disclosureDate?: boolean
+    dueDate?: boolean
+    storageType?: boolean
+    externalUrl?: boolean
+    isPublished?: boolean
+    sortOrder?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    category?: boolean | InvestorCategoryDefaultArgs<ExtArgs>
+    subCategory?: boolean | InvestorDocument$subCategoryArgs<ExtArgs>
+    financialYear?: boolean | InvestorDocument$financialYearArgs<ExtArgs>
+    quarter?: boolean | InvestorDocument$quarterArgs<ExtArgs>
+  }, ExtArgs["result"]["investorDocument"]>
+
+
+
+  export type InvestorDocumentSelectScalar = {
+    id?: boolean
+    categoryId?: boolean
+    subCategoryId?: boolean
+    financialYearId?: boolean
+    quarterId?: boolean
+    title?: boolean
+    description?: boolean
+    documentType?: boolean
+    purpose?: boolean
+    documentDate?: boolean
+    disclosureDate?: boolean
+    dueDate?: boolean
+    storageType?: boolean
+    externalUrl?: boolean
+    isPublished?: boolean
+    sortOrder?: boolean
+    metadata?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type InvestorDocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "categoryId" | "subCategoryId" | "financialYearId" | "quarterId" | "title" | "description" | "documentType" | "purpose" | "documentDate" | "disclosureDate" | "dueDate" | "storageType" | "externalUrl" | "isPublished" | "sortOrder" | "metadata" | "createdAt" | "updatedAt", ExtArgs["result"]["investorDocument"]>
+  export type InvestorDocumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | InvestorCategoryDefaultArgs<ExtArgs>
+    subCategory?: boolean | InvestorDocument$subCategoryArgs<ExtArgs>
+    financialYear?: boolean | InvestorDocument$financialYearArgs<ExtArgs>
+    quarter?: boolean | InvestorDocument$quarterArgs<ExtArgs>
+  }
+
+  export type $InvestorDocumentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InvestorDocument"
+    objects: {
+      category: Prisma.$InvestorCategoryPayload<ExtArgs>
+      subCategory: Prisma.$InvestorSubCategoryPayload<ExtArgs> | null
+      financialYear: Prisma.$InvestorFinancialYearPayload<ExtArgs> | null
+      quarter: Prisma.$InvestorQuarterPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      categoryId: number
+      subCategoryId: number | null
+      financialYearId: number | null
+      quarterId: number | null
+      title: string
+      description: string | null
+      documentType: string | null
+      purpose: string | null
+      documentDate: Date | null
+      disclosureDate: Date | null
+      dueDate: Date | null
+      storageType: string
+      externalUrl: string
+      isPublished: boolean
+      sortOrder: number
+      metadata: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["investorDocument"]>
+    composites: {}
+  }
+
+  type InvestorDocumentGetPayload<S extends boolean | null | undefined | InvestorDocumentDefaultArgs> = $Result.GetResult<Prisma.$InvestorDocumentPayload, S>
+
+  type InvestorDocumentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InvestorDocumentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InvestorDocumentCountAggregateInputType | true
+    }
+
+  export interface InvestorDocumentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InvestorDocument'], meta: { name: 'InvestorDocument' } }
+    /**
+     * Find zero or one InvestorDocument that matches the filter.
+     * @param {InvestorDocumentFindUniqueArgs} args - Arguments to find a InvestorDocument
+     * @example
+     * // Get one InvestorDocument
+     * const investorDocument = await prisma.investorDocument.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InvestorDocumentFindUniqueArgs>(args: SelectSubset<T, InvestorDocumentFindUniqueArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one InvestorDocument that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InvestorDocumentFindUniqueOrThrowArgs} args - Arguments to find a InvestorDocument
+     * @example
+     * // Get one InvestorDocument
+     * const investorDocument = await prisma.investorDocument.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InvestorDocumentFindUniqueOrThrowArgs>(args: SelectSubset<T, InvestorDocumentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorDocument that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorDocumentFindFirstArgs} args - Arguments to find a InvestorDocument
+     * @example
+     * // Get one InvestorDocument
+     * const investorDocument = await prisma.investorDocument.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InvestorDocumentFindFirstArgs>(args?: SelectSubset<T, InvestorDocumentFindFirstArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first InvestorDocument that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorDocumentFindFirstOrThrowArgs} args - Arguments to find a InvestorDocument
+     * @example
+     * // Get one InvestorDocument
+     * const investorDocument = await prisma.investorDocument.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InvestorDocumentFindFirstOrThrowArgs>(args?: SelectSubset<T, InvestorDocumentFindFirstOrThrowArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more InvestorDocuments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorDocumentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all InvestorDocuments
+     * const investorDocuments = await prisma.investorDocument.findMany()
+     * 
+     * // Get first 10 InvestorDocuments
+     * const investorDocuments = await prisma.investorDocument.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const investorDocumentWithIdOnly = await prisma.investorDocument.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InvestorDocumentFindManyArgs>(args?: SelectSubset<T, InvestorDocumentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a InvestorDocument.
+     * @param {InvestorDocumentCreateArgs} args - Arguments to create a InvestorDocument.
+     * @example
+     * // Create one InvestorDocument
+     * const InvestorDocument = await prisma.investorDocument.create({
+     *   data: {
+     *     // ... data to create a InvestorDocument
+     *   }
+     * })
+     * 
+     */
+    create<T extends InvestorDocumentCreateArgs>(args: SelectSubset<T, InvestorDocumentCreateArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many InvestorDocuments.
+     * @param {InvestorDocumentCreateManyArgs} args - Arguments to create many InvestorDocuments.
+     * @example
+     * // Create many InvestorDocuments
+     * const investorDocument = await prisma.investorDocument.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InvestorDocumentCreateManyArgs>(args?: SelectSubset<T, InvestorDocumentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a InvestorDocument.
+     * @param {InvestorDocumentDeleteArgs} args - Arguments to delete one InvestorDocument.
+     * @example
+     * // Delete one InvestorDocument
+     * const InvestorDocument = await prisma.investorDocument.delete({
+     *   where: {
+     *     // ... filter to delete one InvestorDocument
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InvestorDocumentDeleteArgs>(args: SelectSubset<T, InvestorDocumentDeleteArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one InvestorDocument.
+     * @param {InvestorDocumentUpdateArgs} args - Arguments to update one InvestorDocument.
+     * @example
+     * // Update one InvestorDocument
+     * const investorDocument = await prisma.investorDocument.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InvestorDocumentUpdateArgs>(args: SelectSubset<T, InvestorDocumentUpdateArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more InvestorDocuments.
+     * @param {InvestorDocumentDeleteManyArgs} args - Arguments to filter InvestorDocuments to delete.
+     * @example
+     * // Delete a few InvestorDocuments
+     * const { count } = await prisma.investorDocument.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InvestorDocumentDeleteManyArgs>(args?: SelectSubset<T, InvestorDocumentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more InvestorDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorDocumentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many InvestorDocuments
+     * const investorDocument = await prisma.investorDocument.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InvestorDocumentUpdateManyArgs>(args: SelectSubset<T, InvestorDocumentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one InvestorDocument.
+     * @param {InvestorDocumentUpsertArgs} args - Arguments to update or create a InvestorDocument.
+     * @example
+     * // Update or create a InvestorDocument
+     * const investorDocument = await prisma.investorDocument.upsert({
+     *   create: {
+     *     // ... data to create a InvestorDocument
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the InvestorDocument we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InvestorDocumentUpsertArgs>(args: SelectSubset<T, InvestorDocumentUpsertArgs<ExtArgs>>): Prisma__InvestorDocumentClient<$Result.GetResult<Prisma.$InvestorDocumentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of InvestorDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorDocumentCountArgs} args - Arguments to filter InvestorDocuments to count.
+     * @example
+     * // Count the number of InvestorDocuments
+     * const count = await prisma.investorDocument.count({
+     *   where: {
+     *     // ... the filter for the InvestorDocuments we want to count
+     *   }
+     * })
+    **/
+    count<T extends InvestorDocumentCountArgs>(
+      args?: Subset<T, InvestorDocumentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InvestorDocumentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a InvestorDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorDocumentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InvestorDocumentAggregateArgs>(args: Subset<T, InvestorDocumentAggregateArgs>): Prisma.PrismaPromise<GetInvestorDocumentAggregateType<T>>
+
+    /**
+     * Group by InvestorDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InvestorDocumentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InvestorDocumentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InvestorDocumentGroupByArgs['orderBy'] }
+        : { orderBy?: InvestorDocumentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InvestorDocumentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInvestorDocumentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the InvestorDocument model
+   */
+  readonly fields: InvestorDocumentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for InvestorDocument.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InvestorDocumentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    category<T extends InvestorCategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InvestorCategoryDefaultArgs<ExtArgs>>): Prisma__InvestorCategoryClient<$Result.GetResult<Prisma.$InvestorCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    subCategory<T extends InvestorDocument$subCategoryArgs<ExtArgs> = {}>(args?: Subset<T, InvestorDocument$subCategoryArgs<ExtArgs>>): Prisma__InvestorSubCategoryClient<$Result.GetResult<Prisma.$InvestorSubCategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    financialYear<T extends InvestorDocument$financialYearArgs<ExtArgs> = {}>(args?: Subset<T, InvestorDocument$financialYearArgs<ExtArgs>>): Prisma__InvestorFinancialYearClient<$Result.GetResult<Prisma.$InvestorFinancialYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    quarter<T extends InvestorDocument$quarterArgs<ExtArgs> = {}>(args?: Subset<T, InvestorDocument$quarterArgs<ExtArgs>>): Prisma__InvestorQuarterClient<$Result.GetResult<Prisma.$InvestorQuarterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the InvestorDocument model
+   */
+  interface InvestorDocumentFieldRefs {
+    readonly id: FieldRef<"InvestorDocument", 'Int'>
+    readonly categoryId: FieldRef<"InvestorDocument", 'Int'>
+    readonly subCategoryId: FieldRef<"InvestorDocument", 'Int'>
+    readonly financialYearId: FieldRef<"InvestorDocument", 'Int'>
+    readonly quarterId: FieldRef<"InvestorDocument", 'Int'>
+    readonly title: FieldRef<"InvestorDocument", 'String'>
+    readonly description: FieldRef<"InvestorDocument", 'String'>
+    readonly documentType: FieldRef<"InvestorDocument", 'String'>
+    readonly purpose: FieldRef<"InvestorDocument", 'String'>
+    readonly documentDate: FieldRef<"InvestorDocument", 'DateTime'>
+    readonly disclosureDate: FieldRef<"InvestorDocument", 'DateTime'>
+    readonly dueDate: FieldRef<"InvestorDocument", 'DateTime'>
+    readonly storageType: FieldRef<"InvestorDocument", 'String'>
+    readonly externalUrl: FieldRef<"InvestorDocument", 'String'>
+    readonly isPublished: FieldRef<"InvestorDocument", 'Boolean'>
+    readonly sortOrder: FieldRef<"InvestorDocument", 'Int'>
+    readonly metadata: FieldRef<"InvestorDocument", 'Json'>
+    readonly createdAt: FieldRef<"InvestorDocument", 'DateTime'>
+    readonly updatedAt: FieldRef<"InvestorDocument", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * InvestorDocument findUnique
+   */
+  export type InvestorDocumentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorDocument to fetch.
+     */
+    where: InvestorDocumentWhereUniqueInput
+  }
+
+  /**
+   * InvestorDocument findUniqueOrThrow
+   */
+  export type InvestorDocumentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorDocument to fetch.
+     */
+    where: InvestorDocumentWhereUniqueInput
+  }
+
+  /**
+   * InvestorDocument findFirst
+   */
+  export type InvestorDocumentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorDocument to fetch.
+     */
+    where?: InvestorDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorDocuments to fetch.
+     */
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorDocuments.
+     */
+    cursor?: InvestorDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorDocuments.
+     */
+    distinct?: InvestorDocumentScalarFieldEnum | InvestorDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorDocument findFirstOrThrow
+   */
+  export type InvestorDocumentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorDocument to fetch.
+     */
+    where?: InvestorDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorDocuments to fetch.
+     */
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for InvestorDocuments.
+     */
+    cursor?: InvestorDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorDocuments.
+     */
+    distinct?: InvestorDocumentScalarFieldEnum | InvestorDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorDocument findMany
+   */
+  export type InvestorDocumentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which InvestorDocuments to fetch.
+     */
+    where?: InvestorDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of InvestorDocuments to fetch.
+     */
+    orderBy?: InvestorDocumentOrderByWithRelationInput | InvestorDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing InvestorDocuments.
+     */
+    cursor?: InvestorDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` InvestorDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` InvestorDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InvestorDocuments.
+     */
+    distinct?: InvestorDocumentScalarFieldEnum | InvestorDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * InvestorDocument create
+   */
+  export type InvestorDocumentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a InvestorDocument.
+     */
+    data: XOR<InvestorDocumentCreateInput, InvestorDocumentUncheckedCreateInput>
+  }
+
+  /**
+   * InvestorDocument createMany
+   */
+  export type InvestorDocumentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many InvestorDocuments.
+     */
+    data: InvestorDocumentCreateManyInput | InvestorDocumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * InvestorDocument update
+   */
+  export type InvestorDocumentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a InvestorDocument.
+     */
+    data: XOR<InvestorDocumentUpdateInput, InvestorDocumentUncheckedUpdateInput>
+    /**
+     * Choose, which InvestorDocument to update.
+     */
+    where: InvestorDocumentWhereUniqueInput
+  }
+
+  /**
+   * InvestorDocument updateMany
+   */
+  export type InvestorDocumentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update InvestorDocuments.
+     */
+    data: XOR<InvestorDocumentUpdateManyMutationInput, InvestorDocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which InvestorDocuments to update
+     */
+    where?: InvestorDocumentWhereInput
+    /**
+     * Limit how many InvestorDocuments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorDocument upsert
+   */
+  export type InvestorDocumentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the InvestorDocument to update in case it exists.
+     */
+    where: InvestorDocumentWhereUniqueInput
+    /**
+     * In case the InvestorDocument found by the `where` argument doesn't exist, create a new InvestorDocument with this data.
+     */
+    create: XOR<InvestorDocumentCreateInput, InvestorDocumentUncheckedCreateInput>
+    /**
+     * In case the InvestorDocument was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InvestorDocumentUpdateInput, InvestorDocumentUncheckedUpdateInput>
+  }
+
+  /**
+   * InvestorDocument delete
+   */
+  export type InvestorDocumentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+    /**
+     * Filter which InvestorDocument to delete.
+     */
+    where: InvestorDocumentWhereUniqueInput
+  }
+
+  /**
+   * InvestorDocument deleteMany
+   */
+  export type InvestorDocumentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which InvestorDocuments to delete
+     */
+    where?: InvestorDocumentWhereInput
+    /**
+     * Limit how many InvestorDocuments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * InvestorDocument.subCategory
+   */
+  export type InvestorDocument$subCategoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorSubCategory
+     */
+    select?: InvestorSubCategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorSubCategory
+     */
+    omit?: InvestorSubCategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorSubCategoryInclude<ExtArgs> | null
+    where?: InvestorSubCategoryWhereInput
+  }
+
+  /**
+   * InvestorDocument.financialYear
+   */
+  export type InvestorDocument$financialYearArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorFinancialYear
+     */
+    select?: InvestorFinancialYearSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorFinancialYear
+     */
+    omit?: InvestorFinancialYearOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorFinancialYearInclude<ExtArgs> | null
+    where?: InvestorFinancialYearWhereInput
+  }
+
+  /**
+   * InvestorDocument.quarter
+   */
+  export type InvestorDocument$quarterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorQuarter
+     */
+    select?: InvestorQuarterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorQuarter
+     */
+    omit?: InvestorQuarterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorQuarterInclude<ExtArgs> | null
+    where?: InvestorQuarterWhereInput
+  }
+
+  /**
+   * InvestorDocument without action
+   */
+  export type InvestorDocumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InvestorDocument
+     */
+    select?: InvestorDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InvestorDocument
+     */
+    omit?: InvestorDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InvestorDocumentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Enums
+   */
+
+  export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
+    Serializable: 'Serializable'
+  };
+
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const AdminUserScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    passwordHash: 'passwordHash',
+    name: 'name',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AdminUserScalarFieldEnum = (typeof AdminUserScalarFieldEnum)[keyof typeof AdminUserScalarFieldEnum]
+
+
+  export const ContactInquiryScalarFieldEnum: {
+    id: 'id',
+    companyName: 'companyName',
+    name: 'name',
+    email: 'email',
+    phone: 'phone',
+    subject: 'subject',
+    message: 'message',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContactInquiryScalarFieldEnum = (typeof ContactInquiryScalarFieldEnum)[keyof typeof ContactInquiryScalarFieldEnum]
+
+
+  export const NewsletterSubscriberScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    subscribedAt: 'subscribedAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NewsletterSubscriberScalarFieldEnum = (typeof NewsletterSubscriberScalarFieldEnum)[keyof typeof NewsletterSubscriberScalarFieldEnum]
+
+
+  export const BlogPostScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    slug: 'slug',
+    type: 'type',
+    excerpt: 'excerpt',
+    content: 'content',
+    image: 'image',
+    documentUrl: 'documentUrl',
+    date: 'date',
+    location: 'location',
+    tags: 'tags',
+    personName: 'personName',
+    personRole: 'personRole',
+    eventName: 'eventName',
+    link: 'link',
+    isPublished: 'isPublished',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
+
+
+  export const InvestorCategoryScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorCategoryScalarFieldEnum = (typeof InvestorCategoryScalarFieldEnum)[keyof typeof InvestorCategoryScalarFieldEnum]
+
+
+  export const InvestorSubCategoryScalarFieldEnum: {
+    id: 'id',
+    categoryId: 'categoryId',
+    name: 'name',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorSubCategoryScalarFieldEnum = (typeof InvestorSubCategoryScalarFieldEnum)[keyof typeof InvestorSubCategoryScalarFieldEnum]
+
+
+  export const InvestorFinancialYearScalarFieldEnum: {
+    id: 'id',
+    categoryId: 'categoryId',
+    subCategoryId: 'subCategoryId',
+    year: 'year',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorFinancialYearScalarFieldEnum = (typeof InvestorFinancialYearScalarFieldEnum)[keyof typeof InvestorFinancialYearScalarFieldEnum]
+
+
+  export const InvestorQuarterScalarFieldEnum: {
+    id: 'id',
+    financialYearId: 'financialYearId',
+    name: 'name',
+    code: 'code',
+    releaseDate: 'releaseDate',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorQuarterScalarFieldEnum = (typeof InvestorQuarterScalarFieldEnum)[keyof typeof InvestorQuarterScalarFieldEnum]
+
+
+  export const InvestorTableFormatScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    financialYearMode: 'financialYearMode',
+    isActive: 'isActive',
+    sortOrder: 'sortOrder',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorTableFormatScalarFieldEnum = (typeof InvestorTableFormatScalarFieldEnum)[keyof typeof InvestorTableFormatScalarFieldEnum]
+
+
+  export const InvestorTableColumnScalarFieldEnum: {
+    id: 'id',
+    tableFormatId: 'tableFormatId',
+    key: 'key',
+    label: 'label',
+    fieldType: 'fieldType',
+    sortOrder: 'sortOrder',
+    isVisible: 'isVisible',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorTableColumnScalarFieldEnum = (typeof InvestorTableColumnScalarFieldEnum)[keyof typeof InvestorTableColumnScalarFieldEnum]
+
+
+  export const InvestorTableFormatAssignmentScalarFieldEnum: {
+    id: 'id',
+    tableFormatId: 'tableFormatId',
+    categoryId: 'categoryId',
+    subCategoryId: 'subCategoryId',
+    financialYearId: 'financialYearId',
+    quarterId: 'quarterId',
+    displayMode: 'displayMode',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorTableFormatAssignmentScalarFieldEnum = (typeof InvestorTableFormatAssignmentScalarFieldEnum)[keyof typeof InvestorTableFormatAssignmentScalarFieldEnum]
+
+
+  export const InvestorDocumentScalarFieldEnum: {
+    id: 'id',
+    categoryId: 'categoryId',
+    subCategoryId: 'subCategoryId',
+    financialYearId: 'financialYearId',
+    quarterId: 'quarterId',
+    title: 'title',
+    description: 'description',
+    documentType: 'documentType',
+    purpose: 'purpose',
+    documentDate: 'documentDate',
+    disclosureDate: 'disclosureDate',
+    dueDate: 'dueDate',
+    storageType: 'storageType',
+    externalUrl: 'externalUrl',
+    isPublished: 'isPublished',
+    sortOrder: 'sortOrder',
+    metadata: 'metadata',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type InvestorDocumentScalarFieldEnum = (typeof InvestorDocumentScalarFieldEnum)[keyof typeof InvestorDocumentScalarFieldEnum]
+
+
+  export const SortOrder: {
+    asc: 'asc',
+    desc: 'desc'
+  };
+
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const AdminUserOrderByRelevanceFieldEnum: {
+    email: 'email',
+    passwordHash: 'passwordHash',
+    name: 'name'
+  };
+
+  export type AdminUserOrderByRelevanceFieldEnum = (typeof AdminUserOrderByRelevanceFieldEnum)[keyof typeof AdminUserOrderByRelevanceFieldEnum]
+
+
+  export const ContactInquiryOrderByRelevanceFieldEnum: {
+    companyName: 'companyName',
+    name: 'name',
+    email: 'email',
+    phone: 'phone',
+    subject: 'subject',
+    message: 'message',
+    status: 'status'
+  };
+
+  export type ContactInquiryOrderByRelevanceFieldEnum = (typeof ContactInquiryOrderByRelevanceFieldEnum)[keyof typeof ContactInquiryOrderByRelevanceFieldEnum]
+
+
+  export const NewsletterSubscriberOrderByRelevanceFieldEnum: {
+    email: 'email'
+  };
+
+  export type NewsletterSubscriberOrderByRelevanceFieldEnum = (typeof NewsletterSubscriberOrderByRelevanceFieldEnum)[keyof typeof NewsletterSubscriberOrderByRelevanceFieldEnum]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const BlogPostOrderByRelevanceFieldEnum: {
+    title: 'title',
+    slug: 'slug',
+    excerpt: 'excerpt',
+    content: 'content',
+    image: 'image',
+    documentUrl: 'documentUrl',
+    location: 'location',
+    personName: 'personName',
+    personRole: 'personRole',
+    eventName: 'eventName',
+    link: 'link'
+  };
+
+  export type BlogPostOrderByRelevanceFieldEnum = (typeof BlogPostOrderByRelevanceFieldEnum)[keyof typeof BlogPostOrderByRelevanceFieldEnum]
+
+
+  export const InvestorCategoryOrderByRelevanceFieldEnum: {
+    name: 'name'
+  };
+
+  export type InvestorCategoryOrderByRelevanceFieldEnum = (typeof InvestorCategoryOrderByRelevanceFieldEnum)[keyof typeof InvestorCategoryOrderByRelevanceFieldEnum]
+
+
+  export const InvestorSubCategoryOrderByRelevanceFieldEnum: {
+    name: 'name'
+  };
+
+  export type InvestorSubCategoryOrderByRelevanceFieldEnum = (typeof InvestorSubCategoryOrderByRelevanceFieldEnum)[keyof typeof InvestorSubCategoryOrderByRelevanceFieldEnum]
+
+
+  export const InvestorFinancialYearOrderByRelevanceFieldEnum: {
+    year: 'year'
+  };
+
+  export type InvestorFinancialYearOrderByRelevanceFieldEnum = (typeof InvestorFinancialYearOrderByRelevanceFieldEnum)[keyof typeof InvestorFinancialYearOrderByRelevanceFieldEnum]
+
+
+  export const InvestorQuarterOrderByRelevanceFieldEnum: {
+    name: 'name',
+    code: 'code'
+  };
+
+  export type InvestorQuarterOrderByRelevanceFieldEnum = (typeof InvestorQuarterOrderByRelevanceFieldEnum)[keyof typeof InvestorQuarterOrderByRelevanceFieldEnum]
+
+
+  export const InvestorTableFormatOrderByRelevanceFieldEnum: {
+    name: 'name',
+    description: 'description',
+    financialYearMode: 'financialYearMode'
+  };
+
+  export type InvestorTableFormatOrderByRelevanceFieldEnum = (typeof InvestorTableFormatOrderByRelevanceFieldEnum)[keyof typeof InvestorTableFormatOrderByRelevanceFieldEnum]
+
+
+  export const InvestorTableColumnOrderByRelevanceFieldEnum: {
+    key: 'key',
+    label: 'label'
+  };
+
+  export type InvestorTableColumnOrderByRelevanceFieldEnum = (typeof InvestorTableColumnOrderByRelevanceFieldEnum)[keyof typeof InvestorTableColumnOrderByRelevanceFieldEnum]
+
+
+  export const InvestorTableFormatAssignmentOrderByRelevanceFieldEnum: {
+    displayMode: 'displayMode'
+  };
+
+  export type InvestorTableFormatAssignmentOrderByRelevanceFieldEnum = (typeof InvestorTableFormatAssignmentOrderByRelevanceFieldEnum)[keyof typeof InvestorTableFormatAssignmentOrderByRelevanceFieldEnum]
+
+
+  export const InvestorDocumentOrderByRelevanceFieldEnum: {
+    title: 'title',
+    description: 'description',
+    documentType: 'documentType',
+    purpose: 'purpose',
+    storageType: 'storageType',
+    externalUrl: 'externalUrl'
+  };
+
+  export type InvestorDocumentOrderByRelevanceFieldEnum = (typeof InvestorDocumentOrderByRelevanceFieldEnum)[keyof typeof InvestorDocumentOrderByRelevanceFieldEnum]
+
+
+  /**
+   * Field references
+   */
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'BlogType'
+   */
+  export type EnumBlogTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BlogType'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'InvestorTableFieldType'
+   */
+  export type EnumInvestorTableFieldTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InvestorTableFieldType'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+  /**
+   * Deep Input Types
+   */
+
+
+  export type AdminUserWhereInput = {
+    AND?: AdminUserWhereInput | AdminUserWhereInput[]
+    OR?: AdminUserWhereInput[]
+    NOT?: AdminUserWhereInput | AdminUserWhereInput[]
+    id?: IntFilter<"AdminUser"> | number
+    email?: StringFilter<"AdminUser"> | string
+    passwordHash?: StringFilter<"AdminUser"> | string
+    name?: StringNullableFilter<"AdminUser"> | string | null
+    isActive?: BoolFilter<"AdminUser"> | boolean
+    createdAt?: DateTimeFilter<"AdminUser"> | Date | string
+    updatedAt?: DateTimeFilter<"AdminUser"> | Date | string
+  }
+
+  export type AdminUserOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    name?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: AdminUserOrderByRelevanceInput
+  }
+
+  export type AdminUserWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    email?: string
+    AND?: AdminUserWhereInput | AdminUserWhereInput[]
+    OR?: AdminUserWhereInput[]
+    NOT?: AdminUserWhereInput | AdminUserWhereInput[]
+    passwordHash?: StringFilter<"AdminUser"> | string
+    name?: StringNullableFilter<"AdminUser"> | string | null
+    isActive?: BoolFilter<"AdminUser"> | boolean
+    createdAt?: DateTimeFilter<"AdminUser"> | Date | string
+    updatedAt?: DateTimeFilter<"AdminUser"> | Date | string
+  }, "id" | "email">
+
+  export type AdminUserOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    name?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AdminUserCountOrderByAggregateInput
+    _avg?: AdminUserAvgOrderByAggregateInput
+    _max?: AdminUserMaxOrderByAggregateInput
+    _min?: AdminUserMinOrderByAggregateInput
+    _sum?: AdminUserSumOrderByAggregateInput
+  }
+
+  export type AdminUserScalarWhereWithAggregatesInput = {
+    AND?: AdminUserScalarWhereWithAggregatesInput | AdminUserScalarWhereWithAggregatesInput[]
+    OR?: AdminUserScalarWhereWithAggregatesInput[]
+    NOT?: AdminUserScalarWhereWithAggregatesInput | AdminUserScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"AdminUser"> | number
+    email?: StringWithAggregatesFilter<"AdminUser"> | string
+    passwordHash?: StringWithAggregatesFilter<"AdminUser"> | string
+    name?: StringNullableWithAggregatesFilter<"AdminUser"> | string | null
+    isActive?: BoolWithAggregatesFilter<"AdminUser"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"AdminUser"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AdminUser"> | Date | string
+  }
+
+  export type ContactInquiryWhereInput = {
+    AND?: ContactInquiryWhereInput | ContactInquiryWhereInput[]
+    OR?: ContactInquiryWhereInput[]
+    NOT?: ContactInquiryWhereInput | ContactInquiryWhereInput[]
+    id?: IntFilter<"ContactInquiry"> | number
+    companyName?: StringNullableFilter<"ContactInquiry"> | string | null
+    name?: StringFilter<"ContactInquiry"> | string
+    email?: StringFilter<"ContactInquiry"> | string
+    phone?: StringNullableFilter<"ContactInquiry"> | string | null
+    subject?: StringNullableFilter<"ContactInquiry"> | string | null
+    message?: StringFilter<"ContactInquiry"> | string
+    status?: StringFilter<"ContactInquiry"> | string
+    createdAt?: DateTimeFilter<"ContactInquiry"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactInquiry"> | Date | string
+  }
+
+  export type ContactInquiryOrderByWithRelationInput = {
+    id?: SortOrder
+    companyName?: SortOrderInput | SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
+    message?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: ContactInquiryOrderByRelevanceInput
+  }
+
+  export type ContactInquiryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ContactInquiryWhereInput | ContactInquiryWhereInput[]
+    OR?: ContactInquiryWhereInput[]
+    NOT?: ContactInquiryWhereInput | ContactInquiryWhereInput[]
+    companyName?: StringNullableFilter<"ContactInquiry"> | string | null
+    name?: StringFilter<"ContactInquiry"> | string
+    email?: StringFilter<"ContactInquiry"> | string
+    phone?: StringNullableFilter<"ContactInquiry"> | string | null
+    subject?: StringNullableFilter<"ContactInquiry"> | string | null
+    message?: StringFilter<"ContactInquiry"> | string
+    status?: StringFilter<"ContactInquiry"> | string
+    createdAt?: DateTimeFilter<"ContactInquiry"> | Date | string
+    updatedAt?: DateTimeFilter<"ContactInquiry"> | Date | string
+  }, "id">
+
+  export type ContactInquiryOrderByWithAggregationInput = {
+    id?: SortOrder
+    companyName?: SortOrderInput | SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
+    message?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContactInquiryCountOrderByAggregateInput
+    _avg?: ContactInquiryAvgOrderByAggregateInput
+    _max?: ContactInquiryMaxOrderByAggregateInput
+    _min?: ContactInquiryMinOrderByAggregateInput
+    _sum?: ContactInquirySumOrderByAggregateInput
+  }
+
+  export type ContactInquiryScalarWhereWithAggregatesInput = {
+    AND?: ContactInquiryScalarWhereWithAggregatesInput | ContactInquiryScalarWhereWithAggregatesInput[]
+    OR?: ContactInquiryScalarWhereWithAggregatesInput[]
+    NOT?: ContactInquiryScalarWhereWithAggregatesInput | ContactInquiryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ContactInquiry"> | number
+    companyName?: StringNullableWithAggregatesFilter<"ContactInquiry"> | string | null
+    name?: StringWithAggregatesFilter<"ContactInquiry"> | string
+    email?: StringWithAggregatesFilter<"ContactInquiry"> | string
+    phone?: StringNullableWithAggregatesFilter<"ContactInquiry"> | string | null
+    subject?: StringNullableWithAggregatesFilter<"ContactInquiry"> | string | null
+    message?: StringWithAggregatesFilter<"ContactInquiry"> | string
+    status?: StringWithAggregatesFilter<"ContactInquiry"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ContactInquiry"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContactInquiry"> | Date | string
+  }
+
+  export type NewsletterSubscriberWhereInput = {
+    AND?: NewsletterSubscriberWhereInput | NewsletterSubscriberWhereInput[]
+    OR?: NewsletterSubscriberWhereInput[]
+    NOT?: NewsletterSubscriberWhereInput | NewsletterSubscriberWhereInput[]
+    id?: IntFilter<"NewsletterSubscriber"> | number
+    email?: StringFilter<"NewsletterSubscriber"> | string
+    subscribedAt?: DateTimeFilter<"NewsletterSubscriber"> | Date | string
+    updatedAt?: DateTimeFilter<"NewsletterSubscriber"> | Date | string
+  }
+
+  export type NewsletterSubscriberOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    subscribedAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: NewsletterSubscriberOrderByRelevanceInput
+  }
+
+  export type NewsletterSubscriberWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    email?: string
+    AND?: NewsletterSubscriberWhereInput | NewsletterSubscriberWhereInput[]
+    OR?: NewsletterSubscriberWhereInput[]
+    NOT?: NewsletterSubscriberWhereInput | NewsletterSubscriberWhereInput[]
+    subscribedAt?: DateTimeFilter<"NewsletterSubscriber"> | Date | string
+    updatedAt?: DateTimeFilter<"NewsletterSubscriber"> | Date | string
+  }, "id" | "email">
+
+  export type NewsletterSubscriberOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    subscribedAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NewsletterSubscriberCountOrderByAggregateInput
+    _avg?: NewsletterSubscriberAvgOrderByAggregateInput
+    _max?: NewsletterSubscriberMaxOrderByAggregateInput
+    _min?: NewsletterSubscriberMinOrderByAggregateInput
+    _sum?: NewsletterSubscriberSumOrderByAggregateInput
+  }
+
+  export type NewsletterSubscriberScalarWhereWithAggregatesInput = {
+    AND?: NewsletterSubscriberScalarWhereWithAggregatesInput | NewsletterSubscriberScalarWhereWithAggregatesInput[]
+    OR?: NewsletterSubscriberScalarWhereWithAggregatesInput[]
+    NOT?: NewsletterSubscriberScalarWhereWithAggregatesInput | NewsletterSubscriberScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"NewsletterSubscriber"> | number
+    email?: StringWithAggregatesFilter<"NewsletterSubscriber"> | string
+    subscribedAt?: DateTimeWithAggregatesFilter<"NewsletterSubscriber"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"NewsletterSubscriber"> | Date | string
+  }
+
+  export type BlogPostWhereInput = {
+    AND?: BlogPostWhereInput | BlogPostWhereInput[]
+    OR?: BlogPostWhereInput[]
+    NOT?: BlogPostWhereInput | BlogPostWhereInput[]
+    id?: IntFilter<"BlogPost"> | number
+    title?: StringFilter<"BlogPost"> | string
+    slug?: StringFilter<"BlogPost"> | string
+    type?: EnumBlogTypeFilter<"BlogPost"> | $Enums.BlogType
+    excerpt?: StringNullableFilter<"BlogPost"> | string | null
+    content?: StringNullableFilter<"BlogPost"> | string | null
+    image?: StringNullableFilter<"BlogPost"> | string | null
+    documentUrl?: StringNullableFilter<"BlogPost"> | string | null
+    date?: DateTimeFilter<"BlogPost"> | Date | string
+    location?: StringNullableFilter<"BlogPost"> | string | null
+    tags?: JsonNullableFilter<"BlogPost">
+    personName?: StringNullableFilter<"BlogPost"> | string | null
+    personRole?: StringNullableFilter<"BlogPost"> | string | null
+    eventName?: StringNullableFilter<"BlogPost"> | string | null
+    link?: StringNullableFilter<"BlogPost"> | string | null
+    isPublished?: BoolFilter<"BlogPost"> | boolean
+    createdAt?: DateTimeFilter<"BlogPost"> | Date | string
+    updatedAt?: DateTimeFilter<"BlogPost"> | Date | string
+  }
+
+  export type BlogPostOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    type?: SortOrder
+    excerpt?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    documentUrl?: SortOrderInput | SortOrder
+    date?: SortOrder
+    location?: SortOrderInput | SortOrder
+    tags?: SortOrderInput | SortOrder
+    personName?: SortOrderInput | SortOrder
+    personRole?: SortOrderInput | SortOrder
+    eventName?: SortOrderInput | SortOrder
+    link?: SortOrderInput | SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: BlogPostOrderByRelevanceInput
+  }
+
+  export type BlogPostWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    slug?: string
+    AND?: BlogPostWhereInput | BlogPostWhereInput[]
+    OR?: BlogPostWhereInput[]
+    NOT?: BlogPostWhereInput | BlogPostWhereInput[]
+    title?: StringFilter<"BlogPost"> | string
+    type?: EnumBlogTypeFilter<"BlogPost"> | $Enums.BlogType
+    excerpt?: StringNullableFilter<"BlogPost"> | string | null
+    content?: StringNullableFilter<"BlogPost"> | string | null
+    image?: StringNullableFilter<"BlogPost"> | string | null
+    documentUrl?: StringNullableFilter<"BlogPost"> | string | null
+    date?: DateTimeFilter<"BlogPost"> | Date | string
+    location?: StringNullableFilter<"BlogPost"> | string | null
+    tags?: JsonNullableFilter<"BlogPost">
+    personName?: StringNullableFilter<"BlogPost"> | string | null
+    personRole?: StringNullableFilter<"BlogPost"> | string | null
+    eventName?: StringNullableFilter<"BlogPost"> | string | null
+    link?: StringNullableFilter<"BlogPost"> | string | null
+    isPublished?: BoolFilter<"BlogPost"> | boolean
+    createdAt?: DateTimeFilter<"BlogPost"> | Date | string
+    updatedAt?: DateTimeFilter<"BlogPost"> | Date | string
+  }, "id" | "slug">
+
+  export type BlogPostOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    type?: SortOrder
+    excerpt?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    image?: SortOrderInput | SortOrder
+    documentUrl?: SortOrderInput | SortOrder
+    date?: SortOrder
+    location?: SortOrderInput | SortOrder
+    tags?: SortOrderInput | SortOrder
+    personName?: SortOrderInput | SortOrder
+    personRole?: SortOrderInput | SortOrder
+    eventName?: SortOrderInput | SortOrder
+    link?: SortOrderInput | SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BlogPostCountOrderByAggregateInput
+    _avg?: BlogPostAvgOrderByAggregateInput
+    _max?: BlogPostMaxOrderByAggregateInput
+    _min?: BlogPostMinOrderByAggregateInput
+    _sum?: BlogPostSumOrderByAggregateInput
+  }
+
+  export type BlogPostScalarWhereWithAggregatesInput = {
+    AND?: BlogPostScalarWhereWithAggregatesInput | BlogPostScalarWhereWithAggregatesInput[]
+    OR?: BlogPostScalarWhereWithAggregatesInput[]
+    NOT?: BlogPostScalarWhereWithAggregatesInput | BlogPostScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"BlogPost"> | number
+    title?: StringWithAggregatesFilter<"BlogPost"> | string
+    slug?: StringWithAggregatesFilter<"BlogPost"> | string
+    type?: EnumBlogTypeWithAggregatesFilter<"BlogPost"> | $Enums.BlogType
+    excerpt?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    content?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    image?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    documentUrl?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    date?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+    location?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    tags?: JsonNullableWithAggregatesFilter<"BlogPost">
+    personName?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    personRole?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    eventName?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    link?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    isPublished?: BoolWithAggregatesFilter<"BlogPost"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+  }
+
+  export type InvestorCategoryWhereInput = {
+    AND?: InvestorCategoryWhereInput | InvestorCategoryWhereInput[]
+    OR?: InvestorCategoryWhereInput[]
+    NOT?: InvestorCategoryWhereInput | InvestorCategoryWhereInput[]
+    id?: IntFilter<"InvestorCategory"> | number
+    name?: StringFilter<"InvestorCategory"> | string
+    sortOrder?: IntFilter<"InvestorCategory"> | number
+    isActive?: BoolFilter<"InvestorCategory"> | boolean
+    createdAt?: DateTimeFilter<"InvestorCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorCategory"> | Date | string
+    subCategories?: InvestorSubCategoryListRelationFilter
+    financialYears?: InvestorFinancialYearListRelationFilter
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }
+
+  export type InvestorCategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    subCategories?: InvestorSubCategoryOrderByRelationAggregateInput
+    financialYears?: InvestorFinancialYearOrderByRelationAggregateInput
+    documents?: InvestorDocumentOrderByRelationAggregateInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentOrderByRelationAggregateInput
+    _relevance?: InvestorCategoryOrderByRelevanceInput
+  }
+
+  export type InvestorCategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: InvestorCategoryWhereInput | InvestorCategoryWhereInput[]
+    OR?: InvestorCategoryWhereInput[]
+    NOT?: InvestorCategoryWhereInput | InvestorCategoryWhereInput[]
+    sortOrder?: IntFilter<"InvestorCategory"> | number
+    isActive?: BoolFilter<"InvestorCategory"> | boolean
+    createdAt?: DateTimeFilter<"InvestorCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorCategory"> | Date | string
+    subCategories?: InvestorSubCategoryListRelationFilter
+    financialYears?: InvestorFinancialYearListRelationFilter
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }, "id" | "name">
+
+  export type InvestorCategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorCategoryCountOrderByAggregateInput
+    _avg?: InvestorCategoryAvgOrderByAggregateInput
+    _max?: InvestorCategoryMaxOrderByAggregateInput
+    _min?: InvestorCategoryMinOrderByAggregateInput
+    _sum?: InvestorCategorySumOrderByAggregateInput
+  }
+
+  export type InvestorCategoryScalarWhereWithAggregatesInput = {
+    AND?: InvestorCategoryScalarWhereWithAggregatesInput | InvestorCategoryScalarWhereWithAggregatesInput[]
+    OR?: InvestorCategoryScalarWhereWithAggregatesInput[]
+    NOT?: InvestorCategoryScalarWhereWithAggregatesInput | InvestorCategoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorCategory"> | number
+    name?: StringWithAggregatesFilter<"InvestorCategory"> | string
+    sortOrder?: IntWithAggregatesFilter<"InvestorCategory"> | number
+    isActive?: BoolWithAggregatesFilter<"InvestorCategory"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorCategory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorCategory"> | Date | string
+  }
+
+  export type InvestorSubCategoryWhereInput = {
+    AND?: InvestorSubCategoryWhereInput | InvestorSubCategoryWhereInput[]
+    OR?: InvestorSubCategoryWhereInput[]
+    NOT?: InvestorSubCategoryWhereInput | InvestorSubCategoryWhereInput[]
+    id?: IntFilter<"InvestorSubCategory"> | number
+    categoryId?: IntFilter<"InvestorSubCategory"> | number
+    name?: StringFilter<"InvestorSubCategory"> | string
+    sortOrder?: IntFilter<"InvestorSubCategory"> | number
+    isActive?: BoolFilter<"InvestorSubCategory"> | boolean
+    createdAt?: DateTimeFilter<"InvestorSubCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorSubCategory"> | Date | string
+    category?: XOR<InvestorCategoryScalarRelationFilter, InvestorCategoryWhereInput>
+    financialYears?: InvestorFinancialYearListRelationFilter
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }
+
+  export type InvestorSubCategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    category?: InvestorCategoryOrderByWithRelationInput
+    financialYears?: InvestorFinancialYearOrderByRelationAggregateInput
+    documents?: InvestorDocumentOrderByRelationAggregateInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentOrderByRelationAggregateInput
+    _relevance?: InvestorSubCategoryOrderByRelevanceInput
+  }
+
+  export type InvestorSubCategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    categoryId_name?: InvestorSubCategoryCategoryIdNameCompoundUniqueInput
+    AND?: InvestorSubCategoryWhereInput | InvestorSubCategoryWhereInput[]
+    OR?: InvestorSubCategoryWhereInput[]
+    NOT?: InvestorSubCategoryWhereInput | InvestorSubCategoryWhereInput[]
+    categoryId?: IntFilter<"InvestorSubCategory"> | number
+    name?: StringFilter<"InvestorSubCategory"> | string
+    sortOrder?: IntFilter<"InvestorSubCategory"> | number
+    isActive?: BoolFilter<"InvestorSubCategory"> | boolean
+    createdAt?: DateTimeFilter<"InvestorSubCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorSubCategory"> | Date | string
+    category?: XOR<InvestorCategoryScalarRelationFilter, InvestorCategoryWhereInput>
+    financialYears?: InvestorFinancialYearListRelationFilter
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }, "id" | "categoryId_name">
+
+  export type InvestorSubCategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorSubCategoryCountOrderByAggregateInput
+    _avg?: InvestorSubCategoryAvgOrderByAggregateInput
+    _max?: InvestorSubCategoryMaxOrderByAggregateInput
+    _min?: InvestorSubCategoryMinOrderByAggregateInput
+    _sum?: InvestorSubCategorySumOrderByAggregateInput
+  }
+
+  export type InvestorSubCategoryScalarWhereWithAggregatesInput = {
+    AND?: InvestorSubCategoryScalarWhereWithAggregatesInput | InvestorSubCategoryScalarWhereWithAggregatesInput[]
+    OR?: InvestorSubCategoryScalarWhereWithAggregatesInput[]
+    NOT?: InvestorSubCategoryScalarWhereWithAggregatesInput | InvestorSubCategoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorSubCategory"> | number
+    categoryId?: IntWithAggregatesFilter<"InvestorSubCategory"> | number
+    name?: StringWithAggregatesFilter<"InvestorSubCategory"> | string
+    sortOrder?: IntWithAggregatesFilter<"InvestorSubCategory"> | number
+    isActive?: BoolWithAggregatesFilter<"InvestorSubCategory"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorSubCategory"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorSubCategory"> | Date | string
+  }
+
+  export type InvestorFinancialYearWhereInput = {
+    AND?: InvestorFinancialYearWhereInput | InvestorFinancialYearWhereInput[]
+    OR?: InvestorFinancialYearWhereInput[]
+    NOT?: InvestorFinancialYearWhereInput | InvestorFinancialYearWhereInput[]
+    id?: IntFilter<"InvestorFinancialYear"> | number
+    categoryId?: IntNullableFilter<"InvestorFinancialYear"> | number | null
+    subCategoryId?: IntNullableFilter<"InvestorFinancialYear"> | number | null
+    year?: StringFilter<"InvestorFinancialYear"> | string
+    sortOrder?: IntFilter<"InvestorFinancialYear"> | number
+    isActive?: BoolFilter<"InvestorFinancialYear"> | boolean
+    createdAt?: DateTimeFilter<"InvestorFinancialYear"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorFinancialYear"> | Date | string
+    category?: XOR<InvestorCategoryNullableScalarRelationFilter, InvestorCategoryWhereInput> | null
+    subCategory?: XOR<InvestorSubCategoryNullableScalarRelationFilter, InvestorSubCategoryWhereInput> | null
+    quarters?: InvestorQuarterListRelationFilter
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }
+
+  export type InvestorFinancialYearOrderByWithRelationInput = {
+    id?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    subCategoryId?: SortOrderInput | SortOrder
+    year?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    category?: InvestorCategoryOrderByWithRelationInput
+    subCategory?: InvestorSubCategoryOrderByWithRelationInput
+    quarters?: InvestorQuarterOrderByRelationAggregateInput
+    documents?: InvestorDocumentOrderByRelationAggregateInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentOrderByRelationAggregateInput
+    _relevance?: InvestorFinancialYearOrderByRelevanceInput
+  }
+
+  export type InvestorFinancialYearWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: InvestorFinancialYearWhereInput | InvestorFinancialYearWhereInput[]
+    OR?: InvestorFinancialYearWhereInput[]
+    NOT?: InvestorFinancialYearWhereInput | InvestorFinancialYearWhereInput[]
+    categoryId?: IntNullableFilter<"InvestorFinancialYear"> | number | null
+    subCategoryId?: IntNullableFilter<"InvestorFinancialYear"> | number | null
+    year?: StringFilter<"InvestorFinancialYear"> | string
+    sortOrder?: IntFilter<"InvestorFinancialYear"> | number
+    isActive?: BoolFilter<"InvestorFinancialYear"> | boolean
+    createdAt?: DateTimeFilter<"InvestorFinancialYear"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorFinancialYear"> | Date | string
+    category?: XOR<InvestorCategoryNullableScalarRelationFilter, InvestorCategoryWhereInput> | null
+    subCategory?: XOR<InvestorSubCategoryNullableScalarRelationFilter, InvestorSubCategoryWhereInput> | null
+    quarters?: InvestorQuarterListRelationFilter
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }, "id">
+
+  export type InvestorFinancialYearOrderByWithAggregationInput = {
+    id?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    subCategoryId?: SortOrderInput | SortOrder
+    year?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorFinancialYearCountOrderByAggregateInput
+    _avg?: InvestorFinancialYearAvgOrderByAggregateInput
+    _max?: InvestorFinancialYearMaxOrderByAggregateInput
+    _min?: InvestorFinancialYearMinOrderByAggregateInput
+    _sum?: InvestorFinancialYearSumOrderByAggregateInput
+  }
+
+  export type InvestorFinancialYearScalarWhereWithAggregatesInput = {
+    AND?: InvestorFinancialYearScalarWhereWithAggregatesInput | InvestorFinancialYearScalarWhereWithAggregatesInput[]
+    OR?: InvestorFinancialYearScalarWhereWithAggregatesInput[]
+    NOT?: InvestorFinancialYearScalarWhereWithAggregatesInput | InvestorFinancialYearScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorFinancialYear"> | number
+    categoryId?: IntNullableWithAggregatesFilter<"InvestorFinancialYear"> | number | null
+    subCategoryId?: IntNullableWithAggregatesFilter<"InvestorFinancialYear"> | number | null
+    year?: StringWithAggregatesFilter<"InvestorFinancialYear"> | string
+    sortOrder?: IntWithAggregatesFilter<"InvestorFinancialYear"> | number
+    isActive?: BoolWithAggregatesFilter<"InvestorFinancialYear"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorFinancialYear"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorFinancialYear"> | Date | string
+  }
+
+  export type InvestorQuarterWhereInput = {
+    AND?: InvestorQuarterWhereInput | InvestorQuarterWhereInput[]
+    OR?: InvestorQuarterWhereInput[]
+    NOT?: InvestorQuarterWhereInput | InvestorQuarterWhereInput[]
+    id?: IntFilter<"InvestorQuarter"> | number
+    financialYearId?: IntFilter<"InvestorQuarter"> | number
+    name?: StringFilter<"InvestorQuarter"> | string
+    code?: StringFilter<"InvestorQuarter"> | string
+    releaseDate?: DateTimeNullableFilter<"InvestorQuarter"> | Date | string | null
+    sortOrder?: IntFilter<"InvestorQuarter"> | number
+    isActive?: BoolFilter<"InvestorQuarter"> | boolean
+    createdAt?: DateTimeFilter<"InvestorQuarter"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorQuarter"> | Date | string
+    financialYear?: XOR<InvestorFinancialYearScalarRelationFilter, InvestorFinancialYearWhereInput>
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }
+
+  export type InvestorQuarterOrderByWithRelationInput = {
+    id?: SortOrder
+    financialYearId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    releaseDate?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    financialYear?: InvestorFinancialYearOrderByWithRelationInput
+    documents?: InvestorDocumentOrderByRelationAggregateInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentOrderByRelationAggregateInput
+    _relevance?: InvestorQuarterOrderByRelevanceInput
+  }
+
+  export type InvestorQuarterWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    financialYearId_code?: InvestorQuarterFinancialYearIdCodeCompoundUniqueInput
+    AND?: InvestorQuarterWhereInput | InvestorQuarterWhereInput[]
+    OR?: InvestorQuarterWhereInput[]
+    NOT?: InvestorQuarterWhereInput | InvestorQuarterWhereInput[]
+    financialYearId?: IntFilter<"InvestorQuarter"> | number
+    name?: StringFilter<"InvestorQuarter"> | string
+    code?: StringFilter<"InvestorQuarter"> | string
+    releaseDate?: DateTimeNullableFilter<"InvestorQuarter"> | Date | string | null
+    sortOrder?: IntFilter<"InvestorQuarter"> | number
+    isActive?: BoolFilter<"InvestorQuarter"> | boolean
+    createdAt?: DateTimeFilter<"InvestorQuarter"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorQuarter"> | Date | string
+    financialYear?: XOR<InvestorFinancialYearScalarRelationFilter, InvestorFinancialYearWhereInput>
+    documents?: InvestorDocumentListRelationFilter
+    tableFormatAssignments?: InvestorTableFormatAssignmentListRelationFilter
+  }, "id" | "financialYearId_code">
+
+  export type InvestorQuarterOrderByWithAggregationInput = {
+    id?: SortOrder
+    financialYearId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    releaseDate?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorQuarterCountOrderByAggregateInput
+    _avg?: InvestorQuarterAvgOrderByAggregateInput
+    _max?: InvestorQuarterMaxOrderByAggregateInput
+    _min?: InvestorQuarterMinOrderByAggregateInput
+    _sum?: InvestorQuarterSumOrderByAggregateInput
+  }
+
+  export type InvestorQuarterScalarWhereWithAggregatesInput = {
+    AND?: InvestorQuarterScalarWhereWithAggregatesInput | InvestorQuarterScalarWhereWithAggregatesInput[]
+    OR?: InvestorQuarterScalarWhereWithAggregatesInput[]
+    NOT?: InvestorQuarterScalarWhereWithAggregatesInput | InvestorQuarterScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorQuarter"> | number
+    financialYearId?: IntWithAggregatesFilter<"InvestorQuarter"> | number
+    name?: StringWithAggregatesFilter<"InvestorQuarter"> | string
+    code?: StringWithAggregatesFilter<"InvestorQuarter"> | string
+    releaseDate?: DateTimeNullableWithAggregatesFilter<"InvestorQuarter"> | Date | string | null
+    sortOrder?: IntWithAggregatesFilter<"InvestorQuarter"> | number
+    isActive?: BoolWithAggregatesFilter<"InvestorQuarter"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorQuarter"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorQuarter"> | Date | string
+  }
+
+  export type InvestorTableFormatWhereInput = {
+    AND?: InvestorTableFormatWhereInput | InvestorTableFormatWhereInput[]
+    OR?: InvestorTableFormatWhereInput[]
+    NOT?: InvestorTableFormatWhereInput | InvestorTableFormatWhereInput[]
+    id?: IntFilter<"InvestorTableFormat"> | number
+    name?: StringFilter<"InvestorTableFormat"> | string
+    description?: StringNullableFilter<"InvestorTableFormat"> | string | null
+    financialYearMode?: StringFilter<"InvestorTableFormat"> | string
+    isActive?: BoolFilter<"InvestorTableFormat"> | boolean
+    sortOrder?: IntFilter<"InvestorTableFormat"> | number
+    createdAt?: DateTimeFilter<"InvestorTableFormat"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableFormat"> | Date | string
+    columns?: InvestorTableColumnListRelationFilter
+    assignments?: InvestorTableFormatAssignmentListRelationFilter
+  }
+
+  export type InvestorTableFormatOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    financialYearMode?: SortOrder
+    isActive?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    columns?: InvestorTableColumnOrderByRelationAggregateInput
+    assignments?: InvestorTableFormatAssignmentOrderByRelationAggregateInput
+    _relevance?: InvestorTableFormatOrderByRelevanceInput
+  }
+
+  export type InvestorTableFormatWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: InvestorTableFormatWhereInput | InvestorTableFormatWhereInput[]
+    OR?: InvestorTableFormatWhereInput[]
+    NOT?: InvestorTableFormatWhereInput | InvestorTableFormatWhereInput[]
+    name?: StringFilter<"InvestorTableFormat"> | string
+    description?: StringNullableFilter<"InvestorTableFormat"> | string | null
+    financialYearMode?: StringFilter<"InvestorTableFormat"> | string
+    isActive?: BoolFilter<"InvestorTableFormat"> | boolean
+    sortOrder?: IntFilter<"InvestorTableFormat"> | number
+    createdAt?: DateTimeFilter<"InvestorTableFormat"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableFormat"> | Date | string
+    columns?: InvestorTableColumnListRelationFilter
+    assignments?: InvestorTableFormatAssignmentListRelationFilter
+  }, "id">
+
+  export type InvestorTableFormatOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    financialYearMode?: SortOrder
+    isActive?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorTableFormatCountOrderByAggregateInput
+    _avg?: InvestorTableFormatAvgOrderByAggregateInput
+    _max?: InvestorTableFormatMaxOrderByAggregateInput
+    _min?: InvestorTableFormatMinOrderByAggregateInput
+    _sum?: InvestorTableFormatSumOrderByAggregateInput
+  }
+
+  export type InvestorTableFormatScalarWhereWithAggregatesInput = {
+    AND?: InvestorTableFormatScalarWhereWithAggregatesInput | InvestorTableFormatScalarWhereWithAggregatesInput[]
+    OR?: InvestorTableFormatScalarWhereWithAggregatesInput[]
+    NOT?: InvestorTableFormatScalarWhereWithAggregatesInput | InvestorTableFormatScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorTableFormat"> | number
+    name?: StringWithAggregatesFilter<"InvestorTableFormat"> | string
+    description?: StringNullableWithAggregatesFilter<"InvestorTableFormat"> | string | null
+    financialYearMode?: StringWithAggregatesFilter<"InvestorTableFormat"> | string
+    isActive?: BoolWithAggregatesFilter<"InvestorTableFormat"> | boolean
+    sortOrder?: IntWithAggregatesFilter<"InvestorTableFormat"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorTableFormat"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorTableFormat"> | Date | string
+  }
+
+  export type InvestorTableColumnWhereInput = {
+    AND?: InvestorTableColumnWhereInput | InvestorTableColumnWhereInput[]
+    OR?: InvestorTableColumnWhereInput[]
+    NOT?: InvestorTableColumnWhereInput | InvestorTableColumnWhereInput[]
+    id?: IntFilter<"InvestorTableColumn"> | number
+    tableFormatId?: IntFilter<"InvestorTableColumn"> | number
+    key?: StringFilter<"InvestorTableColumn"> | string
+    label?: StringFilter<"InvestorTableColumn"> | string
+    fieldType?: EnumInvestorTableFieldTypeFilter<"InvestorTableColumn"> | $Enums.InvestorTableFieldType
+    sortOrder?: IntFilter<"InvestorTableColumn"> | number
+    isVisible?: BoolFilter<"InvestorTableColumn"> | boolean
+    createdAt?: DateTimeFilter<"InvestorTableColumn"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableColumn"> | Date | string
+    tableFormat?: XOR<InvestorTableFormatScalarRelationFilter, InvestorTableFormatWhereInput>
+  }
+
+  export type InvestorTableColumnOrderByWithRelationInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    fieldType?: SortOrder
+    sortOrder?: SortOrder
+    isVisible?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tableFormat?: InvestorTableFormatOrderByWithRelationInput
+    _relevance?: InvestorTableColumnOrderByRelevanceInput
+  }
+
+  export type InvestorTableColumnWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    tableFormatId_key?: InvestorTableColumnTableFormatIdKeyCompoundUniqueInput
+    AND?: InvestorTableColumnWhereInput | InvestorTableColumnWhereInput[]
+    OR?: InvestorTableColumnWhereInput[]
+    NOT?: InvestorTableColumnWhereInput | InvestorTableColumnWhereInput[]
+    tableFormatId?: IntFilter<"InvestorTableColumn"> | number
+    key?: StringFilter<"InvestorTableColumn"> | string
+    label?: StringFilter<"InvestorTableColumn"> | string
+    fieldType?: EnumInvestorTableFieldTypeFilter<"InvestorTableColumn"> | $Enums.InvestorTableFieldType
+    sortOrder?: IntFilter<"InvestorTableColumn"> | number
+    isVisible?: BoolFilter<"InvestorTableColumn"> | boolean
+    createdAt?: DateTimeFilter<"InvestorTableColumn"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableColumn"> | Date | string
+    tableFormat?: XOR<InvestorTableFormatScalarRelationFilter, InvestorTableFormatWhereInput>
+  }, "id" | "tableFormatId_key">
+
+  export type InvestorTableColumnOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    fieldType?: SortOrder
+    sortOrder?: SortOrder
+    isVisible?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorTableColumnCountOrderByAggregateInput
+    _avg?: InvestorTableColumnAvgOrderByAggregateInput
+    _max?: InvestorTableColumnMaxOrderByAggregateInput
+    _min?: InvestorTableColumnMinOrderByAggregateInput
+    _sum?: InvestorTableColumnSumOrderByAggregateInput
+  }
+
+  export type InvestorTableColumnScalarWhereWithAggregatesInput = {
+    AND?: InvestorTableColumnScalarWhereWithAggregatesInput | InvestorTableColumnScalarWhereWithAggregatesInput[]
+    OR?: InvestorTableColumnScalarWhereWithAggregatesInput[]
+    NOT?: InvestorTableColumnScalarWhereWithAggregatesInput | InvestorTableColumnScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorTableColumn"> | number
+    tableFormatId?: IntWithAggregatesFilter<"InvestorTableColumn"> | number
+    key?: StringWithAggregatesFilter<"InvestorTableColumn"> | string
+    label?: StringWithAggregatesFilter<"InvestorTableColumn"> | string
+    fieldType?: EnumInvestorTableFieldTypeWithAggregatesFilter<"InvestorTableColumn"> | $Enums.InvestorTableFieldType
+    sortOrder?: IntWithAggregatesFilter<"InvestorTableColumn"> | number
+    isVisible?: BoolWithAggregatesFilter<"InvestorTableColumn"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorTableColumn"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorTableColumn"> | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentWhereInput = {
+    AND?: InvestorTableFormatAssignmentWhereInput | InvestorTableFormatAssignmentWhereInput[]
+    OR?: InvestorTableFormatAssignmentWhereInput[]
+    NOT?: InvestorTableFormatAssignmentWhereInput | InvestorTableFormatAssignmentWhereInput[]
+    id?: IntFilter<"InvestorTableFormatAssignment"> | number
+    tableFormatId?: IntFilter<"InvestorTableFormatAssignment"> | number
+    categoryId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    subCategoryId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    financialYearId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    quarterId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    displayMode?: StringFilter<"InvestorTableFormatAssignment"> | string
+    createdAt?: DateTimeFilter<"InvestorTableFormatAssignment"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableFormatAssignment"> | Date | string
+    tableFormat?: XOR<InvestorTableFormatScalarRelationFilter, InvestorTableFormatWhereInput>
+    category?: XOR<InvestorCategoryNullableScalarRelationFilter, InvestorCategoryWhereInput> | null
+    subCategory?: XOR<InvestorSubCategoryNullableScalarRelationFilter, InvestorSubCategoryWhereInput> | null
+    financialYear?: XOR<InvestorFinancialYearNullableScalarRelationFilter, InvestorFinancialYearWhereInput> | null
+    quarter?: XOR<InvestorQuarterNullableScalarRelationFilter, InvestorQuarterWhereInput> | null
+  }
+
+  export type InvestorTableFormatAssignmentOrderByWithRelationInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    subCategoryId?: SortOrderInput | SortOrder
+    financialYearId?: SortOrderInput | SortOrder
+    quarterId?: SortOrderInput | SortOrder
+    displayMode?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tableFormat?: InvestorTableFormatOrderByWithRelationInput
+    category?: InvestorCategoryOrderByWithRelationInput
+    subCategory?: InvestorSubCategoryOrderByWithRelationInput
+    financialYear?: InvestorFinancialYearOrderByWithRelationInput
+    quarter?: InvestorQuarterOrderByWithRelationInput
+    _relevance?: InvestorTableFormatAssignmentOrderByRelevanceInput
+  }
+
+  export type InvestorTableFormatAssignmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: InvestorTableFormatAssignmentWhereInput | InvestorTableFormatAssignmentWhereInput[]
+    OR?: InvestorTableFormatAssignmentWhereInput[]
+    NOT?: InvestorTableFormatAssignmentWhereInput | InvestorTableFormatAssignmentWhereInput[]
+    tableFormatId?: IntFilter<"InvestorTableFormatAssignment"> | number
+    categoryId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    subCategoryId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    financialYearId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    quarterId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    displayMode?: StringFilter<"InvestorTableFormatAssignment"> | string
+    createdAt?: DateTimeFilter<"InvestorTableFormatAssignment"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableFormatAssignment"> | Date | string
+    tableFormat?: XOR<InvestorTableFormatScalarRelationFilter, InvestorTableFormatWhereInput>
+    category?: XOR<InvestorCategoryNullableScalarRelationFilter, InvestorCategoryWhereInput> | null
+    subCategory?: XOR<InvestorSubCategoryNullableScalarRelationFilter, InvestorSubCategoryWhereInput> | null
+    financialYear?: XOR<InvestorFinancialYearNullableScalarRelationFilter, InvestorFinancialYearWhereInput> | null
+    quarter?: XOR<InvestorQuarterNullableScalarRelationFilter, InvestorQuarterWhereInput> | null
+  }, "id">
+
+  export type InvestorTableFormatAssignmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    subCategoryId?: SortOrderInput | SortOrder
+    financialYearId?: SortOrderInput | SortOrder
+    quarterId?: SortOrderInput | SortOrder
+    displayMode?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorTableFormatAssignmentCountOrderByAggregateInput
+    _avg?: InvestorTableFormatAssignmentAvgOrderByAggregateInput
+    _max?: InvestorTableFormatAssignmentMaxOrderByAggregateInput
+    _min?: InvestorTableFormatAssignmentMinOrderByAggregateInput
+    _sum?: InvestorTableFormatAssignmentSumOrderByAggregateInput
+  }
+
+  export type InvestorTableFormatAssignmentScalarWhereWithAggregatesInput = {
+    AND?: InvestorTableFormatAssignmentScalarWhereWithAggregatesInput | InvestorTableFormatAssignmentScalarWhereWithAggregatesInput[]
+    OR?: InvestorTableFormatAssignmentScalarWhereWithAggregatesInput[]
+    NOT?: InvestorTableFormatAssignmentScalarWhereWithAggregatesInput | InvestorTableFormatAssignmentScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorTableFormatAssignment"> | number
+    tableFormatId?: IntWithAggregatesFilter<"InvestorTableFormatAssignment"> | number
+    categoryId?: IntNullableWithAggregatesFilter<"InvestorTableFormatAssignment"> | number | null
+    subCategoryId?: IntNullableWithAggregatesFilter<"InvestorTableFormatAssignment"> | number | null
+    financialYearId?: IntNullableWithAggregatesFilter<"InvestorTableFormatAssignment"> | number | null
+    quarterId?: IntNullableWithAggregatesFilter<"InvestorTableFormatAssignment"> | number | null
+    displayMode?: StringWithAggregatesFilter<"InvestorTableFormatAssignment"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorTableFormatAssignment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorTableFormatAssignment"> | Date | string
+  }
+
+  export type InvestorDocumentWhereInput = {
+    AND?: InvestorDocumentWhereInput | InvestorDocumentWhereInput[]
+    OR?: InvestorDocumentWhereInput[]
+    NOT?: InvestorDocumentWhereInput | InvestorDocumentWhereInput[]
+    id?: IntFilter<"InvestorDocument"> | number
+    categoryId?: IntFilter<"InvestorDocument"> | number
+    subCategoryId?: IntNullableFilter<"InvestorDocument"> | number | null
+    financialYearId?: IntNullableFilter<"InvestorDocument"> | number | null
+    quarterId?: IntNullableFilter<"InvestorDocument"> | number | null
+    title?: StringFilter<"InvestorDocument"> | string
+    description?: StringNullableFilter<"InvestorDocument"> | string | null
+    documentType?: StringNullableFilter<"InvestorDocument"> | string | null
+    purpose?: StringNullableFilter<"InvestorDocument"> | string | null
+    documentDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    disclosureDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    dueDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    storageType?: StringFilter<"InvestorDocument"> | string
+    externalUrl?: StringFilter<"InvestorDocument"> | string
+    isPublished?: BoolFilter<"InvestorDocument"> | boolean
+    sortOrder?: IntFilter<"InvestorDocument"> | number
+    metadata?: JsonNullableFilter<"InvestorDocument">
+    createdAt?: DateTimeFilter<"InvestorDocument"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorDocument"> | Date | string
+    category?: XOR<InvestorCategoryScalarRelationFilter, InvestorCategoryWhereInput>
+    subCategory?: XOR<InvestorSubCategoryNullableScalarRelationFilter, InvestorSubCategoryWhereInput> | null
+    financialYear?: XOR<InvestorFinancialYearNullableScalarRelationFilter, InvestorFinancialYearWhereInput> | null
+    quarter?: XOR<InvestorQuarterNullableScalarRelationFilter, InvestorQuarterWhereInput> | null
+  }
+
+  export type InvestorDocumentOrderByWithRelationInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrderInput | SortOrder
+    financialYearId?: SortOrderInput | SortOrder
+    quarterId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    documentType?: SortOrderInput | SortOrder
+    purpose?: SortOrderInput | SortOrder
+    documentDate?: SortOrderInput | SortOrder
+    disclosureDate?: SortOrderInput | SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    storageType?: SortOrder
+    externalUrl?: SortOrder
+    isPublished?: SortOrder
+    sortOrder?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    category?: InvestorCategoryOrderByWithRelationInput
+    subCategory?: InvestorSubCategoryOrderByWithRelationInput
+    financialYear?: InvestorFinancialYearOrderByWithRelationInput
+    quarter?: InvestorQuarterOrderByWithRelationInput
+    _relevance?: InvestorDocumentOrderByRelevanceInput
+  }
+
+  export type InvestorDocumentWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: InvestorDocumentWhereInput | InvestorDocumentWhereInput[]
+    OR?: InvestorDocumentWhereInput[]
+    NOT?: InvestorDocumentWhereInput | InvestorDocumentWhereInput[]
+    categoryId?: IntFilter<"InvestorDocument"> | number
+    subCategoryId?: IntNullableFilter<"InvestorDocument"> | number | null
+    financialYearId?: IntNullableFilter<"InvestorDocument"> | number | null
+    quarterId?: IntNullableFilter<"InvestorDocument"> | number | null
+    title?: StringFilter<"InvestorDocument"> | string
+    description?: StringNullableFilter<"InvestorDocument"> | string | null
+    documentType?: StringNullableFilter<"InvestorDocument"> | string | null
+    purpose?: StringNullableFilter<"InvestorDocument"> | string | null
+    documentDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    disclosureDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    dueDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    storageType?: StringFilter<"InvestorDocument"> | string
+    externalUrl?: StringFilter<"InvestorDocument"> | string
+    isPublished?: BoolFilter<"InvestorDocument"> | boolean
+    sortOrder?: IntFilter<"InvestorDocument"> | number
+    metadata?: JsonNullableFilter<"InvestorDocument">
+    createdAt?: DateTimeFilter<"InvestorDocument"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorDocument"> | Date | string
+    category?: XOR<InvestorCategoryScalarRelationFilter, InvestorCategoryWhereInput>
+    subCategory?: XOR<InvestorSubCategoryNullableScalarRelationFilter, InvestorSubCategoryWhereInput> | null
+    financialYear?: XOR<InvestorFinancialYearNullableScalarRelationFilter, InvestorFinancialYearWhereInput> | null
+    quarter?: XOR<InvestorQuarterNullableScalarRelationFilter, InvestorQuarterWhereInput> | null
+  }, "id">
+
+  export type InvestorDocumentOrderByWithAggregationInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrderInput | SortOrder
+    financialYearId?: SortOrderInput | SortOrder
+    quarterId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    documentType?: SortOrderInput | SortOrder
+    purpose?: SortOrderInput | SortOrder
+    documentDate?: SortOrderInput | SortOrder
+    disclosureDate?: SortOrderInput | SortOrder
+    dueDate?: SortOrderInput | SortOrder
+    storageType?: SortOrder
+    externalUrl?: SortOrder
+    isPublished?: SortOrder
+    sortOrder?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: InvestorDocumentCountOrderByAggregateInput
+    _avg?: InvestorDocumentAvgOrderByAggregateInput
+    _max?: InvestorDocumentMaxOrderByAggregateInput
+    _min?: InvestorDocumentMinOrderByAggregateInput
+    _sum?: InvestorDocumentSumOrderByAggregateInput
+  }
+
+  export type InvestorDocumentScalarWhereWithAggregatesInput = {
+    AND?: InvestorDocumentScalarWhereWithAggregatesInput | InvestorDocumentScalarWhereWithAggregatesInput[]
+    OR?: InvestorDocumentScalarWhereWithAggregatesInput[]
+    NOT?: InvestorDocumentScalarWhereWithAggregatesInput | InvestorDocumentScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InvestorDocument"> | number
+    categoryId?: IntWithAggregatesFilter<"InvestorDocument"> | number
+    subCategoryId?: IntNullableWithAggregatesFilter<"InvestorDocument"> | number | null
+    financialYearId?: IntNullableWithAggregatesFilter<"InvestorDocument"> | number | null
+    quarterId?: IntNullableWithAggregatesFilter<"InvestorDocument"> | number | null
+    title?: StringWithAggregatesFilter<"InvestorDocument"> | string
+    description?: StringNullableWithAggregatesFilter<"InvestorDocument"> | string | null
+    documentType?: StringNullableWithAggregatesFilter<"InvestorDocument"> | string | null
+    purpose?: StringNullableWithAggregatesFilter<"InvestorDocument"> | string | null
+    documentDate?: DateTimeNullableWithAggregatesFilter<"InvestorDocument"> | Date | string | null
+    disclosureDate?: DateTimeNullableWithAggregatesFilter<"InvestorDocument"> | Date | string | null
+    dueDate?: DateTimeNullableWithAggregatesFilter<"InvestorDocument"> | Date | string | null
+    storageType?: StringWithAggregatesFilter<"InvestorDocument"> | string
+    externalUrl?: StringWithAggregatesFilter<"InvestorDocument"> | string
+    isPublished?: BoolWithAggregatesFilter<"InvestorDocument"> | boolean
+    sortOrder?: IntWithAggregatesFilter<"InvestorDocument"> | number
+    metadata?: JsonNullableWithAggregatesFilter<"InvestorDocument">
+    createdAt?: DateTimeWithAggregatesFilter<"InvestorDocument"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InvestorDocument"> | Date | string
+  }
+
+  export type AdminUserCreateInput = {
+    email: string
+    passwordHash: string
+    name?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdminUserUncheckedCreateInput = {
+    id?: number
+    email: string
+    passwordHash: string
+    name?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdminUserUpdateInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminUserUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminUserCreateManyInput = {
+    id?: number
+    email: string
+    passwordHash: string
+    name?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AdminUserUpdateManyMutationInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminUserUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInquiryCreateInput = {
+    companyName?: string | null
+    name: string
+    email: string
+    phone?: string | null
+    subject?: string | null
+    message: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactInquiryUncheckedCreateInput = {
+    id?: number
+    companyName?: string | null
+    name: string
+    email: string
+    phone?: string | null
+    subject?: string | null
+    message: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactInquiryUpdateInput = {
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInquiryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInquiryCreateManyInput = {
+    id?: number
+    companyName?: string | null
+    name: string
+    email: string
+    phone?: string | null
+    subject?: string | null
+    message: string
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContactInquiryUpdateManyMutationInput = {
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactInquiryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterSubscriberCreateInput = {
+    email: string
+    subscribedAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsletterSubscriberUncheckedCreateInput = {
+    id?: number
+    email: string
+    subscribedAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsletterSubscriberUpdateInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    subscribedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterSubscriberUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    subscribedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterSubscriberCreateManyInput = {
+    id?: number
+    email: string
+    subscribedAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NewsletterSubscriberUpdateManyMutationInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    subscribedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NewsletterSubscriberUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    subscribedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogPostCreateInput = {
+    title: string
+    slug: string
+    type: $Enums.BlogType
+    excerpt?: string | null
+    content?: string | null
+    image?: string | null
+    documentUrl?: string | null
+    date: Date | string
+    location?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: string | null
+    personRole?: string | null
+    eventName?: string | null
+    link?: string | null
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostUncheckedCreateInput = {
+    id?: number
+    title: string
+    slug: string
+    type: $Enums.BlogType
+    excerpt?: string | null
+    content?: string | null
+    image?: string | null
+    documentUrl?: string | null
+    date: Date | string
+    location?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: string | null
+    personRole?: string | null
+    eventName?: string | null
+    link?: string | null
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    type?: EnumBlogTypeFieldUpdateOperationsInput | $Enums.BlogType
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: NullableStringFieldUpdateOperationsInput | string | null
+    personRole?: NullableStringFieldUpdateOperationsInput | string | null
+    eventName?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogPostUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    type?: EnumBlogTypeFieldUpdateOperationsInput | $Enums.BlogType
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: NullableStringFieldUpdateOperationsInput | string | null
+    personRole?: NullableStringFieldUpdateOperationsInput | string | null
+    eventName?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogPostCreateManyInput = {
+    id?: number
+    title: string
+    slug: string
+    type: $Enums.BlogType
+    excerpt?: string | null
+    content?: string | null
+    image?: string | null
+    documentUrl?: string | null
+    date: Date | string
+    location?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: string | null
+    personRole?: string | null
+    eventName?: string | null
+    link?: string | null
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    type?: EnumBlogTypeFieldUpdateOperationsInput | $Enums.BlogType
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: NullableStringFieldUpdateOperationsInput | string | null
+    personRole?: NullableStringFieldUpdateOperationsInput | string | null
+    eventName?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogPostUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    type?: EnumBlogTypeFieldUpdateOperationsInput | $Enums.BlogType
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: NullableStringFieldUpdateOperationsInput | string | null
+    personRole?: NullableStringFieldUpdateOperationsInput | string | null
+    eventName?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorCategoryCreateInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryCreateNestedManyWithoutCategoryInput
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryUncheckedCreateInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUpdateManyWithoutCategoryNestedInput
+    financialYears?: InvestorFinancialYearUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorCategoryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorCategoryCreateManyInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorCategoryUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorCategoryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorSubCategoryCreateInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutSubCategoriesInput
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutSubCategoryInput
+    documents?: InvestorDocumentCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryUncheckedCreateInput = {
+    id?: number
+    categoryId: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutSubCategoryInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutSubCategoriesNestedInput
+    financialYears?: InvestorFinancialYearUpdateManyWithoutSubCategoryNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutSubCategoryNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryCreateManyInput = {
+    id?: number
+    categoryId: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorSubCategoryUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorFinancialYearCreateInput = {
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: InvestorCategoryCreateNestedOneWithoutFinancialYearsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutFinancialYearsInput
+    quarters?: InvestorQuarterCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearUncheckedCreateInput = {
+    id?: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quarters?: InvestorQuarterUncheckedCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearUpdateInput = {
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneWithoutFinancialYearsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutFinancialYearsNestedInput
+    quarters?: InvestorQuarterUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quarters?: InvestorQuarterUncheckedUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearCreateManyInput = {
+    id?: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorFinancialYearUpdateManyMutationInput = {
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorQuarterCreateInput = {
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYear: InvestorFinancialYearCreateNestedOneWithoutQuartersInput
+    documents?: InvestorDocumentCreateNestedManyWithoutQuarterInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterUncheckedCreateInput = {
+    id?: number
+    financialYearId: number
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutQuarterInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYear?: InvestorFinancialYearUpdateOneRequiredWithoutQuartersNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutQuarterNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorQuarterUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    financialYearId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutQuarterNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorQuarterCreateManyInput = {
+    id?: number
+    financialYearId: number
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorQuarterUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorQuarterUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    financialYearId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatCreateInput = {
+    name: string
+    description?: string | null
+    financialYearMode?: string
+    isActive?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    columns?: InvestorTableColumnCreateNestedManyWithoutTableFormatInput
+    assignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutTableFormatInput
+  }
+
+  export type InvestorTableFormatUncheckedCreateInput = {
+    id?: number
+    name: string
+    description?: string | null
+    financialYearMode?: string
+    isActive?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    columns?: InvestorTableColumnUncheckedCreateNestedManyWithoutTableFormatInput
+    assignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutTableFormatInput
+  }
+
+  export type InvestorTableFormatUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    columns?: InvestorTableColumnUpdateManyWithoutTableFormatNestedInput
+    assignments?: InvestorTableFormatAssignmentUpdateManyWithoutTableFormatNestedInput
+  }
+
+  export type InvestorTableFormatUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    columns?: InvestorTableColumnUncheckedUpdateManyWithoutTableFormatNestedInput
+    assignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutTableFormatNestedInput
+  }
+
+  export type InvestorTableFormatCreateManyInput = {
+    id?: number
+    name: string
+    description?: string | null
+    financialYearMode?: string
+    isActive?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableColumnCreateInput = {
+    key: string
+    label: string
+    fieldType?: $Enums.InvestorTableFieldType
+    sortOrder?: number
+    isVisible?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tableFormat: InvestorTableFormatCreateNestedOneWithoutColumnsInput
+  }
+
+  export type InvestorTableColumnUncheckedCreateInput = {
+    id?: number
+    tableFormatId: number
+    key: string
+    label: string
+    fieldType?: $Enums.InvestorTableFieldType
+    sortOrder?: number
+    isVisible?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableColumnUpdateInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fieldType?: EnumInvestorTableFieldTypeFieldUpdateOperationsInput | $Enums.InvestorTableFieldType
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableFormat?: InvestorTableFormatUpdateOneRequiredWithoutColumnsNestedInput
+  }
+
+  export type InvestorTableColumnUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fieldType?: EnumInvestorTableFieldTypeFieldUpdateOperationsInput | $Enums.InvestorTableFieldType
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableColumnCreateManyInput = {
+    id?: number
+    tableFormatId: number
+    key: string
+    label: string
+    fieldType?: $Enums.InvestorTableFieldType
+    sortOrder?: number
+    isVisible?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableColumnUpdateManyMutationInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fieldType?: EnumInvestorTableFieldTypeFieldUpdateOperationsInput | $Enums.InvestorTableFieldType
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableColumnUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fieldType?: EnumInvestorTableFieldTypeFieldUpdateOperationsInput | $Enums.InvestorTableFieldType
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateInput = {
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tableFormat: InvestorTableFormatCreateNestedOneWithoutAssignmentsInput
+    category?: InvestorCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutTableFormatAssignmentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutTableFormatAssignmentsInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpdateInput = {
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableFormat?: InvestorTableFormatUpdateOneRequiredWithoutAssignmentsNestedInput
+    category?: InvestorCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutTableFormatAssignmentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutTableFormatAssignmentsNestedInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyMutationInput = {
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentCreateInput = {
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutDocumentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutDocumentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutDocumentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type InvestorDocumentUncheckedCreateInput = {
+    id?: number
+    categoryId: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutDocumentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutDocumentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutDocumentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutDocumentsNestedInput
+  }
+
+  export type InvestorDocumentUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentCreateManyInput = {
+    id?: number
+    categoryId: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type AdminUserOrderByRelevanceInput = {
+    fields: AdminUserOrderByRelevanceFieldEnum | AdminUserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AdminUserCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    name?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdminUserAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type AdminUserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    name?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdminUserMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    passwordHash?: SortOrder
+    name?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AdminUserSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type ContactInquiryOrderByRelevanceInput = {
+    fields: ContactInquiryOrderByRelevanceFieldEnum | ContactInquiryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ContactInquiryCountOrderByAggregateInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactInquiryAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ContactInquiryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactInquiryMinOrderByAggregateInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    subject?: SortOrder
+    message?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContactInquirySumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type NewsletterSubscriberOrderByRelevanceInput = {
+    fields: NewsletterSubscriberOrderByRelevanceFieldEnum | NewsletterSubscriberOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type NewsletterSubscriberCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    subscribedAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterSubscriberAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type NewsletterSubscriberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    subscribedAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterSubscriberMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    subscribedAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NewsletterSubscriberSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumBlogTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BlogType | EnumBlogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BlogType[]
+    notIn?: $Enums.BlogType[]
+    not?: NestedEnumBlogTypeFilter<$PrismaModel> | $Enums.BlogType
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type BlogPostOrderByRelevanceInput = {
+    fields: BlogPostOrderByRelevanceFieldEnum | BlogPostOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type BlogPostCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    type?: SortOrder
+    excerpt?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    documentUrl?: SortOrder
+    date?: SortOrder
+    location?: SortOrder
+    tags?: SortOrder
+    personName?: SortOrder
+    personRole?: SortOrder
+    eventName?: SortOrder
+    link?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlogPostAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type BlogPostMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    type?: SortOrder
+    excerpt?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    documentUrl?: SortOrder
+    date?: SortOrder
+    location?: SortOrder
+    personName?: SortOrder
+    personRole?: SortOrder
+    eventName?: SortOrder
+    link?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlogPostMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    type?: SortOrder
+    excerpt?: SortOrder
+    content?: SortOrder
+    image?: SortOrder
+    documentUrl?: SortOrder
+    date?: SortOrder
+    location?: SortOrder
+    personName?: SortOrder
+    personRole?: SortOrder
+    eventName?: SortOrder
+    link?: SortOrder
+    isPublished?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BlogPostSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumBlogTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BlogType | EnumBlogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BlogType[]
+    notIn?: $Enums.BlogType[]
+    not?: NestedEnumBlogTypeWithAggregatesFilter<$PrismaModel> | $Enums.BlogType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBlogTypeFilter<$PrismaModel>
+    _max?: NestedEnumBlogTypeFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type InvestorSubCategoryListRelationFilter = {
+    every?: InvestorSubCategoryWhereInput
+    some?: InvestorSubCategoryWhereInput
+    none?: InvestorSubCategoryWhereInput
+  }
+
+  export type InvestorFinancialYearListRelationFilter = {
+    every?: InvestorFinancialYearWhereInput
+    some?: InvestorFinancialYearWhereInput
+    none?: InvestorFinancialYearWhereInput
+  }
+
+  export type InvestorDocumentListRelationFilter = {
+    every?: InvestorDocumentWhereInput
+    some?: InvestorDocumentWhereInput
+    none?: InvestorDocumentWhereInput
+  }
+
+  export type InvestorTableFormatAssignmentListRelationFilter = {
+    every?: InvestorTableFormatAssignmentWhereInput
+    some?: InvestorTableFormatAssignmentWhereInput
+    none?: InvestorTableFormatAssignmentWhereInput
+  }
+
+  export type InvestorSubCategoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvestorFinancialYearOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvestorDocumentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvestorTableFormatAssignmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvestorCategoryOrderByRelevanceInput = {
+    fields: InvestorCategoryOrderByRelevanceFieldEnum | InvestorCategoryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorCategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorCategoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorCategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorCategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorCategorySumOrderByAggregateInput = {
+    id?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorCategoryScalarRelationFilter = {
+    is?: InvestorCategoryWhereInput
+    isNot?: InvestorCategoryWhereInput
+  }
+
+  export type InvestorSubCategoryOrderByRelevanceInput = {
+    fields: InvestorSubCategoryOrderByRelevanceFieldEnum | InvestorSubCategoryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorSubCategoryCategoryIdNameCompoundUniqueInput = {
+    categoryId: number
+    name: string
+  }
+
+  export type InvestorSubCategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorSubCategoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorSubCategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorSubCategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorSubCategorySumOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type InvestorCategoryNullableScalarRelationFilter = {
+    is?: InvestorCategoryWhereInput | null
+    isNot?: InvestorCategoryWhereInput | null
+  }
+
+  export type InvestorSubCategoryNullableScalarRelationFilter = {
+    is?: InvestorSubCategoryWhereInput | null
+    isNot?: InvestorSubCategoryWhereInput | null
+  }
+
+  export type InvestorQuarterListRelationFilter = {
+    every?: InvestorQuarterWhereInput
+    some?: InvestorQuarterWhereInput
+    none?: InvestorQuarterWhereInput
+  }
+
+  export type InvestorQuarterOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvestorFinancialYearOrderByRelevanceInput = {
+    fields: InvestorFinancialYearOrderByRelevanceFieldEnum | InvestorFinancialYearOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorFinancialYearCountOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    year?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorFinancialYearAvgOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorFinancialYearMaxOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    year?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorFinancialYearMinOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    year?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorFinancialYearSumOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type InvestorFinancialYearScalarRelationFilter = {
+    is?: InvestorFinancialYearWhereInput
+    isNot?: InvestorFinancialYearWhereInput
+  }
+
+  export type InvestorQuarterOrderByRelevanceInput = {
+    fields: InvestorQuarterOrderByRelevanceFieldEnum | InvestorQuarterOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorQuarterFinancialYearIdCodeCompoundUniqueInput = {
+    financialYearId: number
+    code: string
+  }
+
+  export type InvestorQuarterCountOrderByAggregateInput = {
+    id?: SortOrder
+    financialYearId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    releaseDate?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorQuarterAvgOrderByAggregateInput = {
+    id?: SortOrder
+    financialYearId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorQuarterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    financialYearId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    releaseDate?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorQuarterMinOrderByAggregateInput = {
+    id?: SortOrder
+    financialYearId?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    releaseDate?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorQuarterSumOrderByAggregateInput = {
+    id?: SortOrder
+    financialYearId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type InvestorTableColumnListRelationFilter = {
+    every?: InvestorTableColumnWhereInput
+    some?: InvestorTableColumnWhereInput
+    none?: InvestorTableColumnWhereInput
+  }
+
+  export type InvestorTableColumnOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InvestorTableFormatOrderByRelevanceInput = {
+    fields: InvestorTableFormatOrderByRelevanceFieldEnum | InvestorTableFormatOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorTableFormatCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    financialYearMode?: SortOrder
+    isActive?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableFormatAvgOrderByAggregateInput = {
+    id?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorTableFormatMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    financialYearMode?: SortOrder
+    isActive?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableFormatMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    financialYearMode?: SortOrder
+    isActive?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableFormatSumOrderByAggregateInput = {
+    id?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type EnumInvestorTableFieldTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.InvestorTableFieldType | EnumInvestorTableFieldTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InvestorTableFieldType[]
+    notIn?: $Enums.InvestorTableFieldType[]
+    not?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel> | $Enums.InvestorTableFieldType
+  }
+
+  export type InvestorTableFormatScalarRelationFilter = {
+    is?: InvestorTableFormatWhereInput
+    isNot?: InvestorTableFormatWhereInput
+  }
+
+  export type InvestorTableColumnOrderByRelevanceInput = {
+    fields: InvestorTableColumnOrderByRelevanceFieldEnum | InvestorTableColumnOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorTableColumnTableFormatIdKeyCompoundUniqueInput = {
+    tableFormatId: number
+    key: string
+  }
+
+  export type InvestorTableColumnCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    fieldType?: SortOrder
+    sortOrder?: SortOrder
+    isVisible?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableColumnAvgOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorTableColumnMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    fieldType?: SortOrder
+    sortOrder?: SortOrder
+    isVisible?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableColumnMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    key?: SortOrder
+    label?: SortOrder
+    fieldType?: SortOrder
+    sortOrder?: SortOrder
+    isVisible?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableColumnSumOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type EnumInvestorTableFieldTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.InvestorTableFieldType | EnumInvestorTableFieldTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InvestorTableFieldType[]
+    notIn?: $Enums.InvestorTableFieldType[]
+    not?: NestedEnumInvestorTableFieldTypeWithAggregatesFilter<$PrismaModel> | $Enums.InvestorTableFieldType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel>
+    _max?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel>
+  }
+
+  export type InvestorFinancialYearNullableScalarRelationFilter = {
+    is?: InvestorFinancialYearWhereInput | null
+    isNot?: InvestorFinancialYearWhereInput | null
+  }
+
+  export type InvestorQuarterNullableScalarRelationFilter = {
+    is?: InvestorQuarterWhereInput | null
+    isNot?: InvestorQuarterWhereInput | null
+  }
+
+  export type InvestorTableFormatAssignmentOrderByRelevanceInput = {
+    fields: InvestorTableFormatAssignmentOrderByRelevanceFieldEnum | InvestorTableFormatAssignmentOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorTableFormatAssignmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    displayMode?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableFormatAssignmentAvgOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+  }
+
+  export type InvestorTableFormatAssignmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    displayMode?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableFormatAssignmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    displayMode?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorTableFormatAssignmentSumOrderByAggregateInput = {
+    id?: SortOrder
+    tableFormatId?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+  }
+
+  export type InvestorDocumentOrderByRelevanceInput = {
+    fields: InvestorDocumentOrderByRelevanceFieldEnum | InvestorDocumentOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type InvestorDocumentCountOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    documentType?: SortOrder
+    purpose?: SortOrder
+    documentDate?: SortOrder
+    disclosureDate?: SortOrder
+    dueDate?: SortOrder
+    storageType?: SortOrder
+    externalUrl?: SortOrder
+    isPublished?: SortOrder
+    sortOrder?: SortOrder
+    metadata?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorDocumentAvgOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type InvestorDocumentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    documentType?: SortOrder
+    purpose?: SortOrder
+    documentDate?: SortOrder
+    disclosureDate?: SortOrder
+    dueDate?: SortOrder
+    storageType?: SortOrder
+    externalUrl?: SortOrder
+    isPublished?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorDocumentMinOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    documentType?: SortOrder
+    purpose?: SortOrder
+    documentDate?: SortOrder
+    disclosureDate?: SortOrder
+    dueDate?: SortOrder
+    storageType?: SortOrder
+    externalUrl?: SortOrder
+    isPublished?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InvestorDocumentSumOrderByAggregateInput = {
+    id?: SortOrder
+    categoryId?: SortOrder
+    subCategoryId?: SortOrder
+    financialYearId?: SortOrder
+    quarterId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumBlogTypeFieldUpdateOperationsInput = {
+    set?: $Enums.BlogType
+  }
+
+  export type InvestorSubCategoryCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutCategoryInput, InvestorSubCategoryUncheckedCreateWithoutCategoryInput> | InvestorSubCategoryCreateWithoutCategoryInput[] | InvestorSubCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutCategoryInput | InvestorSubCategoryCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorSubCategoryCreateManyCategoryInputEnvelope
+    connect?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+  }
+
+  export type InvestorFinancialYearCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutCategoryInput, InvestorFinancialYearUncheckedCreateWithoutCategoryInput> | InvestorFinancialYearCreateWithoutCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutCategoryInput | InvestorFinancialYearCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManyCategoryInputEnvelope
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+  }
+
+  export type InvestorDocumentCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorDocumentCreateWithoutCategoryInput, InvestorDocumentUncheckedCreateWithoutCategoryInput> | InvestorDocumentCreateWithoutCategoryInput[] | InvestorDocumentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutCategoryInput | InvestorDocumentCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorDocumentCreateManyCategoryInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput> | InvestorTableFormatAssignmentCreateWithoutCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyCategoryInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorSubCategoryUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutCategoryInput, InvestorSubCategoryUncheckedCreateWithoutCategoryInput> | InvestorSubCategoryCreateWithoutCategoryInput[] | InvestorSubCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutCategoryInput | InvestorSubCategoryCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorSubCategoryCreateManyCategoryInputEnvelope
+    connect?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+  }
+
+  export type InvestorFinancialYearUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutCategoryInput, InvestorFinancialYearUncheckedCreateWithoutCategoryInput> | InvestorFinancialYearCreateWithoutCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutCategoryInput | InvestorFinancialYearCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManyCategoryInputEnvelope
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+  }
+
+  export type InvestorDocumentUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorDocumentCreateWithoutCategoryInput, InvestorDocumentUncheckedCreateWithoutCategoryInput> | InvestorDocumentCreateWithoutCategoryInput[] | InvestorDocumentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutCategoryInput | InvestorDocumentCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorDocumentCreateManyCategoryInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput> | InvestorTableFormatAssignmentCreateWithoutCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyCategoryInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorSubCategoryUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutCategoryInput, InvestorSubCategoryUncheckedCreateWithoutCategoryInput> | InvestorSubCategoryCreateWithoutCategoryInput[] | InvestorSubCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutCategoryInput | InvestorSubCategoryCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorSubCategoryUpsertWithWhereUniqueWithoutCategoryInput | InvestorSubCategoryUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorSubCategoryCreateManyCategoryInputEnvelope
+    set?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    disconnect?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    delete?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    connect?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    update?: InvestorSubCategoryUpdateWithWhereUniqueWithoutCategoryInput | InvestorSubCategoryUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorSubCategoryUpdateManyWithWhereWithoutCategoryInput | InvestorSubCategoryUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorSubCategoryScalarWhereInput | InvestorSubCategoryScalarWhereInput[]
+  }
+
+  export type InvestorFinancialYearUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutCategoryInput, InvestorFinancialYearUncheckedCreateWithoutCategoryInput> | InvestorFinancialYearCreateWithoutCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutCategoryInput | InvestorFinancialYearCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorFinancialYearUpsertWithWhereUniqueWithoutCategoryInput | InvestorFinancialYearUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManyCategoryInputEnvelope
+    set?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    disconnect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    delete?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    update?: InvestorFinancialYearUpdateWithWhereUniqueWithoutCategoryInput | InvestorFinancialYearUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorFinancialYearUpdateManyWithWhereWithoutCategoryInput | InvestorFinancialYearUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorFinancialYearScalarWhereInput | InvestorFinancialYearScalarWhereInput[]
+  }
+
+  export type InvestorDocumentUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutCategoryInput, InvestorDocumentUncheckedCreateWithoutCategoryInput> | InvestorDocumentCreateWithoutCategoryInput[] | InvestorDocumentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutCategoryInput | InvestorDocumentCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutCategoryInput | InvestorDocumentUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorDocumentCreateManyCategoryInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutCategoryInput | InvestorDocumentUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutCategoryInput | InvestorDocumentUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput> | InvestorTableFormatAssignmentCreateWithoutCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutCategoryInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyCategoryInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutCategoryInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutCategoryInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutCategoryInput, InvestorSubCategoryUncheckedCreateWithoutCategoryInput> | InvestorSubCategoryCreateWithoutCategoryInput[] | InvestorSubCategoryUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutCategoryInput | InvestorSubCategoryCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorSubCategoryUpsertWithWhereUniqueWithoutCategoryInput | InvestorSubCategoryUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorSubCategoryCreateManyCategoryInputEnvelope
+    set?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    disconnect?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    delete?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    connect?: InvestorSubCategoryWhereUniqueInput | InvestorSubCategoryWhereUniqueInput[]
+    update?: InvestorSubCategoryUpdateWithWhereUniqueWithoutCategoryInput | InvestorSubCategoryUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorSubCategoryUpdateManyWithWhereWithoutCategoryInput | InvestorSubCategoryUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorSubCategoryScalarWhereInput | InvestorSubCategoryScalarWhereInput[]
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutCategoryInput, InvestorFinancialYearUncheckedCreateWithoutCategoryInput> | InvestorFinancialYearCreateWithoutCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutCategoryInput | InvestorFinancialYearCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorFinancialYearUpsertWithWhereUniqueWithoutCategoryInput | InvestorFinancialYearUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManyCategoryInputEnvelope
+    set?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    disconnect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    delete?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    update?: InvestorFinancialYearUpdateWithWhereUniqueWithoutCategoryInput | InvestorFinancialYearUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorFinancialYearUpdateManyWithWhereWithoutCategoryInput | InvestorFinancialYearUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorFinancialYearScalarWhereInput | InvestorFinancialYearScalarWhereInput[]
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutCategoryInput, InvestorDocumentUncheckedCreateWithoutCategoryInput> | InvestorDocumentCreateWithoutCategoryInput[] | InvestorDocumentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutCategoryInput | InvestorDocumentCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutCategoryInput | InvestorDocumentUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorDocumentCreateManyCategoryInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutCategoryInput | InvestorDocumentUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutCategoryInput | InvestorDocumentUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput> | InvestorTableFormatAssignmentCreateWithoutCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutCategoryInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyCategoryInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutCategoryInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutCategoryInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorCategoryCreateNestedOneWithoutSubCategoriesInput = {
+    create?: XOR<InvestorCategoryCreateWithoutSubCategoriesInput, InvestorCategoryUncheckedCreateWithoutSubCategoriesInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutSubCategoriesInput
+    connect?: InvestorCategoryWhereUniqueInput
+  }
+
+  export type InvestorFinancialYearCreateNestedManyWithoutSubCategoryInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutSubCategoryInput, InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput> | InvestorFinancialYearCreateWithoutSubCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput | InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManySubCategoryInputEnvelope
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+  }
+
+  export type InvestorDocumentCreateNestedManyWithoutSubCategoryInput = {
+    create?: XOR<InvestorDocumentCreateWithoutSubCategoryInput, InvestorDocumentUncheckedCreateWithoutSubCategoryInput> | InvestorDocumentCreateWithoutSubCategoryInput[] | InvestorDocumentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutSubCategoryInput | InvestorDocumentCreateOrConnectWithoutSubCategoryInput[]
+    createMany?: InvestorDocumentCreateManySubCategoryInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentCreateNestedManyWithoutSubCategoryInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput> | InvestorTableFormatAssignmentCreateWithoutSubCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManySubCategoryInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorFinancialYearUncheckedCreateNestedManyWithoutSubCategoryInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutSubCategoryInput, InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput> | InvestorFinancialYearCreateWithoutSubCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput | InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManySubCategoryInputEnvelope
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+  }
+
+  export type InvestorDocumentUncheckedCreateNestedManyWithoutSubCategoryInput = {
+    create?: XOR<InvestorDocumentCreateWithoutSubCategoryInput, InvestorDocumentUncheckedCreateWithoutSubCategoryInput> | InvestorDocumentCreateWithoutSubCategoryInput[] | InvestorDocumentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutSubCategoryInput | InvestorDocumentCreateOrConnectWithoutSubCategoryInput[]
+    createMany?: InvestorDocumentCreateManySubCategoryInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutSubCategoryInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput> | InvestorTableFormatAssignmentCreateWithoutSubCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManySubCategoryInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorCategoryUpdateOneRequiredWithoutSubCategoriesNestedInput = {
+    create?: XOR<InvestorCategoryCreateWithoutSubCategoriesInput, InvestorCategoryUncheckedCreateWithoutSubCategoriesInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutSubCategoriesInput
+    upsert?: InvestorCategoryUpsertWithoutSubCategoriesInput
+    connect?: InvestorCategoryWhereUniqueInput
+    update?: XOR<XOR<InvestorCategoryUpdateToOneWithWhereWithoutSubCategoriesInput, InvestorCategoryUpdateWithoutSubCategoriesInput>, InvestorCategoryUncheckedUpdateWithoutSubCategoriesInput>
+  }
+
+  export type InvestorFinancialYearUpdateManyWithoutSubCategoryNestedInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutSubCategoryInput, InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput> | InvestorFinancialYearCreateWithoutSubCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput | InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput[]
+    upsert?: InvestorFinancialYearUpsertWithWhereUniqueWithoutSubCategoryInput | InvestorFinancialYearUpsertWithWhereUniqueWithoutSubCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManySubCategoryInputEnvelope
+    set?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    disconnect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    delete?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    update?: InvestorFinancialYearUpdateWithWhereUniqueWithoutSubCategoryInput | InvestorFinancialYearUpdateWithWhereUniqueWithoutSubCategoryInput[]
+    updateMany?: InvestorFinancialYearUpdateManyWithWhereWithoutSubCategoryInput | InvestorFinancialYearUpdateManyWithWhereWithoutSubCategoryInput[]
+    deleteMany?: InvestorFinancialYearScalarWhereInput | InvestorFinancialYearScalarWhereInput[]
+  }
+
+  export type InvestorDocumentUpdateManyWithoutSubCategoryNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutSubCategoryInput, InvestorDocumentUncheckedCreateWithoutSubCategoryInput> | InvestorDocumentCreateWithoutSubCategoryInput[] | InvestorDocumentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutSubCategoryInput | InvestorDocumentCreateOrConnectWithoutSubCategoryInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutSubCategoryInput | InvestorDocumentUpsertWithWhereUniqueWithoutSubCategoryInput[]
+    createMany?: InvestorDocumentCreateManySubCategoryInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutSubCategoryInput | InvestorDocumentUpdateWithWhereUniqueWithoutSubCategoryInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutSubCategoryInput | InvestorDocumentUpdateManyWithWhereWithoutSubCategoryInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithoutSubCategoryNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput> | InvestorTableFormatAssignmentCreateWithoutSubCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutSubCategoryInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutSubCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManySubCategoryInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutSubCategoryInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutSubCategoryInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutSubCategoryInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutSubCategoryInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateManyWithoutSubCategoryNestedInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutSubCategoryInput, InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput> | InvestorFinancialYearCreateWithoutSubCategoryInput[] | InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput | InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput[]
+    upsert?: InvestorFinancialYearUpsertWithWhereUniqueWithoutSubCategoryInput | InvestorFinancialYearUpsertWithWhereUniqueWithoutSubCategoryInput[]
+    createMany?: InvestorFinancialYearCreateManySubCategoryInputEnvelope
+    set?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    disconnect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    delete?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    connect?: InvestorFinancialYearWhereUniqueInput | InvestorFinancialYearWhereUniqueInput[]
+    update?: InvestorFinancialYearUpdateWithWhereUniqueWithoutSubCategoryInput | InvestorFinancialYearUpdateWithWhereUniqueWithoutSubCategoryInput[]
+    updateMany?: InvestorFinancialYearUpdateManyWithWhereWithoutSubCategoryInput | InvestorFinancialYearUpdateManyWithWhereWithoutSubCategoryInput[]
+    deleteMany?: InvestorFinancialYearScalarWhereInput | InvestorFinancialYearScalarWhereInput[]
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutSubCategoryNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutSubCategoryInput, InvestorDocumentUncheckedCreateWithoutSubCategoryInput> | InvestorDocumentCreateWithoutSubCategoryInput[] | InvestorDocumentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutSubCategoryInput | InvestorDocumentCreateOrConnectWithoutSubCategoryInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutSubCategoryInput | InvestorDocumentUpsertWithWhereUniqueWithoutSubCategoryInput[]
+    createMany?: InvestorDocumentCreateManySubCategoryInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutSubCategoryInput | InvestorDocumentUpdateWithWhereUniqueWithoutSubCategoryInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutSubCategoryInput | InvestorDocumentUpdateManyWithWhereWithoutSubCategoryInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutSubCategoryNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput> | InvestorTableFormatAssignmentCreateWithoutSubCategoryInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput | InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutSubCategoryInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutSubCategoryInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManySubCategoryInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutSubCategoryInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutSubCategoryInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutSubCategoryInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutSubCategoryInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorCategoryCreateNestedOneWithoutFinancialYearsInput = {
+    create?: XOR<InvestorCategoryCreateWithoutFinancialYearsInput, InvestorCategoryUncheckedCreateWithoutFinancialYearsInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutFinancialYearsInput
+    connect?: InvestorCategoryWhereUniqueInput
+  }
+
+  export type InvestorSubCategoryCreateNestedOneWithoutFinancialYearsInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutFinancialYearsInput, InvestorSubCategoryUncheckedCreateWithoutFinancialYearsInput>
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutFinancialYearsInput
+    connect?: InvestorSubCategoryWhereUniqueInput
+  }
+
+  export type InvestorQuarterCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<InvestorQuarterCreateWithoutFinancialYearInput, InvestorQuarterUncheckedCreateWithoutFinancialYearInput> | InvestorQuarterCreateWithoutFinancialYearInput[] | InvestorQuarterUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutFinancialYearInput | InvestorQuarterCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: InvestorQuarterCreateManyFinancialYearInputEnvelope
+    connect?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+  }
+
+  export type InvestorDocumentCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<InvestorDocumentCreateWithoutFinancialYearInput, InvestorDocumentUncheckedCreateWithoutFinancialYearInput> | InvestorDocumentCreateWithoutFinancialYearInput[] | InvestorDocumentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutFinancialYearInput | InvestorDocumentCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: InvestorDocumentCreateManyFinancialYearInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput> | InvestorTableFormatAssignmentCreateWithoutFinancialYearInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput | InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyFinancialYearInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorQuarterUncheckedCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<InvestorQuarterCreateWithoutFinancialYearInput, InvestorQuarterUncheckedCreateWithoutFinancialYearInput> | InvestorQuarterCreateWithoutFinancialYearInput[] | InvestorQuarterUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutFinancialYearInput | InvestorQuarterCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: InvestorQuarterCreateManyFinancialYearInputEnvelope
+    connect?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+  }
+
+  export type InvestorDocumentUncheckedCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<InvestorDocumentCreateWithoutFinancialYearInput, InvestorDocumentUncheckedCreateWithoutFinancialYearInput> | InvestorDocumentCreateWithoutFinancialYearInput[] | InvestorDocumentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutFinancialYearInput | InvestorDocumentCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: InvestorDocumentCreateManyFinancialYearInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutFinancialYearInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput> | InvestorTableFormatAssignmentCreateWithoutFinancialYearInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput | InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyFinancialYearInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorCategoryUpdateOneWithoutFinancialYearsNestedInput = {
+    create?: XOR<InvestorCategoryCreateWithoutFinancialYearsInput, InvestorCategoryUncheckedCreateWithoutFinancialYearsInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutFinancialYearsInput
+    upsert?: InvestorCategoryUpsertWithoutFinancialYearsInput
+    disconnect?: InvestorCategoryWhereInput | boolean
+    delete?: InvestorCategoryWhereInput | boolean
+    connect?: InvestorCategoryWhereUniqueInput
+    update?: XOR<XOR<InvestorCategoryUpdateToOneWithWhereWithoutFinancialYearsInput, InvestorCategoryUpdateWithoutFinancialYearsInput>, InvestorCategoryUncheckedUpdateWithoutFinancialYearsInput>
+  }
+
+  export type InvestorSubCategoryUpdateOneWithoutFinancialYearsNestedInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutFinancialYearsInput, InvestorSubCategoryUncheckedCreateWithoutFinancialYearsInput>
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutFinancialYearsInput
+    upsert?: InvestorSubCategoryUpsertWithoutFinancialYearsInput
+    disconnect?: InvestorSubCategoryWhereInput | boolean
+    delete?: InvestorSubCategoryWhereInput | boolean
+    connect?: InvestorSubCategoryWhereUniqueInput
+    update?: XOR<XOR<InvestorSubCategoryUpdateToOneWithWhereWithoutFinancialYearsInput, InvestorSubCategoryUpdateWithoutFinancialYearsInput>, InvestorSubCategoryUncheckedUpdateWithoutFinancialYearsInput>
+  }
+
+  export type InvestorQuarterUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<InvestorQuarterCreateWithoutFinancialYearInput, InvestorQuarterUncheckedCreateWithoutFinancialYearInput> | InvestorQuarterCreateWithoutFinancialYearInput[] | InvestorQuarterUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutFinancialYearInput | InvestorQuarterCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: InvestorQuarterUpsertWithWhereUniqueWithoutFinancialYearInput | InvestorQuarterUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: InvestorQuarterCreateManyFinancialYearInputEnvelope
+    set?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    disconnect?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    delete?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    connect?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    update?: InvestorQuarterUpdateWithWhereUniqueWithoutFinancialYearInput | InvestorQuarterUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: InvestorQuarterUpdateManyWithWhereWithoutFinancialYearInput | InvestorQuarterUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: InvestorQuarterScalarWhereInput | InvestorQuarterScalarWhereInput[]
+  }
+
+  export type InvestorDocumentUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutFinancialYearInput, InvestorDocumentUncheckedCreateWithoutFinancialYearInput> | InvestorDocumentCreateWithoutFinancialYearInput[] | InvestorDocumentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutFinancialYearInput | InvestorDocumentCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutFinancialYearInput | InvestorDocumentUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: InvestorDocumentCreateManyFinancialYearInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutFinancialYearInput | InvestorDocumentUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutFinancialYearInput | InvestorDocumentUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput> | InvestorTableFormatAssignmentCreateWithoutFinancialYearInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput | InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutFinancialYearInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyFinancialYearInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutFinancialYearInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutFinancialYearInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type InvestorQuarterUncheckedUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<InvestorQuarterCreateWithoutFinancialYearInput, InvestorQuarterUncheckedCreateWithoutFinancialYearInput> | InvestorQuarterCreateWithoutFinancialYearInput[] | InvestorQuarterUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutFinancialYearInput | InvestorQuarterCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: InvestorQuarterUpsertWithWhereUniqueWithoutFinancialYearInput | InvestorQuarterUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: InvestorQuarterCreateManyFinancialYearInputEnvelope
+    set?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    disconnect?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    delete?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    connect?: InvestorQuarterWhereUniqueInput | InvestorQuarterWhereUniqueInput[]
+    update?: InvestorQuarterUpdateWithWhereUniqueWithoutFinancialYearInput | InvestorQuarterUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: InvestorQuarterUpdateManyWithWhereWithoutFinancialYearInput | InvestorQuarterUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: InvestorQuarterScalarWhereInput | InvestorQuarterScalarWhereInput[]
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutFinancialYearInput, InvestorDocumentUncheckedCreateWithoutFinancialYearInput> | InvestorDocumentCreateWithoutFinancialYearInput[] | InvestorDocumentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutFinancialYearInput | InvestorDocumentCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutFinancialYearInput | InvestorDocumentUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: InvestorDocumentCreateManyFinancialYearInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutFinancialYearInput | InvestorDocumentUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutFinancialYearInput | InvestorDocumentUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput> | InvestorTableFormatAssignmentCreateWithoutFinancialYearInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput | InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutFinancialYearInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutFinancialYearInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyFinancialYearInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutFinancialYearInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutFinancialYearInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutFinancialYearInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutFinancialYearInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorFinancialYearCreateNestedOneWithoutQuartersInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutQuartersInput, InvestorFinancialYearUncheckedCreateWithoutQuartersInput>
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutQuartersInput
+    connect?: InvestorFinancialYearWhereUniqueInput
+  }
+
+  export type InvestorDocumentCreateNestedManyWithoutQuarterInput = {
+    create?: XOR<InvestorDocumentCreateWithoutQuarterInput, InvestorDocumentUncheckedCreateWithoutQuarterInput> | InvestorDocumentCreateWithoutQuarterInput[] | InvestorDocumentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutQuarterInput | InvestorDocumentCreateOrConnectWithoutQuarterInput[]
+    createMany?: InvestorDocumentCreateManyQuarterInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentCreateNestedManyWithoutQuarterInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput> | InvestorTableFormatAssignmentCreateWithoutQuarterInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput | InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyQuarterInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorDocumentUncheckedCreateNestedManyWithoutQuarterInput = {
+    create?: XOR<InvestorDocumentCreateWithoutQuarterInput, InvestorDocumentUncheckedCreateWithoutQuarterInput> | InvestorDocumentCreateWithoutQuarterInput[] | InvestorDocumentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutQuarterInput | InvestorDocumentCreateOrConnectWithoutQuarterInput[]
+    createMany?: InvestorDocumentCreateManyQuarterInputEnvelope
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutQuarterInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput> | InvestorTableFormatAssignmentCreateWithoutQuarterInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput | InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyQuarterInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type InvestorFinancialYearUpdateOneRequiredWithoutQuartersNestedInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutQuartersInput, InvestorFinancialYearUncheckedCreateWithoutQuartersInput>
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutQuartersInput
+    upsert?: InvestorFinancialYearUpsertWithoutQuartersInput
+    connect?: InvestorFinancialYearWhereUniqueInput
+    update?: XOR<XOR<InvestorFinancialYearUpdateToOneWithWhereWithoutQuartersInput, InvestorFinancialYearUpdateWithoutQuartersInput>, InvestorFinancialYearUncheckedUpdateWithoutQuartersInput>
+  }
+
+  export type InvestorDocumentUpdateManyWithoutQuarterNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutQuarterInput, InvestorDocumentUncheckedCreateWithoutQuarterInput> | InvestorDocumentCreateWithoutQuarterInput[] | InvestorDocumentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutQuarterInput | InvestorDocumentCreateOrConnectWithoutQuarterInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutQuarterInput | InvestorDocumentUpsertWithWhereUniqueWithoutQuarterInput[]
+    createMany?: InvestorDocumentCreateManyQuarterInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutQuarterInput | InvestorDocumentUpdateWithWhereUniqueWithoutQuarterInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutQuarterInput | InvestorDocumentUpdateManyWithWhereWithoutQuarterInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithoutQuarterNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput> | InvestorTableFormatAssignmentCreateWithoutQuarterInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput | InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutQuarterInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutQuarterInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyQuarterInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutQuarterInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutQuarterInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutQuarterInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutQuarterInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutQuarterNestedInput = {
+    create?: XOR<InvestorDocumentCreateWithoutQuarterInput, InvestorDocumentUncheckedCreateWithoutQuarterInput> | InvestorDocumentCreateWithoutQuarterInput[] | InvestorDocumentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorDocumentCreateOrConnectWithoutQuarterInput | InvestorDocumentCreateOrConnectWithoutQuarterInput[]
+    upsert?: InvestorDocumentUpsertWithWhereUniqueWithoutQuarterInput | InvestorDocumentUpsertWithWhereUniqueWithoutQuarterInput[]
+    createMany?: InvestorDocumentCreateManyQuarterInputEnvelope
+    set?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    disconnect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    delete?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    connect?: InvestorDocumentWhereUniqueInput | InvestorDocumentWhereUniqueInput[]
+    update?: InvestorDocumentUpdateWithWhereUniqueWithoutQuarterInput | InvestorDocumentUpdateWithWhereUniqueWithoutQuarterInput[]
+    updateMany?: InvestorDocumentUpdateManyWithWhereWithoutQuarterInput | InvestorDocumentUpdateManyWithWhereWithoutQuarterInput[]
+    deleteMany?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutQuarterNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput> | InvestorTableFormatAssignmentCreateWithoutQuarterInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput | InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutQuarterInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutQuarterInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyQuarterInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutQuarterInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutQuarterInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutQuarterInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutQuarterInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorTableColumnCreateNestedManyWithoutTableFormatInput = {
+    create?: XOR<InvestorTableColumnCreateWithoutTableFormatInput, InvestorTableColumnUncheckedCreateWithoutTableFormatInput> | InvestorTableColumnCreateWithoutTableFormatInput[] | InvestorTableColumnUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableColumnCreateOrConnectWithoutTableFormatInput | InvestorTableColumnCreateOrConnectWithoutTableFormatInput[]
+    createMany?: InvestorTableColumnCreateManyTableFormatInputEnvelope
+    connect?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentCreateNestedManyWithoutTableFormatInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput> | InvestorTableFormatAssignmentCreateWithoutTableFormatInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput | InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyTableFormatInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorTableColumnUncheckedCreateNestedManyWithoutTableFormatInput = {
+    create?: XOR<InvestorTableColumnCreateWithoutTableFormatInput, InvestorTableColumnUncheckedCreateWithoutTableFormatInput> | InvestorTableColumnCreateWithoutTableFormatInput[] | InvestorTableColumnUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableColumnCreateOrConnectWithoutTableFormatInput | InvestorTableColumnCreateOrConnectWithoutTableFormatInput[]
+    createMany?: InvestorTableColumnCreateManyTableFormatInputEnvelope
+    connect?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutTableFormatInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput> | InvestorTableFormatAssignmentCreateWithoutTableFormatInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput | InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyTableFormatInputEnvelope
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+  }
+
+  export type InvestorTableColumnUpdateManyWithoutTableFormatNestedInput = {
+    create?: XOR<InvestorTableColumnCreateWithoutTableFormatInput, InvestorTableColumnUncheckedCreateWithoutTableFormatInput> | InvestorTableColumnCreateWithoutTableFormatInput[] | InvestorTableColumnUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableColumnCreateOrConnectWithoutTableFormatInput | InvestorTableColumnCreateOrConnectWithoutTableFormatInput[]
+    upsert?: InvestorTableColumnUpsertWithWhereUniqueWithoutTableFormatInput | InvestorTableColumnUpsertWithWhereUniqueWithoutTableFormatInput[]
+    createMany?: InvestorTableColumnCreateManyTableFormatInputEnvelope
+    set?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    disconnect?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    delete?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    connect?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    update?: InvestorTableColumnUpdateWithWhereUniqueWithoutTableFormatInput | InvestorTableColumnUpdateWithWhereUniqueWithoutTableFormatInput[]
+    updateMany?: InvestorTableColumnUpdateManyWithWhereWithoutTableFormatInput | InvestorTableColumnUpdateManyWithWhereWithoutTableFormatInput[]
+    deleteMany?: InvestorTableColumnScalarWhereInput | InvestorTableColumnScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithoutTableFormatNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput> | InvestorTableFormatAssignmentCreateWithoutTableFormatInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput | InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutTableFormatInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutTableFormatInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyTableFormatInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutTableFormatInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutTableFormatInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutTableFormatInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutTableFormatInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorTableColumnUncheckedUpdateManyWithoutTableFormatNestedInput = {
+    create?: XOR<InvestorTableColumnCreateWithoutTableFormatInput, InvestorTableColumnUncheckedCreateWithoutTableFormatInput> | InvestorTableColumnCreateWithoutTableFormatInput[] | InvestorTableColumnUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableColumnCreateOrConnectWithoutTableFormatInput | InvestorTableColumnCreateOrConnectWithoutTableFormatInput[]
+    upsert?: InvestorTableColumnUpsertWithWhereUniqueWithoutTableFormatInput | InvestorTableColumnUpsertWithWhereUniqueWithoutTableFormatInput[]
+    createMany?: InvestorTableColumnCreateManyTableFormatInputEnvelope
+    set?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    disconnect?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    delete?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    connect?: InvestorTableColumnWhereUniqueInput | InvestorTableColumnWhereUniqueInput[]
+    update?: InvestorTableColumnUpdateWithWhereUniqueWithoutTableFormatInput | InvestorTableColumnUpdateWithWhereUniqueWithoutTableFormatInput[]
+    updateMany?: InvestorTableColumnUpdateManyWithWhereWithoutTableFormatInput | InvestorTableColumnUpdateManyWithWhereWithoutTableFormatInput[]
+    deleteMany?: InvestorTableColumnScalarWhereInput | InvestorTableColumnScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutTableFormatNestedInput = {
+    create?: XOR<InvestorTableFormatAssignmentCreateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput> | InvestorTableFormatAssignmentCreateWithoutTableFormatInput[] | InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput[]
+    connectOrCreate?: InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput | InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput[]
+    upsert?: InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutTableFormatInput | InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutTableFormatInput[]
+    createMany?: InvestorTableFormatAssignmentCreateManyTableFormatInputEnvelope
+    set?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    disconnect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    delete?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
+    update?: InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutTableFormatInput | InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutTableFormatInput[]
+    updateMany?: InvestorTableFormatAssignmentUpdateManyWithWhereWithoutTableFormatInput | InvestorTableFormatAssignmentUpdateManyWithWhereWithoutTableFormatInput[]
+    deleteMany?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+  }
+
+  export type InvestorTableFormatCreateNestedOneWithoutColumnsInput = {
+    create?: XOR<InvestorTableFormatCreateWithoutColumnsInput, InvestorTableFormatUncheckedCreateWithoutColumnsInput>
+    connectOrCreate?: InvestorTableFormatCreateOrConnectWithoutColumnsInput
+    connect?: InvestorTableFormatWhereUniqueInput
+  }
+
+  export type EnumInvestorTableFieldTypeFieldUpdateOperationsInput = {
+    set?: $Enums.InvestorTableFieldType
+  }
+
+  export type InvestorTableFormatUpdateOneRequiredWithoutColumnsNestedInput = {
+    create?: XOR<InvestorTableFormatCreateWithoutColumnsInput, InvestorTableFormatUncheckedCreateWithoutColumnsInput>
+    connectOrCreate?: InvestorTableFormatCreateOrConnectWithoutColumnsInput
+    upsert?: InvestorTableFormatUpsertWithoutColumnsInput
+    connect?: InvestorTableFormatWhereUniqueInput
+    update?: XOR<XOR<InvestorTableFormatUpdateToOneWithWhereWithoutColumnsInput, InvestorTableFormatUpdateWithoutColumnsInput>, InvestorTableFormatUncheckedUpdateWithoutColumnsInput>
+  }
+
+  export type InvestorTableFormatCreateNestedOneWithoutAssignmentsInput = {
+    create?: XOR<InvestorTableFormatCreateWithoutAssignmentsInput, InvestorTableFormatUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: InvestorTableFormatCreateOrConnectWithoutAssignmentsInput
+    connect?: InvestorTableFormatWhereUniqueInput
+  }
+
+  export type InvestorCategoryCreateNestedOneWithoutTableFormatAssignmentsInput = {
+    create?: XOR<InvestorCategoryCreateWithoutTableFormatAssignmentsInput, InvestorCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutTableFormatAssignmentsInput
+    connect?: InvestorCategoryWhereUniqueInput
+  }
+
+  export type InvestorSubCategoryCreateNestedOneWithoutTableFormatAssignmentsInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutTableFormatAssignmentsInput, InvestorSubCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutTableFormatAssignmentsInput
+    connect?: InvestorSubCategoryWhereUniqueInput
+  }
+
+  export type InvestorFinancialYearCreateNestedOneWithoutTableFormatAssignmentsInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutTableFormatAssignmentsInput, InvestorFinancialYearUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutTableFormatAssignmentsInput
+    connect?: InvestorFinancialYearWhereUniqueInput
+  }
+
+  export type InvestorQuarterCreateNestedOneWithoutTableFormatAssignmentsInput = {
+    create?: XOR<InvestorQuarterCreateWithoutTableFormatAssignmentsInput, InvestorQuarterUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutTableFormatAssignmentsInput
+    connect?: InvestorQuarterWhereUniqueInput
+  }
+
+  export type InvestorTableFormatUpdateOneRequiredWithoutAssignmentsNestedInput = {
+    create?: XOR<InvestorTableFormatCreateWithoutAssignmentsInput, InvestorTableFormatUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: InvestorTableFormatCreateOrConnectWithoutAssignmentsInput
+    upsert?: InvestorTableFormatUpsertWithoutAssignmentsInput
+    connect?: InvestorTableFormatWhereUniqueInput
+    update?: XOR<XOR<InvestorTableFormatUpdateToOneWithWhereWithoutAssignmentsInput, InvestorTableFormatUpdateWithoutAssignmentsInput>, InvestorTableFormatUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type InvestorCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput = {
+    create?: XOR<InvestorCategoryCreateWithoutTableFormatAssignmentsInput, InvestorCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutTableFormatAssignmentsInput
+    upsert?: InvestorCategoryUpsertWithoutTableFormatAssignmentsInput
+    disconnect?: InvestorCategoryWhereInput | boolean
+    delete?: InvestorCategoryWhereInput | boolean
+    connect?: InvestorCategoryWhereUniqueInput
+    update?: XOR<XOR<InvestorCategoryUpdateToOneWithWhereWithoutTableFormatAssignmentsInput, InvestorCategoryUpdateWithoutTableFormatAssignmentsInput>, InvestorCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorSubCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutTableFormatAssignmentsInput, InvestorSubCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutTableFormatAssignmentsInput
+    upsert?: InvestorSubCategoryUpsertWithoutTableFormatAssignmentsInput
+    disconnect?: InvestorSubCategoryWhereInput | boolean
+    delete?: InvestorSubCategoryWhereInput | boolean
+    connect?: InvestorSubCategoryWhereUniqueInput
+    update?: XOR<XOR<InvestorSubCategoryUpdateToOneWithWhereWithoutTableFormatAssignmentsInput, InvestorSubCategoryUpdateWithoutTableFormatAssignmentsInput>, InvestorSubCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorFinancialYearUpdateOneWithoutTableFormatAssignmentsNestedInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutTableFormatAssignmentsInput, InvestorFinancialYearUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutTableFormatAssignmentsInput
+    upsert?: InvestorFinancialYearUpsertWithoutTableFormatAssignmentsInput
+    disconnect?: InvestorFinancialYearWhereInput | boolean
+    delete?: InvestorFinancialYearWhereInput | boolean
+    connect?: InvestorFinancialYearWhereUniqueInput
+    update?: XOR<XOR<InvestorFinancialYearUpdateToOneWithWhereWithoutTableFormatAssignmentsInput, InvestorFinancialYearUpdateWithoutTableFormatAssignmentsInput>, InvestorFinancialYearUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorQuarterUpdateOneWithoutTableFormatAssignmentsNestedInput = {
+    create?: XOR<InvestorQuarterCreateWithoutTableFormatAssignmentsInput, InvestorQuarterUncheckedCreateWithoutTableFormatAssignmentsInput>
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutTableFormatAssignmentsInput
+    upsert?: InvestorQuarterUpsertWithoutTableFormatAssignmentsInput
+    disconnect?: InvestorQuarterWhereInput | boolean
+    delete?: InvestorQuarterWhereInput | boolean
+    connect?: InvestorQuarterWhereUniqueInput
+    update?: XOR<XOR<InvestorQuarterUpdateToOneWithWhereWithoutTableFormatAssignmentsInput, InvestorQuarterUpdateWithoutTableFormatAssignmentsInput>, InvestorQuarterUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorCategoryCreateNestedOneWithoutDocumentsInput = {
+    create?: XOR<InvestorCategoryCreateWithoutDocumentsInput, InvestorCategoryUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutDocumentsInput
+    connect?: InvestorCategoryWhereUniqueInput
+  }
+
+  export type InvestorSubCategoryCreateNestedOneWithoutDocumentsInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutDocumentsInput, InvestorSubCategoryUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutDocumentsInput
+    connect?: InvestorSubCategoryWhereUniqueInput
+  }
+
+  export type InvestorFinancialYearCreateNestedOneWithoutDocumentsInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutDocumentsInput, InvestorFinancialYearUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutDocumentsInput
+    connect?: InvestorFinancialYearWhereUniqueInput
+  }
+
+  export type InvestorQuarterCreateNestedOneWithoutDocumentsInput = {
+    create?: XOR<InvestorQuarterCreateWithoutDocumentsInput, InvestorQuarterUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutDocumentsInput
+    connect?: InvestorQuarterWhereUniqueInput
+  }
+
+  export type InvestorCategoryUpdateOneRequiredWithoutDocumentsNestedInput = {
+    create?: XOR<InvestorCategoryCreateWithoutDocumentsInput, InvestorCategoryUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorCategoryCreateOrConnectWithoutDocumentsInput
+    upsert?: InvestorCategoryUpsertWithoutDocumentsInput
+    connect?: InvestorCategoryWhereUniqueInput
+    update?: XOR<XOR<InvestorCategoryUpdateToOneWithWhereWithoutDocumentsInput, InvestorCategoryUpdateWithoutDocumentsInput>, InvestorCategoryUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type InvestorSubCategoryUpdateOneWithoutDocumentsNestedInput = {
+    create?: XOR<InvestorSubCategoryCreateWithoutDocumentsInput, InvestorSubCategoryUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorSubCategoryCreateOrConnectWithoutDocumentsInput
+    upsert?: InvestorSubCategoryUpsertWithoutDocumentsInput
+    disconnect?: InvestorSubCategoryWhereInput | boolean
+    delete?: InvestorSubCategoryWhereInput | boolean
+    connect?: InvestorSubCategoryWhereUniqueInput
+    update?: XOR<XOR<InvestorSubCategoryUpdateToOneWithWhereWithoutDocumentsInput, InvestorSubCategoryUpdateWithoutDocumentsInput>, InvestorSubCategoryUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type InvestorFinancialYearUpdateOneWithoutDocumentsNestedInput = {
+    create?: XOR<InvestorFinancialYearCreateWithoutDocumentsInput, InvestorFinancialYearUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutDocumentsInput
+    upsert?: InvestorFinancialYearUpsertWithoutDocumentsInput
+    disconnect?: InvestorFinancialYearWhereInput | boolean
+    delete?: InvestorFinancialYearWhereInput | boolean
+    connect?: InvestorFinancialYearWhereUniqueInput
+    update?: XOR<XOR<InvestorFinancialYearUpdateToOneWithWhereWithoutDocumentsInput, InvestorFinancialYearUpdateWithoutDocumentsInput>, InvestorFinancialYearUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type InvestorQuarterUpdateOneWithoutDocumentsNestedInput = {
+    create?: XOR<InvestorQuarterCreateWithoutDocumentsInput, InvestorQuarterUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: InvestorQuarterCreateOrConnectWithoutDocumentsInput
+    upsert?: InvestorQuarterUpsertWithoutDocumentsInput
+    disconnect?: InvestorQuarterWhereInput | boolean
+    delete?: InvestorQuarterWhereInput | boolean
+    connect?: InvestorQuarterWhereUniqueInput
+    update?: XOR<XOR<InvestorQuarterUpdateToOneWithWhereWithoutDocumentsInput, InvestorQuarterUpdateWithoutDocumentsInput>, InvestorQuarterUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumBlogTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BlogType | EnumBlogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BlogType[]
+    notIn?: $Enums.BlogType[]
+    not?: NestedEnumBlogTypeFilter<$PrismaModel> | $Enums.BlogType
+  }
+
+  export type NestedEnumBlogTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BlogType | EnumBlogTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BlogType[]
+    notIn?: $Enums.BlogType[]
+    not?: NestedEnumBlogTypeWithAggregatesFilter<$PrismaModel> | $Enums.BlogType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBlogTypeFilter<$PrismaModel>
+    _max?: NestedEnumBlogTypeFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue
+    lte?: InputJsonValue
+    gt?: InputJsonValue
+    gte?: InputJsonValue
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumInvestorTableFieldTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.InvestorTableFieldType | EnumInvestorTableFieldTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InvestorTableFieldType[]
+    notIn?: $Enums.InvestorTableFieldType[]
+    not?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel> | $Enums.InvestorTableFieldType
+  }
+
+  export type NestedEnumInvestorTableFieldTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.InvestorTableFieldType | EnumInvestorTableFieldTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.InvestorTableFieldType[]
+    notIn?: $Enums.InvestorTableFieldType[]
+    not?: NestedEnumInvestorTableFieldTypeWithAggregatesFilter<$PrismaModel> | $Enums.InvestorTableFieldType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel>
+    _max?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel>
+  }
+
+  export type InvestorSubCategoryCreateWithoutCategoryInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutSubCategoryInput
+    documents?: InvestorDocumentCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryUncheckedCreateWithoutCategoryInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutSubCategoryInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryCreateOrConnectWithoutCategoryInput = {
+    where: InvestorSubCategoryWhereUniqueInput
+    create: XOR<InvestorSubCategoryCreateWithoutCategoryInput, InvestorSubCategoryUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorSubCategoryCreateManyCategoryInputEnvelope = {
+    data: InvestorSubCategoryCreateManyCategoryInput | InvestorSubCategoryCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorFinancialYearCreateWithoutCategoryInput = {
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutFinancialYearsInput
+    quarters?: InvestorQuarterCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearUncheckedCreateWithoutCategoryInput = {
+    id?: number
+    subCategoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quarters?: InvestorQuarterUncheckedCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearCreateOrConnectWithoutCategoryInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    create: XOR<InvestorFinancialYearCreateWithoutCategoryInput, InvestorFinancialYearUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorFinancialYearCreateManyCategoryInputEnvelope = {
+    data: InvestorFinancialYearCreateManyCategoryInput | InvestorFinancialYearCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorDocumentCreateWithoutCategoryInput = {
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutDocumentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutDocumentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type InvestorDocumentUncheckedCreateWithoutCategoryInput = {
+    id?: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentCreateOrConnectWithoutCategoryInput = {
+    where: InvestorDocumentWhereUniqueInput
+    create: XOR<InvestorDocumentCreateWithoutCategoryInput, InvestorDocumentUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorDocumentCreateManyCategoryInputEnvelope = {
+    data: InvestorDocumentCreateManyCategoryInput | InvestorDocumentCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorTableFormatAssignmentCreateWithoutCategoryInput = {
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tableFormat: InvestorTableFormatCreateNestedOneWithoutAssignmentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutTableFormatAssignmentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutTableFormatAssignmentsInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput = {
+    id?: number
+    tableFormatId: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateOrConnectWithoutCategoryInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyCategoryInputEnvelope = {
+    data: InvestorTableFormatAssignmentCreateManyCategoryInput | InvestorTableFormatAssignmentCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorSubCategoryUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorSubCategoryWhereUniqueInput
+    update: XOR<InvestorSubCategoryUpdateWithoutCategoryInput, InvestorSubCategoryUncheckedUpdateWithoutCategoryInput>
+    create: XOR<InvestorSubCategoryCreateWithoutCategoryInput, InvestorSubCategoryUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorSubCategoryUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorSubCategoryWhereUniqueInput
+    data: XOR<InvestorSubCategoryUpdateWithoutCategoryInput, InvestorSubCategoryUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type InvestorSubCategoryUpdateManyWithWhereWithoutCategoryInput = {
+    where: InvestorSubCategoryScalarWhereInput
+    data: XOR<InvestorSubCategoryUpdateManyMutationInput, InvestorSubCategoryUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type InvestorSubCategoryScalarWhereInput = {
+    AND?: InvestorSubCategoryScalarWhereInput | InvestorSubCategoryScalarWhereInput[]
+    OR?: InvestorSubCategoryScalarWhereInput[]
+    NOT?: InvestorSubCategoryScalarWhereInput | InvestorSubCategoryScalarWhereInput[]
+    id?: IntFilter<"InvestorSubCategory"> | number
+    categoryId?: IntFilter<"InvestorSubCategory"> | number
+    name?: StringFilter<"InvestorSubCategory"> | string
+    sortOrder?: IntFilter<"InvestorSubCategory"> | number
+    isActive?: BoolFilter<"InvestorSubCategory"> | boolean
+    createdAt?: DateTimeFilter<"InvestorSubCategory"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorSubCategory"> | Date | string
+  }
+
+  export type InvestorFinancialYearUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    update: XOR<InvestorFinancialYearUpdateWithoutCategoryInput, InvestorFinancialYearUncheckedUpdateWithoutCategoryInput>
+    create: XOR<InvestorFinancialYearCreateWithoutCategoryInput, InvestorFinancialYearUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorFinancialYearUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    data: XOR<InvestorFinancialYearUpdateWithoutCategoryInput, InvestorFinancialYearUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type InvestorFinancialYearUpdateManyWithWhereWithoutCategoryInput = {
+    where: InvestorFinancialYearScalarWhereInput
+    data: XOR<InvestorFinancialYearUpdateManyMutationInput, InvestorFinancialYearUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type InvestorFinancialYearScalarWhereInput = {
+    AND?: InvestorFinancialYearScalarWhereInput | InvestorFinancialYearScalarWhereInput[]
+    OR?: InvestorFinancialYearScalarWhereInput[]
+    NOT?: InvestorFinancialYearScalarWhereInput | InvestorFinancialYearScalarWhereInput[]
+    id?: IntFilter<"InvestorFinancialYear"> | number
+    categoryId?: IntNullableFilter<"InvestorFinancialYear"> | number | null
+    subCategoryId?: IntNullableFilter<"InvestorFinancialYear"> | number | null
+    year?: StringFilter<"InvestorFinancialYear"> | string
+    sortOrder?: IntFilter<"InvestorFinancialYear"> | number
+    isActive?: BoolFilter<"InvestorFinancialYear"> | boolean
+    createdAt?: DateTimeFilter<"InvestorFinancialYear"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorFinancialYear"> | Date | string
+  }
+
+  export type InvestorDocumentUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorDocumentWhereUniqueInput
+    update: XOR<InvestorDocumentUpdateWithoutCategoryInput, InvestorDocumentUncheckedUpdateWithoutCategoryInput>
+    create: XOR<InvestorDocumentCreateWithoutCategoryInput, InvestorDocumentUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorDocumentUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorDocumentWhereUniqueInput
+    data: XOR<InvestorDocumentUpdateWithoutCategoryInput, InvestorDocumentUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type InvestorDocumentUpdateManyWithWhereWithoutCategoryInput = {
+    where: InvestorDocumentScalarWhereInput
+    data: XOR<InvestorDocumentUpdateManyMutationInput, InvestorDocumentUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type InvestorDocumentScalarWhereInput = {
+    AND?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+    OR?: InvestorDocumentScalarWhereInput[]
+    NOT?: InvestorDocumentScalarWhereInput | InvestorDocumentScalarWhereInput[]
+    id?: IntFilter<"InvestorDocument"> | number
+    categoryId?: IntFilter<"InvestorDocument"> | number
+    subCategoryId?: IntNullableFilter<"InvestorDocument"> | number | null
+    financialYearId?: IntNullableFilter<"InvestorDocument"> | number | null
+    quarterId?: IntNullableFilter<"InvestorDocument"> | number | null
+    title?: StringFilter<"InvestorDocument"> | string
+    description?: StringNullableFilter<"InvestorDocument"> | string | null
+    documentType?: StringNullableFilter<"InvestorDocument"> | string | null
+    purpose?: StringNullableFilter<"InvestorDocument"> | string | null
+    documentDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    disclosureDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    dueDate?: DateTimeNullableFilter<"InvestorDocument"> | Date | string | null
+    storageType?: StringFilter<"InvestorDocument"> | string
+    externalUrl?: StringFilter<"InvestorDocument"> | string
+    isPublished?: BoolFilter<"InvestorDocument"> | boolean
+    sortOrder?: IntFilter<"InvestorDocument"> | number
+    metadata?: JsonNullableFilter<"InvestorDocument">
+    createdAt?: DateTimeFilter<"InvestorDocument"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorDocument"> | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    update: XOR<InvestorTableFormatAssignmentUpdateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutCategoryInput>
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    data: XOR<InvestorTableFormatAssignmentUpdateWithoutCategoryInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithWhereWithoutCategoryInput = {
+    where: InvestorTableFormatAssignmentScalarWhereInput
+    data: XOR<InvestorTableFormatAssignmentUpdateManyMutationInput, InvestorTableFormatAssignmentUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentScalarWhereInput = {
+    AND?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+    OR?: InvestorTableFormatAssignmentScalarWhereInput[]
+    NOT?: InvestorTableFormatAssignmentScalarWhereInput | InvestorTableFormatAssignmentScalarWhereInput[]
+    id?: IntFilter<"InvestorTableFormatAssignment"> | number
+    tableFormatId?: IntFilter<"InvestorTableFormatAssignment"> | number
+    categoryId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    subCategoryId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    financialYearId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    quarterId?: IntNullableFilter<"InvestorTableFormatAssignment"> | number | null
+    displayMode?: StringFilter<"InvestorTableFormatAssignment"> | string
+    createdAt?: DateTimeFilter<"InvestorTableFormatAssignment"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableFormatAssignment"> | Date | string
+  }
+
+  export type InvestorCategoryCreateWithoutSubCategoriesInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryUncheckedCreateWithoutSubCategoriesInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryCreateOrConnectWithoutSubCategoriesInput = {
+    where: InvestorCategoryWhereUniqueInput
+    create: XOR<InvestorCategoryCreateWithoutSubCategoriesInput, InvestorCategoryUncheckedCreateWithoutSubCategoriesInput>
+  }
+
+  export type InvestorFinancialYearCreateWithoutSubCategoryInput = {
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: InvestorCategoryCreateNestedOneWithoutFinancialYearsInput
+    quarters?: InvestorQuarterCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput = {
+    id?: number
+    categoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quarters?: InvestorQuarterUncheckedCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearCreateOrConnectWithoutSubCategoryInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    create: XOR<InvestorFinancialYearCreateWithoutSubCategoryInput, InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput>
+  }
+
+  export type InvestorFinancialYearCreateManySubCategoryInputEnvelope = {
+    data: InvestorFinancialYearCreateManySubCategoryInput | InvestorFinancialYearCreateManySubCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorDocumentCreateWithoutSubCategoryInput = {
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutDocumentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutDocumentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type InvestorDocumentUncheckedCreateWithoutSubCategoryInput = {
+    id?: number
+    categoryId: number
+    financialYearId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentCreateOrConnectWithoutSubCategoryInput = {
+    where: InvestorDocumentWhereUniqueInput
+    create: XOR<InvestorDocumentCreateWithoutSubCategoryInput, InvestorDocumentUncheckedCreateWithoutSubCategoryInput>
+  }
+
+  export type InvestorDocumentCreateManySubCategoryInputEnvelope = {
+    data: InvestorDocumentCreateManySubCategoryInput | InvestorDocumentCreateManySubCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorTableFormatAssignmentCreateWithoutSubCategoryInput = {
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tableFormat: InvestorTableFormatCreateNestedOneWithoutAssignmentsInput
+    category?: InvestorCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutTableFormatAssignmentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutTableFormatAssignmentsInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateOrConnectWithoutSubCategoryInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentCreateManySubCategoryInputEnvelope = {
+    data: InvestorTableFormatAssignmentCreateManySubCategoryInput | InvestorTableFormatAssignmentCreateManySubCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorCategoryUpsertWithoutSubCategoriesInput = {
+    update: XOR<InvestorCategoryUpdateWithoutSubCategoriesInput, InvestorCategoryUncheckedUpdateWithoutSubCategoriesInput>
+    create: XOR<InvestorCategoryCreateWithoutSubCategoriesInput, InvestorCategoryUncheckedCreateWithoutSubCategoriesInput>
+    where?: InvestorCategoryWhereInput
+  }
+
+  export type InvestorCategoryUpdateToOneWithWhereWithoutSubCategoriesInput = {
+    where?: InvestorCategoryWhereInput
+    data: XOR<InvestorCategoryUpdateWithoutSubCategoriesInput, InvestorCategoryUncheckedUpdateWithoutSubCategoriesInput>
+  }
+
+  export type InvestorCategoryUpdateWithoutSubCategoriesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYears?: InvestorFinancialYearUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorCategoryUncheckedUpdateWithoutSubCategoriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorFinancialYearUpsertWithWhereUniqueWithoutSubCategoryInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    update: XOR<InvestorFinancialYearUpdateWithoutSubCategoryInput, InvestorFinancialYearUncheckedUpdateWithoutSubCategoryInput>
+    create: XOR<InvestorFinancialYearCreateWithoutSubCategoryInput, InvestorFinancialYearUncheckedCreateWithoutSubCategoryInput>
+  }
+
+  export type InvestorFinancialYearUpdateWithWhereUniqueWithoutSubCategoryInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    data: XOR<InvestorFinancialYearUpdateWithoutSubCategoryInput, InvestorFinancialYearUncheckedUpdateWithoutSubCategoryInput>
+  }
+
+  export type InvestorFinancialYearUpdateManyWithWhereWithoutSubCategoryInput = {
+    where: InvestorFinancialYearScalarWhereInput
+    data: XOR<InvestorFinancialYearUpdateManyMutationInput, InvestorFinancialYearUncheckedUpdateManyWithoutSubCategoryInput>
+  }
+
+  export type InvestorDocumentUpsertWithWhereUniqueWithoutSubCategoryInput = {
+    where: InvestorDocumentWhereUniqueInput
+    update: XOR<InvestorDocumentUpdateWithoutSubCategoryInput, InvestorDocumentUncheckedUpdateWithoutSubCategoryInput>
+    create: XOR<InvestorDocumentCreateWithoutSubCategoryInput, InvestorDocumentUncheckedCreateWithoutSubCategoryInput>
+  }
+
+  export type InvestorDocumentUpdateWithWhereUniqueWithoutSubCategoryInput = {
+    where: InvestorDocumentWhereUniqueInput
+    data: XOR<InvestorDocumentUpdateWithoutSubCategoryInput, InvestorDocumentUncheckedUpdateWithoutSubCategoryInput>
+  }
+
+  export type InvestorDocumentUpdateManyWithWhereWithoutSubCategoryInput = {
+    where: InvestorDocumentScalarWhereInput
+    data: XOR<InvestorDocumentUpdateManyMutationInput, InvestorDocumentUncheckedUpdateManyWithoutSubCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutSubCategoryInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    update: XOR<InvestorTableFormatAssignmentUpdateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutSubCategoryInput>
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedCreateWithoutSubCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutSubCategoryInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    data: XOR<InvestorTableFormatAssignmentUpdateWithoutSubCategoryInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutSubCategoryInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithWhereWithoutSubCategoryInput = {
+    where: InvestorTableFormatAssignmentScalarWhereInput
+    data: XOR<InvestorTableFormatAssignmentUpdateManyMutationInput, InvestorTableFormatAssignmentUncheckedUpdateManyWithoutSubCategoryInput>
+  }
+
+  export type InvestorCategoryCreateWithoutFinancialYearsInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryUncheckedCreateWithoutFinancialYearsInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryCreateOrConnectWithoutFinancialYearsInput = {
+    where: InvestorCategoryWhereUniqueInput
+    create: XOR<InvestorCategoryCreateWithoutFinancialYearsInput, InvestorCategoryUncheckedCreateWithoutFinancialYearsInput>
+  }
+
+  export type InvestorSubCategoryCreateWithoutFinancialYearsInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutSubCategoriesInput
+    documents?: InvestorDocumentCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryUncheckedCreateWithoutFinancialYearsInput = {
+    id?: number
+    categoryId: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryCreateOrConnectWithoutFinancialYearsInput = {
+    where: InvestorSubCategoryWhereUniqueInput
+    create: XOR<InvestorSubCategoryCreateWithoutFinancialYearsInput, InvestorSubCategoryUncheckedCreateWithoutFinancialYearsInput>
+  }
+
+  export type InvestorQuarterCreateWithoutFinancialYearInput = {
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: InvestorDocumentCreateNestedManyWithoutQuarterInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterUncheckedCreateWithoutFinancialYearInput = {
+    id?: number
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutQuarterInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterCreateOrConnectWithoutFinancialYearInput = {
+    where: InvestorQuarterWhereUniqueInput
+    create: XOR<InvestorQuarterCreateWithoutFinancialYearInput, InvestorQuarterUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type InvestorQuarterCreateManyFinancialYearInputEnvelope = {
+    data: InvestorQuarterCreateManyFinancialYearInput | InvestorQuarterCreateManyFinancialYearInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorDocumentCreateWithoutFinancialYearInput = {
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutDocumentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutDocumentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type InvestorDocumentUncheckedCreateWithoutFinancialYearInput = {
+    id?: number
+    categoryId: number
+    subCategoryId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentCreateOrConnectWithoutFinancialYearInput = {
+    where: InvestorDocumentWhereUniqueInput
+    create: XOR<InvestorDocumentCreateWithoutFinancialYearInput, InvestorDocumentUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type InvestorDocumentCreateManyFinancialYearInputEnvelope = {
+    data: InvestorDocumentCreateManyFinancialYearInput | InvestorDocumentCreateManyFinancialYearInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorTableFormatAssignmentCreateWithoutFinancialYearInput = {
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tableFormat: InvestorTableFormatCreateNestedOneWithoutAssignmentsInput
+    category?: InvestorCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutTableFormatAssignmentsInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateOrConnectWithoutFinancialYearInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyFinancialYearInputEnvelope = {
+    data: InvestorTableFormatAssignmentCreateManyFinancialYearInput | InvestorTableFormatAssignmentCreateManyFinancialYearInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorCategoryUpsertWithoutFinancialYearsInput = {
+    update: XOR<InvestorCategoryUpdateWithoutFinancialYearsInput, InvestorCategoryUncheckedUpdateWithoutFinancialYearsInput>
+    create: XOR<InvestorCategoryCreateWithoutFinancialYearsInput, InvestorCategoryUncheckedCreateWithoutFinancialYearsInput>
+    where?: InvestorCategoryWhereInput
+  }
+
+  export type InvestorCategoryUpdateToOneWithWhereWithoutFinancialYearsInput = {
+    where?: InvestorCategoryWhereInput
+    data: XOR<InvestorCategoryUpdateWithoutFinancialYearsInput, InvestorCategoryUncheckedUpdateWithoutFinancialYearsInput>
+  }
+
+  export type InvestorCategoryUpdateWithoutFinancialYearsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorCategoryUncheckedUpdateWithoutFinancialYearsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUpsertWithoutFinancialYearsInput = {
+    update: XOR<InvestorSubCategoryUpdateWithoutFinancialYearsInput, InvestorSubCategoryUncheckedUpdateWithoutFinancialYearsInput>
+    create: XOR<InvestorSubCategoryCreateWithoutFinancialYearsInput, InvestorSubCategoryUncheckedCreateWithoutFinancialYearsInput>
+    where?: InvestorSubCategoryWhereInput
+  }
+
+  export type InvestorSubCategoryUpdateToOneWithWhereWithoutFinancialYearsInput = {
+    where?: InvestorSubCategoryWhereInput
+    data: XOR<InvestorSubCategoryUpdateWithoutFinancialYearsInput, InvestorSubCategoryUncheckedUpdateWithoutFinancialYearsInput>
+  }
+
+  export type InvestorSubCategoryUpdateWithoutFinancialYearsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutSubCategoriesNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateWithoutFinancialYearsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorQuarterUpsertWithWhereUniqueWithoutFinancialYearInput = {
+    where: InvestorQuarterWhereUniqueInput
+    update: XOR<InvestorQuarterUpdateWithoutFinancialYearInput, InvestorQuarterUncheckedUpdateWithoutFinancialYearInput>
+    create: XOR<InvestorQuarterCreateWithoutFinancialYearInput, InvestorQuarterUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type InvestorQuarterUpdateWithWhereUniqueWithoutFinancialYearInput = {
+    where: InvestorQuarterWhereUniqueInput
+    data: XOR<InvestorQuarterUpdateWithoutFinancialYearInput, InvestorQuarterUncheckedUpdateWithoutFinancialYearInput>
+  }
+
+  export type InvestorQuarterUpdateManyWithWhereWithoutFinancialYearInput = {
+    where: InvestorQuarterScalarWhereInput
+    data: XOR<InvestorQuarterUpdateManyMutationInput, InvestorQuarterUncheckedUpdateManyWithoutFinancialYearInput>
+  }
+
+  export type InvestorQuarterScalarWhereInput = {
+    AND?: InvestorQuarterScalarWhereInput | InvestorQuarterScalarWhereInput[]
+    OR?: InvestorQuarterScalarWhereInput[]
+    NOT?: InvestorQuarterScalarWhereInput | InvestorQuarterScalarWhereInput[]
+    id?: IntFilter<"InvestorQuarter"> | number
+    financialYearId?: IntFilter<"InvestorQuarter"> | number
+    name?: StringFilter<"InvestorQuarter"> | string
+    code?: StringFilter<"InvestorQuarter"> | string
+    releaseDate?: DateTimeNullableFilter<"InvestorQuarter"> | Date | string | null
+    sortOrder?: IntFilter<"InvestorQuarter"> | number
+    isActive?: BoolFilter<"InvestorQuarter"> | boolean
+    createdAt?: DateTimeFilter<"InvestorQuarter"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorQuarter"> | Date | string
+  }
+
+  export type InvestorDocumentUpsertWithWhereUniqueWithoutFinancialYearInput = {
+    where: InvestorDocumentWhereUniqueInput
+    update: XOR<InvestorDocumentUpdateWithoutFinancialYearInput, InvestorDocumentUncheckedUpdateWithoutFinancialYearInput>
+    create: XOR<InvestorDocumentCreateWithoutFinancialYearInput, InvestorDocumentUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type InvestorDocumentUpdateWithWhereUniqueWithoutFinancialYearInput = {
+    where: InvestorDocumentWhereUniqueInput
+    data: XOR<InvestorDocumentUpdateWithoutFinancialYearInput, InvestorDocumentUncheckedUpdateWithoutFinancialYearInput>
+  }
+
+  export type InvestorDocumentUpdateManyWithWhereWithoutFinancialYearInput = {
+    where: InvestorDocumentScalarWhereInput
+    data: XOR<InvestorDocumentUpdateManyMutationInput, InvestorDocumentUncheckedUpdateManyWithoutFinancialYearInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutFinancialYearInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    update: XOR<InvestorTableFormatAssignmentUpdateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutFinancialYearInput>
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedCreateWithoutFinancialYearInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutFinancialYearInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    data: XOR<InvestorTableFormatAssignmentUpdateWithoutFinancialYearInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutFinancialYearInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithWhereWithoutFinancialYearInput = {
+    where: InvestorTableFormatAssignmentScalarWhereInput
+    data: XOR<InvestorTableFormatAssignmentUpdateManyMutationInput, InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearInput>
+  }
+
+  export type InvestorFinancialYearCreateWithoutQuartersInput = {
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: InvestorCategoryCreateNestedOneWithoutFinancialYearsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutFinancialYearsInput
+    documents?: InvestorDocumentCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearUncheckedCreateWithoutQuartersInput = {
+    id?: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearCreateOrConnectWithoutQuartersInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    create: XOR<InvestorFinancialYearCreateWithoutQuartersInput, InvestorFinancialYearUncheckedCreateWithoutQuartersInput>
+  }
+
+  export type InvestorDocumentCreateWithoutQuarterInput = {
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutDocumentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutDocumentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type InvestorDocumentUncheckedCreateWithoutQuarterInput = {
+    id?: number
+    categoryId: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentCreateOrConnectWithoutQuarterInput = {
+    where: InvestorDocumentWhereUniqueInput
+    create: XOR<InvestorDocumentCreateWithoutQuarterInput, InvestorDocumentUncheckedCreateWithoutQuarterInput>
+  }
+
+  export type InvestorDocumentCreateManyQuarterInputEnvelope = {
+    data: InvestorDocumentCreateManyQuarterInput | InvestorDocumentCreateManyQuarterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorTableFormatAssignmentCreateWithoutQuarterInput = {
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tableFormat: InvestorTableFormatCreateNestedOneWithoutAssignmentsInput
+    category?: InvestorCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutTableFormatAssignmentsInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateOrConnectWithoutQuarterInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput>
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyQuarterInputEnvelope = {
+    data: InvestorTableFormatAssignmentCreateManyQuarterInput | InvestorTableFormatAssignmentCreateManyQuarterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorFinancialYearUpsertWithoutQuartersInput = {
+    update: XOR<InvestorFinancialYearUpdateWithoutQuartersInput, InvestorFinancialYearUncheckedUpdateWithoutQuartersInput>
+    create: XOR<InvestorFinancialYearCreateWithoutQuartersInput, InvestorFinancialYearUncheckedCreateWithoutQuartersInput>
+    where?: InvestorFinancialYearWhereInput
+  }
+
+  export type InvestorFinancialYearUpdateToOneWithWhereWithoutQuartersInput = {
+    where?: InvestorFinancialYearWhereInput
+    data: XOR<InvestorFinancialYearUpdateWithoutQuartersInput, InvestorFinancialYearUncheckedUpdateWithoutQuartersInput>
+  }
+
+  export type InvestorFinancialYearUpdateWithoutQuartersInput = {
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneWithoutFinancialYearsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutFinancialYearsNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateWithoutQuartersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorDocumentUpsertWithWhereUniqueWithoutQuarterInput = {
+    where: InvestorDocumentWhereUniqueInput
+    update: XOR<InvestorDocumentUpdateWithoutQuarterInput, InvestorDocumentUncheckedUpdateWithoutQuarterInput>
+    create: XOR<InvestorDocumentCreateWithoutQuarterInput, InvestorDocumentUncheckedCreateWithoutQuarterInput>
+  }
+
+  export type InvestorDocumentUpdateWithWhereUniqueWithoutQuarterInput = {
+    where: InvestorDocumentWhereUniqueInput
+    data: XOR<InvestorDocumentUpdateWithoutQuarterInput, InvestorDocumentUncheckedUpdateWithoutQuarterInput>
+  }
+
+  export type InvestorDocumentUpdateManyWithWhereWithoutQuarterInput = {
+    where: InvestorDocumentScalarWhereInput
+    data: XOR<InvestorDocumentUpdateManyMutationInput, InvestorDocumentUncheckedUpdateManyWithoutQuarterInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutQuarterInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    update: XOR<InvestorTableFormatAssignmentUpdateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutQuarterInput>
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedCreateWithoutQuarterInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutQuarterInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    data: XOR<InvestorTableFormatAssignmentUpdateWithoutQuarterInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutQuarterInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithWhereWithoutQuarterInput = {
+    where: InvestorTableFormatAssignmentScalarWhereInput
+    data: XOR<InvestorTableFormatAssignmentUpdateManyMutationInput, InvestorTableFormatAssignmentUncheckedUpdateManyWithoutQuarterInput>
+  }
+
+  export type InvestorTableColumnCreateWithoutTableFormatInput = {
+    key: string
+    label: string
+    fieldType?: $Enums.InvestorTableFieldType
+    sortOrder?: number
+    isVisible?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableColumnUncheckedCreateWithoutTableFormatInput = {
+    id?: number
+    key: string
+    label: string
+    fieldType?: $Enums.InvestorTableFieldType
+    sortOrder?: number
+    isVisible?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableColumnCreateOrConnectWithoutTableFormatInput = {
+    where: InvestorTableColumnWhereUniqueInput
+    create: XOR<InvestorTableColumnCreateWithoutTableFormatInput, InvestorTableColumnUncheckedCreateWithoutTableFormatInput>
+  }
+
+  export type InvestorTableColumnCreateManyTableFormatInputEnvelope = {
+    data: InvestorTableColumnCreateManyTableFormatInput | InvestorTableColumnCreateManyTableFormatInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorTableFormatAssignmentCreateWithoutTableFormatInput = {
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: InvestorCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutTableFormatAssignmentsInput
+    financialYear?: InvestorFinancialYearCreateNestedOneWithoutTableFormatAssignmentsInput
+    quarter?: InvestorQuarterCreateNestedOneWithoutTableFormatAssignmentsInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput = {
+    id?: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateOrConnectWithoutTableFormatInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput>
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyTableFormatInputEnvelope = {
+    data: InvestorTableFormatAssignmentCreateManyTableFormatInput | InvestorTableFormatAssignmentCreateManyTableFormatInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type InvestorTableColumnUpsertWithWhereUniqueWithoutTableFormatInput = {
+    where: InvestorTableColumnWhereUniqueInput
+    update: XOR<InvestorTableColumnUpdateWithoutTableFormatInput, InvestorTableColumnUncheckedUpdateWithoutTableFormatInput>
+    create: XOR<InvestorTableColumnCreateWithoutTableFormatInput, InvestorTableColumnUncheckedCreateWithoutTableFormatInput>
+  }
+
+  export type InvestorTableColumnUpdateWithWhereUniqueWithoutTableFormatInput = {
+    where: InvestorTableColumnWhereUniqueInput
+    data: XOR<InvestorTableColumnUpdateWithoutTableFormatInput, InvestorTableColumnUncheckedUpdateWithoutTableFormatInput>
+  }
+
+  export type InvestorTableColumnUpdateManyWithWhereWithoutTableFormatInput = {
+    where: InvestorTableColumnScalarWhereInput
+    data: XOR<InvestorTableColumnUpdateManyMutationInput, InvestorTableColumnUncheckedUpdateManyWithoutTableFormatInput>
+  }
+
+  export type InvestorTableColumnScalarWhereInput = {
+    AND?: InvestorTableColumnScalarWhereInput | InvestorTableColumnScalarWhereInput[]
+    OR?: InvestorTableColumnScalarWhereInput[]
+    NOT?: InvestorTableColumnScalarWhereInput | InvestorTableColumnScalarWhereInput[]
+    id?: IntFilter<"InvestorTableColumn"> | number
+    tableFormatId?: IntFilter<"InvestorTableColumn"> | number
+    key?: StringFilter<"InvestorTableColumn"> | string
+    label?: StringFilter<"InvestorTableColumn"> | string
+    fieldType?: EnumInvestorTableFieldTypeFilter<"InvestorTableColumn"> | $Enums.InvestorTableFieldType
+    sortOrder?: IntFilter<"InvestorTableColumn"> | number
+    isVisible?: BoolFilter<"InvestorTableColumn"> | boolean
+    createdAt?: DateTimeFilter<"InvestorTableColumn"> | Date | string
+    updatedAt?: DateTimeFilter<"InvestorTableColumn"> | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpsertWithWhereUniqueWithoutTableFormatInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    update: XOR<InvestorTableFormatAssignmentUpdateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutTableFormatInput>
+    create: XOR<InvestorTableFormatAssignmentCreateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedCreateWithoutTableFormatInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithWhereUniqueWithoutTableFormatInput = {
+    where: InvestorTableFormatAssignmentWhereUniqueInput
+    data: XOR<InvestorTableFormatAssignmentUpdateWithoutTableFormatInput, InvestorTableFormatAssignmentUncheckedUpdateWithoutTableFormatInput>
+  }
+
+  export type InvestorTableFormatAssignmentUpdateManyWithWhereWithoutTableFormatInput = {
+    where: InvestorTableFormatAssignmentScalarWhereInput
+    data: XOR<InvestorTableFormatAssignmentUpdateManyMutationInput, InvestorTableFormatAssignmentUncheckedUpdateManyWithoutTableFormatInput>
+  }
+
+  export type InvestorTableFormatCreateWithoutColumnsInput = {
+    name: string
+    description?: string | null
+    financialYearMode?: string
+    isActive?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutTableFormatInput
+  }
+
+  export type InvestorTableFormatUncheckedCreateWithoutColumnsInput = {
+    id?: number
+    name: string
+    description?: string | null
+    financialYearMode?: string
+    isActive?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutTableFormatInput
+  }
+
+  export type InvestorTableFormatCreateOrConnectWithoutColumnsInput = {
+    where: InvestorTableFormatWhereUniqueInput
+    create: XOR<InvestorTableFormatCreateWithoutColumnsInput, InvestorTableFormatUncheckedCreateWithoutColumnsInput>
+  }
+
+  export type InvestorTableFormatUpsertWithoutColumnsInput = {
+    update: XOR<InvestorTableFormatUpdateWithoutColumnsInput, InvestorTableFormatUncheckedUpdateWithoutColumnsInput>
+    create: XOR<InvestorTableFormatCreateWithoutColumnsInput, InvestorTableFormatUncheckedCreateWithoutColumnsInput>
+    where?: InvestorTableFormatWhereInput
+  }
+
+  export type InvestorTableFormatUpdateToOneWithWhereWithoutColumnsInput = {
+    where?: InvestorTableFormatWhereInput
+    data: XOR<InvestorTableFormatUpdateWithoutColumnsInput, InvestorTableFormatUncheckedUpdateWithoutColumnsInput>
+  }
+
+  export type InvestorTableFormatUpdateWithoutColumnsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: InvestorTableFormatAssignmentUpdateManyWithoutTableFormatNestedInput
+  }
+
+  export type InvestorTableFormatUncheckedUpdateWithoutColumnsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutTableFormatNestedInput
+  }
+
+  export type InvestorTableFormatCreateWithoutAssignmentsInput = {
+    name: string
+    description?: string | null
+    financialYearMode?: string
+    isActive?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    columns?: InvestorTableColumnCreateNestedManyWithoutTableFormatInput
+  }
+
+  export type InvestorTableFormatUncheckedCreateWithoutAssignmentsInput = {
+    id?: number
+    name: string
+    description?: string | null
+    financialYearMode?: string
+    isActive?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    columns?: InvestorTableColumnUncheckedCreateNestedManyWithoutTableFormatInput
+  }
+
+  export type InvestorTableFormatCreateOrConnectWithoutAssignmentsInput = {
+    where: InvestorTableFormatWhereUniqueInput
+    create: XOR<InvestorTableFormatCreateWithoutAssignmentsInput, InvestorTableFormatUncheckedCreateWithoutAssignmentsInput>
+  }
+
+  export type InvestorCategoryCreateWithoutTableFormatAssignmentsInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryCreateNestedManyWithoutCategoryInput
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryUncheckedCreateWithoutTableFormatAssignmentsInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutCategoryInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryCreateOrConnectWithoutTableFormatAssignmentsInput = {
+    where: InvestorCategoryWhereUniqueInput
+    create: XOR<InvestorCategoryCreateWithoutTableFormatAssignmentsInput, InvestorCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorSubCategoryCreateWithoutTableFormatAssignmentsInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutSubCategoriesInput
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutSubCategoryInput
+    documents?: InvestorDocumentCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryUncheckedCreateWithoutTableFormatAssignmentsInput = {
+    id?: number
+    categoryId: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutSubCategoryInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryCreateOrConnectWithoutTableFormatAssignmentsInput = {
+    where: InvestorSubCategoryWhereUniqueInput
+    create: XOR<InvestorSubCategoryCreateWithoutTableFormatAssignmentsInput, InvestorSubCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorFinancialYearCreateWithoutTableFormatAssignmentsInput = {
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: InvestorCategoryCreateNestedOneWithoutFinancialYearsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutFinancialYearsInput
+    quarters?: InvestorQuarterCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearUncheckedCreateWithoutTableFormatAssignmentsInput = {
+    id?: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quarters?: InvestorQuarterUncheckedCreateNestedManyWithoutFinancialYearInput
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearCreateOrConnectWithoutTableFormatAssignmentsInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    create: XOR<InvestorFinancialYearCreateWithoutTableFormatAssignmentsInput, InvestorFinancialYearUncheckedCreateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorQuarterCreateWithoutTableFormatAssignmentsInput = {
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYear: InvestorFinancialYearCreateNestedOneWithoutQuartersInput
+    documents?: InvestorDocumentCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterUncheckedCreateWithoutTableFormatAssignmentsInput = {
+    id?: number
+    financialYearId: number
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: InvestorDocumentUncheckedCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterCreateOrConnectWithoutTableFormatAssignmentsInput = {
+    where: InvestorQuarterWhereUniqueInput
+    create: XOR<InvestorQuarterCreateWithoutTableFormatAssignmentsInput, InvestorQuarterUncheckedCreateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorTableFormatUpsertWithoutAssignmentsInput = {
+    update: XOR<InvestorTableFormatUpdateWithoutAssignmentsInput, InvestorTableFormatUncheckedUpdateWithoutAssignmentsInput>
+    create: XOR<InvestorTableFormatCreateWithoutAssignmentsInput, InvestorTableFormatUncheckedCreateWithoutAssignmentsInput>
+    where?: InvestorTableFormatWhereInput
+  }
+
+  export type InvestorTableFormatUpdateToOneWithWhereWithoutAssignmentsInput = {
+    where?: InvestorTableFormatWhereInput
+    data: XOR<InvestorTableFormatUpdateWithoutAssignmentsInput, InvestorTableFormatUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type InvestorTableFormatUpdateWithoutAssignmentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    columns?: InvestorTableColumnUpdateManyWithoutTableFormatNestedInput
+  }
+
+  export type InvestorTableFormatUncheckedUpdateWithoutAssignmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    financialYearMode?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    columns?: InvestorTableColumnUncheckedUpdateManyWithoutTableFormatNestedInput
+  }
+
+  export type InvestorCategoryUpsertWithoutTableFormatAssignmentsInput = {
+    update: XOR<InvestorCategoryUpdateWithoutTableFormatAssignmentsInput, InvestorCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput>
+    create: XOR<InvestorCategoryCreateWithoutTableFormatAssignmentsInput, InvestorCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+    where?: InvestorCategoryWhereInput
+  }
+
+  export type InvestorCategoryUpdateToOneWithWhereWithoutTableFormatAssignmentsInput = {
+    where?: InvestorCategoryWhereInput
+    data: XOR<InvestorCategoryUpdateWithoutTableFormatAssignmentsInput, InvestorCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorCategoryUpdateWithoutTableFormatAssignmentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUpdateManyWithoutCategoryNestedInput
+    financialYears?: InvestorFinancialYearUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutCategoryNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUpsertWithoutTableFormatAssignmentsInput = {
+    update: XOR<InvestorSubCategoryUpdateWithoutTableFormatAssignmentsInput, InvestorSubCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput>
+    create: XOR<InvestorSubCategoryCreateWithoutTableFormatAssignmentsInput, InvestorSubCategoryUncheckedCreateWithoutTableFormatAssignmentsInput>
+    where?: InvestorSubCategoryWhereInput
+  }
+
+  export type InvestorSubCategoryUpdateToOneWithWhereWithoutTableFormatAssignmentsInput = {
+    where?: InvestorSubCategoryWhereInput
+    data: XOR<InvestorSubCategoryUpdateWithoutTableFormatAssignmentsInput, InvestorSubCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorSubCategoryUpdateWithoutTableFormatAssignmentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutSubCategoriesNestedInput
+    financialYears?: InvestorFinancialYearUpdateManyWithoutSubCategoryNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateWithoutTableFormatAssignmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutSubCategoryNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorFinancialYearUpsertWithoutTableFormatAssignmentsInput = {
+    update: XOR<InvestorFinancialYearUpdateWithoutTableFormatAssignmentsInput, InvestorFinancialYearUncheckedUpdateWithoutTableFormatAssignmentsInput>
+    create: XOR<InvestorFinancialYearCreateWithoutTableFormatAssignmentsInput, InvestorFinancialYearUncheckedCreateWithoutTableFormatAssignmentsInput>
+    where?: InvestorFinancialYearWhereInput
+  }
+
+  export type InvestorFinancialYearUpdateToOneWithWhereWithoutTableFormatAssignmentsInput = {
+    where?: InvestorFinancialYearWhereInput
+    data: XOR<InvestorFinancialYearUpdateWithoutTableFormatAssignmentsInput, InvestorFinancialYearUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorFinancialYearUpdateWithoutTableFormatAssignmentsInput = {
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneWithoutFinancialYearsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutFinancialYearsNestedInput
+    quarters?: InvestorQuarterUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateWithoutTableFormatAssignmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quarters?: InvestorQuarterUncheckedUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorQuarterUpsertWithoutTableFormatAssignmentsInput = {
+    update: XOR<InvestorQuarterUpdateWithoutTableFormatAssignmentsInput, InvestorQuarterUncheckedUpdateWithoutTableFormatAssignmentsInput>
+    create: XOR<InvestorQuarterCreateWithoutTableFormatAssignmentsInput, InvestorQuarterUncheckedCreateWithoutTableFormatAssignmentsInput>
+    where?: InvestorQuarterWhereInput
+  }
+
+  export type InvestorQuarterUpdateToOneWithWhereWithoutTableFormatAssignmentsInput = {
+    where?: InvestorQuarterWhereInput
+    data: XOR<InvestorQuarterUpdateWithoutTableFormatAssignmentsInput, InvestorQuarterUncheckedUpdateWithoutTableFormatAssignmentsInput>
+  }
+
+  export type InvestorQuarterUpdateWithoutTableFormatAssignmentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYear?: InvestorFinancialYearUpdateOneRequiredWithoutQuartersNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorQuarterUncheckedUpdateWithoutTableFormatAssignmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    financialYearId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorCategoryCreateWithoutDocumentsInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryCreateNestedManyWithoutCategoryInput
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryUncheckedCreateWithoutDocumentsInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    subCategories?: InvestorSubCategoryUncheckedCreateNestedManyWithoutCategoryInput
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type InvestorCategoryCreateOrConnectWithoutDocumentsInput = {
+    where: InvestorCategoryWhereUniqueInput
+    create: XOR<InvestorCategoryCreateWithoutDocumentsInput, InvestorCategoryUncheckedCreateWithoutDocumentsInput>
+  }
+
+  export type InvestorSubCategoryCreateWithoutDocumentsInput = {
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: InvestorCategoryCreateNestedOneWithoutSubCategoriesInput
+    financialYears?: InvestorFinancialYearCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryUncheckedCreateWithoutDocumentsInput = {
+    id?: number
+    categoryId: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYears?: InvestorFinancialYearUncheckedCreateNestedManyWithoutSubCategoryInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutSubCategoryInput
+  }
+
+  export type InvestorSubCategoryCreateOrConnectWithoutDocumentsInput = {
+    where: InvestorSubCategoryWhereUniqueInput
+    create: XOR<InvestorSubCategoryCreateWithoutDocumentsInput, InvestorSubCategoryUncheckedCreateWithoutDocumentsInput>
+  }
+
+  export type InvestorFinancialYearCreateWithoutDocumentsInput = {
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category?: InvestorCategoryCreateNestedOneWithoutFinancialYearsInput
+    subCategory?: InvestorSubCategoryCreateNestedOneWithoutFinancialYearsInput
+    quarters?: InvestorQuarterCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearUncheckedCreateWithoutDocumentsInput = {
+    id?: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    quarters?: InvestorQuarterUncheckedCreateNestedManyWithoutFinancialYearInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutFinancialYearInput
+  }
+
+  export type InvestorFinancialYearCreateOrConnectWithoutDocumentsInput = {
+    where: InvestorFinancialYearWhereUniqueInput
+    create: XOR<InvestorFinancialYearCreateWithoutDocumentsInput, InvestorFinancialYearUncheckedCreateWithoutDocumentsInput>
+  }
+
+  export type InvestorQuarterCreateWithoutDocumentsInput = {
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    financialYear: InvestorFinancialYearCreateNestedOneWithoutQuartersInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterUncheckedCreateWithoutDocumentsInput = {
+    id?: number
+    financialYearId: number
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedCreateNestedManyWithoutQuarterInput
+  }
+
+  export type InvestorQuarterCreateOrConnectWithoutDocumentsInput = {
+    where: InvestorQuarterWhereUniqueInput
+    create: XOR<InvestorQuarterCreateWithoutDocumentsInput, InvestorQuarterUncheckedCreateWithoutDocumentsInput>
+  }
+
+  export type InvestorCategoryUpsertWithoutDocumentsInput = {
+    update: XOR<InvestorCategoryUpdateWithoutDocumentsInput, InvestorCategoryUncheckedUpdateWithoutDocumentsInput>
+    create: XOR<InvestorCategoryCreateWithoutDocumentsInput, InvestorCategoryUncheckedCreateWithoutDocumentsInput>
+    where?: InvestorCategoryWhereInput
+  }
+
+  export type InvestorCategoryUpdateToOneWithWhereWithoutDocumentsInput = {
+    where?: InvestorCategoryWhereInput
+    data: XOR<InvestorCategoryUpdateWithoutDocumentsInput, InvestorCategoryUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type InvestorCategoryUpdateWithoutDocumentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUpdateManyWithoutCategoryNestedInput
+    financialYears?: InvestorFinancialYearUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorCategoryUncheckedUpdateWithoutDocumentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategories?: InvestorSubCategoryUncheckedUpdateManyWithoutCategoryNestedInput
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUpsertWithoutDocumentsInput = {
+    update: XOR<InvestorSubCategoryUpdateWithoutDocumentsInput, InvestorSubCategoryUncheckedUpdateWithoutDocumentsInput>
+    create: XOR<InvestorSubCategoryCreateWithoutDocumentsInput, InvestorSubCategoryUncheckedCreateWithoutDocumentsInput>
+    where?: InvestorSubCategoryWhereInput
+  }
+
+  export type InvestorSubCategoryUpdateToOneWithWhereWithoutDocumentsInput = {
+    where?: InvestorSubCategoryWhereInput
+    data: XOR<InvestorSubCategoryUpdateWithoutDocumentsInput, InvestorSubCategoryUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type InvestorSubCategoryUpdateWithoutDocumentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutSubCategoriesNestedInput
+    financialYears?: InvestorFinancialYearUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateWithoutDocumentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorFinancialYearUpsertWithoutDocumentsInput = {
+    update: XOR<InvestorFinancialYearUpdateWithoutDocumentsInput, InvestorFinancialYearUncheckedUpdateWithoutDocumentsInput>
+    create: XOR<InvestorFinancialYearCreateWithoutDocumentsInput, InvestorFinancialYearUncheckedCreateWithoutDocumentsInput>
+    where?: InvestorFinancialYearWhereInput
+  }
+
+  export type InvestorFinancialYearUpdateToOneWithWhereWithoutDocumentsInput = {
+    where?: InvestorFinancialYearWhereInput
+    data: XOR<InvestorFinancialYearUpdateWithoutDocumentsInput, InvestorFinancialYearUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type InvestorFinancialYearUpdateWithoutDocumentsInput = {
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneWithoutFinancialYearsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutFinancialYearsNestedInput
+    quarters?: InvestorQuarterUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateWithoutDocumentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quarters?: InvestorQuarterUncheckedUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorQuarterUpsertWithoutDocumentsInput = {
+    update: XOR<InvestorQuarterUpdateWithoutDocumentsInput, InvestorQuarterUncheckedUpdateWithoutDocumentsInput>
+    create: XOR<InvestorQuarterCreateWithoutDocumentsInput, InvestorQuarterUncheckedCreateWithoutDocumentsInput>
+    where?: InvestorQuarterWhereInput
+  }
+
+  export type InvestorQuarterUpdateToOneWithWhereWithoutDocumentsInput = {
+    where?: InvestorQuarterWhereInput
+    data: XOR<InvestorQuarterUpdateWithoutDocumentsInput, InvestorQuarterUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type InvestorQuarterUpdateWithoutDocumentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYear?: InvestorFinancialYearUpdateOneRequiredWithoutQuartersNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorQuarterUncheckedUpdateWithoutDocumentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    financialYearId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorSubCategoryCreateManyCategoryInput = {
+    id?: number
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorFinancialYearCreateManyCategoryInput = {
+    id?: number
+    subCategoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentCreateManyCategoryInput = {
+    id?: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyCategoryInput = {
+    id?: number
+    tableFormatId: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorSubCategoryUpdateWithoutCategoryInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYears?: InvestorFinancialYearUpdateManyWithoutSubCategoryNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    financialYears?: InvestorFinancialYearUncheckedUpdateManyWithoutSubCategoryNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutSubCategoryNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutSubCategoryNestedInput
+  }
+
+  export type InvestorSubCategoryUncheckedUpdateManyWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorFinancialYearUpdateWithoutCategoryInput = {
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategory?: InvestorSubCategoryUpdateOneWithoutFinancialYearsNestedInput
+    quarters?: InvestorQuarterUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quarters?: InvestorQuarterUncheckedUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateManyWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUpdateWithoutCategoryInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subCategory?: InvestorSubCategoryUpdateOneWithoutDocumentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutDocumentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutDocumentsNestedInput
+  }
+
+  export type InvestorDocumentUncheckedUpdateWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithoutCategoryInput = {
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableFormat?: InvestorTableFormatUpdateOneRequiredWithoutAssignmentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutTableFormatAssignmentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutTableFormatAssignmentsNestedInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorFinancialYearCreateManySubCategoryInput = {
+    id?: number
+    categoryId?: number | null
+    year: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentCreateManySubCategoryInput = {
+    id?: number
+    categoryId: number
+    financialYearId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateManySubCategoryInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorFinancialYearUpdateWithoutSubCategoryInput = {
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneWithoutFinancialYearsNestedInput
+    quarters?: InvestorQuarterUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateWithoutSubCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    quarters?: InvestorQuarterUncheckedUpdateManyWithoutFinancialYearNestedInput
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutFinancialYearNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearNestedInput
+  }
+
+  export type InvestorFinancialYearUncheckedUpdateManyWithoutSubCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    year?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUpdateWithoutSubCategoryInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutDocumentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutDocumentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutDocumentsNestedInput
+  }
+
+  export type InvestorDocumentUncheckedUpdateWithoutSubCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutSubCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithoutSubCategoryInput = {
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableFormat?: InvestorTableFormatUpdateOneRequiredWithoutAssignmentsNestedInput
+    category?: InvestorCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutTableFormatAssignmentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutTableFormatAssignmentsNestedInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateWithoutSubCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutSubCategoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorQuarterCreateManyFinancialYearInput = {
+    id?: number
+    name: string
+    code: string
+    releaseDate?: Date | string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentCreateManyFinancialYearInput = {
+    id?: number
+    categoryId: number
+    subCategoryId?: number | null
+    quarterId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyFinancialYearInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorQuarterUpdateWithoutFinancialYearInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: InvestorDocumentUpdateManyWithoutQuarterNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorQuarterUncheckedUpdateWithoutFinancialYearInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: InvestorDocumentUncheckedUpdateManyWithoutQuarterNestedInput
+    tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type InvestorQuarterUncheckedUpdateManyWithoutFinancialYearInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    releaseDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUpdateWithoutFinancialYearInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutDocumentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutDocumentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutDocumentsNestedInput
+  }
+
+  export type InvestorDocumentUncheckedUpdateWithoutFinancialYearInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutFinancialYearInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithoutFinancialYearInput = {
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableFormat?: InvestorTableFormatUpdateOneRequiredWithoutAssignmentsNestedInput
+    category?: InvestorCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutTableFormatAssignmentsNestedInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateWithoutFinancialYearInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutFinancialYearInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentCreateManyQuarterInput = {
+    id?: number
+    categoryId: number
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    title: string
+    description?: string | null
+    documentType?: string | null
+    purpose?: string | null
+    documentDate?: Date | string | null
+    disclosureDate?: Date | string | null
+    dueDate?: Date | string | null
+    storageType?: string
+    externalUrl: string
+    isPublished?: boolean
+    sortOrder?: number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyQuarterInput = {
+    id?: number
+    tableFormatId: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorDocumentUpdateWithoutQuarterInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneRequiredWithoutDocumentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutDocumentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutDocumentsNestedInput
+  }
+
+  export type InvestorDocumentUncheckedUpdateWithoutQuarterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorDocumentUncheckedUpdateManyWithoutQuarterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: IntFieldUpdateOperationsInput | number
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
+    purpose?: NullableStringFieldUpdateOperationsInput | string | null
+    documentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    disclosureDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    storageType?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithoutQuarterInput = {
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tableFormat?: InvestorTableFormatUpdateOneRequiredWithoutAssignmentsNestedInput
+    category?: InvestorCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutTableFormatAssignmentsNestedInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateWithoutQuarterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutQuarterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tableFormatId?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableColumnCreateManyTableFormatInput = {
+    id?: number
+    key: string
+    label: string
+    fieldType?: $Enums.InvestorTableFieldType
+    sortOrder?: number
+    isVisible?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableFormatAssignmentCreateManyTableFormatInput = {
+    id?: number
+    categoryId?: number | null
+    subCategoryId?: number | null
+    financialYearId?: number | null
+    quarterId?: number | null
+    displayMode?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InvestorTableColumnUpdateWithoutTableFormatInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fieldType?: EnumInvestorTableFieldTypeFieldUpdateOperationsInput | $Enums.InvestorTableFieldType
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableColumnUncheckedUpdateWithoutTableFormatInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fieldType?: EnumInvestorTableFieldTypeFieldUpdateOperationsInput | $Enums.InvestorTableFieldType
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableColumnUncheckedUpdateManyWithoutTableFormatInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    key?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    fieldType?: EnumInvestorTableFieldTypeFieldUpdateOperationsInput | $Enums.InvestorTableFieldType
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUpdateWithoutTableFormatInput = {
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: InvestorCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    subCategory?: InvestorSubCategoryUpdateOneWithoutTableFormatAssignmentsNestedInput
+    financialYear?: InvestorFinancialYearUpdateOneWithoutTableFormatAssignmentsNestedInput
+    quarter?: InvestorQuarterUpdateOneWithoutTableFormatAssignmentsNestedInput
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateWithoutTableFormatInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InvestorTableFormatAssignmentUncheckedUpdateManyWithoutTableFormatInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    categoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    subCategoryId?: NullableIntFieldUpdateOperationsInput | number | null
+    financialYearId?: NullableIntFieldUpdateOperationsInput | number | null
+    quarterId?: NullableIntFieldUpdateOperationsInput | number | null
+    displayMode?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+
+
+  /**
+   * Batch Payload for updateMany & deleteMany & createMany
+   */
+
+  export type BatchPayload = {
+    count: number
+  }
+
+  /**
+   * DMMF
+   */
+  export const dmmf: runtime.BaseDMMF
+}
