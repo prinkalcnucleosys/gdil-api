@@ -10,6 +10,8 @@ import blogRoutes from "./routes/blog.routes";
 import authRoutes from "./routes/auth.routes";
 import investorSubCategoryRoutes from "./routes/investor-subcategory.routes";
 import investorTableFormatRoutes from "./routes/investor-table-format.routes";
+import path from "path";
+import uploadRoutes from "./routes/upload.routes";
 
 import { swaggerSpec } from "./config/swagger";
 
@@ -32,13 +34,26 @@ app.use(
 );
 
 app.use(
-  express.json(),
+  express.json({
+    limit: "20mb",
+  }),
 );
 
 app.use(
   express.urlencoded({
     extended: true,
+    limit: "20mb",
   }),
+);
+
+app.use(
+  "/uploads",
+  express.static(
+    path.join(
+      process.cwd(),
+      "uploads",
+    ),
+  ),
 );
 
 /*
@@ -86,6 +101,11 @@ app.use(
   "/api/contact",
   contactRoutes,
 );
+app.use(
+  "/api/uploads",
+  uploadRoutes,
+);
+
 
 /*
 |--------------------------------------------------------------------------
