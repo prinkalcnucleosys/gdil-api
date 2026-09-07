@@ -46,6 +46,30 @@ model ContactInquiry {
   @@index([createdAt])
   @@map("contact_inquiries")
 }
+/**
+ * |--------------------------------------------------------------------------
+ * | CAREER APPLICATION
+ * |--------------------------------------------------------------------------
+ */
+model CareerApplication {
+  id         Int     @id @default(autoincrement())
+  name       String  @db.VarChar(255)
+  email      String  @db.VarChar(255)
+  phone      String? @db.VarChar(50)
+  position   String  @db.VarChar(255)
+  experience String  @db.VarChar(100)
+  message    String  @db.Text
+
+  status String @default("new") @db.VarChar(30)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("career_applications")
+}
 
 /**
  * |--------------------------------------------------------------------------

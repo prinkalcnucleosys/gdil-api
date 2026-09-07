@@ -143,6 +143,19 @@ exports.Prisma.ContactInquiryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CareerApplicationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  position: 'position',
+  experience: 'experience',
+  message: 'message',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.NewsletterSubscriberScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -301,6 +314,16 @@ exports.Prisma.ContactInquiryOrderByRelevanceFieldEnum = {
   status: 'status'
 };
 
+exports.Prisma.CareerApplicationOrderByRelevanceFieldEnum = {
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  position: 'position',
+  experience: 'experience',
+  message: 'message',
+  status: 'status'
+};
+
 exports.Prisma.NewsletterSubscriberOrderByRelevanceFieldEnum = {
   email: 'email'
 };
@@ -393,6 +416,7 @@ exports.InvestorTableFieldType = exports.$Enums.InvestorTableFieldType = {
 exports.Prisma.ModelName = {
   AdminUser: 'AdminUser',
   ContactInquiry: 'ContactInquiry',
+  CareerApplication: 'CareerApplication',
   NewsletterSubscriber: 'NewsletterSubscriber',
   BlogPost: 'BlogPost',
   InvestorCategory: 'InvestorCategory',

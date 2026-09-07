@@ -63,6 +63,9 @@ import {
   updateInvestorDocument,
   deleteInvestorDocument,
 } from "../controllers/investor-document.controller";
+import {
+  resolvePublicInvestorTableFormat,
+} from "../controllers/investor-public-table-format.controller";
 
 const router = Router();
 
@@ -391,6 +394,20 @@ router.patch(
   updateInvestorQuarterStatus,
 );
 
+/**
+ * Public - Resolve Investor Table Format
+ *
+ * Example:
+ * GET /api/investor/table-formats/resolve
+ *     ?categoryId=1
+ *     &subCategoryId=2
+ *     &financialYearId=3
+ *     &quarterId=4
+ */
+router.get(
+  "/table-formats/resolve",
+  resolvePublicInvestorTableFormat,
+);
 router.get(
   "/documents",
   getInvestorDocuments,
@@ -435,6 +452,7 @@ router.delete(
   authenticateJWT,
   deleteInvestorDocument,
 );
+
 
 /*
 |--------------------------------------------------------------------------
