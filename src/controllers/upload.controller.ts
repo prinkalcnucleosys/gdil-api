@@ -237,16 +237,16 @@ export async function uploadBlogDocument(
     |--------------------------------------------------------------------------
     */
 
-    if (
-      req.file.mimetype !==
-      "application/pdf"
-    ) {
-      return res.status(400).json({
-        success: false,
-        message:
-          "Only PDF documents are allowed.",
-      });
-    }
+    // if (
+    //   req.file.mimetype !==
+    //   "application/pdf"
+    // ) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message:
+    //       "Only PDF documents are allowed.",
+    //   });
+    // }
 
     /*
     |--------------------------------------------------------------------------
@@ -453,16 +453,16 @@ export async function uploadInvestorDocument(
     |--------------------------------------------------------------------------
     */
 
-    if (
-      req.file.mimetype !==
-      "application/pdf"
-    ) {
-      return res.status(400).json({
-        success: false,
-        message:
-          "Only PDF documents are allowed.",
-      });
-    }
+    // if (
+    //   req.file.mimetype !==
+    //   "application/pdf"
+    // ) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message:
+    //       "Only PDF documents are allowed.",
+    //   });
+    // }
 
     const category =
       String(

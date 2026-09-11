@@ -56,14 +56,14 @@ router.post(
 router.post(
   "/blog-document",
   authenticateJWT,
-  handleMulter(blogDocumentUpload, "PDF size must not exceed 10 MB."),
+  handleMulter(blogDocumentUpload, "File size must not exceed 10 MB."),
   uploadBlogDocument,
 );
 
 router.post(
   "/investor",
   authenticateJWT,
-  handleMulter(investorDocumentUpload, "PDF size must not exceed 10 MB."),
+  handleMulter(investorDocumentUpload, "File size must not exceed 10 MB."),
   uploadInvestorDocument,
 );
 

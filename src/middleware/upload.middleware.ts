@@ -29,9 +29,9 @@ export const blogDocumentUpload = multer({
   storage,
   limits: { fileSize: MAX_PDF_SIZE },
   fileFilter: (_req, file, cb) => {
-    if (file.mimetype !== "application/pdf") {
-      return cb(new Error("Only PDF documents are allowed."));
-    }
+    // if (file.mimetype !== "application/pdf") {
+    //   return cb(new Error("Only PDF documents are allowed."));
+    // }
 
     cb(null, true);
   },
@@ -41,9 +41,9 @@ export const investorDocumentUpload = multer({
   storage,
   limits: { fileSize: MAX_PDF_SIZE },
   fileFilter: (_req, file, cb) => {
-    if (file.mimetype !== "application/pdf") {
-      return cb(new Error("Only PDF documents are allowed."));
-    }
+    // if (file.mimetype !== "application/pdf") {
+    //   return cb(new Error("Only PDF documents are allowed."));
+    // }
 
     cb(null, true);
   },
