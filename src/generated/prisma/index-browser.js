@@ -184,6 +184,15 @@ exports.Prisma.BlogPostScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.IndustryParticipationGalleryScalarFieldEnum = {
+  id: 'id',
+  blogPostId: 'blogPostId',
+  image: 'image',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.InvestorCategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -353,6 +362,10 @@ exports.Prisma.BlogPostOrderByRelevanceFieldEnum = {
   link: 'link'
 };
 
+exports.Prisma.IndustryParticipationGalleryOrderByRelevanceFieldEnum = {
+  image: 'image'
+};
+
 exports.Prisma.InvestorCategoryOrderByRelevanceFieldEnum = {
   name: 'name'
 };
@@ -419,6 +432,7 @@ exports.Prisma.ModelName = {
   CareerApplication: 'CareerApplication',
   NewsletterSubscriber: 'NewsletterSubscriber',
   BlogPost: 'BlogPost',
+  IndustryParticipationGallery: 'IndustryParticipationGallery',
   InvestorCategory: 'InvestorCategory',
   InvestorSubCategory: 'InvestorSubCategory',
   InvestorFinancialYear: 'InvestorFinancialYear',

@@ -286,18 +286,22 @@ export async function getBlogs(
       await Promise.all([
         prisma.blogPost.findMany({
           where,
-          orderBy: [
-            {
-              date: "desc",
-            },
-            {
-              createdAt: "desc",
-            },
-          ],
-          skip:
-            (pageNumber - 1) *
-            limitNumber,
+
+          orderBy: {
+            date: "desc",
+          },
+
+          skip: (pageNumber - 1) * limitNumber,
+
           take: limitNumber,
+
+          include: {
+            industryGallery: {
+              orderBy: {
+                sortOrder: "asc",
+              },
+            },
+          },
         }),
 
         prisma.blogPost.count({
@@ -552,18 +556,22 @@ export async function getAdminBlogs(
       await Promise.all([
         prisma.blogPost.findMany({
           where,
-          orderBy: [
-            {
-              date: "desc",
-            },
-            {
-              createdAt: "desc",
-            },
-          ],
-          skip:
-            (pageNumber - 1) *
-            limitNumber,
+
+          orderBy: {
+            date: "desc",
+          },
+
+          skip: (pageNumber - 1) * limitNumber,
+
           take: limitNumber,
+
+          include: {
+            industryGallery: {
+              orderBy: {
+                sortOrder: "asc",
+              },
+            },
+          },
         }),
 
         prisma.blogPost.count({
@@ -644,6 +652,224 @@ export async function getAdminBlogById(
  * |--------------------------------------------------------------------------
  */
 
+// export async function createBlog(
+//   req: Request,
+//   res: Response,
+//   next: NextFunction,
+// ) {
+//   try {
+//     const {
+//       title,
+//       slug,
+//       type,
+//       excerpt,
+//       content,
+//       image,
+//       documentUrl,
+//       date,
+//       location,
+//       tags,
+//       personName,
+//       personRole,
+//       eventName,
+//       link,
+//       isPublished,
+//       galleryImages,
+//     } = req.body;
+
+//     /**
+//      * Title
+//      */
+//     const titleString =
+//       normalizeRequiredString(title);
+
+//     if (!titleString) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Title is required",
+//       });
+//     }
+
+//     /**
+//      * Type
+//      */
+//     if (!isValidBlogType(type)) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid blog type",
+//         allowedTypes: BLOG_TYPES,
+//       });
+//     }
+
+//     /**
+//      * Date
+//      */
+//     const parsedDate = date ? parseDate(date) : null;
+
+//     if (date && !parsedDate) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid date",
+//       });
+//     }
+
+//     /**
+//      * Slug
+//      *
+//      * If Admin provides slug,
+//      * use it.
+//      *
+//      * Otherwise generate it
+//      * automatically from title.
+//      */
+//     let finalSlug: string;
+
+//     if (
+//       typeof slug === "string" &&
+//       slug.trim()
+//     ) {
+//       finalSlug =
+//         slugify(slug);
+//     } else {
+//       finalSlug =
+//         await generateUniqueSlug(
+//           titleString,
+//         );
+//     }
+
+//     /**
+//      * Check slug
+//      */
+//     const existing =
+//       await prisma.blogPost.findUnique({
+//         where: {
+//           slug: finalSlug,
+//         },
+//       });
+
+//     if (existing) {
+//       return res.status(409).json({
+//         success: false,
+//         message:
+//           "Blog slug already exists",
+//       });
+//     }
+
+//     /**
+//      * Published status
+//      */
+//     const published =
+//       parseBoolean(isPublished);
+
+//     /**
+//      * Create
+//      */
+//     const normalizedTags = normalizeTags(tags);
+//     const normalizedGalleryImages =
+//       type === "INDUSTRY_PARTICIPATION" &&
+//         Array.isArray(galleryImages)
+//         ? galleryImages
+//           .filter(
+//             (image): image is string =>
+//               typeof image === "string" &&
+//               image.trim().length > 0
+//           )
+//           .map((image) => image.trim())
+//         : [];
+//     if (
+//       type === "INDUSTRY_PARTICIPATION" &&
+//       normalizedGalleryImages.length === 0
+//     ) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "At least one gallery image is required",
+//       });
+//     }
+
+//     // const blog = await prisma.blogPost.create({
+//     //   data: {
+//     //     title: normalizeRequiredString(title),
+//     //     slug: finalSlug,
+//     //     type,
+//     //     excerpt: normalizeString(excerpt),
+//     //     content: normalizeString(content),
+//     //     image: normalizeString(image),
+//     //     documentUrl: normalizeString(documentUrl),
+//     //     date: parsedDate,
+//     //     location: normalizeString(location),
+
+//     //     ...(normalizedTags !== null
+//     //       ? { tags: normalizedTags }
+//     //       : {}),
+
+//     //     personName: normalizeString(personName),
+//     //     personRole: normalizeString(personRole),
+//     //     eventName: normalizeString(eventName),
+//     //     link: normalizeString(link),
+//     //     isPublished: parseBoolean(isPublished) ?? false,
+//     //   },
+//     // });
+//     const blog = await prisma.blogPost.create({
+//       data: {
+//         title: normalizeRequiredString(title),
+//         slug: finalSlug,
+//         type,
+
+//         excerpt: normalizeString(excerpt),
+//         content: normalizeString(content),
+
+//         image: normalizeString(image),
+//         documentUrl: normalizeString(documentUrl),
+
+//         date: parsedDate,
+//         location: normalizeString(location),
+
+//         ...(normalizedTags !== null
+//           ? { tags: normalizedTags }
+//           : {}),
+
+//         personName: normalizeString(personName),
+//         personRole: normalizeString(personRole),
+//         eventName: normalizeString(eventName),
+//         link: normalizeString(link),
+
+//         isPublished:
+//           parseBoolean(isPublished) ?? false,
+
+//         // Industry Participation gallery
+//         ...(type === "INDUSTRY_PARTICIPATION" &&
+//           normalizedGalleryImages.length > 0
+//           ? {
+//             industryGallery: {
+//               create: normalizedGalleryImages.map(
+//                 (image, index) => ({
+//                   image,
+//                   sortOrder: index,
+//                 })
+//               ),
+//             },
+//           }
+//           : {}),
+//       },
+
+//       include: {
+//         industryGallery: {
+//           orderBy: {
+//             sortOrder: "asc",
+//           },
+//         },
+//       },
+//     });
+//     return res.status(201).json({
+//       success: true,
+//       message:
+//         "Blog created successfully",
+//       data: blog,
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// }
 export async function createBlog(
   req: Request,
   res: Response,
@@ -666,13 +892,14 @@ export async function createBlog(
       eventName,
       link,
       isPublished,
+      galleryImages,
     } = req.body;
 
-    /**
-     * Title
-     */
-    const titleString =
-      normalizeRequiredString(title);
+    // --------------------------------------------------
+    // Title
+    // --------------------------------------------------
+
+    const titleString = normalizeRequiredString(title);
 
     if (!titleString) {
       return res.status(400).json({
@@ -681,9 +908,10 @@ export async function createBlog(
       });
     }
 
-    /**
-     * Type
-     */
+    // --------------------------------------------------
+    // Type
+    // --------------------------------------------------
+
     if (!isValidBlogType(type)) {
       return res.status(400).json({
         success: false,
@@ -692,108 +920,177 @@ export async function createBlog(
       });
     }
 
-    /**
-     * Date
-     */
-    const parsedDate =
-      parseDate(date);
+    // --------------------------------------------------
+    // Date - OPTIONAL
+    // --------------------------------------------------
 
-    if (!parsedDate) {
+    const parsedDate = date ? parseDate(date) : null;
+
+    if (date && !parsedDate) {
       return res.status(400).json({
         success: false,
-        message:
-          "Valid date is required",
+        message: "Invalid date",
       });
     }
 
-    /**
-     * Slug
-     *
-     * If Admin provides slug,
-     * use it.
-     *
-     * Otherwise generate it
-     * automatically from title.
-     */
+    // --------------------------------------------------
+    // Slug
+    // --------------------------------------------------
+
     let finalSlug: string;
 
-    if (
-      typeof slug === "string" &&
-      slug.trim()
-    ) {
-      finalSlug =
-        slugify(slug);
+    if (typeof slug === "string" && slug.trim()) {
+      finalSlug = slugify(slug);
     } else {
-      finalSlug =
-        await generateUniqueSlug(
-          titleString,
-        );
+      finalSlug = await generateUniqueSlug(titleString);
     }
 
-    /**
-     * Check slug
-     */
-    const existing =
-      await prisma.blogPost.findUnique({
-        where: {
-          slug: finalSlug,
-        },
-      });
+    // --------------------------------------------------
+    // Check duplicate slug
+    // --------------------------------------------------
+
+    const existing = await prisma.blogPost.findUnique({
+      where: {
+        slug: finalSlug,
+      },
+    });
 
     if (existing) {
       return res.status(409).json({
         success: false,
-        message:
-          "Blog slug already exists",
+        message: "Blog slug already exists",
       });
     }
 
-    /**
-     * Published status
-     */
-    const published =
-      parseBoolean(isPublished);
+    // --------------------------------------------------
+    // Published status
+    // --------------------------------------------------
 
-    /**
-     * Create
-     */
-const normalizedTags = normalizeTags(tags);
+    const published = parseBoolean(isPublished);
 
-const blog = await prisma.blogPost.create({
-  data: {
-    title: normalizeRequiredString(title),
-    slug: finalSlug,
-    type,
-    excerpt: normalizeString(excerpt),
-    content: normalizeString(content),
-    image: normalizeString(image),
-    documentUrl: normalizeString(documentUrl),
-    date: parsedDate,
-    location: normalizeString(location),
+    // --------------------------------------------------
+    // Tags
+    // --------------------------------------------------
 
-    ...(normalizedTags !== null
-      ? { tags: normalizedTags }
-      : {}),
+    const normalizedTags = normalizeTags(tags);
 
-    personName: normalizeString(personName),
-    personRole: normalizeString(personRole),
-    eventName: normalizeString(eventName),
-    link: normalizeString(link),
-    isPublished: parseBoolean(isPublished) ?? false,
-  },
-});
+    // --------------------------------------------------
+    // Industry Gallery
+    // --------------------------------------------------
+
+    const normalizedGalleryImages =
+      type === "INDUSTRY_PARTICIPATION" &&
+        Array.isArray(galleryImages)
+        ? galleryImages
+          .filter(
+            (item): item is string =>
+              typeof item === "string" &&
+              item.trim().length > 0,
+          )
+          .map((item) => item.trim())
+        : [];
+
+    // --------------------------------------------------
+    // Industry Participation Gallery Required
+    // --------------------------------------------------
+
+    if (
+      type === "INDUSTRY_PARTICIPATION" &&
+      normalizedGalleryImages.length === 0
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "At least one gallery image is required",
+      });
+    }
+
+    // --------------------------------------------------
+    // Create Blog
+    // --------------------------------------------------
+
+    const blog = await prisma.blogPost.create({
+      data: {
+        title: titleString,
+        slug: finalSlug,
+        type,
+
+        // Optional fields
+        excerpt: normalizeString(excerpt),
+        content: normalizeString(content),
+
+        // Cover image
+        image: normalizeString(image),
+
+        // Optional document
+        documentUrl: normalizeString(documentUrl),
+
+        // Optional date
+        date: parsedDate,
+
+        // Optional location
+        location: normalizeString(location),
+
+        // Optional tags
+        ...(normalizedTags !== null
+          ? {
+            tags: normalizedTags,
+          }
+          : {}),
+
+        // Optional leadership fields
+        personName: normalizeString(personName),
+        personRole: normalizeString(personRole),
+
+        // Optional event field
+        eventName: normalizeString(eventName),
+
+        // Optional external link
+        link: normalizeString(link),
+
+        // Publishing
+        isPublished: published ?? false,
+
+        // --------------------------------------------------
+        // Industry Participation Gallery
+        // --------------------------------------------------
+
+        ...(type === "INDUSTRY_PARTICIPATION" &&
+          normalizedGalleryImages.length > 0
+          ? {
+            industryGallery: {
+              create: normalizedGalleryImages.map(
+                (image, index) => ({
+                  image,
+                  sortOrder: index,
+                }),
+              ),
+            },
+          }
+          : {}),
+      },
+
+      include: {
+        industryGallery: {
+          orderBy: {
+            sortOrder: "asc",
+          },
+        },
+      },
+    });
+
+    // --------------------------------------------------
+    // Response
+    // --------------------------------------------------
 
     return res.status(201).json({
       success: true,
-      message:
-        "Blog created successfully",
+      message: "Blog created successfully",
       data: blog,
     });
   } catch (error) {
     next(error);
   }
 }
-
 /**
  * |--------------------------------------------------------------------------
  * | PUT /api/blog/admin/:id
@@ -802,15 +1099,305 @@ const blog = await prisma.blogPost.create({
  * |--------------------------------------------------------------------------
  */
 
+// export async function updateBlog(
+//   req: Request,
+//   res: Response,
+//   next: NextFunction,
+// ) {
+//   try {
+//     const id = parseId(
+//       req.params.id,
+//     );
+
+//     if (!id) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Invalid blog ID",
+//       });
+//     }
+
+//     const existing =
+//       await prisma.blogPost.findUnique({
+//         where: {
+//           id,
+//         },
+//       });
+
+//     if (!existing) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "Blog not found",
+//       });
+//     }
+
+//     const {
+//       title,
+//       slug,
+//       type,
+//       excerpt,
+//       content,
+//       image,
+//       documentUrl,
+//       date,
+//       location,
+//       tags,
+//       personName,
+//       personRole,
+//       eventName,
+//       link,
+//       isPublished,
+//       galleryImages,
+//     } = req.body;
+
+//     /**
+//      * Update object
+//      */
+//     const data: any = {};
+
+//     /**
+//      * Title
+//      */
+//     if (title !== undefined) {
+//       const titleString =
+//         normalizeRequiredString(
+//           title,
+//         );
+
+//       if (!titleString) {
+//         return res.status(400).json({
+//           success: false,
+//           message:
+//             "Title cannot be empty",
+//         });
+//       }
+
+//       data.title = titleString;
+//     }
+
+//     /**
+//      * Type
+//      */
+//     if (type !== undefined) {
+//       if (!isValidBlogType(type)) {
+//         return res.status(400).json({
+//           success: false,
+//           message:
+//             "Invalid blog type",
+//           allowedTypes:
+//             BLOG_TYPES,
+//         });
+//       }
+
+//       data.type = type;
+//     }
+
+//     /**
+//      * Slug
+//      */
+//     if (slug !== undefined) {
+//       const slugString =
+//         normalizeRequiredString(
+//           slug,
+//         );
+
+//       if (!slugString) {
+//         return res.status(400).json({
+//           success: false,
+//           message:
+//             "Slug cannot be empty",
+//         });
+//       }
+
+//       const newSlug =
+//         slugify(slugString);
+
+//       const slugExists =
+//         await prisma.blogPost.findFirst({
+//           where: {
+//             slug: newSlug,
+//             NOT: {
+//               id,
+//             },
+//           },
+//         });
+
+//       if (slugExists) {
+//         return res.status(409).json({
+//           success: false,
+//           message:
+//             "Blog slug already exists",
+//         });
+//       }
+
+//       data.slug = newSlug;
+//     }
+
+//     /**
+//      * Automatically update slug
+//      * when title changes and slug
+//      * wasn't explicitly provided.
+//      */
+//     if (
+//       title !== undefined &&
+//       slug === undefined
+//     ) {
+//       data.slug =
+//         await generateUniqueSlug(
+//           normalizeRequiredString(
+//             title,
+//           ),
+//           id,
+//         );
+//     }
+
+//     /**
+//      * Optional fields
+//      */
+//     if (excerpt !== undefined) {
+//       data.excerpt =
+//         normalizeString(excerpt);
+//     }
+
+//     if (content !== undefined) {
+//       data.content =
+//         normalizeString(content);
+//     }
+
+//     if (image !== undefined) {
+//       data.image =
+//         normalizeString(image);
+//     }
+
+//     /**
+//      * IMPORTANT:
+//      * Supports Newsletter /
+//      * Press Release PDF URL.
+//      */
+//     if (documentUrl !== undefined) {
+//       data.documentUrl =
+//         normalizeString(
+//           documentUrl,
+//         );
+//     }
+
+//     if (location !== undefined) {
+//       data.location =
+//         normalizeString(location);
+//     }
+
+//     if (personName !== undefined) {
+//       data.personName =
+//         normalizeString(
+//           personName,
+//         );
+//     }
+
+//     if (personRole !== undefined) {
+//       data.personRole =
+//         normalizeString(
+//           personRole,
+//         );
+//     }
+
+//     if (eventName !== undefined) {
+//       data.eventName =
+//         normalizeString(
+//           eventName,
+//         );
+//     }
+
+//     if (link !== undefined) {
+//       data.link =
+//         normalizeString(link);
+//     }
+
+//     /**
+//      * Date
+//      */
+//     if (date !== undefined) {
+//       const parsedDate =
+//         parseDate(date);
+
+//       if (!parsedDate) {
+//         return res.status(400).json({
+//           success: false,
+//           message:
+//             "Invalid date",
+//         });
+//       }
+
+//       data.date =
+//         parsedDate;
+//     }
+
+//     /**
+//      * Tags
+//      */
+//     if (tags !== undefined) {
+//       data.tags =
+//         normalizeTags(tags);
+//     }
+
+//     /**
+//      * Published status
+//      */
+//     if (isPublished !== undefined) {
+//       const published =
+//         parseBoolean(
+//           isPublished,
+//         );
+
+//       if (published === null) {
+//         return res.status(400).json({
+//           success: false,
+//           message:
+//             "isPublished must be true or false",
+//         });
+//       }
+
+//       data.isPublished =
+//         published;
+//     }
+
+//     /**
+//      * Update
+//      */
+//     const normalizedGalleryImages =
+//       type === "INDUSTRY_PARTICIPATION" &&
+//         Array.isArray(galleryImages)
+//         ? galleryImages
+//           .filter(
+//             (image): image is string =>
+//               typeof image === "string" &&
+//               image.trim().length > 0
+//           )
+//           .map((image) => image.trim())
+//         : [];
+//     const blog =
+//       await prisma.blogPost.update({
+//         where: {
+//           id,
+//         },
+//         data,
+//       });
+
+//     return res.status(200).json({
+//       success: true,
+//       message:
+//         "Blog updated successfully",
+//       data: blog,
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// }
 export async function updateBlog(
   req: Request,
   res: Response,
   next: NextFunction,
 ) {
   try {
-    const id = parseId(
-      req.params.id,
-    );
+    const id = parseId(req.params.id);
 
     if (!id) {
       return res.status(400).json({
@@ -819,12 +1406,11 @@ export async function updateBlog(
       });
     }
 
-    const existing =
-      await prisma.blogPost.findUnique({
-        where: {
-          id,
-        },
-      });
+    const existing = await prisma.blogPost.findUnique({
+      where: {
+        id,
+      },
+    });
 
     if (!existing) {
       return res.status(404).json({
@@ -849,27 +1435,31 @@ export async function updateBlog(
       eventName,
       link,
       isPublished,
+      galleryImages,
     } = req.body;
 
     /**
-     * Update object
+     * ---------------------------------------------------------
+     * UPDATE OBJECT
+     * ---------------------------------------------------------
      */
+
     const data: any = {};
 
     /**
-     * Title
+     * ---------------------------------------------------------
+     * TITLE
+     * ---------------------------------------------------------
      */
+
     if (title !== undefined) {
       const titleString =
-        normalizeRequiredString(
-          title,
-        );
+        normalizeRequiredString(title);
 
       if (!titleString) {
         return res.status(400).json({
           success: false,
-          message:
-            "Title cannot be empty",
+          message: "Title cannot be empty",
         });
       }
 
@@ -877,16 +1467,17 @@ export async function updateBlog(
     }
 
     /**
-     * Type
+     * ---------------------------------------------------------
+     * TYPE
+     * ---------------------------------------------------------
      */
+
     if (type !== undefined) {
       if (!isValidBlogType(type)) {
         return res.status(400).json({
           success: false,
-          message:
-            "Invalid blog type",
-          allowedTypes:
-            BLOG_TYPES,
+          message: "Invalid blog type",
+          allowedTypes: BLOG_TYPES,
         });
       }
 
@@ -894,24 +1485,23 @@ export async function updateBlog(
     }
 
     /**
-     * Slug
+     * ---------------------------------------------------------
+     * SLUG
+     * ---------------------------------------------------------
      */
+
     if (slug !== undefined) {
       const slugString =
-        normalizeRequiredString(
-          slug,
-        );
+        normalizeRequiredString(slug);
 
       if (!slugString) {
         return res.status(400).json({
           success: false,
-          message:
-            "Slug cannot be empty",
+          message: "Slug cannot be empty",
         });
       }
 
-      const newSlug =
-        slugify(slugString);
+      const newSlug = slugify(slugString);
 
       const slugExists =
         await prisma.blogPost.findFirst({
@@ -926,8 +1516,7 @@ export async function updateBlog(
       if (slugExists) {
         return res.status(409).json({
           success: false,
-          message:
-            "Blog slug already exists",
+          message: "Blog slug already exists",
         });
       }
 
@@ -935,26 +1524,28 @@ export async function updateBlog(
     }
 
     /**
-     * Automatically update slug
-     * when title changes and slug
-     * wasn't explicitly provided.
+     * ---------------------------------------------------------
+     * AUTO SLUG WHEN TITLE CHANGES
+     * ---------------------------------------------------------
      */
+
     if (
       title !== undefined &&
       slug === undefined
     ) {
       data.slug =
         await generateUniqueSlug(
-          normalizeRequiredString(
-            title,
-          ),
-            id,
-          );
+          normalizeRequiredString(title),
+          id,
+        );
     }
 
     /**
-     * Optional fields
+     * ---------------------------------------------------------
+     * OPTIONAL FIELDS
+     * ---------------------------------------------------------
      */
+
     if (excerpt !== undefined) {
       data.excerpt =
         normalizeString(excerpt);
@@ -970,16 +1561,9 @@ export async function updateBlog(
         normalizeString(image);
     }
 
-    /**
-     * IMPORTANT:
-     * Supports Newsletter /
-     * Press Release PDF URL.
-     */
     if (documentUrl !== undefined) {
       data.documentUrl =
-        normalizeString(
-          documentUrl,
-        );
+        normalizeString(documentUrl);
     }
 
     if (location !== undefined) {
@@ -989,23 +1573,17 @@ export async function updateBlog(
 
     if (personName !== undefined) {
       data.personName =
-        normalizeString(
-          personName,
-        );
+        normalizeString(personName);
     }
 
     if (personRole !== undefined) {
       data.personRole =
-        normalizeString(
-          personRole,
-        );
+        normalizeString(personRole);
     }
 
     if (eventName !== undefined) {
       data.eventName =
-        normalizeString(
-          eventName,
-        );
+        normalizeString(eventName);
     }
 
     if (link !== undefined) {
@@ -1014,40 +1592,54 @@ export async function updateBlog(
     }
 
     /**
-     * Date
+     * ---------------------------------------------------------
+     * DATE
+     * ---------------------------------------------------------
+     *
+     * Date is OPTIONAL in your new Prisma schema.
      */
+
     if (date !== undefined) {
-      const parsedDate =
-        parseDate(date);
+      if (
+        date === null ||
+        date === ""
+      ) {
+        data.date = null;
+      } else {
+        const parsedDate =
+          parseDate(date);
 
-      if (!parsedDate) {
-        return res.status(400).json({
-          success: false,
-          message:
-            "Invalid date",
-        });
+        if (!parsedDate) {
+          return res.status(400).json({
+            success: false,
+            message: "Invalid date",
+          });
+        }
+
+        data.date = parsedDate;
       }
-
-      data.date =
-        parsedDate;
     }
 
     /**
-     * Tags
+     * ---------------------------------------------------------
+     * TAGS
+     * ---------------------------------------------------------
      */
+
     if (tags !== undefined) {
       data.tags =
         normalizeTags(tags);
     }
 
     /**
-     * Published status
+     * ---------------------------------------------------------
+     * PUBLISHED STATUS
+     * ---------------------------------------------------------
      */
+
     if (isPublished !== undefined) {
       const published =
-        parseBoolean(
-          isPublished,
-        );
+        parseBoolean(isPublished);
 
       if (published === null) {
         return res.status(400).json({
@@ -1062,15 +1654,188 @@ export async function updateBlog(
     }
 
     /**
-     * Update
+     * ---------------------------------------------------------
+     * INDUSTRY PARTICIPATION GALLERY
+     * ---------------------------------------------------------
+     *
+     * Gallery is stored in:
+     *
+     * IndustryParticipationGallery
+     *
+     * Only process gallery when the request
+     * is Industry Participation.
      */
+
+    const finalType =
+      type !== undefined
+        ? type
+        : existing.type;
+
+    let normalizedGalleryImages:
+      string[] = [];
+
+    if (
+      finalType ===
+      "INDUSTRY_PARTICIPATION"
+    ) {
+      if (
+        galleryImages !== undefined
+      ) {
+        if (
+          !Array.isArray(
+            galleryImages
+          )
+        ) {
+          return res.status(400).json({
+            success: false,
+            message:
+              "galleryImages must be an array",
+          });
+        }
+
+        normalizedGalleryImages =
+          galleryImages
+            .filter(
+              (
+                image
+              ): image is string =>
+                typeof image ===
+                "string" &&
+                image.trim().length > 0
+            )
+            .map(
+              (image) =>
+                image.trim()
+            );
+      }
+    }
+
+    /**
+     * ---------------------------------------------------------
+     * DATABASE TRANSACTION
+     * ---------------------------------------------------------
+     */
+
     const blog =
-      await prisma.blogPost.update({
-        where: {
-          id,
-        },
-        data,
-      });
+      await prisma.$transaction(
+        async (tx) => {
+
+          /**
+           * Update BlogPost
+           */
+          const updatedBlog =
+            await tx.blogPost.update({
+              where: {
+                id,
+              },
+
+              data,
+            });
+
+          /**
+           * -------------------------------------------------
+           * INDUSTRY GALLERY
+           * -------------------------------------------------
+           *
+           * If galleryImages was supplied, replace
+           * the existing gallery with the new images.
+           */
+
+          if (
+            finalType ===
+            "INDUSTRY_PARTICIPATION" &&
+            galleryImages !== undefined
+          ) {
+
+            /**
+             * Delete old gallery
+             */
+            await tx
+              .industryParticipationGallery
+              .deleteMany({
+                where: {
+                  blogPostId: id,
+                },
+              });
+
+            /**
+             * Insert new gallery
+             */
+            if (
+              normalizedGalleryImages
+                .length > 0
+            ) {
+              await tx
+                .industryParticipationGallery
+                .createMany({
+                  data:
+                    normalizedGalleryImages.map(
+                      (
+                        image,
+                        index
+                      ) => ({
+                        blogPostId:
+                          id,
+                        image,
+                        sortOrder:
+                          index,
+                      })
+                    ),
+                });
+            }
+          }
+
+          /**
+           * -------------------------------------------------
+           * TYPE CHANGED FROM INDUSTRY PARTICIPATION
+           * -------------------------------------------------
+           *
+           * Remove old gallery if the blog
+           * is changed to another type.
+           */
+
+          if (
+            finalType !==
+            "INDUSTRY_PARTICIPATION" &&
+            existing.type ===
+            "INDUSTRY_PARTICIPATION"
+          ) {
+            await tx
+              .industryParticipationGallery
+              .deleteMany({
+                where: {
+                  blogPostId: id,
+                },
+              });
+          }
+
+          /**
+           * Return updated blog
+           * with gallery
+           */
+
+          return tx.blogPost.findUnique({
+            where: {
+              id,
+            },
+
+            include: {
+              industryGallery: {
+                orderBy: {
+                  sortOrder:
+                    "asc",
+                },
+              },
+            },
+          });
+        }
+      );
+
+    /**
+     * ---------------------------------------------------------
+     * RESPONSE
+     * ---------------------------------------------------------
+     */
 
     return res.status(200).json({
       success: true,
@@ -1078,11 +1843,11 @@ export async function updateBlog(
         "Blog updated successfully",
       data: blog,
     });
+
   } catch (error) {
     next(error);
   }
 }
-
 /**
  * |--------------------------------------------------------------------------
  * | DELETE /api/blog/admin/:id

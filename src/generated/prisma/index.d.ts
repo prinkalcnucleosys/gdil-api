@@ -51,6 +51,11 @@ export type NewsletterSubscriber = $Result.DefaultSelection<Prisma.$NewsletterSu
  */
 export type BlogPost = $Result.DefaultSelection<Prisma.$BlogPostPayload>
 /**
+ * Model IndustryParticipationGallery
+ * 
+ */
+export type IndustryParticipationGallery = $Result.DefaultSelection<Prisma.$IndustryParticipationGalleryPayload>
+/**
  * Model InvestorCategory
  * *
  *  * |--------------------------------------------------------------------------
@@ -324,6 +329,16 @@ export class PrismaClient<
     * ```
     */
   get blogPost(): Prisma.BlogPostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.industryParticipationGallery`: Exposes CRUD operations for the **IndustryParticipationGallery** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more IndustryParticipationGalleries
+    * const industryParticipationGalleries = await prisma.industryParticipationGallery.findMany()
+    * ```
+    */
+  get industryParticipationGallery(): Prisma.IndustryParticipationGalleryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.investorCategory`: Exposes CRUD operations for the **InvestorCategory** model.
@@ -856,6 +871,7 @@ export namespace Prisma {
     CareerApplication: 'CareerApplication',
     NewsletterSubscriber: 'NewsletterSubscriber',
     BlogPost: 'BlogPost',
+    IndustryParticipationGallery: 'IndustryParticipationGallery',
     InvestorCategory: 'InvestorCategory',
     InvestorSubCategory: 'InvestorSubCategory',
     InvestorFinancialYear: 'InvestorFinancialYear',
@@ -879,7 +895,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "adminUser" | "contactInquiry" | "careerApplication" | "newsletterSubscriber" | "blogPost" | "investorCategory" | "investorSubCategory" | "investorFinancialYear" | "investorQuarter" | "investorTableFormat" | "investorTableColumn" | "investorTableFormatAssignment" | "investorDocument"
+      modelProps: "adminUser" | "contactInquiry" | "careerApplication" | "newsletterSubscriber" | "blogPost" | "industryParticipationGallery" | "investorCategory" | "investorSubCategory" | "investorFinancialYear" | "investorQuarter" | "investorTableFormat" | "investorTableColumn" | "investorTableFormatAssignment" | "investorDocument"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1210,6 +1226,72 @@ export namespace Prisma {
           count: {
             args: Prisma.BlogPostCountArgs<ExtArgs>
             result: $Utils.Optional<BlogPostCountAggregateOutputType> | number
+          }
+        }
+      }
+      IndustryParticipationGallery: {
+        payload: Prisma.$IndustryParticipationGalleryPayload<ExtArgs>
+        fields: Prisma.IndustryParticipationGalleryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IndustryParticipationGalleryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IndustryParticipationGalleryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload>
+          }
+          findFirst: {
+            args: Prisma.IndustryParticipationGalleryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IndustryParticipationGalleryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload>
+          }
+          findMany: {
+            args: Prisma.IndustryParticipationGalleryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload>[]
+          }
+          create: {
+            args: Prisma.IndustryParticipationGalleryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload>
+          }
+          createMany: {
+            args: Prisma.IndustryParticipationGalleryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.IndustryParticipationGalleryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload>
+          }
+          update: {
+            args: Prisma.IndustryParticipationGalleryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload>
+          }
+          deleteMany: {
+            args: Prisma.IndustryParticipationGalleryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IndustryParticipationGalleryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.IndustryParticipationGalleryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryParticipationGalleryPayload>
+          }
+          aggregate: {
+            args: Prisma.IndustryParticipationGalleryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIndustryParticipationGallery>
+          }
+          groupBy: {
+            args: Prisma.IndustryParticipationGalleryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IndustryParticipationGalleryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IndustryParticipationGalleryCountArgs<ExtArgs>
+            result: $Utils.Optional<IndustryParticipationGalleryCountAggregateOutputType> | number
           }
         }
       }
@@ -1869,6 +1951,7 @@ export namespace Prisma {
     careerApplication?: CareerApplicationOmit
     newsletterSubscriber?: NewsletterSubscriberOmit
     blogPost?: BlogPostOmit
+    industryParticipationGallery?: IndustryParticipationGalleryOmit
     investorCategory?: InvestorCategoryOmit
     investorSubCategory?: InvestorSubCategoryOmit
     investorFinancialYear?: InvestorFinancialYearOmit
@@ -1950,6 +2033,37 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type BlogPostCountOutputType
+   */
+
+  export type BlogPostCountOutputType = {
+    industryGallery: number
+  }
+
+  export type BlogPostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    industryGallery?: boolean | BlogPostCountOutputTypeCountIndustryGalleryArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BlogPostCountOutputType without action
+   */
+  export type BlogPostCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlogPostCountOutputType
+     */
+    select?: BlogPostCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BlogPostCountOutputType without action
+   */
+  export type BlogPostCountOutputTypeCountIndustryGalleryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IndustryParticipationGalleryWhereInput
+  }
 
 
   /**
@@ -6245,7 +6359,7 @@ export namespace Prisma {
     content: string | null
     image: string | null
     documentUrl: string | null
-    date: Date
+    date: Date | null
     location: string | null
     tags: JsonValue | null
     personName: string | null
@@ -6295,6 +6409,8 @@ export namespace Prisma {
     isPublished?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    industryGallery?: boolean | BlogPost$industryGalleryArgs<ExtArgs>
+    _count?: boolean | BlogPostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blogPost"]>
 
 
@@ -6321,10 +6437,16 @@ export namespace Prisma {
   }
 
   export type BlogPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "type" | "excerpt" | "content" | "image" | "documentUrl" | "date" | "location" | "tags" | "personName" | "personRole" | "eventName" | "link" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["blogPost"]>
+  export type BlogPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    industryGallery?: boolean | BlogPost$industryGalleryArgs<ExtArgs>
+    _count?: boolean | BlogPostCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $BlogPostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BlogPost"
-    objects: {}
+    objects: {
+      industryGallery: Prisma.$IndustryParticipationGalleryPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
@@ -6334,7 +6456,7 @@ export namespace Prisma {
       content: string | null
       image: string | null
       documentUrl: string | null
-      date: Date
+      date: Date | null
       location: string | null
       tags: Prisma.JsonValue | null
       personName: string | null
@@ -6684,6 +6806,7 @@ export namespace Prisma {
    */
   export interface Prisma__BlogPostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    industryGallery<T extends BlogPost$industryGalleryArgs<ExtArgs> = {}>(args?: Subset<T, BlogPost$industryGalleryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6748,6 +6871,10 @@ export namespace Prisma {
      */
     omit?: BlogPostOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
      * Filter, which BlogPost to fetch.
      */
     where: BlogPostWhereUniqueInput
@@ -6766,6 +6893,10 @@ export namespace Prisma {
      */
     omit?: BlogPostOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
      * Filter, which BlogPost to fetch.
      */
     where: BlogPostWhereUniqueInput
@@ -6783,6 +6914,10 @@ export namespace Prisma {
      * Omit specific fields from the BlogPost
      */
     omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
     /**
      * Filter, which BlogPost to fetch.
      */
@@ -6832,6 +6967,10 @@ export namespace Prisma {
      */
     omit?: BlogPostOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
      * Filter, which BlogPost to fetch.
      */
     where?: BlogPostWhereInput
@@ -6879,6 +7018,10 @@ export namespace Prisma {
      * Omit specific fields from the BlogPost
      */
     omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
     /**
      * Filter, which BlogPosts to fetch.
      */
@@ -6928,6 +7071,10 @@ export namespace Prisma {
      */
     omit?: BlogPostOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
      * The data needed to create a BlogPost.
      */
     data: XOR<BlogPostCreateInput, BlogPostUncheckedCreateInput>
@@ -6956,6 +7103,10 @@ export namespace Prisma {
      * Omit specific fields from the BlogPost
      */
     omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
     /**
      * The data needed to update a BlogPost.
      */
@@ -6997,6 +7148,10 @@ export namespace Prisma {
      */
     omit?: BlogPostOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
      * The filter to search for the BlogPost to update in case it exists.
      */
     where: BlogPostWhereUniqueInput
@@ -7023,6 +7178,10 @@ export namespace Prisma {
      */
     omit?: BlogPostOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+    /**
      * Filter which BlogPost to delete.
      */
     where: BlogPostWhereUniqueInput
@@ -7043,6 +7202,30 @@ export namespace Prisma {
   }
 
   /**
+   * BlogPost.industryGallery
+   */
+  export type BlogPost$industryGalleryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    where?: IndustryParticipationGalleryWhereInput
+    orderBy?: IndustryParticipationGalleryOrderByWithRelationInput | IndustryParticipationGalleryOrderByWithRelationInput[]
+    cursor?: IndustryParticipationGalleryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: IndustryParticipationGalleryScalarFieldEnum | IndustryParticipationGalleryScalarFieldEnum[]
+  }
+
+  /**
    * BlogPost without action
    */
   export type BlogPostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7054,6 +7237,997 @@ export namespace Prisma {
      * Omit specific fields from the BlogPost
      */
     omit?: BlogPostOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogPostInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model IndustryParticipationGallery
+   */
+
+  export type AggregateIndustryParticipationGallery = {
+    _count: IndustryParticipationGalleryCountAggregateOutputType | null
+    _avg: IndustryParticipationGalleryAvgAggregateOutputType | null
+    _sum: IndustryParticipationGallerySumAggregateOutputType | null
+    _min: IndustryParticipationGalleryMinAggregateOutputType | null
+    _max: IndustryParticipationGalleryMaxAggregateOutputType | null
+  }
+
+  export type IndustryParticipationGalleryAvgAggregateOutputType = {
+    id: number | null
+    blogPostId: number | null
+    sortOrder: number | null
+  }
+
+  export type IndustryParticipationGallerySumAggregateOutputType = {
+    id: number | null
+    blogPostId: number | null
+    sortOrder: number | null
+  }
+
+  export type IndustryParticipationGalleryMinAggregateOutputType = {
+    id: number | null
+    blogPostId: number | null
+    image: string | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IndustryParticipationGalleryMaxAggregateOutputType = {
+    id: number | null
+    blogPostId: number | null
+    image: string | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type IndustryParticipationGalleryCountAggregateOutputType = {
+    id: number
+    blogPostId: number
+    image: number
+    sortOrder: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type IndustryParticipationGalleryAvgAggregateInputType = {
+    id?: true
+    blogPostId?: true
+    sortOrder?: true
+  }
+
+  export type IndustryParticipationGallerySumAggregateInputType = {
+    id?: true
+    blogPostId?: true
+    sortOrder?: true
+  }
+
+  export type IndustryParticipationGalleryMinAggregateInputType = {
+    id?: true
+    blogPostId?: true
+    image?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IndustryParticipationGalleryMaxAggregateInputType = {
+    id?: true
+    blogPostId?: true
+    image?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type IndustryParticipationGalleryCountAggregateInputType = {
+    id?: true
+    blogPostId?: true
+    image?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type IndustryParticipationGalleryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IndustryParticipationGallery to aggregate.
+     */
+    where?: IndustryParticipationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndustryParticipationGalleries to fetch.
+     */
+    orderBy?: IndustryParticipationGalleryOrderByWithRelationInput | IndustryParticipationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IndustryParticipationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndustryParticipationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndustryParticipationGalleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned IndustryParticipationGalleries
+    **/
+    _count?: true | IndustryParticipationGalleryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: IndustryParticipationGalleryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: IndustryParticipationGallerySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IndustryParticipationGalleryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IndustryParticipationGalleryMaxAggregateInputType
+  }
+
+  export type GetIndustryParticipationGalleryAggregateType<T extends IndustryParticipationGalleryAggregateArgs> = {
+        [P in keyof T & keyof AggregateIndustryParticipationGallery]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIndustryParticipationGallery[P]>
+      : GetScalarType<T[P], AggregateIndustryParticipationGallery[P]>
+  }
+
+
+
+
+  export type IndustryParticipationGalleryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IndustryParticipationGalleryWhereInput
+    orderBy?: IndustryParticipationGalleryOrderByWithAggregationInput | IndustryParticipationGalleryOrderByWithAggregationInput[]
+    by: IndustryParticipationGalleryScalarFieldEnum[] | IndustryParticipationGalleryScalarFieldEnum
+    having?: IndustryParticipationGalleryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IndustryParticipationGalleryCountAggregateInputType | true
+    _avg?: IndustryParticipationGalleryAvgAggregateInputType
+    _sum?: IndustryParticipationGallerySumAggregateInputType
+    _min?: IndustryParticipationGalleryMinAggregateInputType
+    _max?: IndustryParticipationGalleryMaxAggregateInputType
+  }
+
+  export type IndustryParticipationGalleryGroupByOutputType = {
+    id: number
+    blogPostId: number
+    image: string
+    sortOrder: number
+    createdAt: Date
+    updatedAt: Date
+    _count: IndustryParticipationGalleryCountAggregateOutputType | null
+    _avg: IndustryParticipationGalleryAvgAggregateOutputType | null
+    _sum: IndustryParticipationGallerySumAggregateOutputType | null
+    _min: IndustryParticipationGalleryMinAggregateOutputType | null
+    _max: IndustryParticipationGalleryMaxAggregateOutputType | null
+  }
+
+  type GetIndustryParticipationGalleryGroupByPayload<T extends IndustryParticipationGalleryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IndustryParticipationGalleryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IndustryParticipationGalleryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IndustryParticipationGalleryGroupByOutputType[P]>
+            : GetScalarType<T[P], IndustryParticipationGalleryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IndustryParticipationGallerySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    blogPostId?: boolean
+    image?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    blogPost?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["industryParticipationGallery"]>
+
+
+
+  export type IndustryParticipationGallerySelectScalar = {
+    id?: boolean
+    blogPostId?: boolean
+    image?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type IndustryParticipationGalleryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "blogPostId" | "image" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["industryParticipationGallery"]>
+  export type IndustryParticipationGalleryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    blogPost?: boolean | BlogPostDefaultArgs<ExtArgs>
+  }
+
+  export type $IndustryParticipationGalleryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "IndustryParticipationGallery"
+    objects: {
+      blogPost: Prisma.$BlogPostPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      blogPostId: number
+      image: string
+      sortOrder: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["industryParticipationGallery"]>
+    composites: {}
+  }
+
+  type IndustryParticipationGalleryGetPayload<S extends boolean | null | undefined | IndustryParticipationGalleryDefaultArgs> = $Result.GetResult<Prisma.$IndustryParticipationGalleryPayload, S>
+
+  type IndustryParticipationGalleryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IndustryParticipationGalleryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IndustryParticipationGalleryCountAggregateInputType | true
+    }
+
+  export interface IndustryParticipationGalleryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IndustryParticipationGallery'], meta: { name: 'IndustryParticipationGallery' } }
+    /**
+     * Find zero or one IndustryParticipationGallery that matches the filter.
+     * @param {IndustryParticipationGalleryFindUniqueArgs} args - Arguments to find a IndustryParticipationGallery
+     * @example
+     * // Get one IndustryParticipationGallery
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IndustryParticipationGalleryFindUniqueArgs>(args: SelectSubset<T, IndustryParticipationGalleryFindUniqueArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one IndustryParticipationGallery that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IndustryParticipationGalleryFindUniqueOrThrowArgs} args - Arguments to find a IndustryParticipationGallery
+     * @example
+     * // Get one IndustryParticipationGallery
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IndustryParticipationGalleryFindUniqueOrThrowArgs>(args: SelectSubset<T, IndustryParticipationGalleryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IndustryParticipationGallery that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryParticipationGalleryFindFirstArgs} args - Arguments to find a IndustryParticipationGallery
+     * @example
+     * // Get one IndustryParticipationGallery
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IndustryParticipationGalleryFindFirstArgs>(args?: SelectSubset<T, IndustryParticipationGalleryFindFirstArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first IndustryParticipationGallery that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryParticipationGalleryFindFirstOrThrowArgs} args - Arguments to find a IndustryParticipationGallery
+     * @example
+     * // Get one IndustryParticipationGallery
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IndustryParticipationGalleryFindFirstOrThrowArgs>(args?: SelectSubset<T, IndustryParticipationGalleryFindFirstOrThrowArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more IndustryParticipationGalleries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryParticipationGalleryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all IndustryParticipationGalleries
+     * const industryParticipationGalleries = await prisma.industryParticipationGallery.findMany()
+     * 
+     * // Get first 10 IndustryParticipationGalleries
+     * const industryParticipationGalleries = await prisma.industryParticipationGallery.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const industryParticipationGalleryWithIdOnly = await prisma.industryParticipationGallery.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IndustryParticipationGalleryFindManyArgs>(args?: SelectSubset<T, IndustryParticipationGalleryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a IndustryParticipationGallery.
+     * @param {IndustryParticipationGalleryCreateArgs} args - Arguments to create a IndustryParticipationGallery.
+     * @example
+     * // Create one IndustryParticipationGallery
+     * const IndustryParticipationGallery = await prisma.industryParticipationGallery.create({
+     *   data: {
+     *     // ... data to create a IndustryParticipationGallery
+     *   }
+     * })
+     * 
+     */
+    create<T extends IndustryParticipationGalleryCreateArgs>(args: SelectSubset<T, IndustryParticipationGalleryCreateArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many IndustryParticipationGalleries.
+     * @param {IndustryParticipationGalleryCreateManyArgs} args - Arguments to create many IndustryParticipationGalleries.
+     * @example
+     * // Create many IndustryParticipationGalleries
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IndustryParticipationGalleryCreateManyArgs>(args?: SelectSubset<T, IndustryParticipationGalleryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a IndustryParticipationGallery.
+     * @param {IndustryParticipationGalleryDeleteArgs} args - Arguments to delete one IndustryParticipationGallery.
+     * @example
+     * // Delete one IndustryParticipationGallery
+     * const IndustryParticipationGallery = await prisma.industryParticipationGallery.delete({
+     *   where: {
+     *     // ... filter to delete one IndustryParticipationGallery
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IndustryParticipationGalleryDeleteArgs>(args: SelectSubset<T, IndustryParticipationGalleryDeleteArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one IndustryParticipationGallery.
+     * @param {IndustryParticipationGalleryUpdateArgs} args - Arguments to update one IndustryParticipationGallery.
+     * @example
+     * // Update one IndustryParticipationGallery
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IndustryParticipationGalleryUpdateArgs>(args: SelectSubset<T, IndustryParticipationGalleryUpdateArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more IndustryParticipationGalleries.
+     * @param {IndustryParticipationGalleryDeleteManyArgs} args - Arguments to filter IndustryParticipationGalleries to delete.
+     * @example
+     * // Delete a few IndustryParticipationGalleries
+     * const { count } = await prisma.industryParticipationGallery.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IndustryParticipationGalleryDeleteManyArgs>(args?: SelectSubset<T, IndustryParticipationGalleryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more IndustryParticipationGalleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryParticipationGalleryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many IndustryParticipationGalleries
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IndustryParticipationGalleryUpdateManyArgs>(args: SelectSubset<T, IndustryParticipationGalleryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one IndustryParticipationGallery.
+     * @param {IndustryParticipationGalleryUpsertArgs} args - Arguments to update or create a IndustryParticipationGallery.
+     * @example
+     * // Update or create a IndustryParticipationGallery
+     * const industryParticipationGallery = await prisma.industryParticipationGallery.upsert({
+     *   create: {
+     *     // ... data to create a IndustryParticipationGallery
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the IndustryParticipationGallery we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IndustryParticipationGalleryUpsertArgs>(args: SelectSubset<T, IndustryParticipationGalleryUpsertArgs<ExtArgs>>): Prisma__IndustryParticipationGalleryClient<$Result.GetResult<Prisma.$IndustryParticipationGalleryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of IndustryParticipationGalleries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryParticipationGalleryCountArgs} args - Arguments to filter IndustryParticipationGalleries to count.
+     * @example
+     * // Count the number of IndustryParticipationGalleries
+     * const count = await prisma.industryParticipationGallery.count({
+     *   where: {
+     *     // ... the filter for the IndustryParticipationGalleries we want to count
+     *   }
+     * })
+    **/
+    count<T extends IndustryParticipationGalleryCountArgs>(
+      args?: Subset<T, IndustryParticipationGalleryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IndustryParticipationGalleryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a IndustryParticipationGallery.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryParticipationGalleryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IndustryParticipationGalleryAggregateArgs>(args: Subset<T, IndustryParticipationGalleryAggregateArgs>): Prisma.PrismaPromise<GetIndustryParticipationGalleryAggregateType<T>>
+
+    /**
+     * Group by IndustryParticipationGallery.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryParticipationGalleryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IndustryParticipationGalleryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IndustryParticipationGalleryGroupByArgs['orderBy'] }
+        : { orderBy?: IndustryParticipationGalleryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IndustryParticipationGalleryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIndustryParticipationGalleryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the IndustryParticipationGallery model
+   */
+  readonly fields: IndustryParticipationGalleryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for IndustryParticipationGallery.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IndustryParticipationGalleryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    blogPost<T extends BlogPostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BlogPostDefaultArgs<ExtArgs>>): Prisma__BlogPostClient<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the IndustryParticipationGallery model
+   */
+  interface IndustryParticipationGalleryFieldRefs {
+    readonly id: FieldRef<"IndustryParticipationGallery", 'Int'>
+    readonly blogPostId: FieldRef<"IndustryParticipationGallery", 'Int'>
+    readonly image: FieldRef<"IndustryParticipationGallery", 'String'>
+    readonly sortOrder: FieldRef<"IndustryParticipationGallery", 'Int'>
+    readonly createdAt: FieldRef<"IndustryParticipationGallery", 'DateTime'>
+    readonly updatedAt: FieldRef<"IndustryParticipationGallery", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * IndustryParticipationGallery findUnique
+   */
+  export type IndustryParticipationGalleryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * Filter, which IndustryParticipationGallery to fetch.
+     */
+    where: IndustryParticipationGalleryWhereUniqueInput
+  }
+
+  /**
+   * IndustryParticipationGallery findUniqueOrThrow
+   */
+  export type IndustryParticipationGalleryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * Filter, which IndustryParticipationGallery to fetch.
+     */
+    where: IndustryParticipationGalleryWhereUniqueInput
+  }
+
+  /**
+   * IndustryParticipationGallery findFirst
+   */
+  export type IndustryParticipationGalleryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * Filter, which IndustryParticipationGallery to fetch.
+     */
+    where?: IndustryParticipationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndustryParticipationGalleries to fetch.
+     */
+    orderBy?: IndustryParticipationGalleryOrderByWithRelationInput | IndustryParticipationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IndustryParticipationGalleries.
+     */
+    cursor?: IndustryParticipationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndustryParticipationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndustryParticipationGalleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IndustryParticipationGalleries.
+     */
+    distinct?: IndustryParticipationGalleryScalarFieldEnum | IndustryParticipationGalleryScalarFieldEnum[]
+  }
+
+  /**
+   * IndustryParticipationGallery findFirstOrThrow
+   */
+  export type IndustryParticipationGalleryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * Filter, which IndustryParticipationGallery to fetch.
+     */
+    where?: IndustryParticipationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndustryParticipationGalleries to fetch.
+     */
+    orderBy?: IndustryParticipationGalleryOrderByWithRelationInput | IndustryParticipationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for IndustryParticipationGalleries.
+     */
+    cursor?: IndustryParticipationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndustryParticipationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndustryParticipationGalleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IndustryParticipationGalleries.
+     */
+    distinct?: IndustryParticipationGalleryScalarFieldEnum | IndustryParticipationGalleryScalarFieldEnum[]
+  }
+
+  /**
+   * IndustryParticipationGallery findMany
+   */
+  export type IndustryParticipationGalleryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * Filter, which IndustryParticipationGalleries to fetch.
+     */
+    where?: IndustryParticipationGalleryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of IndustryParticipationGalleries to fetch.
+     */
+    orderBy?: IndustryParticipationGalleryOrderByWithRelationInput | IndustryParticipationGalleryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing IndustryParticipationGalleries.
+     */
+    cursor?: IndustryParticipationGalleryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` IndustryParticipationGalleries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` IndustryParticipationGalleries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of IndustryParticipationGalleries.
+     */
+    distinct?: IndustryParticipationGalleryScalarFieldEnum | IndustryParticipationGalleryScalarFieldEnum[]
+  }
+
+  /**
+   * IndustryParticipationGallery create
+   */
+  export type IndustryParticipationGalleryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a IndustryParticipationGallery.
+     */
+    data: XOR<IndustryParticipationGalleryCreateInput, IndustryParticipationGalleryUncheckedCreateInput>
+  }
+
+  /**
+   * IndustryParticipationGallery createMany
+   */
+  export type IndustryParticipationGalleryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many IndustryParticipationGalleries.
+     */
+    data: IndustryParticipationGalleryCreateManyInput | IndustryParticipationGalleryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * IndustryParticipationGallery update
+   */
+  export type IndustryParticipationGalleryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a IndustryParticipationGallery.
+     */
+    data: XOR<IndustryParticipationGalleryUpdateInput, IndustryParticipationGalleryUncheckedUpdateInput>
+    /**
+     * Choose, which IndustryParticipationGallery to update.
+     */
+    where: IndustryParticipationGalleryWhereUniqueInput
+  }
+
+  /**
+   * IndustryParticipationGallery updateMany
+   */
+  export type IndustryParticipationGalleryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update IndustryParticipationGalleries.
+     */
+    data: XOR<IndustryParticipationGalleryUpdateManyMutationInput, IndustryParticipationGalleryUncheckedUpdateManyInput>
+    /**
+     * Filter which IndustryParticipationGalleries to update
+     */
+    where?: IndustryParticipationGalleryWhereInput
+    /**
+     * Limit how many IndustryParticipationGalleries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * IndustryParticipationGallery upsert
+   */
+  export type IndustryParticipationGalleryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the IndustryParticipationGallery to update in case it exists.
+     */
+    where: IndustryParticipationGalleryWhereUniqueInput
+    /**
+     * In case the IndustryParticipationGallery found by the `where` argument doesn't exist, create a new IndustryParticipationGallery with this data.
+     */
+    create: XOR<IndustryParticipationGalleryCreateInput, IndustryParticipationGalleryUncheckedCreateInput>
+    /**
+     * In case the IndustryParticipationGallery was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IndustryParticipationGalleryUpdateInput, IndustryParticipationGalleryUncheckedUpdateInput>
+  }
+
+  /**
+   * IndustryParticipationGallery delete
+   */
+  export type IndustryParticipationGalleryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
+    /**
+     * Filter which IndustryParticipationGallery to delete.
+     */
+    where: IndustryParticipationGalleryWhereUniqueInput
+  }
+
+  /**
+   * IndustryParticipationGallery deleteMany
+   */
+  export type IndustryParticipationGalleryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which IndustryParticipationGalleries to delete
+     */
+    where?: IndustryParticipationGalleryWhereInput
+    /**
+     * Limit how many IndustryParticipationGalleries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * IndustryParticipationGallery without action
+   */
+  export type IndustryParticipationGalleryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryParticipationGallery
+     */
+    select?: IndustryParticipationGallerySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the IndustryParticipationGallery
+     */
+    omit?: IndustryParticipationGalleryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryParticipationGalleryInclude<ExtArgs> | null
   }
 
 
@@ -15956,6 +17130,18 @@ export namespace Prisma {
   export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
 
 
+  export const IndustryParticipationGalleryScalarFieldEnum: {
+    id: 'id',
+    blogPostId: 'blogPostId',
+    image: 'image',
+    sortOrder: 'sortOrder',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type IndustryParticipationGalleryScalarFieldEnum = (typeof IndustryParticipationGalleryScalarFieldEnum)[keyof typeof IndustryParticipationGalleryScalarFieldEnum]
+
+
   export const InvestorCategoryScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -16177,6 +17363,13 @@ export namespace Prisma {
   };
 
   export type BlogPostOrderByRelevanceFieldEnum = (typeof BlogPostOrderByRelevanceFieldEnum)[keyof typeof BlogPostOrderByRelevanceFieldEnum]
+
+
+  export const IndustryParticipationGalleryOrderByRelevanceFieldEnum: {
+    image: 'image'
+  };
+
+  export type IndustryParticipationGalleryOrderByRelevanceFieldEnum = (typeof IndustryParticipationGalleryOrderByRelevanceFieldEnum)[keyof typeof IndustryParticipationGalleryOrderByRelevanceFieldEnum]
 
 
   export const InvestorCategoryOrderByRelevanceFieldEnum: {
@@ -16602,7 +17795,7 @@ export namespace Prisma {
     content?: StringNullableFilter<"BlogPost"> | string | null
     image?: StringNullableFilter<"BlogPost"> | string | null
     documentUrl?: StringNullableFilter<"BlogPost"> | string | null
-    date?: DateTimeFilter<"BlogPost"> | Date | string
+    date?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
     location?: StringNullableFilter<"BlogPost"> | string | null
     tags?: JsonNullableFilter<"BlogPost">
     personName?: StringNullableFilter<"BlogPost"> | string | null
@@ -16612,6 +17805,7 @@ export namespace Prisma {
     isPublished?: BoolFilter<"BlogPost"> | boolean
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeFilter<"BlogPost"> | Date | string
+    industryGallery?: IndustryParticipationGalleryListRelationFilter
   }
 
   export type BlogPostOrderByWithRelationInput = {
@@ -16623,7 +17817,7 @@ export namespace Prisma {
     content?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     documentUrl?: SortOrderInput | SortOrder
-    date?: SortOrder
+    date?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     tags?: SortOrderInput | SortOrder
     personName?: SortOrderInput | SortOrder
@@ -16633,6 +17827,7 @@ export namespace Prisma {
     isPublished?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    industryGallery?: IndustryParticipationGalleryOrderByRelationAggregateInput
     _relevance?: BlogPostOrderByRelevanceInput
   }
 
@@ -16648,7 +17843,7 @@ export namespace Prisma {
     content?: StringNullableFilter<"BlogPost"> | string | null
     image?: StringNullableFilter<"BlogPost"> | string | null
     documentUrl?: StringNullableFilter<"BlogPost"> | string | null
-    date?: DateTimeFilter<"BlogPost"> | Date | string
+    date?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
     location?: StringNullableFilter<"BlogPost"> | string | null
     tags?: JsonNullableFilter<"BlogPost">
     personName?: StringNullableFilter<"BlogPost"> | string | null
@@ -16658,6 +17853,7 @@ export namespace Prisma {
     isPublished?: BoolFilter<"BlogPost"> | boolean
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeFilter<"BlogPost"> | Date | string
+    industryGallery?: IndustryParticipationGalleryListRelationFilter
   }, "id" | "slug">
 
   export type BlogPostOrderByWithAggregationInput = {
@@ -16669,7 +17865,7 @@ export namespace Prisma {
     content?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     documentUrl?: SortOrderInput | SortOrder
-    date?: SortOrder
+    date?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     tags?: SortOrderInput | SortOrder
     personName?: SortOrderInput | SortOrder
@@ -16698,7 +17894,7 @@ export namespace Prisma {
     content?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
     image?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
     documentUrl?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
-    date?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+    date?: DateTimeNullableWithAggregatesFilter<"BlogPost"> | Date | string | null
     location?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
     tags?: JsonNullableWithAggregatesFilter<"BlogPost">
     personName?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
@@ -16708,6 +17904,69 @@ export namespace Prisma {
     isPublished?: BoolWithAggregatesFilter<"BlogPost"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+  }
+
+  export type IndustryParticipationGalleryWhereInput = {
+    AND?: IndustryParticipationGalleryWhereInput | IndustryParticipationGalleryWhereInput[]
+    OR?: IndustryParticipationGalleryWhereInput[]
+    NOT?: IndustryParticipationGalleryWhereInput | IndustryParticipationGalleryWhereInput[]
+    id?: IntFilter<"IndustryParticipationGallery"> | number
+    blogPostId?: IntFilter<"IndustryParticipationGallery"> | number
+    image?: StringFilter<"IndustryParticipationGallery"> | string
+    sortOrder?: IntFilter<"IndustryParticipationGallery"> | number
+    createdAt?: DateTimeFilter<"IndustryParticipationGallery"> | Date | string
+    updatedAt?: DateTimeFilter<"IndustryParticipationGallery"> | Date | string
+    blogPost?: XOR<BlogPostScalarRelationFilter, BlogPostWhereInput>
+  }
+
+  export type IndustryParticipationGalleryOrderByWithRelationInput = {
+    id?: SortOrder
+    blogPostId?: SortOrder
+    image?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    blogPost?: BlogPostOrderByWithRelationInput
+    _relevance?: IndustryParticipationGalleryOrderByRelevanceInput
+  }
+
+  export type IndustryParticipationGalleryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: IndustryParticipationGalleryWhereInput | IndustryParticipationGalleryWhereInput[]
+    OR?: IndustryParticipationGalleryWhereInput[]
+    NOT?: IndustryParticipationGalleryWhereInput | IndustryParticipationGalleryWhereInput[]
+    blogPostId?: IntFilter<"IndustryParticipationGallery"> | number
+    image?: StringFilter<"IndustryParticipationGallery"> | string
+    sortOrder?: IntFilter<"IndustryParticipationGallery"> | number
+    createdAt?: DateTimeFilter<"IndustryParticipationGallery"> | Date | string
+    updatedAt?: DateTimeFilter<"IndustryParticipationGallery"> | Date | string
+    blogPost?: XOR<BlogPostScalarRelationFilter, BlogPostWhereInput>
+  }, "id">
+
+  export type IndustryParticipationGalleryOrderByWithAggregationInput = {
+    id?: SortOrder
+    blogPostId?: SortOrder
+    image?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: IndustryParticipationGalleryCountOrderByAggregateInput
+    _avg?: IndustryParticipationGalleryAvgOrderByAggregateInput
+    _max?: IndustryParticipationGalleryMaxOrderByAggregateInput
+    _min?: IndustryParticipationGalleryMinOrderByAggregateInput
+    _sum?: IndustryParticipationGallerySumOrderByAggregateInput
+  }
+
+  export type IndustryParticipationGalleryScalarWhereWithAggregatesInput = {
+    AND?: IndustryParticipationGalleryScalarWhereWithAggregatesInput | IndustryParticipationGalleryScalarWhereWithAggregatesInput[]
+    OR?: IndustryParticipationGalleryScalarWhereWithAggregatesInput[]
+    NOT?: IndustryParticipationGalleryScalarWhereWithAggregatesInput | IndustryParticipationGalleryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"IndustryParticipationGallery"> | number
+    blogPostId?: IntWithAggregatesFilter<"IndustryParticipationGallery"> | number
+    image?: StringWithAggregatesFilter<"IndustryParticipationGallery"> | string
+    sortOrder?: IntWithAggregatesFilter<"IndustryParticipationGallery"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"IndustryParticipationGallery"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"IndustryParticipationGallery"> | Date | string
   }
 
   export type InvestorCategoryWhereInput = {
@@ -17709,7 +18968,7 @@ export namespace Prisma {
     content?: string | null
     image?: string | null
     documentUrl?: string | null
-    date: Date | string
+    date?: Date | string | null
     location?: string | null
     tags?: NullableJsonNullValueInput | InputJsonValue
     personName?: string | null
@@ -17719,6 +18978,7 @@ export namespace Prisma {
     isPublished?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    industryGallery?: IndustryParticipationGalleryCreateNestedManyWithoutBlogPostInput
   }
 
   export type BlogPostUncheckedCreateInput = {
@@ -17730,7 +18990,7 @@ export namespace Prisma {
     content?: string | null
     image?: string | null
     documentUrl?: string | null
-    date: Date | string
+    date?: Date | string | null
     location?: string | null
     tags?: NullableJsonNullValueInput | InputJsonValue
     personName?: string | null
@@ -17740,6 +19000,7 @@ export namespace Prisma {
     isPublished?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    industryGallery?: IndustryParticipationGalleryUncheckedCreateNestedManyWithoutBlogPostInput
   }
 
   export type BlogPostUpdateInput = {
@@ -17750,7 +19011,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: NullableJsonNullValueInput | InputJsonValue
     personName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17760,6 +19021,7 @@ export namespace Prisma {
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    industryGallery?: IndustryParticipationGalleryUpdateManyWithoutBlogPostNestedInput
   }
 
   export type BlogPostUncheckedUpdateInput = {
@@ -17771,7 +19033,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: NullableJsonNullValueInput | InputJsonValue
     personName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17781,6 +19043,7 @@ export namespace Prisma {
     isPublished?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    industryGallery?: IndustryParticipationGalleryUncheckedUpdateManyWithoutBlogPostNestedInput
   }
 
   export type BlogPostCreateManyInput = {
@@ -17792,7 +19055,7 @@ export namespace Prisma {
     content?: string | null
     image?: string | null
     documentUrl?: string | null
-    date: Date | string
+    date?: Date | string | null
     location?: string | null
     tags?: NullableJsonNullValueInput | InputJsonValue
     personName?: string | null
@@ -17812,7 +19075,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: NullableJsonNullValueInput | InputJsonValue
     personName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17833,7 +19096,7 @@ export namespace Prisma {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: NullableJsonNullValueInput | InputJsonValue
     personName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17841,6 +19104,65 @@ export namespace Prisma {
     eventName?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
     isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IndustryParticipationGalleryCreateInput = {
+    image: string
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    blogPost: BlogPostCreateNestedOneWithoutIndustryGalleryInput
+  }
+
+  export type IndustryParticipationGalleryUncheckedCreateInput = {
+    id?: number
+    blogPostId: number
+    image: string
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IndustryParticipationGalleryUpdateInput = {
+    image?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blogPost?: BlogPostUpdateOneRequiredWithoutIndustryGalleryNestedInput
+  }
+
+  export type IndustryParticipationGalleryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    blogPostId?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IndustryParticipationGalleryCreateManyInput = {
+    id?: number
+    blogPostId: number
+    image: string
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IndustryParticipationGalleryUpdateManyMutationInput = {
+    image?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IndustryParticipationGalleryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    blogPostId?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18883,6 +20205,17 @@ export namespace Prisma {
     notIn?: $Enums.BlogType[]
     not?: NestedEnumBlogTypeFilter<$PrismaModel> | $Enums.BlogType
   }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -18905,6 +20238,16 @@ export namespace Prisma {
     gt?: InputJsonValue
     gte?: InputJsonValue
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type IndustryParticipationGalleryListRelationFilter = {
+    every?: IndustryParticipationGalleryWhereInput
+    some?: IndustryParticipationGalleryWhereInput
+    none?: IndustryParticipationGalleryWhereInput
+  }
+
+  export type IndustryParticipationGalleryOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type BlogPostOrderByRelevanceInput = {
@@ -18991,6 +20334,20 @@ export namespace Prisma {
     _min?: NestedEnumBlogTypeFilter<$PrismaModel>
     _max?: NestedEnumBlogTypeFilter<$PrismaModel>
   }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
@@ -19016,6 +20373,56 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedJsonNullableFilter<$PrismaModel>
     _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type BlogPostScalarRelationFilter = {
+    is?: BlogPostWhereInput
+    isNot?: BlogPostWhereInput
+  }
+
+  export type IndustryParticipationGalleryOrderByRelevanceInput = {
+    fields: IndustryParticipationGalleryOrderByRelevanceFieldEnum | IndustryParticipationGalleryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type IndustryParticipationGalleryCountOrderByAggregateInput = {
+    id?: SortOrder
+    blogPostId?: SortOrder
+    image?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IndustryParticipationGalleryAvgOrderByAggregateInput = {
+    id?: SortOrder
+    blogPostId?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type IndustryParticipationGalleryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    blogPostId?: SortOrder
+    image?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IndustryParticipationGalleryMinOrderByAggregateInput = {
+    id?: SortOrder
+    blogPostId?: SortOrder
+    image?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IndustryParticipationGallerySumOrderByAggregateInput = {
+    id?: SortOrder
+    blogPostId?: SortOrder
+    sortOrder?: SortOrder
   }
 
   export type InvestorSubCategoryListRelationFilter = {
@@ -19259,17 +20666,6 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type InvestorFinancialYearScalarRelationFilter = {
     is?: InvestorFinancialYearWhereInput
     isNot?: InvestorFinancialYearWhereInput
@@ -19332,20 +20728,6 @@ export namespace Prisma {
     id?: SortOrder
     financialYearId?: SortOrder
     sortOrder?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type InvestorTableColumnListRelationFilter = {
@@ -19670,8 +21052,68 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type IndustryParticipationGalleryCreateNestedManyWithoutBlogPostInput = {
+    create?: XOR<IndustryParticipationGalleryCreateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput> | IndustryParticipationGalleryCreateWithoutBlogPostInput[] | IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput[]
+    connectOrCreate?: IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput | IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput[]
+    createMany?: IndustryParticipationGalleryCreateManyBlogPostInputEnvelope
+    connect?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+  }
+
+  export type IndustryParticipationGalleryUncheckedCreateNestedManyWithoutBlogPostInput = {
+    create?: XOR<IndustryParticipationGalleryCreateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput> | IndustryParticipationGalleryCreateWithoutBlogPostInput[] | IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput[]
+    connectOrCreate?: IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput | IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput[]
+    createMany?: IndustryParticipationGalleryCreateManyBlogPostInputEnvelope
+    connect?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+  }
+
   export type EnumBlogTypeFieldUpdateOperationsInput = {
     set?: $Enums.BlogType
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type IndustryParticipationGalleryUpdateManyWithoutBlogPostNestedInput = {
+    create?: XOR<IndustryParticipationGalleryCreateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput> | IndustryParticipationGalleryCreateWithoutBlogPostInput[] | IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput[]
+    connectOrCreate?: IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput | IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput[]
+    upsert?: IndustryParticipationGalleryUpsertWithWhereUniqueWithoutBlogPostInput | IndustryParticipationGalleryUpsertWithWhereUniqueWithoutBlogPostInput[]
+    createMany?: IndustryParticipationGalleryCreateManyBlogPostInputEnvelope
+    set?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    disconnect?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    delete?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    connect?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    update?: IndustryParticipationGalleryUpdateWithWhereUniqueWithoutBlogPostInput | IndustryParticipationGalleryUpdateWithWhereUniqueWithoutBlogPostInput[]
+    updateMany?: IndustryParticipationGalleryUpdateManyWithWhereWithoutBlogPostInput | IndustryParticipationGalleryUpdateManyWithWhereWithoutBlogPostInput[]
+    deleteMany?: IndustryParticipationGalleryScalarWhereInput | IndustryParticipationGalleryScalarWhereInput[]
+  }
+
+  export type IndustryParticipationGalleryUncheckedUpdateManyWithoutBlogPostNestedInput = {
+    create?: XOR<IndustryParticipationGalleryCreateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput> | IndustryParticipationGalleryCreateWithoutBlogPostInput[] | IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput[]
+    connectOrCreate?: IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput | IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput[]
+    upsert?: IndustryParticipationGalleryUpsertWithWhereUniqueWithoutBlogPostInput | IndustryParticipationGalleryUpsertWithWhereUniqueWithoutBlogPostInput[]
+    createMany?: IndustryParticipationGalleryCreateManyBlogPostInputEnvelope
+    set?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    disconnect?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    delete?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    connect?: IndustryParticipationGalleryWhereUniqueInput | IndustryParticipationGalleryWhereUniqueInput[]
+    update?: IndustryParticipationGalleryUpdateWithWhereUniqueWithoutBlogPostInput | IndustryParticipationGalleryUpdateWithWhereUniqueWithoutBlogPostInput[]
+    updateMany?: IndustryParticipationGalleryUpdateManyWithWhereWithoutBlogPostInput | IndustryParticipationGalleryUpdateManyWithWhereWithoutBlogPostInput[]
+    deleteMany?: IndustryParticipationGalleryScalarWhereInput | IndustryParticipationGalleryScalarWhereInput[]
+  }
+
+  export type BlogPostCreateNestedOneWithoutIndustryGalleryInput = {
+    create?: XOR<BlogPostCreateWithoutIndustryGalleryInput, BlogPostUncheckedCreateWithoutIndustryGalleryInput>
+    connectOrCreate?: BlogPostCreateOrConnectWithoutIndustryGalleryInput
+    connect?: BlogPostWhereUniqueInput
+  }
+
+  export type BlogPostUpdateOneRequiredWithoutIndustryGalleryNestedInput = {
+    create?: XOR<BlogPostCreateWithoutIndustryGalleryInput, BlogPostUncheckedCreateWithoutIndustryGalleryInput>
+    connectOrCreate?: BlogPostCreateOrConnectWithoutIndustryGalleryInput
+    upsert?: BlogPostUpsertWithoutIndustryGalleryInput
+    connect?: BlogPostWhereUniqueInput
+    update?: XOR<XOR<BlogPostUpdateToOneWithWhereWithoutIndustryGalleryInput, BlogPostUpdateWithoutIndustryGalleryInput>, BlogPostUncheckedUpdateWithoutIndustryGalleryInput>
   }
 
   export type InvestorSubCategoryCreateNestedManyWithoutCategoryInput = {
@@ -20182,10 +21624,6 @@ export namespace Prisma {
     connect?: InvestorTableFormatAssignmentWhereUniqueInput | InvestorTableFormatAssignmentWhereUniqueInput[]
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
   export type InvestorFinancialYearUpdateOneRequiredWithoutQuartersNestedInput = {
     create?: XOR<InvestorFinancialYearCreateWithoutQuartersInput, InvestorFinancialYearUncheckedCreateWithoutQuartersInput>
     connectOrCreate?: InvestorFinancialYearCreateOrConnectWithoutQuartersInput
@@ -20652,6 +22090,17 @@ export namespace Prisma {
     not?: NestedEnumBlogTypeFilter<$PrismaModel> | $Enums.BlogType
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedEnumBlogTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.BlogType | EnumBlogTypeFieldRefInput<$PrismaModel>
     in?: $Enums.BlogType[]
@@ -20660,6 +22109,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumBlogTypeFilter<$PrismaModel>
     _max?: NestedEnumBlogTypeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -20712,31 +22175,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type NestedEnumInvestorTableFieldTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.InvestorTableFieldType | EnumInvestorTableFieldTypeFieldRefInput<$PrismaModel>
     in?: $Enums.InvestorTableFieldType[]
@@ -20752,6 +22190,157 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel>
     _max?: NestedEnumInvestorTableFieldTypeFilter<$PrismaModel>
+  }
+
+  export type IndustryParticipationGalleryCreateWithoutBlogPostInput = {
+    image: string
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput = {
+    id?: number
+    image: string
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IndustryParticipationGalleryCreateOrConnectWithoutBlogPostInput = {
+    where: IndustryParticipationGalleryWhereUniqueInput
+    create: XOR<IndustryParticipationGalleryCreateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput>
+  }
+
+  export type IndustryParticipationGalleryCreateManyBlogPostInputEnvelope = {
+    data: IndustryParticipationGalleryCreateManyBlogPostInput | IndustryParticipationGalleryCreateManyBlogPostInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type IndustryParticipationGalleryUpsertWithWhereUniqueWithoutBlogPostInput = {
+    where: IndustryParticipationGalleryWhereUniqueInput
+    update: XOR<IndustryParticipationGalleryUpdateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedUpdateWithoutBlogPostInput>
+    create: XOR<IndustryParticipationGalleryCreateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedCreateWithoutBlogPostInput>
+  }
+
+  export type IndustryParticipationGalleryUpdateWithWhereUniqueWithoutBlogPostInput = {
+    where: IndustryParticipationGalleryWhereUniqueInput
+    data: XOR<IndustryParticipationGalleryUpdateWithoutBlogPostInput, IndustryParticipationGalleryUncheckedUpdateWithoutBlogPostInput>
+  }
+
+  export type IndustryParticipationGalleryUpdateManyWithWhereWithoutBlogPostInput = {
+    where: IndustryParticipationGalleryScalarWhereInput
+    data: XOR<IndustryParticipationGalleryUpdateManyMutationInput, IndustryParticipationGalleryUncheckedUpdateManyWithoutBlogPostInput>
+  }
+
+  export type IndustryParticipationGalleryScalarWhereInput = {
+    AND?: IndustryParticipationGalleryScalarWhereInput | IndustryParticipationGalleryScalarWhereInput[]
+    OR?: IndustryParticipationGalleryScalarWhereInput[]
+    NOT?: IndustryParticipationGalleryScalarWhereInput | IndustryParticipationGalleryScalarWhereInput[]
+    id?: IntFilter<"IndustryParticipationGallery"> | number
+    blogPostId?: IntFilter<"IndustryParticipationGallery"> | number
+    image?: StringFilter<"IndustryParticipationGallery"> | string
+    sortOrder?: IntFilter<"IndustryParticipationGallery"> | number
+    createdAt?: DateTimeFilter<"IndustryParticipationGallery"> | Date | string
+    updatedAt?: DateTimeFilter<"IndustryParticipationGallery"> | Date | string
+  }
+
+  export type BlogPostCreateWithoutIndustryGalleryInput = {
+    title: string
+    slug: string
+    type: $Enums.BlogType
+    excerpt?: string | null
+    content?: string | null
+    image?: string | null
+    documentUrl?: string | null
+    date?: Date | string | null
+    location?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: string | null
+    personRole?: string | null
+    eventName?: string | null
+    link?: string | null
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostUncheckedCreateWithoutIndustryGalleryInput = {
+    id?: number
+    title: string
+    slug: string
+    type: $Enums.BlogType
+    excerpt?: string | null
+    content?: string | null
+    image?: string | null
+    documentUrl?: string | null
+    date?: Date | string | null
+    location?: string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: string | null
+    personRole?: string | null
+    eventName?: string | null
+    link?: string | null
+    isPublished?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BlogPostCreateOrConnectWithoutIndustryGalleryInput = {
+    where: BlogPostWhereUniqueInput
+    create: XOR<BlogPostCreateWithoutIndustryGalleryInput, BlogPostUncheckedCreateWithoutIndustryGalleryInput>
+  }
+
+  export type BlogPostUpsertWithoutIndustryGalleryInput = {
+    update: XOR<BlogPostUpdateWithoutIndustryGalleryInput, BlogPostUncheckedUpdateWithoutIndustryGalleryInput>
+    create: XOR<BlogPostCreateWithoutIndustryGalleryInput, BlogPostUncheckedCreateWithoutIndustryGalleryInput>
+    where?: BlogPostWhereInput
+  }
+
+  export type BlogPostUpdateToOneWithWhereWithoutIndustryGalleryInput = {
+    where?: BlogPostWhereInput
+    data: XOR<BlogPostUpdateWithoutIndustryGalleryInput, BlogPostUncheckedUpdateWithoutIndustryGalleryInput>
+  }
+
+  export type BlogPostUpdateWithoutIndustryGalleryInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    type?: EnumBlogTypeFieldUpdateOperationsInput | $Enums.BlogType
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: NullableStringFieldUpdateOperationsInput | string | null
+    personRole?: NullableStringFieldUpdateOperationsInput | string | null
+    eventName?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogPostUncheckedUpdateWithoutIndustryGalleryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    type?: EnumBlogTypeFieldUpdateOperationsInput | $Enums.BlogType
+    excerpt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    documentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: NullableJsonNullValueInput | InputJsonValue
+    personName?: NullableStringFieldUpdateOperationsInput | string | null
+    personRole?: NullableStringFieldUpdateOperationsInput | string | null
+    eventName?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InvestorSubCategoryCreateWithoutCategoryInput = {
@@ -22489,6 +24078,37 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tableFormatAssignments?: InvestorTableFormatAssignmentUncheckedUpdateManyWithoutQuarterNestedInput
+  }
+
+  export type IndustryParticipationGalleryCreateManyBlogPostInput = {
+    id?: number
+    image: string
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type IndustryParticipationGalleryUpdateWithoutBlogPostInput = {
+    image?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IndustryParticipationGalleryUncheckedUpdateWithoutBlogPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IndustryParticipationGalleryUncheckedUpdateManyWithoutBlogPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InvestorSubCategoryCreateManyCategoryInput = {

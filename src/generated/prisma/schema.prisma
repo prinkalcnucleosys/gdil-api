@@ -113,12 +113,12 @@ model BlogPost {
   excerpt String? @db.Text
   content String? @db.Text
 
-  // Media
+  // Media / Cover Image
   image       String?
   documentUrl String?
 
   // Date / event information
-  date     DateTime
+  date     DateTime?
   location String?
 
   // Additional information
@@ -137,6 +137,9 @@ model BlogPost {
   // Publishing
   isPublished Boolean @default(false)
 
+  // Industry Participation Gallery
+  industryGallery IndustryParticipationGallery[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -145,6 +148,25 @@ model BlogPost {
   @@index([isPublished])
   @@index([type, isPublished])
   @@map("blog_posts")
+}
+
+model IndustryParticipationGallery {
+  id Int @id @default(autoincrement())
+
+  blogPostId Int
+
+  blogPost BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+
+  image String
+
+  sortOrder Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([blogPostId])
+  @@index([blogPostId, sortOrder])
+  @@map("industry_participation_gallery")
 }
 
 /**
